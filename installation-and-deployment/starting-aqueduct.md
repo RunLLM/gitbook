@@ -60,10 +60,8 @@ For more details on creating a workflow, see our [Quickstart Guide](../quickstar
 
 ### Accessing Aqueduct from an external machine
 
-Sometimes, you may want to run the Aqueduct service on a long-running server and access the UI and server from a separate machine. In order to allow external access, please provide the **public IP address of the machine on which the server is running** as an argument to `aqueduct ui`:
+Sometimes, you may want to run the Aqueduct service on a long-running server and access the UI and server from a separate machine:
 
 ```bash
 aqueduct start --expose
 ```
-
-It's critical that you provide the **public IP address** of the machine if you're running Aqueduct on a cloud server (e.g., on an AWS EC2 instance).&#x20;
