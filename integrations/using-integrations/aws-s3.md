@@ -12,7 +12,7 @@ my_bucket = client.integration('s3/my_data_bucket')
 
 ### Reading from AWS S3
 
-Once we've loaded a connection to our S3 bucket, we can access data by using the `.file()` method. `.file()` requires the following parameters:
+Once we've loaded a connection to our S3 bucket, we can access data by using the `.file()` method. `.file()` requires the following arguments:
 
 * `filepaths`: One or more paths from which files should be read.
 * `format`: The expected table format when reading from `filepaths`. We currently support `CSV`, `Parquet`, or `JSON`.
