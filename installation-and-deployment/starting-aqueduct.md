@@ -50,8 +50,8 @@ For a full list of commands available in the Aqueduct CLI, please check out the 
 At this point, you should be ready to go and can create your first workflow. You can use the following code snippet to connect to your new Aqueduct server:
 
 ```python
-from aqueduct import AqueductClient
-client = AqueductClient("<YOUR_API_KEY>", "localhost:8080")
+from aqueduct import Client
+client = Client("<YOUR_API_KEY>", "localhost:8080")
 ```
 
 For more details on creating a workflow, see our [Quickstart Guide](../quickstart-guide.md) or our list of [example workflows](../example-workflows/).
@@ -60,10 +60,8 @@ For more details on creating a workflow, see our [Quickstart Guide](../quickstar
 
 ### Accessing Aqueduct from an external machine
 
-Sometimes, you may want to run the Aqueduct service on a long-running server and access the UI and server from a separate machine. In order to allow external access, please provide the **public IP address of the machine on which the server is running** as an argument to `aqueduct ui`:
+Sometimes, you may want to run the Aqueduct service on a long-running server and access the UI and server from a separate machine:
 
 ```bash
 aqueduct start --expose
 ```
-
-It's critical that you provide the **public IP address** of the machine if you're running Aqueduct on a cloud server (e.g., on an AWS EC2 instance).&#x20;
