@@ -3,8 +3,10 @@
 * [aqueduct.table\_artifact](#aqueduct.table_artifact)
   * [TableArtifact](#aqueduct.table_artifact.TableArtifact)
     * [get](#aqueduct.table_artifact.TableArtifact.get)
+    * [head](#aqueduct.table_artifact.TableArtifact.head)
     * [save](#aqueduct.table_artifact.TableArtifact.save)
     * [list\_preset\_metrics](#aqueduct.table_artifact.TableArtifact.list_preset_metrics)
+    * [list\_system\_metrics](#aqueduct.table_artifact.TableArtifact.list_system_metrics)
     * [validate\_with\_expectation](#aqueduct.table_artifact.TableArtifact.validate_with_expectation)
     * [number\_of\_missing\_values](#aqueduct.table_artifact.TableArtifact.number_of_missing_values)
     * [number\_of\_rows](#aqueduct.table_artifact.TableArtifact.number_of_rows)
@@ -58,6 +60,13 @@ def get(parameters: Optional[Dict[str, Any]] = None) -> pd.DataFrame
 
 Materializes TableArtifact into an actual dataframe.
 
+**Arguments**:
+
+  parameters:
+  A map from parameter name to its custom value, to be used when evaluating
+  this artifact.
+  
+
 **Returns**:
 
   A dataframe containing the tabular contents of this artifact.
@@ -69,6 +78,31 @@ Materializes TableArtifact into an actual dataframe.
   An error occurred because of an issue with the user's code or inputs.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
+
+<a id="aqueduct.table_artifact.TableArtifact.head"></a>
+
+#### head
+
+```python
+def head(n: int = 5,
+         parameters: Optional[Dict[str, Any]] = None) -> pd.DataFrame
+```
+
+Returns a preview of the table artifact.
+
+>>> db = client.integration(name="demo/")
+>>> customer_data = db.sql("SELECT * from customers")
+>>> churn_predictions = predict_churn(customer_data)
+>>> churn_predictions.head()
+
+**Arguments**:
+
+  n:
+  the number of row previewed. Default to 5.
+
+**Returns**:
+
+  A dataframe containing the tabular contents of this artifact.
 
 <a id="aqueduct.table_artifact.TableArtifact.save"></a>
 
@@ -111,6 +145,21 @@ These preset metrics can be set via the invoking the preset method on a artifact
 **Returns**:
 
   A list of available preset metrics on a table
+
+<a id="aqueduct.table_artifact.TableArtifact.list_system_metrics"></a>
+
+#### list\_system\_metrics
+
+```python
+def list_system_metrics() -> List[str]
+```
+
+Returns a list of all system metrics available on the table artifact.
+These system metrics can be set via the invoking the system_metric() method the table.
+
+**Returns**:
+
+  A list of available system metrics on a table
 
 <a id="aqueduct.table_artifact.TableArtifact.validate_with_expectation"></a>
 
