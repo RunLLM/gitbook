@@ -14,7 +14,9 @@ my_bucket = client.integration('s3/my_data_bucket')
 
 Once we've loaded a connection to our S3 bucket, we can access data by using the `.file()` method. `.file()` requires the following arguments:
 
-* `filepaths`: One or more paths from which files should be read.
+* `filepaths`: One or more paths from which files should be read. You can also specify a directory
+  name, in which case we will perform a prefix search. When multiple files are read, we concatenate them
+  into a single DataFrame.
 * `format`: The expected table format when reading from `filepaths`. We currently support `CSV`, `Parquet`, or `JSON`.
 
 See below for example usage:
@@ -22,8 +24,11 @@ See below for example usage:
 ```python
 customers = my_bucket.file(filepaths='data/sales/customers.csv', format='CSV')
 
-# When retrieving multiple tables, we concatenate them into a single DataFrame.
-cars = my_bucket.file(filepaths=['data/car/mazda.json', 'data/car/honda.json'], format='JSON')
+# Since the `filepaths` contains more than one path, we concatenate the results into a single DataFrame.
+cars = my_bucket.file(filepaths=['data/cars/mazda.json', 'data/cars/honda.json'], format='JSON')
+
+# Since we specified a directory name, a prefix search is done to retrieve all files that match the search.
+cars = my_bucket.file(filepaths='data/cars/', format='JSON')
 ```
 
 This returns what we call an [**Artifact**](../../artifacts.md) **** in Aqueduct terminology. An artifact is simply just a wrapper around some data that we'll track a part of your workflow. You can call [Operators](../../operators.md) on your artifacts -- for more on this, see the guide on [Operators](../../operators.md) or [Workflows](../../workflows/).
