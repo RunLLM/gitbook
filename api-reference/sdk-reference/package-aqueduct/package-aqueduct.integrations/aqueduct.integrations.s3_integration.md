@@ -31,7 +31,7 @@ def file(filepaths: Union[List[str], str],
          description: str = "") -> TableArtifact
 ```
 
-Reads multiple files from the S3 integration into a single TableArtifact.
+Reads one or more files from the S3 integration into a single TableArtifact.
 
 **Arguments**:
 
