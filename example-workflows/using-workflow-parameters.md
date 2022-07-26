@@ -1,3 +1,9 @@
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
 # Workflow Parameters Tutorial
 
 
@@ -5,38 +11,71 @@ This is a quick tutorial that will demonstrate how workflows can be parameterize
 
 
 
+
+
+<!-- ------------- New Cell ------------ -->
+
+
 ```python
-import aqueduct
+import aqueduct 
 from aqueduct.decorator import op
 
-api_key = "<your_api_key>"
-address = "<your_server_address>"
+# If you're running your notebook on a separate machine from your 
+# Aqueduct server, change this to the address of your Aqueduct server.
+address = "http://localhost:8080"
+
+# If you're running youre notebook on a separate machine from your 
+# Aqueduct server, you will have to copy your API key here rather than
+# using `get_apikey()`.
+api_key = aqueduct.get_apikey()
 client = aqueduct.Client(api_key, address)
 ```
+
+
+
+
+<!-- ------------- New Cell ------------ -->
+
 
 --- 
 
 ## The Basics
 
-A parameter acts exactly like any other Aqueduct artifact. It can be fed as a typical artifact input to any operator. Every parameter must have both a name and a default value, which we will use if not overriding value is provided.
+A parameter is an argument to a whole workflow that acts exactly like any other Aqueduct artifact. It can be fed as a typical artifact input to any operator. Every parameter must have both a name and a default value, which we will use if not overriding value is provided.
 
-In the example below, we will attempt to filter a table based on the value of a specific column ("reviewer_nationality"). The value we filter on will be parameterized.
+In the example below, we will attempt to filter a table based on the value of a specific column (`reviewer_nationality`). The value we filter on will be parameterized.
+
+
+
+
+<!-- ------------- New Cell ------------ -->
 
 
 ```python
 db = client.integration("aqueduct_demo")
+
+# reviews_table is an Aqueduct TableArtifact, which is a wrapper around
+# a Pandas DataFrame. A TableArtifact can be used as argument to any operator
+# in a workflow; you can also call .get() on a TableArtifact to retrieve
+# the underlying DataFrame and interact with it directly.
 reviews_table = db.sql("select * from hotel_reviews;")
 ```
 
 
+
+
+<!-- ------------- New Cell ------------ -->
+
+
 ```python
+# This gets the underlying DataFrame. Note that you can't pass a 
+# DataFrame as an argument to a workflow; you must use the Aqueduct
+# TableArtifact!
 reviews_table.get()
 ```
-
-
-
-
+**Output**
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -133,36 +172,65 @@ reviews_table.get()
 
 
 
+<!-- ------------- New Cell ------------ -->
+
+
 ```python
 import pandas as pd
 
 @op
 def strip_whitespace_from_nationality(df: pd.DataFrame):
+    '''
+    This function takes a Pandas DataFrame for hotel_reviews and 
+    removes the unnecessary whitespace around the reviewer's nationality.
+    The reviewer_nationality data is loaded with inconsistent spacing,
+    so this is a necessary data cleaning step before further featurization.
+    '''
     df["reviewer_nationality"] = df["reviewer_nationality"].str.strip(" ")
     return df
     
 @op
 def filter_by_nationality(df: pd.DataFrame, nationality: str):
+    '''
+    This function takes in a Pandas DataFrame for hotel_reviews and
+    filters it by the nationality parameter passed in to this function.
+    This filter should only be invoked after the whitespace stripping
+    data cleaning operation above, otherwise it will result in inconsisten
+    results.
+    '''
     return df[df["reviewer_nationality"] == nationality]
 ```
 
----
-Here we filter the reviews table to only the rows where "reviewer_nationality" is equal to our parameter value, which currently defaults to "United Kingdom".
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
+Here we filter the reviews table to only the rows where `reviewer_nationality` is equal to our parameter value, which currently defaults to "United Kingdom".
+
+
+
+
+<!-- ------------- New Cell ------------ -->
 
 
 ```python
-# Every parameter must have a default value that we can use.
+# We define a workflow parameter called nationality_param and give
+# it a default value of United Kingdom. This parameter can be used 
+# in any SQL query or Python operator in this workflow.
 nationality_param = client.create_param("nationality", default="United Kingdom")
 
 formatted_table = strip_whitespace_from_nationality(reviews_table)
+
+# Here, we use the nationality_param defined above as an argument to 
+# filter by nationality.
 filtered = filter_by_nationality(formatted_table, nationality_param)
 filtered.get().head(10)
 ```
-
-
-
-
+**Output**
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -250,18 +318,29 @@ filtered.get().head(10)
 
 
 
+
+<!-- ------------- New Cell ------------ -->
+
+
 ---
 Since we've already parameterized the workflow, we can provide a different parameter value and see the new results immediately!
 
 
+
+
+<!-- ------------- New Cell ------------ -->
+
+
 ```python
+# When calling .get() on an artifact, we can provide a map of parametres
+# to see how different parametrization affects the execution of our workflow.
+# Here, we change the default value ("United Kingdom") to a new value 
+# ("Australia").
 filtered.get(parameters={"nationality": "Australia"}).head(10)
 ```
-
-
-
-
+**Output**
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -321,6 +400,10 @@ filtered.get(parameters={"nationality": "Australia"}).head(10)
 
 
 
+
+<!-- ------------- New Cell ------------ -->
+
+
 ---
 ## Publishing a Parameterized Flow
 
@@ -328,10 +411,20 @@ When a flow is published on a schedule, the recurring run will continously execu
 
 
 
+
+
+<!-- ------------- New Cell ------------ -->
+
+
 ```python
-flow = client.publish_flow("Parameter Example", artifacts = [filtered])
+flow = client.publish_flow("Parameter Example", artifacts=[filtered])
 print(flow.id())
 ```
+
+
+
+
+<!-- ------------- New Cell ------------ -->
 
 
 ```python
@@ -343,14 +436,25 @@ while len(flow.list_runs()) == 0:
 client.trigger(flow.id(), parameters={"nationality": "Australia"})
 ```
 
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
 ---
 ### Parameterizing SQL Queries
 
-SQL queries can also be parameterized. For queries, we'll use the double-bracket syntax to denote the presence of a parameter inline. As long as the name of the parameter matches a previously defined.
+SQL queries can also be parameterized. For queries, we'll use the double-bracket syntax to denote the presence of a parameter inline. As long as the name of the parameter matches a previously defined. 
 
 Here is the same flow as above, but as a parameterized SQL query instead.
 
 NOTE: unlike parameter names for other operators, multi-part SQL parameter names cannot be separated with spaces. For example, "review-date" is allowed but "review date" is not.
+
+
+
+
+<!-- ------------- New Cell ------------ -->
 
 
 ```python
@@ -359,14 +463,9 @@ _ = client.create_param("nationality", default="United Kingdom")
 table = db.sql("select * from hotel_reviews where reviewer_nationality=' {{nationality}} '")
 table.get().head(10)
 ```
-
-    Warning: You are overwriting the previously defined operator `nationality`. Any downstream artifacts of that operator will need to be recomputed and re-saved.
-
-
-
-
-
+**Output**
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -455,14 +554,15 @@ table.get().head(10)
 
 
 
+<!-- ------------- New Cell ------------ -->
+
+
 ```python
 table.get(parameters={"nationality": "Australia"})
 ```
-
-
-
-
+**Output**
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -522,12 +622,21 @@ table.get(parameters={"nationality": "Australia"})
 
 
 
+
+<!-- ------------- New Cell ------------ -->
+
+
 ---
 ### Builtin SQL Parameters
 
-There are also a number of builtin parameter tags that we support for you! See https://docs.aqueducthq.com/workflows/parameterizing-a-workflow for a list of all of them.
+There are also a number of builtin parameter tags that we support for you! See [our documentation](https://docs.aqueducthq.com/workflows/parameterizing-a-workflow) for a list of all of built-in parameters.
 
-Below is an example of the fairly self-explanatory "today" tag:
+Below is an example of the fairly self-explanatory `today` parameter:
+
+
+
+
+<!-- ------------- New Cell ------------ -->
 
 
 ```python
@@ -535,11 +644,9 @@ Below is an example of the fairly self-explanatory "today" tag:
 reviews_after_today = db.sql("select * from hotel_reviews where review_date > {{ today }}")
 reviews_after_today.get()
 ```
-
-
-
-
+**Output**
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -554,15 +661,16 @@ reviews_after_today.get()
 
 
 
+<!-- ------------- New Cell ------------ -->
+
+
 ```python
 reviews_before_today = db.sql("select * from hotel_reviews where review_date < {{ today }}")
 reviews_before_today.get()
 ```
-
-
-
-
+**Output**
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -655,5 +763,4 @@ reviews_before_today.get()
 </table>
 <p>100 rows × 4 columns</p>
 </div>
-
 

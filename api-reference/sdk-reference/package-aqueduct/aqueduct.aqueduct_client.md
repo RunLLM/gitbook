@@ -8,6 +8,8 @@
     * [create\_param](#aqueduct.aqueduct_client.Client.create_param)
     * [list\_integrations](#aqueduct.aqueduct_client.Client.list_integrations)
     * [integration](#aqueduct.aqueduct_client.Client.integration)
+    * [list\_flows](#aqueduct.aqueduct_client.Client.list_flows)
+    * [flow](#aqueduct.aqueduct_client.Client.flow)
     * [publish\_flow](#aqueduct.aqueduct_client.Client.publish_flow)
     * [trigger](#aqueduct.aqueduct_client.Client.trigger)
     * [delete\_flow](#aqueduct.aqueduct_client.Client.delete_flow)
@@ -168,6 +170,43 @@ Retrieves a connected integration object.
   provided integration or the provided integration is of an
   incompatible type.
 
+<a id="aqueduct.aqueduct_client.Client.list_flows"></a>
+
+#### list\_flows
+
+```python
+def list_flows() -> List[Dict[str, str]]
+```
+
+Lists the flows that are accessible by this client.
+
+**Returns**:
+
+  A list of flows, each represented as a dictionary providing essential
+  information (eg. name, id, etc.), which the user can use to inspect
+  the flow further in the UI or SDK.
+
+<a id="aqueduct.aqueduct_client.Client.flow"></a>
+
+#### flow
+
+```python
+def flow(flow_id: Union[str, uuid.UUID]) -> Flow
+```
+
+Fetches a flow corresponding to the given flow id.
+
+**Arguments**:
+
+  flow_id:
+  Used to identify the flow to fetch from the system.
+  
+
+**Raises**:
+
+  InvalidUserArgumentException:
+  If the provided flow id does not correspond to a flow the client knows about.
+
 <a id="aqueduct.aqueduct_client.Client.publish_flow"></a>
 
 #### publish\_flow
@@ -287,7 +326,7 @@ containing the graph.
 **Arguments**:
 
   artifacts:
-  If specified, the subgraph terminating at these artifacts will be specified.
+  If specified the subgraph terminating at these artifacts will be specified.
   Otherwise, the entire graph is printed.
 
 <a id="aqueduct.aqueduct_client.Client.describe"></a>

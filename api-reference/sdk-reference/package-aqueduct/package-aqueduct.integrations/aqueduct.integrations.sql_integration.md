@@ -66,7 +66,7 @@ def sql(query: Union[str, RelationalDBExtractParams],
         description: str = "") -> TableArtifact
 ```
 
-Runs a SQL query against the RealtionalDB integration.
+Runs a SQL query against the RelationalDB integration.
 
 **Arguments**:
 

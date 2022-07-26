@@ -50,7 +50,8 @@ in a file named "model.py":
 def op(
     name: Optional[Union[str, UserFunction]] = None,
     description: Optional[str] = None,
-    file_dependencies: Optional[List[str]] = None
+    file_dependencies: Optional[List[str]] = None,
+    reqs_path: Optional[str] = None
 ) -> Union[DecoratedFunction, OutputArtifactFunction]
 ```
 
@@ -74,6 +75,8 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   A list of relative paths to files that the function needs to access.
   Python classes/methods already imported within the function's file
   need not be included.
+  reqs_path:
+  A path to file that specifies requirements for this specific operator.
   
 
 **Examples**:
