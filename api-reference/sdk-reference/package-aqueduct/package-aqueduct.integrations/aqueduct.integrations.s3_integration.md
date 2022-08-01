@@ -43,14 +43,11 @@ Reads one or more files from the S3 integration into a single TableArtifact.
   all matched files and concatenate them into a single file.
   2) a list of strings representing the file name. Note that in this case, we do not
   accept directory names in the list.
-
   format:
   The format of the S3 files. We currently support JSON, CSV, and Parquet. Note that currently,
   when multiple files are retrieved, these files must have the same format.
-
   name:
   Name of the query.
-
   description:
   Description of the query.
   
@@ -73,7 +70,6 @@ Configuration for saving to S3 Integration.
 
   filepath:
   S3 Filepath to save to.
-  
   format:
   S3 Fileformat to save as. Can be CSV, JSON, or Parquet.
 

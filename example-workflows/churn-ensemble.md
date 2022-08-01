@@ -479,7 +479,7 @@ churn_table.head()
       <td>False</td>
       <td>2.0</td>
       <td>True</td>
-      <td>0.081036</td>
+      <td>0.072849</td>
     </tr>
     <tr>
       <th>1</th>
@@ -494,7 +494,7 @@ churn_table.head()
       <td>False</td>
       <td>3.0</td>
       <td>True</td>
-      <td>0.146564</td>
+      <td>0.136351</td>
     </tr>
     <tr>
       <th>2</th>
@@ -509,7 +509,7 @@ churn_table.head()
       <td>False</td>
       <td>1.0</td>
       <td>True</td>
-      <td>0.155584</td>
+      <td>0.153633</td>
     </tr>
     <tr>
       <th>3</th>
@@ -524,7 +524,7 @@ churn_table.head()
       <td>False</td>
       <td>3.0</td>
       <td>True</td>
-      <td>0.145398</td>
+      <td>0.129359</td>
     </tr>
     <tr>
       <th>4</th>
@@ -539,7 +539,7 @@ churn_table.head()
       <td>False</td>
       <td>2.0</td>
       <td>True</td>
-      <td>0.161406</td>
+      <td>0.158914</td>
     </tr>
   </tbody>
 </table>
@@ -1091,7 +1091,7 @@ churn_table.get().head()
       <td>0</td>
       <td>2.0</td>
       <td>1</td>
-      <td>0.081036</td>
+      <td>0.072849</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1106,7 +1106,7 @@ churn_table.get().head()
       <td>0</td>
       <td>3.0</td>
       <td>1</td>
-      <td>0.146564</td>
+      <td>0.136351</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1121,7 +1121,7 @@ churn_table.get().head()
       <td>0</td>
       <td>1.0</td>
       <td>1</td>
-      <td>0.155584</td>
+      <td>0.153633</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1136,7 +1136,7 @@ churn_table.get().head()
       <td>0</td>
       <td>3.0</td>
       <td>1</td>
-      <td>0.145398</td>
+      <td>0.129359</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1151,7 +1151,7 @@ churn_table.get().head()
       <td>0</td>
       <td>2.0</td>
       <td>1</td>
-      <td>0.161406</td>
+      <td>0.158914</td>
     </tr>
   </tbody>
 </table>
@@ -1225,7 +1225,7 @@ avg_pred_churn_metric.get()
 
 
 ```
-0.28025028109550476
+0.2793774902820587
 ```
 
 
@@ -1256,7 +1256,7 @@ avg_pred_churn_metric.bound(upper=0.4, severity='error')
 
 
 ```
-<aqueduct.check_artifact.CheckArtifact at 0x142eb01c0>
+<aqueduct.check_artifact.CheckArtifact at 0x7f493aff4af0>
 ```
 
 
@@ -1313,7 +1313,7 @@ When you call `publish_flow`, all of this will be shipped off to the cloud!
 # Aqueduct UI, which will show you the status of your workflow
 # runs and allow you to inspect them.
 churn_flow = client.publish_flow(
-    name = "Demo Churn Ensemble", 
+    name = "Demo Churn Ensemble 1", 
     artifacts = [churn_table, avg_pred_churn_metric],
     schedule = aqueduct.hourly(),
 )
