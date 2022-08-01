@@ -49,8 +49,8 @@ This class allows users to interact with flows on their Aqueduct cluster.
 #### \_\_init\_\_
 
 ```python
-def __init__(api_key: str,
-             aqueduct_address: str,
+def __init__(api_key: str = "",
+             aqueduct_address: str = "http://localhost:8080",
              log_level: int = logging.ERROR)
 ```
 
@@ -59,9 +59,13 @@ Creates an instance of Client.
 **Arguments**:
 
   api_key:
-  The user unique API key provided by Aqueduct.
+  The user unique API key provided by Aqueduct. If no key is
+  provided, the client attempts to read the key stored on the
+  local server and errors if non exists.
   aqueduct_address:
-  The address of the Aqueduct Server service.
+  The address of the Aqueduct Server service. If no address is
+  provided, the client attempts to connect to
+  http://localhost:8080.
   log_level:
   A indication of what level and above to print logs from the sdk.
   Defaults to printing error and above only. Types defined in: https://docs.python.org/3/howto/logging.html
