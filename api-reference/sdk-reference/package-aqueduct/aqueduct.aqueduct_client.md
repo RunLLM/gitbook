@@ -2,6 +2,7 @@
 
 * [aqueduct.aqueduct\_client](#aqueduct.aqueduct_client)
   * [get\_apikey](#aqueduct.aqueduct_client.get_apikey)
+  * [infer\_requirements](#aqueduct.aqueduct_client.infer_requirements)
   * [Client](#aqueduct.aqueduct_client.Client)
     * [\_\_init\_\_](#aqueduct.aqueduct_client.Client.__init__)
     * [github](#aqueduct.aqueduct_client.Client.github)
@@ -34,6 +35,20 @@ Get the API key if the server is running locally.
 
   The API key.
 
+<a id="aqueduct.aqueduct_client.infer_requirements"></a>
+
+#### infer\_requirements
+
+```python
+def infer_requirements() -> List[str]
+```
+
+Obtains the list of pip requirements specifiers from the current python environment using `pip freeze`.
+
+**Returns**:
+
+  A list, for example, ["transformers==4.21.0", "numpy==1.22.4"].
+
 <a id="aqueduct.aqueduct_client.Client"></a>
 
 ## Client Objects
@@ -51,7 +66,7 @@ This class allows users to interact with flows on their Aqueduct cluster.
 ```python
 def __init__(api_key: str = "",
              aqueduct_address: str = "http://localhost:8080",
-             log_level: int = logging.ERROR)
+             logging_level: int = logging.WARNING)
 ```
 
 Creates an instance of Client.
@@ -66,9 +81,9 @@ Creates an instance of Client.
   The address of the Aqueduct Server service. If no address is
   provided, the client attempts to connect to
   http://localhost:8080.
-  log_level:
+  logging_level:
   A indication of what level and above to print logs from the sdk.
-  Defaults to printing error and above only. Types defined in: https://docs.python.org/3/howto/logging.html
+  Defaults to printing warning and above only. Types defined in: https://docs.python.org/3/howto/logging.html
   
 
 **Returns**:
