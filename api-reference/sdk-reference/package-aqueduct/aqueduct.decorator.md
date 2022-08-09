@@ -5,6 +5,7 @@
   * [op](#aqueduct.decorator.op)
   * [metric](#aqueduct.decorator.metric)
   * [check](#aqueduct.decorator.check)
+  * [to\_operator](#aqueduct.decorator.to_operator)
 
 <a id="aqueduct.decorator"></a>
 
@@ -51,7 +52,7 @@ def op(
     name: Optional[Union[str, UserFunction]] = None,
     description: Optional[str] = None,
     file_dependencies: Optional[List[str]] = None,
-    reqs_path: Optional[str] = None
+    requirements: Optional[Union[str, List[str]]] = None
 ) -> Union[DecoratedFunction, OutputArtifactFunction]
 ```
 
@@ -60,23 +61,26 @@ Decorator that converts regular python functions into an operator.
 Calling the decorated function returns a TableArtifact. The decorated function
 can take any number of artifact inputs.
 
-The requirements.txt file in the current directory is used, if it exists.
-
 To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg:
 >>> compute_recommendations.local(customer_profiles, recent_clicks)
 
 **Arguments**:
 
   name:
-  Operator name.
+  Operator name. Defaults to the function name if not provided (or is of a non-string type).
   description:
   A description for the operator.
   file_dependencies:
   A list of relative paths to files that the function needs to access.
   Python classes/methods already imported within the function's file
   need not be included.
-  reqs_path:
-  A path to file that specifies requirements for this specific operator.
+  requirements:
+  Defines the python package requirements that this operator will run with.
+  Can be either a path to the requirements.txt file or a list of pip requirements specifiers.
+  (eg. ["transformers==4.21.0", "numpy==1.22.4"]. If not supplied, we'll first
+  look for a `requirements.txt` file in the same directory as the decorated function
+  and install those. Otherwise, we'll attempt to infer the requirements with
+  `pip freeze`.
   
 
 **Examples**:
@@ -102,7 +106,9 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
 ```python
 def metric(
     name: Optional[Union[str, MetricFunction]] = None,
-    description: Optional[str] = None
+    description: Optional[str] = None,
+    file_dependencies: Optional[List[str]] = None,
+    requirements: Optional[Union[str, List[str]]] = None
 ) -> Union[DecoratedMetricFunction, OutputArtifactFunction]
 ```
 
@@ -119,9 +125,20 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
 **Arguments**:
 
   name:
-  Operator name.
+  Operator name. Defaults to the function name if not provided (or is of a non-string type).
   description:
   A description for the metric.
+  file_dependencies:
+  A list of relative paths to files that the function needs to access.
+  Python classes/methods already imported within the function's file
+  need not be included.
+  requirements:
+  Defines the python package requirements that this operator will run with.
+  Can be either a path to the requirements.txt file or a list of pip requirements specifiers.
+  (eg. ["transformers==4.21.0", "numpy==1.22.4"]. If not supplied, we'll first
+  look for a `requirements.txt` file in the same directory as the decorated function
+  and install those. Otherwise, we'll attempt to infer the requirements with
+  `pip freeze`.
   
 
 **Examples**:
@@ -147,7 +164,9 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
 def check(
     name: Optional[Union[str, CheckFunction]] = None,
     description: Optional[str] = None,
-    severity: CheckSeverity = CheckSeverity.WARNING
+    severity: CheckSeverity = CheckSeverity.WARNING,
+    file_dependencies: Optional[List[str]] = None,
+    requirements: Optional[Union[str, List[str]]] = None
 ) -> Union[DecoratedCheckFunction, OutputArtifactFunction]
 ```
 
@@ -155,8 +174,6 @@ Decorator that converts a regular python function into a check.
 
 Calling the decorated function returns a CheckArtifact. The decorated python function
 can have any number of artifact inputs.
-
-The requirements.txt file in the current directory is used, if it exists.
 
 A check can be set with either WARNING or ERROR severity. A failing check with ERROR severity
 will fail the workflow when run in our system.
@@ -167,11 +184,22 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
 **Arguments**:
 
   name:
-  Operator name.
+  Operator name. Defaults to the function name if not provided (or is of a non-string type).
   description:
   A description for the check.
   severity:
   The severity level of the check if it fails.
+  file_dependencies:
+  A list of relative paths to files that the function needs to access.
+  Python classes/methods already imported within the function's file
+  need not be included.
+  requirements:
+  Defines the python package requirements that this operator will run with.
+  Can be either a path to the requirements.txt file or a list of pip requirements specifiers.
+  (eg. ["transformers==4.21.0", "numpy==1.22.4"]. If not supplied, we'll first
+  look for a `requirements.txt` file in the same directory as the decorated function
+  and install those. Otherwise, we'll attempt to infer the requirements with
+  `pip freeze`.
   
 
 **Examples**:
@@ -190,4 +218,40 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   `churn_is_low_check` is a CheckArtifact representing the result of `avg_churn_is_low()`.
   
   >>> churn_is_low_check.get()
+
+<a id="aqueduct.decorator.to_operator"></a>
+
+#### to\_operator
+
+```python
+def to_operator(
+    func: UserFunction,
+    name: Optional[Union[str, UserFunction]] = None,
+    description: Optional[str] = None,
+    file_dependencies: Optional[List[str]] = None,
+    requirements: Optional[Union[str, List[str]]] = None
+) -> Union[Callable[..., OutputArtifact], OutputArtifact]
+```
+
+Convert a function that returns a dataframe into an Aqueduct operator.
+
+**Arguments**:
+
+  func:
+  the python function that is to be converted into operator.
+  name:
+  Operator name.
+  description:
+  A description for the operator.
+  file_dependencies:
+  A list of relative paths to files that the function needs to access.
+  Python classes/methods already imported within the function's file
+  need not be included.
+  requirements:
+  Defines the python package requirements that this operator will run with.
+  Can be either a path to the requirements.txt file or a list of pip requirements specifiers.
+  (eg. ["transformers==4.21.0", "numpy==1.22.4"]. If not supplied, we'll first
+  look for a `requirements.txt` file in the same directory as the decorated function
+  and install those. Otherwise, we'll attempt to infer the requirements with
+  `pip freeze`.
 

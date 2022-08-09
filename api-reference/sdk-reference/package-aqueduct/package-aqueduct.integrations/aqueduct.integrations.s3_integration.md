@@ -26,7 +26,7 @@ Class for S3 integration.
 
 ```python
 def file(filepaths: Union[List[str], str],
-         format: S3FileFormat,
+         format: str,
          name: Optional[str] = None,
          description: str = "") -> TableArtifact
 ```
