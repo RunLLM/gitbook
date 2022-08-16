@@ -166,7 +166,7 @@ Retrieves a dictionary of integrations the client can use.
 def integration(
     name: str
 ) -> Union[SalesforceIntegration, S3Integration, GoogleSheetsIntegration,
-           RelationalDBIntegration, ]
+           RelationalDBIntegration, AirflowIntegration, ]
 ```
 
 Retrieves a connected integration object.
@@ -235,7 +235,8 @@ def publish_flow(name: str,
                  description: str = "",
                  schedule: str = "",
                  k_latest_runs: int = -1,
-                 artifacts: Optional[List[GenericArtifact]] = None) -> Flow
+                 artifacts: Optional[List[GenericArtifact]] = None,
+                 config: Optional[FlowConfig] = None) -> Flow
 ```
 
 Uploads and kicks off the given flow in the system.
@@ -262,6 +263,11 @@ to this new state.
   All the artifacts that you care about computing. These artifacts are guaranteed
   to be computed. Additional artifacts may also be included as intermediate
   computation steps. All checks are on the resulting flow are also included.
+  config:
+  An optional set of config fields for this flow.
+  - engine: Specify where this flow should run with one of your connected integrations.
+  We currently support Airflow.
+  
 
 **Raises**:
 

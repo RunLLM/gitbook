@@ -15,6 +15,7 @@
     * [mean](#aqueduct.table_artifact.TableArtifact.mean)
     * [std](#aqueduct.table_artifact.TableArtifact.std)
     * [system\_metric](#aqueduct.table_artifact.TableArtifact.system_metric)
+    * [\_\_str\_\_](#aqueduct.table_artifact.TableArtifact.__str__)
     * [describe](#aqueduct.table_artifact.TableArtifact.describe)
     * [remove\_check](#aqueduct.table_artifact.TableArtifact.remove_check)
 
@@ -346,6 +347,16 @@ Creates a system metric that represents the given system information from the pr
 
   A metric artifact that represents the requested system metric
 
+<a id="aqueduct.table_artifact.TableArtifact.__str__"></a>
+
+#### \_\_str\_\_
+
+```python
+def __str__() -> str
+```
+
+Prints out a human-readable description of the table artifact.
+
 <a id="aqueduct.table_artifact.TableArtifact.describe"></a>
 
 #### describe
@@ -354,7 +365,7 @@ Creates a system metric that represents the given system information from the pr
 def describe() -> None
 ```
 
-Prints out a human-readable description of the table artifact.
+Prints the stringified description of the table artifact to stdout.
 
 <a id="aqueduct.table_artifact.TableArtifact.remove_check"></a>
 
