@@ -1,4 +1,4 @@
 # Conquering the Python Environment
 
-**Problem**: You've ran `pip3 ...` but the command doesn't seem to be affecting your Python script.
-**Solution**: Instead of running `pip3 ...` run `python3 -m pip ...` so that you can ensure the pip is installing in a place the Python interpreter you are using can find it.
+**Problem**: You installed the Aqueduct package via `pip3`, but the package was installed to a different Python environment from what your `python3` is pointing to.
+**Solution**: Instead of running `pip3 ...` run `python3 -m pip ...` to ensure `pip3` is installing to the same Python environment as what your python3 is pointing to. Note that it is still a good practice to fix your `pip3` alias to be consistent with `python3`.
