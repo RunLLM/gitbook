@@ -26,12 +26,14 @@ Class for S3 integration.
 
 ```python
 def file(filepaths: Union[List[str], str],
-         format: str,
+         artifact_type: ArtifactType,
+         format: Optional[str] = None,
+         merge: Optional[bool] = None,
          name: Optional[str] = None,
-         description: str = "") -> TableArtifact
+         description: str = "") -> BaseArtifact
 ```
 
-Reads one or more files from the S3 integration into a single TableArtifact.
+Reads one or more files from the S3 integration.
 
 **Arguments**:
 
@@ -43,9 +45,17 @@ Reads one or more files from the S3 integration into a single TableArtifact.
   all matched files and concatenate them into a single file.
   2) a list of strings representing the file name. Note that in this case, we do not
   accept directory names in the list.
+  artifact_type:
+  The expected type of the S3 files. The `ArtifactType` class in `enums.py` contains all
+  supported types, except for ArtifactType.UNTYPED. Note that when multiple files are
+  retrieved, they must have the same artifact type.
   format:
-  The format of the S3 files. We currently support JSON, CSV, and Parquet. Note that currently,
-  when multiple files are retrieved, these files must have the same format.
+  If the artifact type is ArtifactType.TABLE, the user has to specify the table format.
+  We currently support JSON, CSV, and Parquet. Note that when multiple files are retrieved,
+  they must have the same format.
+  merge:
+  If the artifact type is ArtifactType.TABLE, we can optionally merge multiple tables
+  into a single DataFrame if this flag is set to True.
   name:
   Name of the query.
   description:
@@ -54,14 +64,15 @@ Reads one or more files from the S3 integration into a single TableArtifact.
 
 **Returns**:
 
-  TableArtifact representing the concatenated S3 Files.
+  Artifact or a tuple of artifacts representing the S3 Files.
 
 <a id="aqueduct.integrations.s3_integration.S3Integration.config"></a>
 
 #### config
 
 ```python
-def config(filepath: str, format: S3FileFormat) -> SaveConfig
+def config(filepath: str,
+           format: Optional[S3TableFormat] = None) -> SaveConfig
 ```
 
 Configuration for saving to S3 Integration.
@@ -75,7 +86,7 @@ Configuration for saving to S3 Integration.
 
 **Returns**:
 
-  SaveConfig object to use in TableArtifact.save()
+  SaveConfig object to use in Artifact.save()
 
 <a id="aqueduct.integrations.s3_integration.S3Integration.describe"></a>
 
