@@ -31,7 +31,7 @@ flow = client.flow(workflow_id)
 flow.list_saved_objects()
 ```
 
-This returns a dictionary with the integration name as the key and the list of saved object names or paths as the values. You can pass this or any dictionary of the same format to the `delete_flow` method to delete the objects when deleting the flow. If any of them were saved with update mode append, you will additionally need to set `force=True` to confirm you understand the entire object would be deleted.
+This returns a dictionary with the integration name as the key and the list of saved object names or paths as the values. You can pass this or any dictionary of the same format to the `delete_flow` method to delete the objects when deleting the flow. If any of them were saved with update mode append, you will additionally need to set `force=True` to confirm you understand the entire object would be deleted, otherwise the whole workflow deletion will fail.
 
 ```python
 workflow_id = "0c007eff-6ae0-4a1a-a114-5f16164ffcdf" # Set your workflow ID here.
