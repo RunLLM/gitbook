@@ -1,63 +1,25 @@
 # Connecting to AWS S3
+To connect to S3, you need to provide the S3 bucket name, region, and credentials. Aqueduct supports two types of credentials: [AWS IAM Access Key](#aws-iam-access-key "mention") and [AWS SSO](#aws-sso "mention"). Before connecting, make sure the credentials has access to the S3 Bucket.&#x20; 
+![](<../../.gitbook/assets/integration_s3.png>)
+## AWS IAM Access Key
+You connect to S3 using the Access Key for your AWS account, or you can also create a separate Access Key by following the instructions [here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). There are 3 ways to provide your credentials to Aqueduct: [manually enter credentials](#manually-enter-credentials "mention"), [upload your credentials file](#upload-your-credentials-file "mention"), and [specify the path to your credentials file](#specify-the-path-to-your-credentials-file "mention")
 
-## Community Edition
+### Manually Enter Credentials
+You can manually copy over the Key ID and the Secret Key.&#x20;
+![](<../../.gitbook/assets/integration_s3_credential_manual.png>)
 
-Aqueduct Community Edition connects to AWS S3 using an [AWS IAM Access Key](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html). You can either use the Access Key for your account, or you can create a separate Access Key by following the instructions [here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys).&#x20;
+### Upload Your Credentials File
+If you are using [AWS CLI](https://aws.amazon.com/cli/) or other AWS SDK on your machine, you might have your credentials file available to you, typically under `<HOME>/.aws/credentials`. You can upload this file to Aqueduct and specify the profile name you would like to use.&#x20;
+![](<../../.gitbook/assets/integration_s3_credential_upload.png>)
 
-Ensure that your IAM user has access to the S3 Bucket you're connecting to Aqueduct. You will need the Access Key ID and the Secret Access Key. Enter the name of the bucket, the Key ID, and the Key into the S3 connection form on the Aqueduct UI and click Connect:
+### Specify the Path to Your Credentials File
+If you are using [AWS CLI](https://aws.amazon.com/cli/) or other AWS SDK on your machine, you might have your credentials file available to you, typically under `<HOME>/.aws/credentials`. If your server is running on the same machine as this file, you can specify the **absolute path** to this file together with the profile name you would like to use. When you provide credentials by file path, any updates to the file contents will **automatically update all workflows** using this integration.&#x20;
+![](<../../.gitbook/assets/integration_s3_credential_path.png>)
 
-![](<../../.gitbook/assets/connect_aws.png>)
+## AWS SSO
+Aqueduct can connect to S3 using your [AWS SSO](https://aws.amazon.com/iam/identity-center/) credentials. For now, specifying the path is **the only way** to use these credentials. This also means your server **must** be running on the same machine as the one with SSO access.&#x20;
 
+When using [AWS SSO](https://aws.amazon.com/iam/identity-center/), your credentials file is typically be under `<HOME>/.aws/config` (this is **different** from `<HOME>/.aws/credentials`). To connect to S3, you can specify the **absolute path** to this file together with the profile name you would like to use. Once the path is specified, any updates to the file contents (for example, [re-authenticate SSO using browser](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html)) will **automatically update all workflows** using this integration.&#x20;
 
+![](<../../.gitbook/assets/integration_s3_credential_path.png>)
 
-## Enterprise Edition
-
-Connecting Aqueduct to AWS S3 requires special configuration to manages AWS IAM (Identiy & Access Management) permissions. This guide will walk you through creating and IAM policy and an IAM role, which Aqueduct will use to connect to your S3 bucket.
-
-### Creating an IAM Policy
-
-1. On your AWS Console, navigate to the [IAM Page](https://console.aws.amazon.com/iam/home).
-2. Click on `Create Policy`.
-3.  Enter the following policy document into the JSON editor. **Make sure to replace `{your-bucket-name}` with the name of the bucket you'd like to connect to Aqueduct.**\
-    ****
-
-    ```json
-    {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-          "Effect": "Allow",
-          "Action": ["s3:*"],
-          "Resource": "arn:aws:s3:::{YOUR-BUCKET-NAME}/*"
-        },
-        {
-          "Effect": "Allow",
-          "Action": ["s3:*"],
-          "Resource": "arn:aws:s3:::{YOUR-BUCKET-NAME}"
-        }
-      ]
-    }
-    ```
-4. Assign your policy a unique name and note down that name.
-
-### Creating an IAM Role
-
-1. Return to the [IAM page](https://console.aws.amazon.com/iam/home).
-2. Click `Create Role`.
-3. Under `Trusted Entity Type`, select `AWS Account`.
-4. Next, select `Another AWS Account` and enter Aqueduct's AWS account ID, which is `123456789`.
-5. Select `Require External ID` and note down the unique ID (a hyphenated sequence of words) generated by the AWS UI.
-6. Add your previously created policy to this role.
-7. Provide a role name.
-8. Once you click enter, you should be given an ARN (an AWS unique ID) for this new role.
-
-### Connect Aqueduct to your S3 Bucket
-
-1. Click on the AWS S3 icon on the Aqueduct UI.
-2. Give your S3 connection a unique name and specify which bucket you're connecting to.
-3. Enter the external ID created for you under `Creating an IAM Role`.
-4. Copy the ARN of the role you created under `Creating an IAM Role` into the final section.
-
-And.. you're done! 🎉
-
-We know that wasn't the most pleasant experience, but unfortunately, AWS has quite a complex set of permissioning schemes, and there's not much we can do about it. If you found anything in this guide confusing, please let us know on our community Slack or on [GitHub](https://github.com/aqueducthq/aqueduct/issues/new).
