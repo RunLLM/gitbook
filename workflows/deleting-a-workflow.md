@@ -12,7 +12,13 @@ On the Aqueduct UI, navigate to the settings pane by clicking on the gear icon o
 
 ![](<../.gitbook/assets/image (6) (1).png>)
 
-After workflow deletion has succeeded, you will be redirected to the workflows page.
+After you press the "Delete" button, you will be asked to confirm you wish to delete the workflow. You will also be given a list of objects saved by the workflow. You can select the objects in the list for deletion. Any objects you pick will be completely deleted.
+
+![](<../.gitbook/assets/workflow_deletion_confirmation_page.png>)
+
+Once you confirm deletion of the workflow, Aqueduct will delete the workflow's metadata as well as any of the data objects you selected on the previous screen. Object deletion is done best-effort, and the workflow will be deleted whether or not the associated objects are successfully deleted. After workflow deletion has completed, you will be shown a list of all the objects that Aqueduct attempted to delete and whether those delete operations succeeded or not.
+
+![](<../.gitbook/assets/object_deletion_results_page.png>)
 
 #### Aqueduct SDK
 
