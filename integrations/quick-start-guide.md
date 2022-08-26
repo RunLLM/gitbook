@@ -31,7 +31,7 @@ In `Options` menu, you can test-connect an integration to verify if it's current
 ### Editing an Integration
 In `Options` menu, you can edit an integration to update its name and credentials. The changes will also update all existing workflows using this integration.
 
-For now, we do not support updating fields that requires potential data migration. For example, `host` and `database` for relational databases. To make changes on these fields, you would need to follow a migration process:
+We do not support updating fields that requires potential data migration. For example, `host` and `database` for relational databases. To make changes on these fields, you would need to follow a migration process:
 1. Create a new integration.
 2. Perform any necessary data migration in your integration.
 3. [Update your workflows](../workflows/editing-a-workflow.md) to use the new integration.
