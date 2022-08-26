@@ -10,4 +10,4 @@ Aqueduct comes with a pre-built set of integrations to common data systems to re
 
 We're constantly working to add support for new integrations, so if there's something you'd like to see, let us know on our community Slack or on [GitHub](https://github.com/aqueducthq/aqueduct/issues/new).
 
-You can play around with our [demo integration](./aqueduct-demo-integration.md). Also check our [quick start guide](./quick-start-guide.md) to add your own integration and get familiar with our integration management UI.
+You can play around with our [demo integration](./aqueduct-demo-integration.md). Also check our [Integration Management Quickstart Guide](./quick-start-guide.md) to get familiar with our integration management UI.
