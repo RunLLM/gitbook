@@ -14,7 +14,6 @@
     * [publish\_flow](#aqueduct.aqueduct_client.Client.publish_flow)
     * [trigger](#aqueduct.aqueduct_client.Client.trigger)
     * [delete\_flow](#aqueduct.aqueduct_client.Client.delete_flow)
-    * [show\_dag](#aqueduct.aqueduct_client.Client.show_dag)
     * [describe](#aqueduct.aqueduct_client.Client.describe)
 
 <a id="aqueduct.aqueduct_client"></a>
@@ -235,7 +234,7 @@ def publish_flow(name: str,
                  description: str = "",
                  schedule: str = "",
                  k_latest_runs: int = -1,
-                 artifacts: Optional[List[GenericArtifact]] = None,
+                 artifacts: Optional[List[BaseArtifact]] = None,
                  config: Optional[FlowConfig] = None) -> Flow
 ```
 
@@ -316,7 +315,10 @@ Immediately triggers another run of the provided flow.
 #### delete\_flow
 
 ```python
-def delete_flow(flow_id: Union[str, uuid.UUID]) -> None
+def delete_flow(flow_id: Union[str, uuid.UUID],
+                saved_objects_to_delete: Optional[DefaultDict[Union[
+                    str, Integration], List[SavedObjectUpdate]]] = None,
+                force: bool = False) -> None
 ```
 
 Deletes a flow object.
@@ -325,6 +327,10 @@ Deletes a flow object.
 
   flow_id:
   The id of the workflow to delete (not the name)
+  saved_objects_to_delete:
+  The tables or storage paths to delete grouped by integration name.
+  force:
+  Force the deletion even though some workflow-written objects in the writes_to_delete argument had UpdateMode=append
   
 
 **Raises**:
@@ -334,25 +340,6 @@ Deletes a flow object.
   delete. The provided `flow_id` may be malformed.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
-
-<a id="aqueduct.aqueduct_client.Client.show_dag"></a>
-
-#### show\_dag
-
-```python
-def show_dag(artifacts: Optional[List[GenericArtifact]] = None) -> None
-```
-
-Prints out the flow as a pyplot graph.
-
-A user outside the notebook environment will be redirected to a page in their browser
-containing the graph.
-
-**Arguments**:
-
-  artifacts:
-  If specified the subgraph terminating at these artifacts will be specified.
-  Otherwise, the entire graph is printed.
 
 <a id="aqueduct.aqueduct_client.Client.describe"></a>
 

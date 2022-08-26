@@ -17,9 +17,9 @@
 
 ```python
 def wrap_spec(spec: OperatorSpec,
-              *input_artifacts: InputArtifact,
+              *input_artifacts: BaseArtifact,
               op_name: str,
-              description: str = "") -> OutputArtifact
+              description: str = "") -> BaseArtifact
 ```
 
 Applies a python function to existing artifacts.
@@ -58,7 +58,7 @@ def op(
 
 Decorator that converts regular python functions into an operator.
 
-Calling the decorated function returns a TableArtifact. The decorated function
+Calling the decorated function returns an Artifact. The decorated function
 can take any number of artifact inputs.
 
 To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg:
@@ -95,7 +95,7 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   >>> recent_clicks = db.sql("SELECT * recent_clicks", db="google_analytics/shopping")
   >>> recommendations = compute_recommendations(customer_profiles, recent_clicks)
   
-  `recommendations` is a TableArtifact representing the result of `compute_recommendations()`.
+  `recommendations` is an Artifact representing the result of `compute_recommendations()`.
   
   >>> recommendations.get()
 
@@ -114,7 +114,7 @@ def metric(
 
 Decorator that converts regular python functions into a metric.
 
-Calling the decorated function returns a MetricArtifact. The decorated function
+Calling the decorated function returns a NumericArtifact. The decorated function
 can take any number of artifact inputs.
 
 The requirements.txt file in the current directory is used, if it exists.
@@ -152,7 +152,7 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   >>> churn_table = db.sql("SELECT * from churn_table")
   >>> churn_metric = avg_churn(churn_table)
   
-  `churn_metric` is a MetricArtifact representing the result of `avg_churn()`.
+  `churn_metric` is a NumericArtifact representing the result of `avg_churn()`.
   
   >>> churn_metric.get()
 
@@ -172,7 +172,7 @@ def check(
 
 Decorator that converts a regular python function into a check.
 
-Calling the decorated function returns a CheckArtifact. The decorated python function
+Calling the decorated function returns a BoolArtifact. The decorated python function
 can have any number of artifact inputs.
 
 A check can be set with either WARNING or ERROR severity. A failing check with ERROR severity
@@ -215,7 +215,7 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   ...     return churn_table['pred_churn'].mean() < 0.1
   >>> churn_is_low_check = avg_churn_is_low(churn_table_artifact)
   
-  `churn_is_low_check` is a CheckArtifact representing the result of `avg_churn_is_low()`.
+  `churn_is_low_check` is a BoolArtifact representing the result of `avg_churn_is_low()`.
   
   >>> churn_is_low_check.get()
 
@@ -230,7 +230,7 @@ def to_operator(
     description: Optional[str] = None,
     file_dependencies: Optional[List[str]] = None,
     requirements: Optional[Union[str, List[str]]] = None
-) -> Union[Callable[..., OutputArtifact], OutputArtifact]
+) -> Union[Callable[..., BaseArtifact], BaseArtifact]
 ```
 
 Convert a function that returns a dataframe into an Aqueduct operator.
