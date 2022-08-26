@@ -37,7 +37,7 @@ For now, we do not support updating fields that requires potential data migratio
 3. [Update your workflows](../workflows/editing-a-workflow.md) to use the new integration.
 
 ### Deleting an Integration
-If you don't have any workflow using an integration, you can delete that integration from `Options` menu. Otherwise, you would need to [delete all workflows using this integration](../workflows/deleting-a-workflow.md) first.
+If you don't have any workflow using an integration, you can delete that integration from `Options` menu. Otherwise, you would need to [delete all workflows using this integration](../workflows/deleting-a-workflow.md) first. You can refer to [workflows section](#viewing-workflows-using-an-integration) to find all workflows using this integration.
 
 ### Viewing Data in an Integration
 For **relational databases**, in `Preview` section, you can view tables stored in this integration. You can also get a preview of each table by typing the table name in the search box. You can find more details [here](./viewing-data-in-an-integration.md) on viewing data in integration.
