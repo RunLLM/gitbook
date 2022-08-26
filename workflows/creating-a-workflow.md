@@ -1,12 +1,12 @@
 # Creating a Workflow
 
 {% hint style="info" %}
-This guide assumes you've already created an Aqueduct API client. If you haven't done that, please see the [quickstart-guide.md](../quickstart-guide.md "mention") for more details.
+This guide assumes you've already created an Aqueduct API client. If you haven't done that, please see the [quickstart guide](../quickstart-guide.md "mention") for more details.
 {% endhint %}
 
 ### Defining a Workflow
 
-At the root of every workflow is some data. Aqueduct supports loading input data from a variety of sources, but we've found the most common use case is a workflow that starts from a SQL database. We'll use Aqueduct's [demo-data-warehouse.md](../example-workflows/demo-data-warehouse.md "mention") in this example.
+At the root of every workflow is some data. Aqueduct supports loading input data from a variety of sources, but we've found the most common use case is a workflow that starts from a SQL database. We'll use Aqueduct's [demo data warehouse](../integrations/aqueduct-demo-integration.md "mention") in this example.
 
 ```python
 db = client.integration('aqueduct_demo')

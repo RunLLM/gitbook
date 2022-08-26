@@ -30,7 +30,7 @@ client = Client(get_apikey(), "localhost:8080")
 
 Note that the API key associated with the server can also be found in the output of the `aqueduct start` command.
 
-And access the base data for our workflow, which is the [hotel reviews dataset](example-workflows/demo-data-warehouse.md). This code does two things -- (1) it loads a connection to a database (in this case the pre-build `aqueduct_demo` DB that comes with the Aqueduct server), and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
+And access the base data for our workflow, which is the [hotel reviews dataset](integrations/aqueduct-demo-integration.md). This code does two things -- (1) it loads a connection to a database (in this case the pre-build `aqueduct_demo` DB that comes with the Aqueduct server), and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
 
 ```python
 demo_db = client.integration("aqueduct_demo")

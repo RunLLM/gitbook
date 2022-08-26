@@ -11,7 +11,7 @@
   * [Running with pyenv](installation-and-deployment/running-with-pyenv.md)
   * [Configuring Integrations](installation-and-deployment/configuring-integrations.md)
 * [Example Workflows](example-workflows/README.md)
-  * [Demo Data Warehouse](example-workflows/demo-data-warehouse.md)
+  * [Demo Data Warehouse](integrations/aqueduct-demo-integration.md)
   * [Churn Ensemble](example-workflows/churn-ensemble.md)
   * [Sentiment Analysis](example-workflows/sentiment-analysis.md)
   * [Train and Inference](example-workflows/train-and-inference.md)
