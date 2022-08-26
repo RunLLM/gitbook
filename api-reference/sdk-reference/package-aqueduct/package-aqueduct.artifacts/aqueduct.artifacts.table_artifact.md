@@ -1,34 +1,34 @@
 # Table of Contents
 
-* [aqueduct.table\_artifact](#aqueduct.table_artifact)
-  * [TableArtifact](#aqueduct.table_artifact.TableArtifact)
-    * [get](#aqueduct.table_artifact.TableArtifact.get)
-    * [head](#aqueduct.table_artifact.TableArtifact.head)
-    * [save](#aqueduct.table_artifact.TableArtifact.save)
-    * [list\_preset\_metrics](#aqueduct.table_artifact.TableArtifact.list_preset_metrics)
-    * [list\_system\_metrics](#aqueduct.table_artifact.TableArtifact.list_system_metrics)
-    * [validate\_with\_expectation](#aqueduct.table_artifact.TableArtifact.validate_with_expectation)
-    * [number\_of\_missing\_values](#aqueduct.table_artifact.TableArtifact.number_of_missing_values)
-    * [number\_of\_rows](#aqueduct.table_artifact.TableArtifact.number_of_rows)
-    * [max](#aqueduct.table_artifact.TableArtifact.max)
-    * [min](#aqueduct.table_artifact.TableArtifact.min)
-    * [mean](#aqueduct.table_artifact.TableArtifact.mean)
-    * [std](#aqueduct.table_artifact.TableArtifact.std)
-    * [system\_metric](#aqueduct.table_artifact.TableArtifact.system_metric)
-    * [\_\_str\_\_](#aqueduct.table_artifact.TableArtifact.__str__)
-    * [describe](#aqueduct.table_artifact.TableArtifact.describe)
-    * [remove\_check](#aqueduct.table_artifact.TableArtifact.remove_check)
+* [aqueduct.artifacts.table\_artifact](#aqueduct.artifacts.table_artifact)
+  * [TableArtifact](#aqueduct.artifacts.table_artifact.TableArtifact)
+    * [get](#aqueduct.artifacts.table_artifact.TableArtifact.get)
+    * [head](#aqueduct.artifacts.table_artifact.TableArtifact.head)
+    * [save](#aqueduct.artifacts.table_artifact.TableArtifact.save)
+    * [list\_preset\_metrics](#aqueduct.artifacts.table_artifact.TableArtifact.list_preset_metrics)
+    * [list\_system\_metrics](#aqueduct.artifacts.table_artifact.TableArtifact.list_system_metrics)
+    * [validate\_with\_expectation](#aqueduct.artifacts.table_artifact.TableArtifact.validate_with_expectation)
+    * [number\_of\_missing\_values](#aqueduct.artifacts.table_artifact.TableArtifact.number_of_missing_values)
+    * [number\_of\_rows](#aqueduct.artifacts.table_artifact.TableArtifact.number_of_rows)
+    * [max](#aqueduct.artifacts.table_artifact.TableArtifact.max)
+    * [min](#aqueduct.artifacts.table_artifact.TableArtifact.min)
+    * [mean](#aqueduct.artifacts.table_artifact.TableArtifact.mean)
+    * [std](#aqueduct.artifacts.table_artifact.TableArtifact.std)
+    * [system\_metric](#aqueduct.artifacts.table_artifact.TableArtifact.system_metric)
+    * [\_\_str\_\_](#aqueduct.artifacts.table_artifact.TableArtifact.__str__)
+    * [describe](#aqueduct.artifacts.table_artifact.TableArtifact.describe)
+    * [remove\_check](#aqueduct.artifacts.table_artifact.TableArtifact.remove_check)
 
-<a id="aqueduct.table_artifact"></a>
+<a id="aqueduct.artifacts.table_artifact"></a>
 
-# aqueduct.table\_artifact
+# aqueduct.artifacts.table\_artifact
 
-<a id="aqueduct.table_artifact.TableArtifact"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact"></a>
 
 ## TableArtifact Objects
 
 ```python
-class TableArtifact(Artifact)
+class TableArtifact(BaseArtifact)
 ```
 
 This class represents a computed table within the flow's DAG.
@@ -51,7 +51,7 @@ return this class when that function is called called.
   >>> print(df.head())
   >>> output_artifact.save(warehouse.config(table_name="output_table"))
 
-<a id="aqueduct.table_artifact.TableArtifact.get"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.get"></a>
 
 #### get
 
@@ -70,7 +70,7 @@ Materializes TableArtifact into an actual dataframe.
 
 **Returns**:
 
-  A dataframe containing the tabular contents of this artifact.
+  A dataframe containing the table contents of this artifact.
   
 
 **Raises**:
@@ -80,7 +80,7 @@ Materializes TableArtifact into an actual dataframe.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
 
-<a id="aqueduct.table_artifact.TableArtifact.head"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.head"></a>
 
 #### head
 
@@ -103,9 +103,9 @@ Returns a preview of the table artifact.
 
 **Returns**:
 
-  A dataframe containing the tabular contents of this artifact.
+  A dataframe containing the table contents of this artifact.
 
-<a id="aqueduct.table_artifact.TableArtifact.save"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.save"></a>
 
 #### save
 
@@ -132,7 +132,7 @@ Configure this artifact to be written to a specific integration after its comput
   An error occurred because the requested integration could not be
   found.
 
-<a id="aqueduct.table_artifact.TableArtifact.list_preset_metrics"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.list_preset_metrics"></a>
 
 #### list\_preset\_metrics
 
@@ -147,7 +147,7 @@ These preset metrics can be set via the invoking the preset method on a artifact
 
   A list of available preset metrics on a table
 
-<a id="aqueduct.table_artifact.TableArtifact.list_system_metrics"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.list_system_metrics"></a>
 
 #### list\_system\_metrics
 
@@ -162,15 +162,16 @@ These system metrics can be set via the invoking the system_metric() method the 
 
   A list of available system metrics on a table
 
-<a id="aqueduct.table_artifact.TableArtifact.validate_with_expectation"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.validate_with_expectation"></a>
 
 #### validate\_with\_expectation
 
 ```python
 def validate_with_expectation(
-        expectation_name: str,
-        expectation_args: Optional[Dict[str, Any]] = None,
-        severity: CheckSeverity = CheckSeverity.WARNING) -> CheckArtifact
+    expectation_name: str,
+    expectation_args: Optional[Dict[str, Any]] = None,
+    severity: CheckSeverity = CheckSeverity.WARNING
+) -> bool_artifact.BoolArtifact
 ```
 
 Creates a check that validates with the table with great_expectations and its set of internal expectations.
@@ -193,15 +194,16 @@ ge_check.get() // True or False based on expectation passing
 
 **Returns**:
 
-  A check artifact that represent the validation result of running the expectation provided on the table.
+  A bool artifact that represent the validation result of running the expectation provided on the table.
 
-<a id="aqueduct.table_artifact.TableArtifact.number_of_missing_values"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.number_of_missing_values"></a>
 
 #### number\_of\_missing\_values
 
 ```python
-def number_of_missing_values(column_id: Any = None,
-                             row_id: Any = None) -> MetricArtifact
+def number_of_missing_values(
+        column_id: Any = None,
+        row_id: Any = None) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the number of missing values over a given column or row.
@@ -218,14 +220,14 @@ Note: takes a scalar column_id/row_id and uses pandas.DataFrame.isnull() to comp
 
 **Returns**:
 
-  A metric artifact that represents the number of missing values for the row/column on the applied table artifact.
+  A numeric artifact that represents the number of missing values for the row/column on the applied table artifact.
 
-<a id="aqueduct.table_artifact.TableArtifact.number_of_rows"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.number_of_rows"></a>
 
 #### number\_of\_rows
 
 ```python
-def number_of_rows() -> MetricArtifact
+def number_of_rows() -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the number of rows of this table
@@ -234,14 +236,14 @@ Note: uses len() to determine row count over the pandas.DataFrame.
 
 **Returns**:
 
-  A metric artifact that represents the number of rows on this table.
+  A numeric artifact that represents the number of rows on this table.
 
-<a id="aqueduct.table_artifact.TableArtifact.max"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.max"></a>
 
 #### max
 
 ```python
-def max(column_id: Any) -> MetricArtifact
+def max(column_id: Any) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the maximum value over the given column
@@ -256,14 +258,14 @@ Note: takes a scalar column_id and uses pandas.DataFrame.max to compute value.
 
 **Returns**:
 
-  A metric artifact that represents the max for the given column on the applied table artifact.
+  A numeric artifact that represents the max for the given column on the applied table artifact.
 
-<a id="aqueduct.table_artifact.TableArtifact.min"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.min"></a>
 
 #### min
 
 ```python
-def min(column_id: Any) -> MetricArtifact
+def min(column_id: Any) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the minimum value over the given column
@@ -278,14 +280,14 @@ Note: takes a scalar column_id and uses pandas.DataFrame.min to compute value.
 
 **Returns**:
 
-  A metric artifact that represents the min for the given column on the applied table artifact.
+  A numeric artifact that represents the min for the given column on the applied table artifact.
 
-<a id="aqueduct.table_artifact.TableArtifact.mean"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.mean"></a>
 
 #### mean
 
 ```python
-def mean(column_id: Any) -> MetricArtifact
+def mean(column_id: Any) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the mean value over the given column
@@ -300,14 +302,14 @@ Note: takes a scalar column_id and uses pandas.DataFrame.mean to compute value.
 
 **Returns**:
 
-  A metric artifact that represents the mean for the given column on the applied table artifact.
+  A numeric artifact that represents the mean for the given column on the applied table artifact.
 
-<a id="aqueduct.table_artifact.TableArtifact.std"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.std"></a>
 
 #### std
 
 ```python
-def std(column_id: Any) -> MetricArtifact
+def std(column_id: Any) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the standard deviation value over the given column
@@ -322,14 +324,14 @@ takes a scalar column_id and uses pandas.DataFrame.std to compute value
 
 **Returns**:
 
-  A metric artifact that represents the standard deviation for the given column on the applied table artifact.
+  A numeric artifact that represents the standard deviation for the given column on the applied table artifact.
 
-<a id="aqueduct.table_artifact.TableArtifact.system_metric"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.system_metric"></a>
 
 #### system\_metric
 
 ```python
-def system_metric(metric_name: str) -> MetricArtifact
+def system_metric(metric_name: str) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a system metric that represents the given system information from the previous @op that ran on the table.
@@ -345,9 +347,9 @@ Creates a system metric that represents the given system information from the pr
 
 **Returns**:
 
-  A metric artifact that represents the requested system metric
+  A numeric artifact that represents the requested system metric
 
-<a id="aqueduct.table_artifact.TableArtifact.__str__"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.__str__"></a>
 
 #### \_\_str\_\_
 
@@ -357,7 +359,7 @@ def __str__() -> str
 
 Prints out a human-readable description of the table artifact.
 
-<a id="aqueduct.table_artifact.TableArtifact.describe"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.describe"></a>
 
 #### describe
 
@@ -367,7 +369,7 @@ def describe() -> None
 
 Prints the stringified description of the table artifact to stdout.
 
-<a id="aqueduct.table_artifact.TableArtifact.remove_check"></a>
+<a id="aqueduct.artifacts.table_artifact.TableArtifact.remove_check"></a>
 
 #### remove\_check
 

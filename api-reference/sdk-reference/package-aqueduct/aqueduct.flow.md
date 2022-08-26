@@ -4,6 +4,7 @@
   * [Flow](#aqueduct.flow.Flow)
     * [id](#aqueduct.flow.Flow.id)
     * [list\_runs](#aqueduct.flow.Flow.list_runs)
+    * [list\_saved\_objects](#aqueduct.flow.Flow.list_saved_objects)
     * [describe](#aqueduct.flow.Flow.describe)
 
 <a id="aqueduct.flow"></a>
@@ -52,6 +53,20 @@ Lists the historical runs associated with this flow, sorted chronologically from
 
   A list of dictionaries, each of which corresponds to a single flow run.
   Each dictionary contains essential information about the run (eg. id, status, etc.).
+
+<a id="aqueduct.flow.Flow.list_saved_objects"></a>
+
+#### list\_saved\_objects
+
+```python
+def list_saved_objects() -> DefaultDict[str, List[SavedObjectUpdate]]
+```
+
+Get everything saved by the flow.
+
+**Returns**:
+
+  A dictionary mapping the integration id to the list of table names/storage path.
 
 <a id="aqueduct.flow.Flow.describe"></a>
 

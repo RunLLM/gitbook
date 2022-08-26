@@ -20,7 +20,7 @@ Here, we created a function called `non_negative_workflows` and returns `True` i
 
 If this Check returns `False`, the workflow that contains it will stop execution and return an error.&#x20;
 
-In this example, we applied a check to a single TableArtifact -- however, Checks can be applied to any combination of TableArtifacts and Metrics.
+In this example, we applied a check to a single TableArtifact -- however, Checks can be applied to any combination of Artifact types.
 
 ### Check Severity
 
