@@ -2,7 +2,7 @@
 In this quickstart guide, we will go over key features for integration management.
 
 ## Integrations Page
-The integrations page is your home for adding and viewing integrations connected to your Aqueduct account. You can naviate to integrations page by clicking `Integrations` in the left menu bar. This page has two main sections: [add an integration](#add-an-integration "mention") and [connected integrations](#connected-integrations "mention").
+The integrations page is your home for adding and viewing integrations connected to your Aqueduct account. You can naviate to integrations page by clicking `Integrations` in the left menu bar. This page has two main sections: [add an integration](#add-an-integration) and [connected integrations](#connected-integrations).
 
 ### Add an Integration
 To add an integration, simply click the icon for the integration you would like to connect. You would need to provide your service details together with your credentials. You could find more details [here](./adding-an-integration/) on connecting to s3, bigquery, and Google Cloud Storage (GCS).
@@ -13,16 +13,16 @@ Once you added an integration, you can refer to [using integrations guide](./usi
 You can view a list of all connected integrations. You can click into each item to view more details or manage that integration. Every Aqueduct server comes with a [demo integration](./aqueduct-demo-integration.md) that you can play around with.
 
 ## Integration Detail Page
-Integration Detail Page is the console for you to manage a single integration. You can navigate to this page by clicking an item in [Connected Integrations](#connected-integrations "mention") from [Integrations Page](#integrations-page "mention") you can view details about an integration and make changes to it:
-* [Integration Information](#integration-information "mention")
-* [Test-Connecting an Integration](#test-connecting-an-integration "mention")
-* [Editing an Integration](#editing-an-integration "mention")
-* [Deleting an Integration](#deleting-an-integration "mention")
-* [Viewing Data in an Integration](#viewing-data-in-an-integration "mention")
-* [Viewing Workflows Using an Integration](#viewing-workflows-using-an-integration "mention")
+Integration Detail Page is the console for you to manage a single integration. You can navigate to this page by clicking an item in [Connected Integrations](#connected-integrations) from [Integrations Page](#integrations-page) you can view details about an integration and make changes to it:
+* [Integration Information](#integration-information)
+* [Test-Connecting an Integration](#test-connecting-an-integration)
+* [Editing an Integration](#editing-an-integration)
+* [Deleting an Integration](#deleting-an-integration)
+* [Viewing Data in an Integration](#viewing-data-in-an-integration)
+* [Viewing Workflows Using an Integration](#viewing-workflows-using-an-integration)
 
 ### Integration Information
-At top of the integration detail page. You can view basic information about this integration. There are also a number of options to manage it, including [test-connection](#test-connecting-an-integration "mention"), [edit the integration](#editing-an-integration "mention"), and [delete the integration](#deleting-an-integration "mention").
+At top of the integration detail page. You can view basic information about this integration. There are also a number of options to manage it, including [test-connection](#test-connecting-an-integration), [edit the integration](#editing-an-integration), and [delete the integration](#deleting-an-integration).
 ![](<../.gitbook/assets/integration_information.png>)
 
 ### Test-Connecting an Integration
@@ -44,5 +44,5 @@ For **relational databases**, in `Preview` section, you can view tables stored i
 ![](<../.gitbook/assets/integration_data.png>)
 
 ### Viewing Workflows Using an Integration
-In `Workflows` section, you can view a list of workflows using this integration together with all operators using the integration on each workflow. This gives you an overview of all data extracted from and saved to this integration.
+`Workflows` section gives you an overview of all data extracted from and saved to this integration. You can view a list of workflows using this integration. For each workflow, you can view details about all operators on this integration, including those from previous versions. It is especially useful to verify all workflows depending on this integration before you [making changes](#editing-an-integration) or [deleting it](#deleting-an-integration).
 ![](<../.gitbook/assets/integration_workflows.png>)

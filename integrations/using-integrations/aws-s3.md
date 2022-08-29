@@ -1,7 +1,7 @@
 # AWS S3
 
 {% hint style="info" %}
-Before starting, make sure you've added your S3 bucket as an integration to Aqueduct (see [adding-an-integration](../adding-an-integration/ "mention")).
+Before starting, make sure you've added your S3 bucket as an integration to Aqueduct (see [adding-an-integration](../adding-an-integration/)).
 {% endhint %}
 
 First, we're going to get a connection to your S3 bucket by calling `.integration()` on the Aqueduct Client.&#x20;
