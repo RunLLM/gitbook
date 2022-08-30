@@ -1,7 +1,7 @@
 # Relational Databases
 
 {% hint style="info" %}
-Before starting, make sure you've added a connection to your database (see [adding-an-integration](../adding-an-integration/)).
+Before starting, make sure you've added a connection to your database (see [adding-an-integration](../adding-an-integration/, "mention")).
 
 In this guide, we'll use the Aqueduct Demo DB, but this guide will work for any relational database.
 {% endhint %}
