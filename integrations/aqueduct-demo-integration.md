@@ -1,4 +1,4 @@
-# Demo Data Database
+# Demo Database
 
 To make it easy for you to get started and play around with Aqueduct, every Aqueduct server comes with a demo database. The `aqueduct_demo` database instance comes with the following pre-loaded datasets, which you can use in your experiments:
 
