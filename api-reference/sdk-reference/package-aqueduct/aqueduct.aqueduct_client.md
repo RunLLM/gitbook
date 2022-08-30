@@ -165,7 +165,7 @@ Retrieves a dictionary of integrations the client can use.
 def integration(
     name: str
 ) -> Union[SalesforceIntegration, S3Integration, GoogleSheetsIntegration,
-           RelationalDBIntegration, AirflowIntegration, ]
+           RelationalDBIntegration, AirflowIntegration, K8sIntegration, ]
 ```
 
 Retrieves a connected integration object.
