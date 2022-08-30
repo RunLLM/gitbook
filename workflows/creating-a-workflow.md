@@ -1,7 +1,7 @@
 # Creating a Workflow
 
 {% hint style="info" %}
-This guide assumes you've already created an Aqueduct API client. If you haven't done that, please see the [quickstart guide](../quickstart-guide.md "mention") for more details.
+This guide assumes you've already created an Aqueduct API client. If you haven't done that, please see the [quickstart-guide.md](../quickstart-guide.md "mention") for more details.
 {% endhint %}
 
 ### Defining a Workflow

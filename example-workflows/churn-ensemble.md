@@ -617,7 +617,7 @@ client = aqueduct.Client(api_key, address)
 
 ### Connecting to Your Data
 
-Workflows access and publish to data integrations that are configured on the Integrations Page.  In this demo we will connect to the [Aqueduct Demo Warehouse](https://docs.aqueducthq.com/integrations/aqueduct-demo-integration) which contains several standard sample datasets including some synthetic customer churn data.  Each kind of data integration may offer different functionality.  Here we are using a relational integration which support general SQL expressions.
+Workflows access and publish to data integrations that are configured on the Integrations Page.  In this demo we will connect to the [Aqueduct Demo DB](https://docs.aqueducthq.com/integrations/aqueduct-demo-integration) which contains several standard sample datasets including some synthetic customer churn data.  Each kind of data integration may offer different functionality.  Here we are using a relational integration which support general SQL expressions.
 
 
 
