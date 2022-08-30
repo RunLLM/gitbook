@@ -69,6 +69,7 @@ For more on this pipeline, check our [Quickstart Guide](quickstart-guide.md).
 
 ### Example Workflows
 
+* [The Demo Data Warehouse](integrations/aqueduct-demo-integration.md)
 * [Churn Ensemble](example-workflows/churn-ensemble.md)
 * [Wine Quality Prediction](example-workflows/train-and-inference.md)
 * [Sentiment Analysis](example-workflows/sentiment-analysis.md)
