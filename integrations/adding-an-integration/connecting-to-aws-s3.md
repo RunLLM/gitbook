@@ -1,6 +1,6 @@
 # Connecting to AWS S3
 
-To connect to AWS S3, you need to provide the S3 bucket name, region, and access key credentials. Aqueduct supports two types of credentials: [#aws-iam-access-key](connecting-to-aws-s3.md#aws-iam-access-key "mention") and [#aws-sso](connecting-to-aws-s3.md#aws-sso "mention"). Before connecting, make sure the set of credentials you're providing [has access to the S3 Bucket](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_users\_change-permissions.html).
+To connect to AWS S3, you need to provide the S3 bucket name, region, and access key credentials. Aqueduct supports two types of credentials: [#aws-iam-access-key](connecting-to-aws-s3.md#aws-iam-access-key) and [#aws-sso](connecting-to-aws-s3.md#aws-sso). Before connecting, make sure the set of credentials you're providing [has access to the S3 Bucket](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_users\_change-permissions.html).
 
 <figure><img src="../../.gitbook/assets/integration_s3.png" alt=""><figcaption></figcaption></figure>
 
@@ -8,7 +8,7 @@ To connect to AWS S3, you need to provide the S3 bucket name, region, and access
 
 The simplest way to connect to S3 is to use an IAM Access Key. Each AWS account comes with a default IAM Access Key that you can use. You can also create a separate Access Key with limited permissions by following the instructions [here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys).&#x20;
 
-Once you have an access key, there are 3 ways to provide your credentials to Aqueduct: [#manually-enter-credentials](connecting-to-aws-s3.md#manually-enter-credentials "mention"), [#upload-your-credentials-file](connecting-to-aws-s3.md#upload-your-credentials-file "mention"), and [#specify-the-path-to-your-credentials-file](connecting-to-aws-s3.md#specify-the-path-to-your-credentials-file "mention")
+Once you have an access key, there are 3 ways to provide your credentials to Aqueduct: [#manually-enter-credentials](connecting-to-aws-s3.md#manually-enter-credentials), [#upload-your-credentials-file](connecting-to-aws-s3.md#upload-your-credentials-file), and [#specify-the-path-to-your-credentials-file](connecting-to-aws-s3.md#specify-the-path-to-your-credentials-file)
 
 ### Manually Enter Credentials
 

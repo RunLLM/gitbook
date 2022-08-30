@@ -62,7 +62,7 @@ client = aqueduct.Client(api_key, address)
 <!-- ------------- New Cell ------------ -->
 
 
-First, we'll load some test data. Here, we'll use a dataset that has reviews of various hotels; our table has the name of the hotel, the date of the review, the nationality of the reviewer, and the text of the review itself. This data is preloaded for us in the [Aqueduct demo DB](https://docs.aqueducthq.com/example-workflows/demo-data-warehouse).
+First, we'll load some test data. Here, we'll use a dataset that has reviews of various hotels; our table has the name of the hotel, the date of the review, the nationality of the reviewer, and the text of the review itself. This data is preloaded for us in the [Aqueduct Demo Database](https://docs.aqueducthq.com/integrations/aqueduct-demo-integration).
 
 
 
