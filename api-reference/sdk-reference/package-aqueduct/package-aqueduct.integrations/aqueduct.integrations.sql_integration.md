@@ -63,7 +63,8 @@ Retrieves a table from a RealtionalDB integration.
 ```python
 def sql(query: Union[str, RelationalDBExtractParams],
         name: Optional[str] = None,
-        description: str = "") -> TableArtifact
+        description: str = "",
+        lazy: bool = False) -> TableArtifact
 ```
 
 Runs a SQL query against the RelationalDB integration.

@@ -19,9 +19,12 @@ class BoolArtifact(BaseArtifact)
 
 This class represents a bool within the flow's DAG.
 
-Any annotated python function that returns a boolean will
-return this class when that function is called. This is also returned from pre-defined
-functions like metric.bound(...).
+Any `@check`-annotated python function that returns a boolean will
+return this class when that function is called. This class can also
+be returned from pre-defined functions like metric.bound(...).
+
+Any `@op`-annotated python function that returns a boolean
+will return this class when that function is called in non-lazy mode.
 
 **Examples**:
 
@@ -40,7 +43,7 @@ functions like metric.bound(...).
 #### get
 
 ```python
-def get(parameters: Optional[Dict[str, Any]] = None) -> bool
+def get(parameters: Optional[Dict[str, Any]] = None) -> Union[bool, np.bool_]
 ```
 
 Materializes a BoolArtifact into a boolean.
