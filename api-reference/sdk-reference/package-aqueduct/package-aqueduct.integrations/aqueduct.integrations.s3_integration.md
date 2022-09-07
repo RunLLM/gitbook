@@ -30,7 +30,8 @@ def file(filepaths: Union[List[str], str],
          format: Optional[str] = None,
          merge: Optional[bool] = None,
          name: Optional[str] = None,
-         description: str = "") -> BaseArtifact
+         description: str = "",
+         lazy: bool = False) -> BaseArtifact
 ```
 
 Reads one or more files from the S3 integration.

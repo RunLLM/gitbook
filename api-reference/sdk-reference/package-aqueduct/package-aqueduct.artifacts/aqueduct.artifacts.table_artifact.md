@@ -4,7 +4,6 @@
   * [TableArtifact](#aqueduct.artifacts.table_artifact.TableArtifact)
     * [get](#aqueduct.artifacts.table_artifact.TableArtifact.get)
     * [head](#aqueduct.artifacts.table_artifact.TableArtifact.head)
-    * [save](#aqueduct.artifacts.table_artifact.TableArtifact.save)
     * [list\_preset\_metrics](#aqueduct.artifacts.table_artifact.TableArtifact.list_preset_metrics)
     * [list\_system\_metrics](#aqueduct.artifacts.table_artifact.TableArtifact.list_system_metrics)
     * [validate\_with\_expectation](#aqueduct.artifacts.table_artifact.TableArtifact.validate_with_expectation)
@@ -34,7 +33,9 @@ class TableArtifact(BaseArtifact)
 This class represents a computed table within the flow's DAG.
 
 Any `@op`-annotated python function that returns a dataframe will
-return this class when that function is called called.
+return this class when that function is called.
+
+Any SQL query will also return this class.
 
 **Examples**:
 
@@ -105,33 +106,6 @@ Returns a preview of the table artifact.
 
   A dataframe containing the table contents of this artifact.
 
-<a id="aqueduct.artifacts.table_artifact.TableArtifact.save"></a>
-
-#### save
-
-```python
-def save(config: SaveConfig) -> None
-```
-
-Configure this artifact to be written to a specific integration after its computed.
-
->>> db = client.integration(name="demo/")
->>> customer_data = db.sql("SELECT * from customers")
->>> churn_predictions = predict_churn(customer_data)
->>> churn_predictions.save(config=db.config(table="churn_predictions"))
-
-**Arguments**:
-
-  config:
-  SaveConfig object generated from integration using
-  the <integration>.config(...) method.
-
-**Raises**:
-
-  InvalidIntegrationException:
-  An error occurred because the requested integration could not be
-  found.
-
 <a id="aqueduct.artifacts.table_artifact.TableArtifact.list_preset_metrics"></a>
 
 #### list\_preset\_metrics
@@ -168,10 +142,10 @@ These system metrics can be set via the invoking the system_metric() method the 
 
 ```python
 def validate_with_expectation(
-    expectation_name: str,
-    expectation_args: Optional[Dict[str, Any]] = None,
-    severity: CheckSeverity = CheckSeverity.WARNING
-) -> bool_artifact.BoolArtifact
+        expectation_name: str,
+        expectation_args: Optional[Dict[str, Any]] = None,
+        severity: CheckSeverity = CheckSeverity.WARNING,
+        lazy: bool = False) -> bool_artifact.BoolArtifact
 ```
 
 Creates a check that validates with the table with great_expectations and its set of internal expectations.
@@ -203,7 +177,8 @@ ge_check.get() // True or False based on expectation passing
 ```python
 def number_of_missing_values(
         column_id: Any = None,
-        row_id: Any = None) -> numeric_artifact.NumericArtifact
+        row_id: Any = None,
+        lazy: bool = False) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the number of missing values over a given column or row.
@@ -227,7 +202,7 @@ Note: takes a scalar column_id/row_id and uses pandas.DataFrame.isnull() to comp
 #### number\_of\_rows
 
 ```python
-def number_of_rows() -> numeric_artifact.NumericArtifact
+def number_of_rows(lazy: bool = False) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the number of rows of this table
@@ -243,7 +218,8 @@ Note: uses len() to determine row count over the pandas.DataFrame.
 #### max
 
 ```python
-def max(column_id: Any) -> numeric_artifact.NumericArtifact
+def max(column_id: Any,
+        lazy: bool = False) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the maximum value over the given column
@@ -265,7 +241,8 @@ Note: takes a scalar column_id and uses pandas.DataFrame.max to compute value.
 #### min
 
 ```python
-def min(column_id: Any) -> numeric_artifact.NumericArtifact
+def min(column_id: Any,
+        lazy: bool = False) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the minimum value over the given column
@@ -287,7 +264,8 @@ Note: takes a scalar column_id and uses pandas.DataFrame.min to compute value.
 #### mean
 
 ```python
-def mean(column_id: Any) -> numeric_artifact.NumericArtifact
+def mean(column_id: Any,
+         lazy: bool = False) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the mean value over the given column
@@ -309,7 +287,8 @@ Note: takes a scalar column_id and uses pandas.DataFrame.mean to compute value.
 #### std
 
 ```python
-def std(column_id: Any) -> numeric_artifact.NumericArtifact
+def std(column_id: Any,
+        lazy: bool = False) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a metric that represents the standard deviation value over the given column
@@ -331,7 +310,8 @@ takes a scalar column_id and uses pandas.DataFrame.std to compute value
 #### system\_metric
 
 ```python
-def system_metric(metric_name: str) -> numeric_artifact.NumericArtifact
+def system_metric(metric_name: str,
+                  lazy: bool = False) -> numeric_artifact.NumericArtifact
 ```
 
 Creates a system metric that represents the given system information from the previous @op that ran on the table.

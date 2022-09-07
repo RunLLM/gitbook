@@ -3,6 +3,7 @@
 * [aqueduct.integrations.integration](#aqueduct.integrations.integration)
   * [IntegrationInfo](#aqueduct.integrations.integration.IntegrationInfo)
     * [describe](#aqueduct.integrations.integration.IntegrationInfo.describe)
+    * [is\_relational](#aqueduct.integrations.integration.IntegrationInfo.is_relational)
   * [Integration](#aqueduct.integrations.integration.Integration)
     * [\_\_hash\_\_](#aqueduct.integrations.integration.Integration.__hash__)
     * [\_\_eq\_\_](#aqueduct.integrations.integration.Integration.__eq__)
@@ -28,6 +29,16 @@ def describe() -> None
 ```
 
 Prints out a human-readable description of the integration.
+
+<a id="aqueduct.integrations.integration.IntegrationInfo.is_relational"></a>
+
+#### is\_relational
+
+```python
+def is_relational() -> bool
+```
+
+Returns whether the integration connects to a relational data store.
 
 <a id="aqueduct.integrations.integration.Integration"></a>
 

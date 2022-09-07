@@ -19,10 +19,13 @@
 class NumericArtifact(BaseArtifact)
 ```
 
-This class represents a computed metric within the flow's DAG.
+This class represents a computed number within the flow's DAG.
 
-Any `@metric`-annotated python function that returns a float will
-return this class when that function is called.
+Any `@metric`-annotated python function that returns a number
+will return this class when that function is called.
+
+Any `@op`-annotated python function that returns a number
+will return this class when that function is called in non-lazy mode.
 
 **Examples**:
 
@@ -79,13 +82,12 @@ These preset checks can be set via the bound() method on a artifact.
 #### bound
 
 ```python
-def bound(
-    upper: Optional[float] = None,
-    lower: Optional[float] = None,
-    equal: Optional[float] = None,
-    notequal: Optional[float] = None,
-    severity: CheckSeverity = CheckSeverity.WARNING
-) -> bool_artifact.BoolArtifact
+def bound(upper: Optional[float] = None,
+          lower: Optional[float] = None,
+          equal: Optional[float] = None,
+          notequal: Optional[float] = None,
+          severity: CheckSeverity = CheckSeverity.WARNING,
+          lazy: bool = False) -> bool_artifact.BoolArtifact
 ```
 
 Computes a bounds check on this metric with the specified boundary condition.

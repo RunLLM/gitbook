@@ -16,10 +16,14 @@
 #### wrap\_spec
 
 ```python
-def wrap_spec(spec: OperatorSpec,
-              *input_artifacts: BaseArtifact,
-              op_name: str,
-              description: str = "") -> BaseArtifact
+def wrap_spec(
+    spec: OperatorSpec,
+    *input_artifacts: BaseArtifact,
+    op_name: str,
+    description: str = "",
+    execution_mode: ExecutionMode = ExecutionMode.EAGER,
+    output_artifact_type_hint: ArtifactType = ArtifactType.UNTYPED
+) -> BaseArtifact
 ```
 
 Applies a python function to existing artifacts.
