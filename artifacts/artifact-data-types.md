@@ -10,5 +10,6 @@ All _Artifacts_ that are not of Type `GenericArtifact` are already aware of the 
 * `table`
 * `json`
 * `bytes`
-* `image` (corresponds to PIL.Image.Image type)
-* `picklable` (a object that can be pickled)
+* `image`: Corresponds to PIL.Image.Image type
+* `picklable`: An object that can be pickled
+* `untyped`: An unknown Artifact type for results of [lazy execution](../operators/lazy-vs-eager-execution.md))
