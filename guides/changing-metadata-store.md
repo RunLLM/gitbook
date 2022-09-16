@@ -24,3 +24,5 @@ The Aqueduct UI can be used to change the metadata store to AWS S3 or GCS. You
 do this by connecting a new integration of the respective service. As part of the
 integration connection dialog, you must select the box at the bottom that says
 `Use this integration for Aqueduct metadata storage.`.
+
+![](<../.gitbook/assets/change_metadata_store.png>)
