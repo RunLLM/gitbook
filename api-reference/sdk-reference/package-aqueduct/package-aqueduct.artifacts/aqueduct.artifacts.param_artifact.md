@@ -21,7 +21,7 @@ class ParamArtifact(BaseArtifact)
 #### \_\_init\_\_
 
 ```python
-def __init__(dag: DAG, artifact_id: uuid.UUID, from_flow_run: bool = False)
+def __init__(dag: DAG, artifact_id: uuid.UUID)
 ```
 
 The APIClient is only included because decorated functions operators acting on this parameter
