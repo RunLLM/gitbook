@@ -18,8 +18,9 @@ When a Python function is annotated with `@op`, two things happen:
 2. The annotated function will accept Aqueduct [Artifacts](../artifacts.md) as inputs and return Artifacts as outputs -- the return values can in turn by used by other operators.&#x20;
 
 {% hint style="info" %}
-Note that once an operator has been annotated with `@op`, it cannot be used as a "regular" Python function -- the inputs to the function can be either Artifacts or a non-Artifact.
-If you choose to pass in the latter, Aqueduct will implicity convert this into a Artifact that serves as the parameter to the your designated operator.
+Note that once an operator has been annotated with `@op`, it cannot be used as a "regular" Python function.
+The inputs to this operator are expected to be Artifacts. In case you supply an input of another kind, we will implicitly convert the input into the appropiate Artifact representation.
+Similarly, `@op` return values are also Artifacts.
 {% endhint %}
 
 ### Executing decorated functions locally

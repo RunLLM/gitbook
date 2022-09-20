@@ -1,11 +1,10 @@
 # Lazy vs Eager Executions
 
-Operators in python have two modes of execution supported by Aqueduct.
+Operators in Python have two modes of execution supported by Aqueduct.
+By default the mode of execution is `eager`. This can be configured via the `GlobalConfig` as shown below.
 
 * Lazy Execution: The function will not be run when invoked. The return type of the result Artifact will be `untyped`. When requesting the contents of this Artifact via the `.get()` command, Aqueduct will run the function and populate both the concrete type info and the value for the artifact
 * Eager Execution: The function will be run when invoked, the resultant artifact will already store the contents and the correct type information
-
-By default the mode of execution is `eager`. This can be configured via the `GlobalConfig` as shown below:
 
 ```python
 import aqueduct as aq
