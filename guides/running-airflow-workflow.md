@@ -2,7 +2,7 @@
 This guide will walk you through how to deploy a workflow on your existing Airflow cluster.
 
 ## Prerequisites
-- The Aqueduct metadata storage must be changed to an AWS S3 bucket. See [here]() for how to do so. The AWS credentials file for this
+- The Aqueduct metadata storage must be changed to an AWS S3 bucket. See [here](changing-metadata-store.md) for how to do so. The AWS credentials file for this
 bucket must be copied over to your Airflow cluster.
 - Modify your Airflow cluster's config to use `Basic Authentication`. See the instructions [here](https://airflow.apache.org/docs/apache-airflow/stable/security/api.html#basic-authentication) for how to do so. For now, Aqueduct only supports basic authentication
 using a username and password. We are working on adding support for other authentication methods.
