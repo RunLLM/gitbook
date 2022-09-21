@@ -119,9 +119,11 @@ Github account to your Aqueduct account.
 #### create\_param
 
 ```python
-def create_param(name: str,
-                 default: Any,
-                 description: str = "") -> ParamArtifact
+def create_param(
+    name: str,
+    default: Any,
+    description: str = ""
+) -> Union[TableArtifact, NumericArtifact, BoolArtifact, GenericArtifact]
 ```
 
 Creates a parameter artifact that can be fed into other operators.
@@ -165,7 +167,8 @@ Retrieves a dictionary of integrations the client can use.
 def integration(
     name: str
 ) -> Union[SalesforceIntegration, S3Integration, GoogleSheetsIntegration,
-           RelationalDBIntegration, AirflowIntegration, K8sIntegration, ]
+           RelationalDBIntegration, AirflowIntegration, K8sIntegration,
+           LambdaIntegration, ]
 ```
 
 Retrieves a connected integration object.
