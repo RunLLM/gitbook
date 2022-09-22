@@ -58,8 +58,7 @@ Once we've defined our whole workflow, the final step is to publish it to Aquedu
 ```python
 flow = client.publish_flow(name='average_acidity', 
                            artifacts=[acidity_by_group],
-                           schedule=aqueduct.hourly()
-                           )
+                           schedule=aqueduct.hourly())
 print(flow.id())
 ```
 
@@ -79,8 +78,7 @@ k8s_integration = client.integration("k8s_integration")
 flow = client.publish_flow(name='average_acidity', 
                            artifacts=[acidity_by_group],
                            schedule=aqueduct.hourly(),
-                           config = FlowConfig(engine=k8s_integration)
-                           )
+                           config = FlowConfig(engine=k8s_integration))
 print(flow.id())
 ```
 
