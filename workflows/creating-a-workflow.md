@@ -58,7 +58,8 @@ Once we've defined our whole workflow, the final step is to publish it to Aquedu
 ```python
 flow = client.publish_flow(name='average_acidity', 
                            artifacts=[acidity_by_group],
-                           schedule=aqueduct.hourly())
+                           schedule=aqueduct.hourly()
+                           )
 print(flow.id())
 ```
 
@@ -68,6 +69,20 @@ There are a few key arguments here, and we'll go through the one by one:
 * `artifacts`: This tells Aqueduct what all should be included in the workflow. Here, we specify `acidity_by_group`, which tells Aqueduct to also include everything that was used to create that piece of data -- in this case, the input data `wine_data` and the operator `get_average_acidity`.
   * You're, of course, welcome to list out all of the data artifacts in your workflow, but we figured it would be easier to list the outputs you care about.
 * `schedule`: This tells us how often you'd like to run your workflow. If you leave this empty, no schedule will be set, and you can set a schedule that executes as quickly as every minute or as rarely as every month. (See [managing-workflow-schedules.md](managing-workflow-schedules.md "mention") for more details.)
+* `config`: This tells us which connected engine you'd like to run your workflow. If you leave this empty, the workflow will be executed by Aqueduct engine by default. We currently support Airflow, Kubernetes, and Lambda.
+
+To publish a workflow to Aqueduct executed by different execution engine, we will add in config parameter:
+
+```python
+from aqueduct.config import FlowConfig
+k8s_integration = client.integration("k8s_integration")
+flow = client.publish_flow(name='average_acidity', 
+                           artifacts=[acidity_by_group],
+                           schedule=aqueduct.hourly(),
+                           config = FlowConfig(engine=k8s_integration)
+                           )
+print(flow.id())
+```
 
 Finally, you'll notice that we print `flow.id()` at the end of our workflow. This shows you the UUID assigned to your workflow, which you can use to access the workflow from the Python SDK In the future.
 
