@@ -11,4 +11,4 @@ k8s_integration = client.integration('k8s_integration')
 ```
 
 ### Publishing Workflow from the Connected Engines
-See [create-a-workflow.md](../../workflows/creating-a-workflow.md "mention")
+To publish a workflow using a connected engine, see [create-a-workflow.md](../../workflows/creating-a-workflow.md "mention").
