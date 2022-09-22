@@ -1,27 +1,44 @@
-# Lazy vs Eager Executions
+# Lazy vs Eager Execution
 
-Operators in Python have two modes of execution supported by Aqueduct.
-By default the mode of execution is `eager`. This can be configured via the `GlobalConfig` as shown below.
+The default mode of operator execution is `eager`. This means that whenever an operator is called, it will immediately run. This allows us to provide useful features like type enforcement.
 
-* Lazy Execution: The function will not be run when invoked. The return type of the result Artifact will be `untyped`. When requesting the contents of this Artifact via the `.get()` command, Aqueduct will run the function and populate both the concrete type info and the value for the artifact
-* Eager Execution: The function will be run when invoked, the resultant artifact will already store the contents and the correct type information
+Alternatively, you may execute an operator in `lazy` mode. This means that we will only run that operator once the entire flow is published. This removes any pre-publish guardrails 
+that `eager` mode provides, but can greatly speed up flow creation process, since we no longer run the flow before publishing it.
+
+These modes also apply for [Metric & Checks](../metrics-and-checks.md). You can configure laziness on a global or operator-level granularity. See below:
 
 ```python
 import aqueduct as aq
 import pandas as pd
+from aqueduct import Client, op
 
-# We can use the a boolean indicated by the key "lazy" to tell Aqueduct how we want execution to proceed
+client = Client("<API_KEY>", "<SERVER_ADDRESS>")
+
+@op
+def predict_churn(df):
+    ...
+
+input_df: pd.DataFrame = ...
+
+# In the default eager execution mode, we immediately compute the churn artifact.
+# If there was a bug in `predict_churn()`, we would find out here.
+churn = predict_churn(input_df)
+
+# We can use the `.lazy()` attribute to have `predict_churn` only execute when the entire flow is published.
+# If there was a bug in `predict_churn()`, we would not find out until the uploaded flow executes.
+churn = predict_churn.lazy(input_df)
+client.publish_flow("Flow with a Lazily Executed Operator", artifacts=[churn])
+
+# We can also decide that we want all our operators to be lazy from now on.
 aq.global_config({"lazy" : True})
+churn = predict_churn(input_df)
+client.publish_flow("Another Flow with a Lazily Executed Operator", artifacts=[churn])
 
-@aq.op
-def my_fn(df):
-    return df
-
-# Function will not run on the Aqueduct backend yet so this call is non-blocking
-local_result = my_fn.local(pd.DataFrame())
-
-# Aqueduct will now execute my_fn to get the contents
-print(local_result.get())
 ```
 
-Its important to keen in mind that [Metric & Checks](../metrics-and-checks.md) are similiar to operators and so follow the same execution modes as defined by the `GlobalConfig`.
+{% hint style="info" %}
+You may mix lazily and eagerly defined operators in the same flow. However, if an eager operator depends on a lazy operator, 
+that lazy operator will ultimately have to be executed, and will gain all the type enforcement benefits of an eagerly executed
+operator!
+{% endhint %}
+

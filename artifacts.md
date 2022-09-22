@@ -6,19 +6,24 @@ description: Encapsulating data in Aqueduct
 
 _Artifacts_ are thin wrappers around data objects in Aqueduct. Wrapping data in an Artifact allows Aqueduct to track that artifact across workflow runs help you understand how your data is changing over time.&#x20;
 
-All _Artifacts_ that are not of Type `GenericArtifact` are already aware of the underlying data types they hold. For example, the `BooleanArtifact` holds a `boolean`. A `GenericArtifact` holds a generic data type that is not encapsulated by the other explicit artifacts. A full list of Artifact data types within the system can be found below:
+We support the following data types:
 
 * `string`
-* `boolean`
-* `numeric`
+* `boolean`: This is also the data type returned by Check operators.
+* `numeric`: This is also the data type returned by Metric operators.
 * `dictionary`
 * `tuple`
 * `table`
 * `json`
 * `bytes`
-* `image`: Corresponds to PIL.Image.Image type
-* `picklable`: An object that can be pickled
-* `untyped`: An unknown Artifact type for results of [lazy execution](../operators/lazy-vs-eager-execution.md))
+* `image`: Corresponds to PIL.Image type.
+* `picklable`: Any object that can be pickled. This is the catch-all type used for all types that are not included above.
+* `untyped`: A special placeholder Artifact used to type the [lazily-executed operators](../operators/lazy-vs-eager-execution.md))
+
+These types are inferred and tracked by the system, no user input is required! Aqueduct uses this type information to provide useful type enforcement like:
+* Enforcing artifact type consistency across workflow runs. An artifact with type `t` will continue to have type `t` in future runs.
+* Catching errors earlier on, such as writing non-relational data to a relational integration (eg. SQL).
+
 
 There are three operations that can be done on artifacts:
 
