@@ -62,6 +62,8 @@ flow = client.publish_flow(name='average_acidity',
 print(flow.id())
 ```
 
+By default, the workflow is published using Aqueduct Python execution engine that runs on the same machine as the server, but if we want to customize the execution engine, check out [compute-integrations.md](../integrations/using-integrations/compute-integrations.md "mention").
+
 There are a few key arguments here, and we'll go through the one by one:
 
 * `name`: This is probably self-explanatory, but every workflow is given a unique name.
@@ -69,18 +71,6 @@ There are a few key arguments here, and we'll go through the one by one:
   * You're, of course, welcome to list out all of the data artifacts in your workflow, but we figured it would be easier to list the outputs you care about.
 * `schedule`: This tells us how often you'd like to run your workflow. If you leave this empty, no schedule will be set, and you can set a schedule that executes as quickly as every minute or as rarely as every month. (See [managing-workflow-schedules.md](managing-workflow-schedules.md "mention") for more details.)
 * `config`: This tells us which connected engine you'd like to run your workflow. If you leave this empty, the workflow will be executed by Aqueduct engine by default. We currently support Airflow, Kubernetes, and Lambda.
-
-To publish a workflow to Aqueduct executed by different execution engine, we will add in config parameter:
-
-```python
-from aqueduct.config import FlowConfig
-k8s_integration = client.integration("k8s_integration")
-flow = client.publish_flow(name='average_acidity', 
-                           artifacts=[acidity_by_group],
-                           schedule=aqueduct.hourly(),
-                           config = FlowConfig(engine=k8s_integration))
-print(flow.id())
-```
 
 Finally, you'll notice that we print `flow.id()` at the end of our workflow. This shows you the UUID assigned to your workflow, which you can use to access the workflow from the Python SDK In the future.
 
