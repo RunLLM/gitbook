@@ -1,9 +1,12 @@
 # Lazy vs Eager Execution
 
-The default mode of operator execution is `eager`. This means that whenever an operator is called, it will immediately run. This allows us to provide useful features like type enforcement.
+The default mode of operator execution is `eager`. This means that whenever an operator is called, it will immediately run. 
+This is just like executing a regular Python function, and allows us to provide useful features like type enforcement after
+the first run.
 
-Alternatively, you may execute an operator in `lazy` mode. This means that we will only run that operator once the entire flow is published. This removes any pre-publish guardrails 
-that `eager` mode provides, but can greatly speed up flow creation process, since we no longer run the flow before publishing it.
+Alternatively, you may execute an operator in `lazy` mode. This means that we will only run that operator once the entire flow is published. 
+This removes any pre-publish guardrails that `eager` mode provides. However, for workflows processing large amounts of data, this can greatly 
+speed up the workflow creation process, since we no longer need to run the flow before publishing it.
 
 These modes also apply for [Metric & Checks](../metrics-and-checks.md). You can configure laziness on a global or operator-level granularity. See below:
 

@@ -9,14 +9,14 @@ Parameters are identified by their name, and *must* have default values. They ca
 To create a parameter explicitly, use `client.create_param(<param_name>, default=<default_val>)`. These parameters can be fed into operators just like any other artifacts. 
 
 They can also be referenced within SQL queries using the double-bracket syntax! Eg. A query `select ... where col_name={{country_names}}` is completely valid, as long as a parameter named "country_names" exists.
-If "country_names" has current value `"'Argentina'"`, the query will implicitly expand into `select ... where col_name='Argentina'`. Note that SQL parameters can only be strings,
-and that if you need quotes around your parameter value, you will have to insert them yourself.
+If "country_names" has current value `"'Argentina'"`, the query will implicitly expand into `select ... where col_name='Argentina'`. Note that SQL parameters can only be strings.
+Also note that when doing interpolation, we don't add quotes around the parameter value for you - it's a direct string substitution.
 
 We provide the following built-in SQL parameters:
 - `today`: expands to a string date in the format `'%Y-%m-%d'`. Eg. `SELECT * from hotel_reviews WHERE review_date={{ today }};`
 
 
-To create a parameter implicitly, feed a raw, non-artifact python value `v`into any operator. We will implicitly convert the input into a parameter for you, with the default value `v`. 
+To create a parameter implicitly, feed a regular python object `v`into any operator. We will implicitly convert the input into a parameter for you, with the default value `v`. 
 The name of the parameter is the name of its corresponding argument on the function signature.
 
 
