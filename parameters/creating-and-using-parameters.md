@@ -1,6 +1,6 @@
 # Creating and Using Parameters
 
-See this [**Workflow Parameters Tutorial**](../example-workflows/using-workflow-parameters.md) notebook for a full walkthrough of the API with concrete examples.
+See this [**Workflow Parameters Tutorial**](../example-workflows/using-parameters.md) notebook for a full walkthrough of the API with concrete examples.
 
 ### Creating Parameters
 
