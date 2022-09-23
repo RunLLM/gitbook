@@ -1,6 +1,6 @@
 # Creating and Using Parameters
 
-See this [**Workflow Parameters Tutorial**](../example-workflows/using-workflow-parameters.md) notebook for a full walkthrough of the API.
+See this [**Workflow Parameters Tutorial**](../example-workflows/using-workflow-parameters.md) notebook for a full walkthrough of the API with concrete examples.
 
 ### Creating Parameters
 
@@ -28,7 +28,7 @@ can be customized with `churn_result.get(parameters={"p": <new val>})`
 Types are also enforced for parameters. You cannot provide a new, custom parameter that has a different type.
 {% endhint %}
 
-For any flow that has been published with parameters, you can always trigger a new flow run with `client.trigger(parameters={<param_name>: <new_param_val>}`. 
+Similarly, for any flow that has been published with parameters, you can always trigger a new flow run with `client.trigger(parameters={<param_name>: <new_param_val>}`. 
 Note that triggering a workflow with non-default parameters is a one-off operation. It does not change the default parameters for future runs of the workflow. 
 That is to say, if a workflow is running on a schedule, every scheduled run will always use the same default parameters. You can always change the default value 
 of a published parameter by re-running the workflow with the new default value.
