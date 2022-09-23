@@ -1,6 +1,8 @@
 # Configuring Integrations
 
-By default, most of Aqueduct's integrations work out of the box. However, certain systems require special configuration. Aqueduct provides command line utilities to help automate this installation process.
+To install the dependencies required to connect to any integration, please run `aqueduct install [integration_name]`. For example, to enable connections to Postgres, run `aqueduct install postgres`. For most integrations, this command will simply install the required package dependencies necessary to connect to that system.
+
+However, MySQL and Microsoft SQLServer have special requirements that we describe below.
 
 ### Configuring MySQL
 

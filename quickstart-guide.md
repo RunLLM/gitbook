@@ -18,14 +18,14 @@ Once your server is up and running, you can start building your first workflow. 
 First, we'll import everything we need:
 
 ```python
-from aqueduct import Client, get_apikey, op, metric
+from aqueduct import Client, op, metric
 import pandas as pd
 ```
 
 Next, we'll create our API client:
 
 ```python
-client = Client(get_apikey(), "localhost:8080")
+client = Client()
 ```
 
 Note that the API key associated with the server can also be found in the output of the `aqueduct start` command.

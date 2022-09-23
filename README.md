@@ -13,7 +13,7 @@ The core abstraction in Aqueduct is a [Workflow](workflows/), which is a sequenc
 The 12-line code snippet below is all you need to create your first Aqueduct workflow:
 
 ```python
-from aqueduct import Client, op, metric, get_apikey
+from aqueduct import Client, op
 
 # Create an Aqueduct client. If we're running on the same machine as the 
 # Aqueduct server, we can create a client without providing an API key or a
