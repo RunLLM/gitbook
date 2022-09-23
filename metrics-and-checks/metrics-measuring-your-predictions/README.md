@@ -11,7 +11,7 @@ db = client.integration('aqueduct_demo')
 customers = db.sql('SELECT * FROM customers;')
 
 @metric
-def avg_customer_workflows(customers: pd.DataFrame) -> pd.DataFrame:
+def avg_customer_workflows(customers: pd.DataFrame) -> float:
     return customers['num_workflows'].mean() 
     
 avg_num_wflows = avg_customer_workflows(customers)

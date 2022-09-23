@@ -9,7 +9,7 @@ db = client.integration('aqueduct_demo')
 customers = db.sql('SELECT * FROM customers;')
 
 @check(severity=CheckSeverity.ERROR)
-def non_negative_workflows(customers: pd.DataFrame) -> boolean:
+def non_negative_workflows(customers: pd.DataFrame) -> bool:
     return (customers['num_workflows'] > 0).all()
     
 check_non_neg_wflows = non_negative_workflows(customers)
