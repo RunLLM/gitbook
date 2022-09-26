@@ -11,7 +11,7 @@ k8s_integration = client.integration('k8s_integration')
 ```
 
 ### Publishing Workflow from the Connected Engines
-To publish a workflow executed by different execution engine to Aqueduct, we will add in config parameter to specify which engine we intend to use:
+To publish a workflow executed by different execution engine to Aqueduct, we will add in the config parameter to specify which engine we intend to use:
 
 ```python
 from aqueduct.config import FlowConfig
