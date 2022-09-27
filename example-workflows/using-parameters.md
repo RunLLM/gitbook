@@ -4,10 +4,10 @@
 <!-- ------------- New Cell ------------ -->
 
 
-# Workflow Parameters Tutorial
+# Using Parameters Tutorial
 
 
-This is a quick tutorial that will demonstrate how workflows can be parameterized with Aqeuduct.
+This is a quick tutorial that will demonstrate how to parameterize your Aqueduct flows.
 
 
 
@@ -24,7 +24,7 @@ from aqueduct.decorator import op
 # Aqueduct server, change this to the address of your Aqueduct server.
 address = "http://localhost:8080"
 
-# If you're running youre notebook on a separate machine from your 
+# If you're running your notebook on a separate machine from your 
 # Aqueduct server, you will have to copy your API key here rather than
 # using `get_apikey()`.
 api_key = aqueduct.get_apikey()
@@ -190,7 +190,7 @@ def strip_whitespace_from_nationality(df: pd.DataFrame):
     return df
     
 @op
-def filter_by_nationality(df: pd.DataFrame, nationality: str):
+def filter_by_nationality(df: pd.DataFrame, target_nationality: str):
     '''
     This function takes in a Pandas DataFrame for hotel_reviews and
     filters it by the nationality parameter passed in to this function.
@@ -198,7 +198,7 @@ def filter_by_nationality(df: pd.DataFrame, nationality: str):
     data cleaning operation above, otherwise it will result in inconsisten
     results.
     '''
-    return df[df["reviewer_nationality"] == nationality]
+    return df[df["reviewer_nationality"] == target_nationality]
 ```
 
 
@@ -443,7 +443,7 @@ client.trigger(flow.id(), parameters={"nationality": "Australia"})
 
 
 ---
-### Parameterizing SQL Queries
+### SQL Query Parameters
 
 SQL queries can also be parameterized. For queries, we'll use the double-bracket syntax to denote the presence of a parameter inline. As long as the name of the parameter matches a previously defined. 
 
@@ -651,6 +651,10 @@ reviews_after_today.get()
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>hotel_name</th>
+      <th>review_date</th>
+      <th>reviewer_nationality</th>
+      <th>review</th>
     </tr>
   </thead>
   <tbody>
@@ -764,3 +768,88 @@ reviews_before_today.get()
 <p>100 rows × 4 columns</p>
 </div>
 
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
+---
+### Implicitly Defined Parameters
+
+If you pass a regular python object into an operator, we will automatically convert it into a parameter for you!
+
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
+```python
+# The name of the parameter will be `target_nationality`, since that is the corresponding function name
+# in filter_by_nationality()'s signature.
+# Note: we currently do not allow you to create implicit parameters with the same name as an existing parameter. If
+# the argument name was `nationality` instead of `target_nationality`, this would have failed since we previously
+# defined explicit parameter `nationality`.
+filtered = filter_by_nationality(formatted_table, "Australia")
+filtered.get().head(10)
+```
+**Output**
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hotel_name</th>
+      <th>review_date</th>
+      <th>reviewer_nationality</th>
+      <th>review</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>H10 Itaca</td>
+      <td>2017-08-03</td>
+      <td>Australia</td>
+      <td>Damaged bathroom shower screen sealant and ti...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Student Hotel Amsterdam City</td>
+      <td>2016-07-31</td>
+      <td>Australia</td>
+      <td>No Negative The hotel had free gym table tenni...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Les Jardins Du Marais</td>
+      <td>2015-10-27</td>
+      <td>Australia</td>
+      <td>Bathroom is fine but could be improved with a...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Napoleon Paris</td>
+      <td>2015-10-07</td>
+      <td>Australia</td>
+      <td>NOTHING EVERYTHING</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NH Milano Touring</td>
+      <td>2015-08-09</td>
+      <td>Australia</td>
+      <td>Check in and check out were extemely slow wit...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Le Parisis Paris Tour Eiffel</td>
+      <td>2015-10-20</td>
+      <td>Australia</td>
+      <td>When we arrived we had to bring our own baggag...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
