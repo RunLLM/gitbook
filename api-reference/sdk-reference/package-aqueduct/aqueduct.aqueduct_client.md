@@ -246,6 +246,15 @@ Uploads and kicks off the given flow in the system.
 If a flow already exists with the same name, the existing flow will be updated
 to this new state.
 
+The default execution engine of the flow is Aqueduct. In order to specify which
+execution engine the flow will be running on, use "config" parameter. Eg:
+>>> k8s_integration = client.integration("k8s_integration")
+>>> flow = client.publish_flow(
+>>>     name = "k8s_example",
+>>>     artifacts = [output],
+>>>     config = FlowConfig(engine=k8s_integration),
+>>> )
+
 **Arguments**:
 
   name:
