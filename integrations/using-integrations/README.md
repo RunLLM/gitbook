@@ -12,4 +12,4 @@ Aqueduct currently supports the following integrations:
 
 * [Relational Databases](relational-databases.md): Postgres, MySQL, Snowflake, Redshift, BigQuery, MariaDB&#x20;
 * [AWS S3](aws-s3.md)
-* [Compute Integrations](compute-integrations.md)
+* [Compute Integrations](./compute-integrations.md): Kubernetes, Lambda, Airflow
