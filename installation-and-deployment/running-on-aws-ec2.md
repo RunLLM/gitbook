@@ -55,7 +55,7 @@ Once you've set up the Aqueduct server, we have to ensure that Aqueduct is exter
 
 1. Log into AWS. Access the EC2 console -- if you don't see an EC2 option readily available, you can type "EC2" into the search bar at the top.
 2. From the EC2 console, navigate to the list of instances you've created: \
-   &#x20;![](<../.gitbook/assets/image (13) (2).png>)
+   &#x20;![](<../.gitbook/assets/image (13) (1) (2) (1).png>)
 3. Select the instance that you're running Aqueduct on from your list of instances, and select the security tab on the bottom pane: \
    ![](<../.gitbook/assets/image (9).png>)
 4. Click on the security group your instance is in. From the security group view, select "Edit Inbound Rules":\
