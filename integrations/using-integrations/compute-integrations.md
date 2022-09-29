@@ -22,4 +22,4 @@ flow = client.publish_flow(name='average_acidity',
 print(flow.id())
 ```
 
-Here, the `config` parameter is set to a `FlowConfig` variable where we can specifies its `engine` parameter to the Kubernetes integration we have connected from the last part.
+Here, the `config` parameter is set to a `FlowConfig` variable where we can specifies its `engine` parameter to the Kubernetes integration we have connected. After executing the command, the workflow will be published using the Kubernetes as the execution engine. 
