@@ -73,6 +73,7 @@
       * [aqueduct.aqueduct\_client](api-reference/sdk-reference/package-aqueduct/aqueduct.aqueduct\_client.md)
       * [aqueduct.schedule](api-reference/sdk-reference/package-aqueduct/aqueduct.schedule.md)
 * [Guides](guides/README.md)
+  * [Updating Aqueduct](guides/updating-aqueduct.md)
   * [Porting a workflow to Aqueduct](guides/porting-a-workflow-to-aqueduct.md)
   * [Changing the Aqueduct Metadata Store](guides/changing-metadata-store.md)
   * [Debugging a Failed Workflow](guides/debugging-a-failed-workflow.md)
