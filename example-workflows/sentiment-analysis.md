@@ -8,7 +8,11 @@
 
 This is a short example of how to use Aqueduct to deploy a sentiment analysis model.
 
-**Note: This example workflow uses HuggingFace's [Transformers](https://huggingface.co/docs/transformers/index) package, which uses large models. If you're running on a resource constrained machine, or if you're running on an M1 Mac using Rosetta, you will likely run out of memory for these models. We recommend using another example workflow if this is the case.**
+**You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/sentiment_analysis/Sentiment%20Model.ipynb).**
+
+Note: This example workflow uses HuggingFace's [Transformers](https://huggingface.co/docs/transformers/index) package, which uses large models. If you're running on a resource constrained machine, or if you're running on an M1 Mac using Rosetta, you will likely run out of memory for these models. We recommend using another example workflow if this is the case.
+
+**Throughout this notebook, you'll see a decorator (`@aq.op`) above functions. This decorator allows Aqueduct to run your functions as a part of a workflow automatically.**
 
 
 
@@ -17,7 +21,7 @@ This is a short example of how to use Aqueduct to deploy a sentiment analysis mo
 
 
 ```python
-import aqueduct 
+import aqueduct
 from aqueduct.decorator import op, check
 ```
 
@@ -28,11 +32,11 @@ from aqueduct.decorator import op, check
 
 
 ```python
-# If you're running your notebook on a separate machine from your 
+# If you're running your notebook on a separate machine from your
 # Aqueduct server, change this to the address of your Aqueduct server.
 address = "http://localhost:8080"
 
-# If you're running youre notebook on a separate machine from your 
+# If you're running youre notebook on a separate machine from your
 # Aqueduct server, you will have to copy your API key here rather than
 # using `get_apikey()`.
 api_key = aqueduct.get_apikey()
@@ -207,26 +211,26 @@ Now that we have our data, we'll define an Aqueduct operator called `sentiment_p
 ```python
 from transformers import pipeline
 import pandas as pd
-import torch # this is needed to ensure that pytorch is installed.
+import torch  # this is needed to ensure that pytorch is installed.
 
-# The @op decorator here allows Aqueduct to run this function as 
-# a part of the Aqueduct workflow. It tells Aqueduct that when 
+# The @op decorator here allows Aqueduct to run this function as
+# a part of the Aqueduct workflow. It tells Aqueduct that when
 # we execute this function, we're defining a step in the workflow.
-# While the results can be retrieved immediately, nothing is 
+# While the results can be retrieved immediately, nothing is
 # published until we call `publish_flow()` below.
 @op()
 def sentiment_prediction(reviews):
-    '''
+    """
     This function uses the HuggingFace transformers library's sentiment-analysis
     model to predict the positive or negative sentiment of the reviews passed in
     to this function. The reviews argument is expected to have a `review` column
-    and can have any other additional columns. 
-    
-    This function will append the sentiment prediction as a column to the original 
+    and can have any other additional columns.
+
+    This function will append the sentiment prediction as a column to the original
     DataFrame.
-    '''
+    """
     model = pipeline("sentiment-analysis")
-    return reviews.join(pd.DataFrame(model(list(reviews['review']))))
+    return reviews.join(pd.DataFrame(model(list(reviews["review"]))))
 ```
 
 
@@ -236,8 +240,8 @@ def sentiment_prediction(reviews):
 
 
 ```python
-# This tells Aqueduct to execute sentiment_prediction on reviews_table 
-# as a part of our workflow. However, nothing is published (yet) until we 
+# This tells Aqueduct to execute sentiment_prediction on reviews_table
+# as a part of our workflow. However, nothing is published (yet) until we
 # call `publish_flow()` below.
 sentiment_table = sentiment_prediction(reviews_table)
 ```
@@ -460,12 +464,12 @@ Now that we've defined our predictions, we can save them back to the data wareho
 
 
 ```python
-# This tells Aqueduct to save the results in sentiment_table 
-# back to the demo DB we configured earlier. 
-# NOTE: At this point, no data is actually saved! This is just 
+# This tells Aqueduct to save the results in sentiment_table
+# back to the demo DB we configured earlier.
+# NOTE: At this point, no data is actually saved! This is just
 # part of a workflow spec that will be executed once the workflow
 # is published in the next cell.
-sentiment_table.save(warehouse.config(table='sentiment_pred', update_mode='replace'))
+sentiment_table.save(warehouse.config(table="sentiment_pred", update_mode="replace"))
 ```
 
 
@@ -484,12 +488,12 @@ Finally, we'll publish our workflow to Aqueduct, giving it a name and telling it
 
 ```python
 # This publishes all of the logic needed to create sentiment_table
-# to Aqueduct and schedules the workflow to run on an hourly basis. 
+# to Aqueduct and schedules the workflow to run on an hourly basis.
 # The URL below will take you to the Aqueduct UI, which will show you the
 # status of your workflow runs and allow you to inspect them.
-sentiment_flow = client.publish_flow(name = "Demo Customer Sentiment", 
-                                   artifacts = [sentiment_table],
-                                   schedule = aqueduct.hourly())
+sentiment_flow = client.publish_flow(
+    name="Demo Customer Sentiment", artifacts=[sentiment_table], schedule=aqueduct.hourly()
+)
 print(sentiment_flow.id())
 ```
 

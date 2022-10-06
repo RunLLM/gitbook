@@ -4,11 +4,14 @@
 <!-- ------------- New Cell ------------ -->
 
 
-# Using Parameters Tutorial
+# Workflow Parameters Tutorial
 
 
-This is a quick tutorial that will demonstrate how to parameterize your Aqueduct flows.
+This is a quick tutorial that will demonstrate how workflows can be parameterized with Aqeuduct.
 
+**You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/parameterization/Using%20Parameters.ipynb).**
+
+**Throughout this notebook, you'll see a decorator (`@aq.op`) above functions. This decorator allows Aqueduct to run your functions as a part of a workflow automatically.**
 
 
 
@@ -17,10 +20,10 @@ This is a quick tutorial that will demonstrate how to parameterize your Aqueduct
 
 
 ```python
-import aqueduct 
+import aqueduct
 from aqueduct.decorator import op
 
-# If you're running your notebook on a separate machine from your 
+# If you're running your notebook on a separate machine from your
 # Aqueduct server, change this to the address of your Aqueduct server.
 address = "http://localhost:8080"
 
@@ -68,7 +71,7 @@ reviews_table = db.sql("select * from hotel_reviews;")
 
 
 ```python
-# This gets the underlying DataFrame. Note that you can't pass a 
+# This gets the underlying DataFrame. Note that you can't pass a
 # DataFrame as an argument to a workflow; you must use the Aqueduct
 # TableArtifact!
 reviews_table.get()
@@ -178,26 +181,28 @@ reviews_table.get()
 ```python
 import pandas as pd
 
+
 @op
 def strip_whitespace_from_nationality(df: pd.DataFrame):
-    '''
-    This function takes a Pandas DataFrame for hotel_reviews and 
+    """
+    This function takes a Pandas DataFrame for hotel_reviews and
     removes the unnecessary whitespace around the reviewer's nationality.
     The reviewer_nationality data is loaded with inconsistent spacing,
     so this is a necessary data cleaning step before further featurization.
-    '''
+    """
     df["reviewer_nationality"] = df["reviewer_nationality"].str.strip(" ")
     return df
-    
+
+
 @op
 def filter_by_nationality(df: pd.DataFrame, target_nationality: str):
-    '''
+    """
     This function takes in a Pandas DataFrame for hotel_reviews and
     filters it by the nationality parameter passed in to this function.
     This filter should only be invoked after the whitespace stripping
     data cleaning operation above, otherwise it will result in inconsisten
     results.
-    '''
+    """
     return df[df["reviewer_nationality"] == target_nationality]
 ```
 
@@ -217,13 +222,13 @@ Here we filter the reviews table to only the rows where `reviewer_nationality` i
 
 ```python
 # We define a workflow parameter called nationality_param and give
-# it a default value of United Kingdom. This parameter can be used 
+# it a default value of United Kingdom. This parameter can be used
 # in any SQL query or Python operator in this workflow.
 nationality_param = client.create_param("nationality", default="United Kingdom")
 
 formatted_table = strip_whitespace_from_nationality(reviews_table)
 
-# Here, we use the nationality_param defined above as an argument to 
+# Here, we use the nationality_param defined above as an argument to
 # filter by nationality.
 filtered = filter_by_nationality(formatted_table, nationality_param)
 filtered.get().head(10)
@@ -334,7 +339,7 @@ Since we've already parameterized the workflow, we can provide a different param
 ```python
 # When calling .get() on an artifact, we can provide a map of parametres
 # to see how different parametrization affects the execution of our workflow.
-# Here, we change the default value ("United Kingdom") to a new value 
+# Here, we change the default value ("United Kingdom") to a new value
 # ("Australia").
 filtered.get(parameters={"nationality": "Australia"}).head(10)
 ```
@@ -430,8 +435,9 @@ print(flow.id())
 ```python
 # Wait until the flow has run at least once before triggering a new run.
 from time import sleep
+
 while len(flow.list_runs()) == 0:
-    sleep(1)    
+    sleep(1)
 
 client.trigger(flow.id(), parameters={"nationality": "Australia"})
 ```

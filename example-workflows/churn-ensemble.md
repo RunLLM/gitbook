@@ -6,9 +6,7 @@
 
 # Customer Churn Tutorial
 
-This is a quick tutorial that will walk you through creating your first workflow with Aqueduct. 
-
-Every data scientist we’ve spoken to works in Python, so Aqueduct does too. The main way to deploy code into the cloud is via our Python SDK, which you can find [on GitHub](https://github.com/aqueducthq/aqueduct). 
+This is a quick tutorial that will walk you through creating your first workflow with Aqueduct. You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/churn_prediction/Build%20and%20Deploy%20Churn%20Ensemble.ipynb).
 
 The philosophy behind the Aqueduct SDK is that you should be able to connect to your data systems, transform your data and generate predictions, and publish your results once you’re happy with them. This guide will walk you through installing your SDK, setting up a client, transforming some data, and publishing a workflow to the cloud. 
 
@@ -16,6 +14,8 @@ The philosophy behind the Aqueduct SDK is that you should be able to connect to 
 1. We will use standard Python libraries to transform our data and build a simple ensemble of churn models.
 2. We will use the Aqueduct Python API to deploy our churn prediction pipeline
 3. We will visit the Aqueduct web interface to view our deployed prediction pipeline
+
+**Throughout this notebook, you'll see a decorator (`@aq.op`) above functions. This decorator allows Aqueduct to run your functions as a part of a workflow automatically.**
 
 
 
@@ -40,11 +40,17 @@ Here is our training data:
 
 ```python
 import pandas as pd
+import numpy as np
+import aqueduct as aq
 
 # Read some customer data from the Aqueduct repo.
-customers_table = pd.read_csv("https://raw.githubusercontent.com/aqueducthq/aqueduct/main/examples/churn_prediction/data/customers.csv")
-churn_table = pd.read_csv("https://raw.githubusercontent.com/aqueducthq/aqueduct/main/examples/churn_prediction/data/churn_data.csv")
-pd.merge(customers_table, churn_table, on='cust_id').head()
+customers_table = pd.read_csv(
+    "https://raw.githubusercontent.com/aqueducthq/aqueduct/main/examples/churn_prediction/data/customers.csv"
+)
+churn_table = pd.read_csv(
+    "https://raw.githubusercontent.com/aqueducthq/aqueduct/main/examples/churn_prediction/data/churn_data.csv"
+)
+pd.merge(customers_table, churn_table, on="cust_id").head()
 ```
 **Output**
 <div>
@@ -164,24 +170,29 @@ Most real-world machine learning relies on some form of feature transformation. 
 
 
 ```python
-import numpy as np 
+# The @op decorator here allows Aqueduct to run this function as
+# a part of an Aqueduct workflow. It tells Aqueduct that when
+# we execute this function, we're defining a step in the workflow.
+# While the results can be retrieved immediately, nothing is
+# published until we call `publish_flow()` below.
+@aq.op
 def log_featurize(cust: pd.DataFrame) -> pd.DataFrame:
-    '''
+    """
     log_featurize takes in customer data from the Aqueduct customers table
     and log normalizes the numerical columns using the numpy.log function.
-    It skips the cust_id, using_deep_learning, and using_dbt columns because 
+    It skips the cust_id, using_deep_learning, and using_dbt columns because
     these are not numerical columns that require regularization.
-    
-    log_featurize adds all the log-normalized values into new columns, and 
+
+    log_featurize adds all the log-normalized values into new columns, and
     maintains the original values as-is. In addition to the original company_size
     column, log_featurize will add a log_company_size column.
-    '''
+    """
     features = cust.copy()
-    skip_cols = ['cust_id', 'using_deep_learning', 'using_dbt']
-    
+    skip_cols = ["cust_id", "using_deep_learning", "using_dbt"]
+
     for col in features.columns.difference(skip_cols):
-        features["log_"+col] = np.log(features[col] + 1.0)
-        
+        features["log_" + col] = np.log(features[col] + 1.0)
+
     return features.drop(columns="cust_id")
 ```
 
@@ -192,7 +203,11 @@ def log_featurize(cust: pd.DataFrame) -> pd.DataFrame:
 
 
 ```python
-features_table = log_featurize(customers_table)
+# Calling `.local()` on an @op-annotated function allows us to execute the
+# function locally for testing purposes. When a function is called with
+# `.local()`, Aqueduct does not capture the function execution as a part of
+# the definition of a workflow.
+features_table = log_featurize.local(customers_table)
 features_table.head()
 ```
 **Output**
@@ -350,8 +365,9 @@ In this example, we will train and ensemble two basic classifiers.  In practice,
 
 ```python
 from sklearn.linear_model import LogisticRegression
+
 linear_model = LogisticRegression(max_iter=10000)
-linear_model.fit(features_table, churn_table['churn'])
+linear_model.fit(features_table, churn_table["churn"])
 ```
 **Output**
 <div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(max_iter=10000)</pre></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=10000)</pre></div></div></div></div></div>
@@ -364,8 +380,9 @@ linear_model.fit(features_table, churn_table['churn'])
 
 ```python
 from sklearn.tree import DecisionTreeClassifier
-decision_tree_model = DecisionTreeClassifier(max_depth = 10, min_samples_split = 3)
-decision_tree_model.fit(features_table, churn_table['churn'])
+
+decision_tree_model = DecisionTreeClassifier(max_depth=10, min_samples_split=3)
+decision_tree_model.fit(features_table, churn_table["churn"])
 ```
 **Output**
 <div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DecisionTreeClassifier(max_depth=10, min_samples_split=3)</pre></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">DecisionTreeClassifier</label><div class="sk-toggleable__content"><pre>DecisionTreeClassifier(max_depth=10, min_samples_split=3)</pre></div></div></div></div></div>
@@ -387,31 +404,33 @@ Putting all the above pieces together we can define the **prediction workflow** 
 
 
 ```python
+@aq.op
 def predict_linear(features_table):
-    '''
+    """
     Generates predictions using the logistic regression model and
-    returns a new DataFrame with a column called linear that has 
+    returns a new DataFrame with a column called linear that has
     the likelihood of the customer churning.
-    '''
-    return pd.DataFrame({'linear': linear_model.predict_proba(features_table)[:,1]})
+    """
+    return pd.DataFrame({"linear": linear_model.predict_proba(features_table)[:, 1]})
 
+@aq.op
 def predict_tree(features_table):
-    '''
+    """
     Generates predictions using the decision tree model and
-    returns a new DataFrame with a column called tree that has 
+    returns a new DataFrame with a column called tree that has
     the likelihood of the customer churning.
-    '''
-    return pd.DataFrame({'tree': decision_tree_model.predict_proba(features_table)[:,1]})
+    """
+    return pd.DataFrame({"tree": decision_tree_model.predict_proba(features_table)[:, 1]})
 
+@aq.op
 def predict_ensemble(customers_table, linear_pred_table, tree_pred_table):
-    '''
+    """
     predict_ensemble combines the results from our logistic regression
     and decision tree models by taking the average of the two models'
-    probabilities that a user might churn. The resulting average is 
+    probabilities that a user might churn. The resulting average is
     then assigned into the `prob_churn` column on the customers_table.
-    '''
-    return customers_table.assign(
-        prob_churn = linear_pred_table.join(tree_pred_table).mean(axis=1))
+    """
+    return customers_table.assign(prob_churn=linear_pred_table.join(tree_pred_table).mean(axis=1))
 ```
 
 
@@ -421,10 +440,10 @@ def predict_ensemble(customers_table, linear_pred_table, tree_pred_table):
 
 
 ```python
-features_table = log_featurize(customers_table)
-linear_pred_table = predict_linear(features_table)
-tree_pred_table = predict_tree(features_table)
-churn_table = predict_ensemble(customers_table, linear_pred_table, tree_pred_table)
+features_table = log_featurize.local(customers_table)
+linear_pred_table = predict_linear.local(features_table)
+tree_pred_table = predict_tree.local(features_table)
+churn_table = predict_ensemble.local(customers_table, linear_pred_table, tree_pred_table)
 ```
 
 
@@ -572,41 +591,15 @@ We will now deploy the above prediction workflow to the cloud.  You will need th
 
 
 ```python
-import aqueduct 
-from aqueduct import op, check, metric
-```
-
-
-
-
-<!-- ------------- New Cell ------------ -->
-
-
-### Connecting the Aqueduct API Client
-
-To interact with the Aqueduct cloud infrastructure you will need to use the API Key associated with your account.  You can get your API Key by running the following in a terminal:
-
-```bash
-aqueduct apikey
-```
-
-
-
-
-
-<!-- ------------- New Cell ------------ -->
-
-
-```python
-# If you're running your notebook on a separate machine from your 
+# If you're running your notebook on a separate machine from your
 # Aqueduct server, change this to the address of your Aqueduct server.
 address = "http://localhost:8080"
 
-# If you're running youre notebook on a separate machine from your 
+# If you're running youre notebook on a separate machine from your
 # Aqueduct server, you will have to copy your API key here rather than
 # using `get_apikey()`.
-api_key = aqueduct.get_apikey()
-client = aqueduct.Client(api_key, address)
+api_key = aq.get_apikey()
+client = aq.Client(api_key, address)
 ```
 
 
@@ -760,49 +753,7 @@ customers_table.get().head()
 
 ### Applying Operators to Tables
 
-I can transform these `TableArtifacts` by applying *decorated* Python functions.  Here, we copied over our `log_featurize` function from our previous notebook. The only change we've made here is to add a decorator `@aqueduct.decorator.op()`.  Otherwise, it is exactly my `log_featurize` function from above.
-
-All this decorator does is tell Aqueduct to run this function in the cloud whenever we ask for the results. In a few cells, when we publish our workflow, this will take our code, ship it off to the cloud, and we'll be ready to go in a matter of seconds.
-
-
-
-
-
-<!-- ------------- New Cell ------------ -->
-
-
-```python
-# The @op decorator here allows Aqueduct to run this function as 
-# a part of the Aqueduct workflow. It tells Aqueduct that when 
-# we execute this function, we're defining a step in the workflow.
-# While the results can be retrieved immediately, nothing is 
-# published until we call `publish_flow()` below.
-@op()
-def log_featurize(cust: pd.DataFrame) -> pd.DataFrame: 
-    '''
-    log_featurize takes in customer data from the Aqueduct customers table
-    and log normalizes the numerical columns using the numpy.log function.
-    It skips the cust_id, using_deep_learning, and using_dbt columns because 
-    these are not numerical columns that require regularization.
-    
-    log_featurize adds all the log-normalized values into new columns, and 
-    maintains the original values as-is. In addition to the original company_size
-    column, log_featurize will add a log_company_size column.
-    '''
-    features = cust.copy()
-    skip_cols = ['cust_id', 'using_deep_learning', 'using_dbt']
-    for col in features.columns.difference(skip_cols):
-        features["log_"+col] = np.log(features[col] + 1.0)
-    return features.drop(columns="cust_id")
-```
-
-
-
-
-<!-- ------------- New Cell ------------ -->
-
-
-Any function that is decorated with `@op` can be called on any data table that you retrieve through Aqueduct (e.g., via the SQL query above). The result of this function call will be *another* data table that you can then use for future function calls.
+I can transform these `TableArtifacts` by applying *decorated* Python functions. Here, we can use the `log_featurize` function we defined above, and we call it like a regular Python function. Because we added the decorator above, Aqueduct will now run this function in the cloud as a part of a workflow.
 
 
 
@@ -975,9 +926,7 @@ features_table.get().head()
 <!-- ------------- New Cell ------------ -->
 
 
-### Deploying the Prediction Workflow
-
-We can now copy, paste, and *decorate* our workflow from the previous section to define a workflow in the cloud.
+Next, we can apply the prediction functions we defined above, and Aqueduct will continue to build a workflow of our functions running in the cloud: 
 
 
 
@@ -986,52 +935,6 @@ We can now copy, paste, and *decorate* our workflow from the previous section to
 
 
 ```python
-@op()
-def predict_linear(features_table):
-    '''
-    Generates predictions using the logistic regression model and
-    returns a new DataFrame with a column called linear that has 
-    the likelihood of the customer churning.
-    '''
-    return pd.DataFrame({'linear': linear_model.predict_proba(features_table)[:,1]})
-
-@op()
-def predict_tree(features_table):
-    '''
-    Generates predictions using the decision tree model and
-    returns a new DataFrame with a column called tree that has 
-    the likelihood of the customer churning.
-    '''
-    return pd.DataFrame({'tree': decision_tree_model.predict_proba(features_table)[:,1]})
-
-@op()
-def predict_ensemble(customers_table, linear_pred_table, tree_pred_table):
-    '''
-    predict_ensemble combines the results from our logistic regression
-    and decision tree models by taking the average of the two models'
-    probabilities that a user might churn. The resulting average is 
-    then assigned into the `prob_churn` column on the customers_table.
-    '''
-    return customers_table.assign(
-        prob_churn = linear_pred_table.join(tree_pred_table).mean(axis=1))
-```
-
-
-
-
-<!-- ------------- New Cell ------------ -->
-
-
-That's it! Using the exact same sequence of steps as we used earlier we can now build a workflow in the cloud.
-
-
-
-
-<!-- ------------- New Cell ------------ -->
-
-
-```python
-features_table = log_featurize(customers_table)
 linear_pred_table = predict_linear(features_table)
 tree_pred_table = predict_tree(features_table)
 churn_table = predict_ensemble(customers_table, linear_pred_table, tree_pred_table)
@@ -1178,9 +1081,9 @@ Let's ensure that all our probabilities are valid probabilities between 0 and 1.
 
 
 ```python
-@check(description="Ensuring valid probabilities.")
+@aq.check(description="Ensuring valid probabilities.")
 def valid_probabilities(df: pd.DataFrame):
-    return (df['prob_churn'] >= 0) & (df['prob_churn'] <= 1)
+    return (df["prob_churn"] >= 0) & (df["prob_churn"] <= 1)
 ```
 
 
@@ -1245,18 +1148,18 @@ We can also add bounds to metrics that enforce correctness constraints on the va
 
 
 ```python
-# Bounds on metrics ensure that the metric stays within a valid range. 
+# Bounds on metrics ensure that the metric stays within a valid range.
 # In this case, we'd ideally like churn to be between .1 and .3, and we
 # know something's gone wrong if it's above .4.
 avg_pred_churn_metric.bound(lower=0.1)
 avg_pred_churn_metric.bound(upper=0.3)
-avg_pred_churn_metric.bound(upper=0.4, severity='error')
+avg_pred_churn_metric.bound(upper=0.4, severity="error")
 ```
 **Output:**
 
 
 ```
-<aqueduct.check_artifact.CheckArtifact at 0x142eb01c0>
+<aqueduct.check_artifact.CheckArtifact at 0x120d68970>
 ```
 
 
@@ -1280,12 +1183,12 @@ First we save the table back to the data warehouse that contains the original cu
 
 
 ```python
-# This tells Aqueduct to save the results in churn_table 
-# back to the demo DB we configured earlier. 
-# NOTE: At this point, no data is actually saved! This is just 
+# This tells Aqueduct to save the results in churn_table
+# back to the demo DB we configured earlier.
+# NOTE: At this point, no data is actually saved! This is just
 # part of a workflow spec that will be executed once the workflow
 # is published in the next cell.
-churn_table.save(warehouse.config(table='pred_churn', update_mode='replace'))
+churn_table.save(warehouse.config(table="pred_churn", update_mode="replace"))
 ```
 
 
@@ -1313,9 +1216,9 @@ When you call `publish_flow`, all of this will be shipped off to the cloud!
 # Aqueduct UI, which will show you the status of your workflow
 # runs and allow you to inspect them.
 churn_flow = client.publish_flow(
-    name = "Demo Churn Ensemble", 
-    artifacts = [churn_table, avg_pred_churn_metric],
-    schedule = aqueduct.hourly(),
+    name="Demo Churn Ensemble",
+    artifacts=[churn_table, avg_pred_churn_metric],
+    schedule=aq.hourly(),
 )
 print(churn_flow.id())
 ```

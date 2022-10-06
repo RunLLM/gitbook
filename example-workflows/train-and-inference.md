@@ -8,7 +8,11 @@
 
 In this demo, we train and use multiple models to impute missing values.  We start with a dataset of wines consisting of key features like acidity. Some of the records are missing feature values. In addition, wine quality scores are given to some but not all of the wines. 
 
+**You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/training_and_inference/Impute%20Missing%20Wine%20Data.ipynb).**
+
 We will build a workflow that trains a linear model to impute the missing features from the other features and then train a decision tree model to rate the un-rated wines using the imputed features. 
+
+**Throughout this notebook, you'll see a decorator (`@aq.op`) above functions. This decorator allows Aqueduct to run your functions as a part of a workflow automatically.**
 
 
 
@@ -18,7 +22,7 @@ We will build a workflow that trains a linear model to impute the missing featur
 
 ```python
 import pandas as pd
-import aqueduct 
+import aqueduct
 from aqueduct import op, check, metric
 ```
 
@@ -30,11 +34,11 @@ from aqueduct import op, check, metric
 
 ```python
 # You can use `localhost` if you're running this notebook on the same machine as the server.
-# If you're running your notebook on a separate machine from your 
+# If you're running your notebook on a separate machine from your
 # Aqueduct server, change this to the address of your Aqueduct server.
 address = "http://localhost:8080"
 
-# If you're running youre notebook on a separate machine from your 
+# If you're running youre notebook on a separate machine from your
 # Aqueduct server, you will have to copy your API key here rather than
 # using `get_apikey()`.
 api_key = aqueduct.get_apikey()
@@ -58,7 +62,7 @@ In this demo, we will use the wine table in the demo data warehouse.
 
 
 ```python
-demodb = client.integration('aqueduct_demo')
+demodb = client.integration("aqueduct_demo")
 
 # wines is an Aqueduct TableArtifact, which is a wrapper around
 # a Pandas DataFrame. A TableArtifact can be used as argument to any operator
@@ -216,38 +220,38 @@ There are some missing values in the residula sugar column that we need to clean
 
 
 ```python
-# The @op decorator here allows Aqueduct to run this function as 
-# a part of the Aqueduct workflow. It tells Aqueduct that when 
+# The @op decorator here allows Aqueduct to run this function as
+# a part of the Aqueduct workflow. It tells Aqueduct that when
 # we execute this function, we're defining a step in the workflow.
-# While the results can be retrieved immediately, nothing is 
+# While the results can be retrieved immediately, nothing is
 # published until we call `publish_flow()` below.
 @op()
 def fix_residual_sugar(df):
-    '''
+    """
     This function takes in a DataFrame representing wines data and cleans
     the DataFrame by replacing any missing values in the `residual_sugar`
     column with the values that would be predicted based on the other columns.
-    
-    Internally, this function uses the sklearn LinearRegression model to 
-    predict what the values of the `residual_sugar` column should be when 
+
+    Internally, this function uses the sklearn LinearRegression model to
+    predict what the values of the `residual_sugar` column should be when
     they are missing.
-    '''
+    """
     from sklearn.linear_model import LinearRegression
-    
+
     # Convert residual_sugar back to numeric values with missing values as NaN
-    df['residual_sugar'] = pd.to_numeric(df['residual_sugar'], errors='coerce')
-    print("missing residual sugar values:", df['residual_sugar'].isna().sum())
-    
-    # Fit a LinearRegression model on the other numeric columns, which is everything but 
+    df["residual_sugar"] = pd.to_numeric(df["residual_sugar"], errors="coerce")
+    print("missing residual sugar values:", df["residual_sugar"].isna().sum())
+
+    # Fit a LinearRegression model on the other numeric columns, which is everything but
     # quality, residual_sugar.
     imputer = LinearRegression()
-    other_cols = df.columns[df.dtypes == 'float'].difference(['quality', 'residual_sugar', 'id'])
-    imputer.fit(df.dropna()[other_cols], df.dropna()['residual_sugar'])
-    
+    other_cols = df.columns[df.dtypes == "float"].difference(["quality", "residual_sugar", "id"])
+    imputer.fit(df.dropna()[other_cols], df.dropna()["residual_sugar"])
+
     # Use our newly-trained imputer to predict the missing values of `residual_sugar`
     # and replace the NaN values with our new predicted values.
-    predicted_sugar = imputer.predict(df[df['residual_sugar'].isna()][other_cols])
-    df.loc[df['residual_sugar'].isna(), 'residual_sugar'] = predicted_sugar
+    predicted_sugar = imputer.predict(df[df["residual_sugar"].isna()][other_cols])
+    df.loc[df["residual_sugar"].isna(), "residual_sugar"] = predicted_sugar
     return df
 ```
 
@@ -259,7 +263,7 @@ def fix_residual_sugar(df):
 
 ```python
 # This tells Aqueduct to execute fix_residual_sugar on wines
-# as a part of our workflow. However, nothing is published (yet) until we 
+# as a part of our workflow. However, nothing is published (yet) until we
 # call `publish_flow()` below. Calling `.get()` gives us a preview
 # of the results, but the resulting value is not stored or published
 # anywhere.
@@ -396,13 +400,13 @@ We also want to encode the color column as a boolean rather than a string.
 ```python
 @op()
 def encode_color(df):
-    '''
+    """
     This function takes in a DataFrame with data about wines
-    and encodes whether the wine is a red wine or white wine 
+    and encodes whether the wine is a red wine or white wine
     as boolean value. This allows us to treat this as a categorical
     variable for a future model-training step.
-    '''
-    df['is_red'] = (df['color'] == 'red').astype('float')
+    """
+    df["is_red"] = (df["color"] == "red").astype("float")
     return df
 ```
 
@@ -413,7 +417,7 @@ def encode_color(df):
 
 
 ```python
-# Again, we execute `encode_color` on `wines_cleaned` and use 
+# Again, we execute `encode_color` on `wines_cleaned` and use
 # `.get()` to retrieve a preview of the results, but no resulting
 # data is stored here.
 featurized_wines = encode_color(wines_cleaned)
@@ -556,18 +560,18 @@ As a sanity check, we want to make sure there are enough wines with quality scor
 
 ```python
 # The @metric dectorator is similar to the @op decorator from
-# above. The only difference is that a metric returns a numerical 
+# above. The only difference is that a metric returns a numerical
 # value that is tracked over and visualized over time.
 @metric()
 def get_number_labeled_wines(df):
-    '''
+    """
     This function takes in a DataFrame of wine data and returns
     how many wines are missing a quality value. This function is based
-    on the assumption that missing values are encoded as `\\N` in the 
-    underlying DataFrame. The typical, non-null value is expected to 
+    on the assumption that missing values are encoded as `\\N` in the
+    underlying DataFrame. The typical, non-null value is expected to
     be numeric.
-    '''
-    return (df['quality'] != "\\N").sum().astype(float)
+    """
+    return (df["quality"] != "\\N").sum().astype(float)
 ```
 
 
@@ -644,32 +648,32 @@ In the following operator we:
 ```python
 @op()
 def predict_quality(df):
-    '''
-    This function takes in data about wines and fills in any missing 
+    """
+    This function takes in data about wines and fills in any missing
     values for the wine quality by building a machine learning model
     that predicts the quality of the wine itself. The expectation for
     this function is that many or most of the wines will already be labeled
     with their quality. This function uses the existing wine quality
     labels as guidance to train its model and fills in missing
     values with the model.
-    
-    Under the hood, this function uses sklearn's DecisionTreeRegressor 
+
+    Under the hood, this function uses sklearn's DecisionTreeRegressor
     model to predict the missing wines' qualities.
-    '''
+    """
     from sklearn.tree import DecisionTreeRegressor
-    
-    # Convert the quality column to numerica and replace the "\N" with NaN 
-    df['quality'] = pd.to_numeric(df['quality'], errors='coerce')
-    
+
+    # Convert the quality column to numerica and replace the "\N" with NaN
+    df["quality"] = pd.to_numeric(df["quality"], errors="coerce")
+
     # Fit a model to the columns that are of numerical types but aren't the wine's
     # ID or the quality that we're predicting.
     quality_model = DecisionTreeRegressor(max_depth=3)
-    feature_columns = df.columns[df.dtypes == 'float'].difference(['quality', 'id'])
+    feature_columns = df.columns[df.dtypes == "float"].difference(["quality", "id"])
     print("Feature Columns", feature_columns)
-    quality_model.fit(df.dropna()[feature_columns], df.dropna()['quality'])
-    
-    # Add a `pred_quality` column with the predicted quality for each wine. 
-    df['pred_quality'] = quality_model.predict(df[feature_columns])
+    quality_model.fit(df.dropna()[feature_columns], df.dropna()["quality"])
+
+    # Add a `pred_quality` column with the predicted quality for each wine.
+    df["pred_quality"] = quality_model.predict(df[feature_columns])
     return df
 ```
 
@@ -827,14 +831,15 @@ As a sanity check, we also verify that the wine quality predictions are reasonab
 ```python
 @metric()
 def get_rmse(df):
-    '''
+    """
     This metric function takes in a DataFrame and assumes it has two columns,
     `quality` and `pred_quality`. It uses numpy to calculate the root mean squared
     error of the predicted quality column. It ignores any rows for which the quality
     column does not have a valid value.
-    '''
+    """
     import numpy as np
-    residuals = (df['quality'] - df['pred_quality']).dropna()
+
+    residuals = (df["quality"] - df["pred_quality"]).dropna()
     print("Computing error using:", len(residuals), "rows.")
     return np.sqrt((residuals * residuals).mean())
 ```
@@ -877,8 +882,8 @@ Here we set two bounds on the error.  The first is a warning and the second we s
 # we will get an error, but we will not fail the workflow;
 # however, if the RMSE is above 3.0, we will fail the whole
 # workflow.
-rmse.bound(upper = 1.0)
-rmse.bound(upper = 3.0, severity="error")
+rmse.bound(upper=1.0)
+rmse.bound(upper=3.0, severity="error")
 ```
 **Output:**
 
@@ -905,9 +910,9 @@ rmse.bound(upper = 3.0, severity="error")
 
 
 ```python
-# This tells Aqueduct to save the results in predicted_quality 
-# back to the demo DB we configured earlier. 
-# NOTE: At this point, no data is actually saved! This is just 
+# This tells Aqueduct to save the results in predicted_quality
+# back to the demo DB we configured earlier.
+# NOTE: At this point, no data is actually saved! This is just
 # part of a workflow spec that will be executed once the workflow
 # is published in the next cell.
 predicted_quality.save(demodb.config("pred_wine_quality", update_mode="replace"))
@@ -935,16 +940,18 @@ predicted_quality.save(demodb.config("pred_wine_quality", update_mode="replace")
 # Aqueduct UI, which will show you the status of your workflow
 # runs and allow you to inspect them.
 from textwrap import dedent
+
 client.publish_flow(
-    "Wine Ratings", 
+    "Wine Ratings",
     dedent(
         """
         This workflow builds a model to predict missing ratings for wines 
         and then uses that model to fill in missing ratings.
-        """),
+        """
+    ),
     schedule=aqueduct.daily(),
-    artifacts=[predicted_quality, rmse, num_labeled]
-)            
+    artifacts=[predicted_quality, rmse, num_labeled],
+)
 ```
 **Output:**
 
