@@ -42,9 +42,16 @@ For this example, we'll stop here -- we know your workflows are likely much more
 
 ### Previewing a Workflow
 
-You might've noticed that until this point, we haven't actually executed any of the code that you've written. You've defined a SQL query and a function over the results of that SQL query, but you haven't seen the output of anything. This is because workflows in Aqueduct are _lazily defined_ -- you define your workflow, and we execute it when you ask us to.
+Aqueduct executes your functions as they invoked. When you called `get_average_acidity` above, Aqueduct automatically packaged up your function and ran it on the Aqueduct server (on the `wine_data`) and returned the results back to your Python environment.&#x20;
 
-However, it would be incredibly frustrating if you defined a beautiful workflow and published it... only to find out that you made a typo. To avoid that disappointment, Aqueduct allows you to preview your workflow at every stage of the pipeline by adding a `.get()` method to any data object. This isn't restricted to just the last operator. If you want a view of any intermediary piece of data, you can simply call `.get()`:
+By default, data objects are wrapped by Aqueduct [artifacts.md](../artifacts.md "mention"), which allow us to track the flow of data through your workflow:&#x20;
+
+```python
+print(type(acidity_by_group))
+# <class aqueduct.artifacts.TableArtifact>
+```
+
+To see the underlying data backing any object, you can simply call `.get()` on an object, and Aqueduct will return the underlying data:
 
 ```python
 wine_data.get() # Shows you a preview of the input wine table.
