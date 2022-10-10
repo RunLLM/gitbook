@@ -6,28 +6,95 @@ See this [**Workflow Parameters Tutorial**](example-workflows/using-parameters.m
 
 ### Creating Parameters
 
-Parameters are identified by their name and _must_ have default values.
+Parameters are identified by their name, and *must* have default values. They are fed into operators just like any other artifact, and
+every artifact type is supported. Parameters can be created explicitly or implicitly.
 
-To create a parameter explicitly, use `client.create_param(<param_name>, default=<default_val>)`. These parameters can be passed as arguments to operators just like any other artifacts.
+Here's an example of how we can create an explicit parameter and feed it into a prediction function:
 
-To create a parameter implicitly, pass a regular Python object `v` into any operator. Aqueduct will implicitly convert the input into a parameter for you, with the default value `v`. The name of the parameter is the name of its corresponding argument on the function signature.
+```python
 
-### Using Parameters
+@op
+def predict_churn(reviews, pd.DataFrame, country: str):
+    ...
 
-As mentioned above, parameters can be passed into Python functions as regular arguments.
+reviews = db.sql("Select * from customer_reviews")
+country_param = client.create_param("country", default="Venezuela") 
+churn = predict_churn(reviews, country_param)
 
-They can also be referenced within SQL queries using the double-bracket syntax. For example, a query `select ... where col_name={{country_names}}` is completely valid, as long as a parameter named "country\_names" exists. If "country\_names" has current value `"'Argentina'"`, the query will implicitly expand into `select ... where col_name='Argentina'`. Note that SQL parameters can only be strings. Also note that when doing interpolation, we don't add quotes around the parameter value for you - it's a direct string substitution.
+# This will return the result of `predict_churn()` with default "Venezuela" as the country input.
+churn.get()
 
-We provide the following built-in SQL parameters:
+# This will return the result of `predict_churn()` with "United Kingdom" as the country input.
+churn.get(parameters={"country": "United Kingdom"})
+```
 
-* `today`: expands to a string date in the format `'%Y-%m-%d'`. Eg. `SELECT * from hotel_reviews WHERE review_date={{ today }};`
+To create a parameter implicitly, feed a regular python object `v` into any operator. We will implicitly convert the input into a parameter for you, with the default value `v`.
+The name of the new parameter is the name of its corresponding argument on the function signature.
 
-#### Customizing Parameters
+```python
 
-For any artifact, you can materialize it with custom parameters fed into `.get()`. For example, for artifact `churn_result` that depends on an upstream parameter named `p`, can be customized with `churn_result.get(parameters={"p": <new val>})`
+# This will create a new parameter directly, named `country`, with default value `Venezuela`.
+churn = predict_churn(reviews, "Venezuela")
+```
 
-{% hint style="info" %}
-Types are also enforced for parameters. You cannot provide a new, custom parameter that has a different type.
+{% hint style="warning" %}
+We currently disallow implicit parameter creation if an explicit parameter with the same name already exists.
 {% endhint %}
 
-Similarly, for any flow that has been published with parameters, you can always trigger a new flow run with `client.trigger(parameters={<param_name>: <new_param_val>}`. Note that triggering a workflow with non-default parameters is a one-off operation. It does not change the default parameters for future runs of the workflow. That is to say, if a workflow is running on a schedule, every scheduled run will always use the same default parameters. You can always change the default value of a published parameter by re-running the workflow with the new default value.
+
+### Customizing Parameters
+As shown in the examples above, you can immediately materialize artifacts locally with different parameters using `.get(parameters={...})`.
+This allows you to play around with and observe the effects of different parameters in your local environment.
+
+However, you can also publish parameterized flows, and trigger new runs of that flow with different parameters!
+
+```python
+
+churn = predict_churn(reviews, country_param)
+flow = client.publish_flow("Churn Prediction", artifacts=[churn])
+...
+
+# This will trigger a new run of the already published flow "Churn Prediction",
+# but with the country parameter value set to "China".
+client.trigger(flow.id(), parameters={"country": "China"})
+```
+
+{% hint style="info" %}
+Triggering a workflow with non-default parameters is a one-off operation. It does not change the default parameters for future runs of the workflow.
+That is to say, if a workflow is running on a schedule, every scheduled run will continue to use the same default parameters.
+You can always change the default value  of a published parameter by re-running the workflow with the new default value.
+{% endhint %}
+
+{% hint style="info" %}
+Types are also enforced on parameters. You cannot set a new value that is of a different type as the default value.
+{% endhint %}
+
+#### Parameters in SQL Queries
+
+SQL queries are parameterized in a special way, using this double-bracket syntax:
+
+```python
+
+# A parameter used in a SQL query *must* be a string type.
+_ = client.create_param("country", default="Venezuela")
+
+# The value of `country_param` is interpolated into the double-bracketed placeholder.
+db = client.integration("aqueduct_demo")
+output_table = db.sql("select * from locations where country_name='{{country}}'")
+
+# This returns the result of `select * from locations where country_name='Venezuela';`
+output_table.get()
+
+# This returns the result of `select * from locations where country_name='Argentina';`
+output_table.get(parameters={"country": "Argentina"})
+```
+
+{% hint style="info" %}
+We perform a direct substitute of the parameter string into the double-bracketed placeholder token,
+so it is still up to you to construct your SQL query appropriately. For example, we do not automatically
+add quotes around column names for you.
+{% endhint %}
+
+We provide the following built-in SQL parameters:
+- `today`: expands to a string date in the format `'%Y-%m-%d'`. Eg. `SELECT * from hotel_reviews WHERE review_date={{today}};`
+
