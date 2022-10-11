@@ -2,7 +2,7 @@
 
 **A Parameter is simply an argument that is provided to a workflow at runtime.**
 
-See this [**Workflow Parameters Tutorial**](example-workflows/using-parameters.md) notebook for a full walkthrough of the API with concrete examples.
+See this [**Parameters Tutorial**](example-workflows/parameters-tutorial.md) notebook for a full walkthrough of the API with concrete examples.
 
 ### Creating Parameters
 

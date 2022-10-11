@@ -4,9 +4,9 @@
 <!-- ------------- New Cell ------------ -->
 
 
-# Customer Churn Tutorial
+# Customer Churn Prediction
 
-This is a quick tutorial that will walk you through creating your first workflow with Aqueduct. You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/churn_prediction/Build%20and%20Deploy%20Churn%20Ensemble.ipynb).
+This is a tutorial that will walk you through creating your first useful workflow with Aqueduct. You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/churn_prediction/Build%20and%20Deploy%20Churn%20Ensemble.ipynb).
 
 The philosophy behind the Aqueduct SDK is that you should be able to connect to your data systems, transform your data and generate predictions, and publish your results once you’re happy with them. This guide will walk you through installing your SDK, setting up a client, transforming some data, and publishing a workflow to the cloud. 
 
