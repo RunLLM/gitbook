@@ -4,22 +4,28 @@ Despite our best efforts, our prediction pipelines often fail. To help avoid goi
 
 ### Notifications: Knowing a Workflow Failed
 
-Half the battle is often knowing a workflow failed. Aqueduct sends notifications on the success or failure of every workflow execution, which you can see under the notifications tab on the left-hand side of the UI:
+Half the battle is often knowing a workflow failed. Aqueduct sends notifications on the success or failure of every workflow execution, which you can see under the notifications tab on the top-right side of the UI.
 
 &#x20;
 
-![Aqueduct's Notifications pane](<../.gitbook/assets/image (6).png>)
+![Aqueduct's Notifications pane](<../.gitbook/assets/notifications_failed.png>)
 
 ### Workflow Status: Finding Your Errors
 
-The workflow DAG visualization on the Aqueduct UI should give you a status at a glance -- nodes that are green executed successfully, nodes that are yellow had warnings, nodes that are red failed or had errors, and nodes that are grey didn't execute (because an upstream operator failed or errored).&#x20;
+The workflow overview page shows a status for the current run. Additionally, the DAG visualization allows you to narrow down the errors to certain operators -- nodes that are green executed successfully, nodes that are yellow had warnings, nodes that are red failed or had errors, and nodes that are grey didn't execute (because an upstream operator failed or errored).&#x20;
 
-In order to find out what exactly went wrong, you can click on a node that failed or you can look at the list of errors on the workflow status bar on the right hand side:
+![Failed Workflow Overview](<../.gitbook/assets/workflow_overview.png>)
 
-![The Workflow Status Bar shows you errors, warnings, log messages, and successful operators at a glance.](<../.gitbook/assets/image (5).png>)
+In order to find out what went wrong, you can consult the workflow status bar, which shows a condensed overview of all the errors, warnings, logs, and successful operators associated with this workflow run.
 
-Once you've clicked on a node, you will see a pane pop up from the bottom that will give you an overview of the operator's execution. You can click on the logs tab on this pane to see the full stack trace for the error that occurred or the test that failed.
+![The Workflow Status Bar gives a condensed overview of the workflow run](<../.gitbook/assets/failed_workflow_status_bar.png>)
+
+If more context is needed around a failure, you can click on the node that failed, which will cause a pane to pop up from the right. This pane will show additional context, such as the code itself, its inputs and outputs, etc.
+
+![The Node View gives more detailed context around a failure](<../.gitbook/assets/failed_node.png>) 
 
 ### Debugging Your Data
+
+
 
 We're working on adding support for retrieving the code and data executed during a particular workflow run, so you can recreate and debug errors locally -- stay tuned!
