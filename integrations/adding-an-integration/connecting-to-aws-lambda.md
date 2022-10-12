@@ -1,7 +1,7 @@
 # Connecting to AWS Lambda
 
 Connecting Aqueduct to Lambda requires the following:
-* The machine running Aqueduct has `Docker` installed. Lambda cannot pull from public ECR repositories, so Aquedct uses Docker to create and populate private ECR repositories automatically.
+* The machine running Aqueduct has `Docker` installed. Lambda cannot pull from public ECR repositories, so Aqueduct uses Docker to create and populate private ECR repositories automatically.
 * ARN for a IAM role with Lambda and S3 permissions.
 * `AWS S3` as your metadata storage 
 *  A datasource that Lambda has access to. The Aqueduct Demo DB is incompatible with this integration.

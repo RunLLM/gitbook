@@ -14,7 +14,7 @@ On the Aqueduct UI, click on the Kubernetes logo and enter the following informa
 
 * A unique name for your Kubernetes connection.
 * Absolute path to the `kubeconfig` file.
-* The cluster name. You can find this on 
+* The cluster name. You can find this in your `kubeconfig` file.
 
 You should be good to go! Let us know if you run into any issues with your Kubernetes integrations on our community [Slack](https://slack.aqueducthq.com) or on [GitHub](https://github.com/aqueducthq/aqueduct/issues/new).
 
