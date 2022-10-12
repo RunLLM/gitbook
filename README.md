@@ -67,12 +67,12 @@ For more on this pipeline, check our [Quickstart Guide](quickstart-guide.md).
 * [Artifacts](artifacts.md)
 * [Metrics & Checks](metrics-and-checks.md)
 
-### Tutorial Workflows
+### Tutorials
 * [Quickstart](example-workflows/quickstart-tutorial.md)
 * [Using Parameters](example-workflows/parameters-tutorial.md)
 * [Predicting Customer Churn](example-workflows/customer-churn-predictor.md)
 
-### Example Workflows
+### Examples
 
 * [MPG Regressor](example-workflows/mpg-regressor.md) \[Linear Regression\]
 * [Wine Ratings Predictor](example-workflows/wine-ratings-predictor.md) \[Decision Tree\]
