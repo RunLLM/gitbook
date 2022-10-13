@@ -9,6 +9,9 @@ This guide assumes you've already created an Aqueduct API client. If you haven't
 At the root of every workflow is some data. Aqueduct supports loading input data from a variety of sources, but we've found the most common use case is a workflow that starts from a SQL database. We'll use Aqueduct's [aqueduct-demo-integration.md](../integrations/aqueduct-demo-integration.md "mention") in this example.
 
 ```python
+import aqueduct as aq
+client = aq.Client()
+
 db = client.integration('aqueduct_demo')
 wine_data = db.sql('SELECT * FROM wine;')
 ```
@@ -18,7 +21,7 @@ In the snippet above, we've done two things -- first, we've loaded a connection 
 Once we have some data, now we can start transforming it. Here, we're going to do something really simple -- we'll take the total acidity of each wine (`volatile_acidity` and `fixed_acidity`) and then we'll calculate the average acidity for each `color` of wine. (If this is a _faux pas_ for wine enthusiasts, forgive us -- we're just trying to make up fun examples with interesting data).
 
 ```python
-@op
+@aq.op
 def get_average_acidity(wine_data: pd.DataFrame) -> pd.DataFrame:
     wine_data['acidity'] = wine_data['fixed_acidity'] + wine_data['volatile_acidity']
     return wine_data.groupby('color').mean('acidity')
@@ -33,10 +36,8 @@ acidity_by_group = get_average_acidity(wine_data)
 Let's say that `acidity_by_group` is a piece of data we care about and will reuse -- for that purpose, we want to save it back to our database. We can specify using the Aqueduct SDK where that data should be saved:
 
 ```python
-acidity_by_group.save(db.config(table="acidity_by_group"))
+acidity_by_group.save(db.config(table="acidity_by_group", update_mode='replace'))This tells Aqueduct to save acidity_by_group to a table of the same name in the demo database (remember that db was a connection we loaded to the Aqueduct demo above) whenever the workflow is run.
 ```
-
-This tells Aqueduct to save `acidity_by_group` to a table of the same name in the demo database (remember that `db` was a connection we loaded to the Aqueduct demo above) whenever the workflow is run.
 
 For this example, we'll stop here -- we know your workflows are likely much more complex than this, but one operator will do for our purposes. To see real-world examples, check out [example-workflows](../example-workflows/ "mention").
 
@@ -64,12 +65,10 @@ Once we've defined our whole workflow, the final step is to publish it to Aquedu
 
 ```python
 flow = client.publish_flow(name='average_acidity', 
-                           artifacts=[acidity_by_group],
-                           schedule=aqueduct.hourly())
-print(flow.id())
+                           artifacts=[acidity_by_group])
 ```
 
-By default, the workflow is published using Aqueduct Python execution engine that runs on the same machine as the server, but if we want to customize the execution engine, check out [compute-integrations.md](../integrations/using-integrations/compute-integrations.md "mention").
+By default, the workflow is published using Aqueduct Python execution engine that runs on the same machine as the server, but if we want to customize the execution engine, check out [compute-integrations.md](../integrations/using-integrations/compute-integrations.md "mention").&#x20;
 
 There are a few key arguments here, and we'll go through the one by one:
 
@@ -85,4 +84,4 @@ Finally, you'll notice that we print `flow.id()` at the end of our workflow. Thi
 
 Once your workflow's been published, you can go to the Aqueduct UI to see a preview of the workflow. The workflow we've published here will look pretty simple -- a load operator from our demo database, the `wine_data` table, the `get_average_acidity` operator, the resulting `acidity_by_group` table, and the resulting write operator back to the demo database.
 
-![](<../.gitbook/assets/image (3).png>)
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>

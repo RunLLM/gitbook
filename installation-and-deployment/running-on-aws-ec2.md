@@ -68,4 +68,4 @@ Once you've set up the Aqueduct server, we have to ensure that Aqueduct is exter
 
 We're ready to go! The last thing you'll need is the public IP address of your EC2 instance, which you can access from the Details tab of your instance overview on the EC2 console:
 
-![](../.gitbook/assets/image.png)
+![](<../.gitbook/assets/image (14).png>)

@@ -1,25 +1,22 @@
 # Compute Integrations
 
 {% hint style="info" %}
-Before starting, make sure you've added your Compute Integration to Aqueduct (see [adding-an-integration](../adding-an-integration/ "mention")).
+Before starting, please make sure you've added a compute integration to Aqueduct (see [adding-an-integration](../adding-an-integration/ "mention")).&#x20;
 {% endhint %}
-Currently, Aqueduct supports Airflow, Kubernetes, and Lambda. First, we're going to get a connection to your compute integrations(we are using Kubernetes as an example) by calling `.integration()` on the Aqueduct Client.
+
+Aqueduct supports Kubernetes, Apache Airflow, and AWS Lambda as compute backends. First, we will load an Aqueduct connection to your integration:
 
 ```python
-k8s_integration = client.integration('k8s_integration')
+import aqueduct as aq
+client = aq.Client()
 
+k8s = client.integration('k8s_integration')
 ```
 
-### Publishing Workflow from the Connected Engines
-To publish a workflow executed by different execution engine to Aqueduct, we will add in the `config` parameter to `publish_flow` to specify which engine we intend to use:
+Assuming we've defined a workflow using the Aqueduct API, we can publish that workflow to run on a compute integration using the `config` parameter in `publish_flow`:
 
-```python
-from aqueduct.config import FlowConfig
-flow = client.publish_flow(name='average_acidity', 
-                           artifacts=[acidity_by_group],
-                           schedule=aqueduct.hourly(),
-                           config=FlowConfig(engine=k8s_integration))
-print(flow.id())
-```
+<pre class="language-python"><code class="lang-python"><strong>flow = client.publish_flow(name='average_acidity', 
+</strong>                           artifacts=[output_artf],
+                           config=aq.FlowConfig(engine=k8s))</code></pre>
 
-Here, the `config` parameter is set to a `FlowConfig` variable where we can specifies its `engine` parameter to the Kubernetes integration we have connected. After executing the command, the workflow will be published using the Kubernetes as the execution engine. 
+The `FlowConfig` object allows us to specify that we would like to execute this workflow on the engine specified -- in this case, our Kubernetes cluster. The SDK will now publish the workflow to the Aqueduct server and automatically deploy it onto your Kubernetes cluster.\

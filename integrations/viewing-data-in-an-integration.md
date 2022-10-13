@@ -1,20 +1,21 @@
-# Viewing Data in an Integration
+# Viewing Data in Aqueduct
 
-## Base Data Artifacts
-These are the data artifacts that exist in the integration that weren't created by an Aqueduct workflow.
-### Aqueduct UI
-A list and preview of the base data artifacts associated with an integration can be found on the integration's details page. You can bring up the integration details page by:
-1. Navigate to the Integrations page.
-2. Select the integration of interest from the list of connected integrations in the Integrations page.
-3. You have landed on the Integration Details page for the integration you selected.
-By selecting the base data artifact on the list of base tables for the integration, you can preview the artifact.
+## Data in Integrations
 
-![Aqueduct's Integration Details page](<../.gitbook/assets/integration_details.png>)
+You can view the data in any integration in Aqueduct by navigating to the Integrations page and clicking on an integration. You will see a list of the data objects in that integration (currently only supported for relational databases).
 
+1. Navigate to the Integrations page by clicking on the integrations icon on the navigation bar.
+2. Select the integration from the list of connected integrations.
+3. Click on the data you'd like to see a preview of, and Aqueduct will load the data from the underlying database.
 
-## Aqueduct-Generated Data Artifacts
-These are the data artifacts that exist in the integration that were created by an Aqueduct workflow.
-### Aqueduct UI
-The Aqueduct-generated data artifacts can be found in the data page in the UI. You can access the data page through the Data tab on the left-hand side of the UI. Selecting the data artifact allows you to view more details about the artifact.
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
-![Aqueduct's Data page](<../.gitbook/assets/data.png>)
+## Data in Workflows
+
+To see the data objects created by an Aqueduct workflow, you can navigate to the data page using the navigation bar on the left hand side. Here, you will see a list of all of the data artifacts created by Aqueduct workflows with a quick summary of the status and location of each artifact.&#x20;
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+Clicking into an artifact will take show you more details about the data artifact, including a preview of the data, and links to the operators that generate & consume the artifact:
+
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
