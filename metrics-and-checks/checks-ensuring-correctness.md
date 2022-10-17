@@ -37,7 +37,7 @@ A [Metric](../metrics-and-checks.md) is a measurement of a workflow (see the Met
 [metrics-measuring-your-predictions](metrics-measuring-your-predictions/)
 {% endcontent-ref %}
 
-A common type of Check to create when writing a workflow is to enforce a bound on a `Metric` -- for example, we as a part of the [churn-ensemble.md](../example-workflows/churn-ensemble.md "mention") workflow, we might create a metric that measures what percentage of our customers are likely to churn off of our service.&#x20;
+A common type of Check to create when writing a workflow is to enforce a bound on a `Metric` -- for example, we as a part of the [customer-churn-predictor.md](../example-workflows/customer-churn-predictor.md "mention") workflow, we might create a metric that measures what percentage of our customers are likely to churn off of our service.&#x20;
 
 From talking to the sales team, we know that they expect that 20% of customers are considered "at risk" at any given time, so we'll set a bound at 25% -- if more than 25% of our customers are marked as likely to churn, we either have an issue with the data or with our business, but either way, we'll want to know immediately.
 

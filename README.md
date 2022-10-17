@@ -67,13 +67,18 @@ For more on this pipeline, check our [Quickstart Guide](quickstart-guide.md).
 * [Artifacts](artifacts.md)
 * [Metrics & Checks](metrics-and-checks.md)
 
-### Example Workflows
+### Tutorials
+* [Quickstart](example-workflows/quickstart-tutorial.md)
+* [Using Parameters](example-workflows/parameters-tutorial.md)
+* [Predicting Customer Churn](example-workflows/customer-churn-predictor.md)
 
-* [The Demo Data Warehouse](integrations/aqueduct-demo-integration.md)
-* [Churn Ensemble](example-workflows/churn-ensemble.md)
-* [Wine Quality Prediction](example-workflows/train-and-inference.md)
-* [Sentiment Analysis](example-workflows/sentiment-analysis.md)
-* [Workflow Parameters](example-workflows/using-parameters.md)
+### Examples
+
+* [MPG Regressor](example-workflows/mpg-regressor.md) \[Linear Regression\]
+* [Wine Ratings Predictor](example-workflows/wine-ratings-predictor.md) \[Decision Tree\]
+* [Diabetes Classifier](example-workflows/diabetes-classifier.md) \[K-Nearest Neighbors\]
+* [Sentiment Analysis](example-workflows/sentiment-analysis.md) \[Deep Learning\]
+* [House Price Predictor](example-workflows/house-price-prediction.md) \[Ensemble Model\]
 * Product Recommendation (coming soon!)
 
 ### Guides

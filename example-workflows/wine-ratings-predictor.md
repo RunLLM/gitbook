@@ -4,7 +4,7 @@
 <!-- ------------- New Cell ------------ -->
 
 
-# Training and Inference in a Single Workflow
+# Predict Missing Wine Ratings
 
 In this demo, we train and use multiple models to impute missing values.  We start with a dataset of wines consisting of key features like acidity. Some of the records are missing feature values. In addition, wine quality scores are given to some but not all of the wines. 
 
