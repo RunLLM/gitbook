@@ -20,10 +20,10 @@ def wrap_spec(
     spec: OperatorSpec,
     *input_artifacts: BaseArtifact,
     op_name: str,
+    output_artifact_type_hints: List[ArtifactType],
     description: str = "",
-    execution_mode: ExecutionMode = ExecutionMode.EAGER,
-    output_artifact_type_hint: ArtifactType = ArtifactType.UNTYPED
-) -> BaseArtifact
+    execution_mode: ExecutionMode = ExecutionMode.EAGER
+) -> Union[BaseArtifact, List[BaseArtifact]]
 ```
 
 Applies a python function to existing artifacts.
@@ -44,20 +44,27 @@ in a file named "model.py":
   artifacts.
   op_name:
   The name of the operator that generated this artifact.
+  output_artifact_type_hints:
+  The artifact types that the function is expected to output, in the correct order.
   description:
   The description for this operator.
+  
+
+**Returns**:
+
+  A list of artifacts, representing the outputs of the function.
 
 <a id="aqueduct.decorator.op"></a>
 
 #### op
 
 ```python
-def op(
-    name: Optional[Union[str, UserFunction]] = None,
-    description: Optional[str] = None,
-    file_dependencies: Optional[List[str]] = None,
-    requirements: Optional[Union[str, List[str]]] = None
-) -> Union[DecoratedFunction, OutputArtifactFunction]
+def op(name: Optional[Union[str, UserFunction]] = None,
+       description: Optional[str] = None,
+       file_dependencies: Optional[List[str]] = None,
+       requirements: Optional[Union[str, List[str]]] = None,
+       num_outputs: int = 1
+       ) -> Union[DecoratedFunction, OutputArtifactsFunction]
 ```
 
 Decorator that converts regular python functions into an operator.
@@ -85,6 +92,9 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   look for a `requirements.txt` file in the same directory as the decorated function
   and install those. Otherwise, we'll attempt to infer the requirements with
   `pip freeze`.
+  num_outputs:
+  The number of outputs the decorated function is expected to return.
+  Will fail at runtime if a different number of outputs is returned by the function.
   
 
 **Examples**:
@@ -230,11 +240,11 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
 ```python
 def to_operator(
     func: UserFunction,
-    name: Optional[Union[str, UserFunction]] = None,
+    name: Optional[str] = None,
     description: Optional[str] = None,
     file_dependencies: Optional[List[str]] = None,
     requirements: Optional[Union[str, List[str]]] = None
-) -> Union[Callable[..., BaseArtifact], BaseArtifact]
+) -> OutputArtifactsFunction
 ```
 
 Convert a function that returns a dataframe into an Aqueduct operator.
@@ -258,4 +268,8 @@ Convert a function that returns a dataframe into an Aqueduct operator.
   look for a `requirements.txt` file in the same directory as the decorated function
   and install those. Otherwise, we'll attempt to infer the requirements with
   `pip freeze`.
+
+**Returns**:
+
+  An Aqueduct operator that can be used just like any decorated operator.
 
