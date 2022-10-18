@@ -54,7 +54,6 @@ strlen_table.save(demo_db.config(table="strlen_table", update_mode="replace"))
 # Aqueduct UI, which will show you the status of your workflow
 # runs and allow you to inspect them.
 client.publish_flow(name="review_strlen", artifacts=[strlen_table])
-
 ```
 
 For more on this pipeline, check our [Quickstart Guide](quickstart-guide.md).
@@ -68,23 +67,26 @@ For more on this pipeline, check our [Quickstart Guide](quickstart-guide.md).
 * [Metrics & Checks](metrics-and-checks.md)
 
 ### Tutorials
+
 * [Quickstart](example-workflows/quickstart-tutorial.md)
 * [Using Parameters](example-workflows/parameters-tutorial.md)
 * [Predicting Customer Churn](example-workflows/customer-churn-predictor.md)
 
 ### Examples
 
-* [MPG Regressor](example-workflows/mpg-regressor.md) \[Linear Regression\]
-* [Wine Ratings Predictor](example-workflows/wine-ratings-predictor.md) \[Decision Tree\]
-* [Diabetes Classifier](example-workflows/diabetes-classifier.md) \[K-Nearest Neighbors\]
-* [Sentiment Analysis](example-workflows/sentiment-analysis.md) \[Deep Learning\]
-* [House Price Predictor](example-workflows/house-price-prediction.md) \[Ensemble Model\]
-* Product Recommendation (coming soon!)
+* [MPG Regressor](example-workflows/mpg-regressor.md) \[Linear Regression]
+* [Wine Ratings Predictor](example-workflows/wine-ratings-predictor.md) \[Decision Tree]
+* [Diabetes Classifier](example-workflows/diabetes-classifier.md) \[K-Nearest Neighbors]
+* [Sentiment Analysis](example-workflows/sentiment-analysis.md) \[Deep Learning]
+* [House Price Predictor](example-workflows/house-price-prediction.md) \[Ensemble Model]
 
 ### Guides
 
+* [Updating Aqueduct](guides/updating-aqueduct.md)
 * [Debugging a Prediction Pipeline](guides/debugging-a-failed-workflow.md)
-* Running with Airflow (coming soon!)
+* [Running on Airflow](guides/running-airflow-workflow.md)
+* [Changing the Aqueduct Metadata Store](guides/changing-metadata-store.md)
+* [Porting a Workflow to Aqueduct](guides/porting-a-workflow-to-aqueduct.md)
 
 ### API Reference
 
