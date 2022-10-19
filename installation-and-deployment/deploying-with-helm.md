@@ -32,9 +32,9 @@ To deploy Aqueduct on a Kubernetes cluster, you can use the helm chart we've cre
 
 ### Customizing Install Options
 
-The installation command above deploys Aqueduct in the default namespace with the server running with Python 3.8. The name of the deployment is generated with the `--generate-name` flag. You can customize all of these by running the following:
+The installation command above deploys the latest version of Aqueduct in the default namespace with the server running with Python 3.8. The name of the deployment is generated with the `--generate-name` flag. You can customize all of these by running the following:
    ```
-   helm install <DEPLOYMENT_NAME> aqueduct/aqueduct --namespace <NAMESPACE> --set image.repository=<REPO_NAME> 
+   helm install <DEPLOYMENT_NAME> aqueduct/aqueduct --namespace <NAMESPACE> --set image.repository=<REPO_NAME> --version <VERSION_NUMBER>
    ```
 
 Supported image repositories are:
