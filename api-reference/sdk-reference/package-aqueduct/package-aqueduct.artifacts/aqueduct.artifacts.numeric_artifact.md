@@ -43,9 +43,7 @@ will return this class when that function is called in non-lazy mode.
 #### get
 
 ```python
-def get(
-    parameters: Optional[Dict[str,
-                              Any]] = None) -> Union[int, float, np.number]
+def get(parameters: Optional[Dict[str, Any]] = None) -> Number
 ```
 
 Materializes a NumericArtifact into its immediate float value.

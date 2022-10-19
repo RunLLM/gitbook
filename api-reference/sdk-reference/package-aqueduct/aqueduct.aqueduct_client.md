@@ -119,11 +119,9 @@ Github account to your Aqueduct account.
 #### create\_param
 
 ```python
-def create_param(
-    name: str,
-    default: Any,
-    description: str = ""
-) -> Union[TableArtifact, NumericArtifact, BoolArtifact, GenericArtifact]
+def create_param(name: str,
+                 default: Any,
+                 description: str = "") -> BaseArtifact
 ```
 
 Creates a parameter artifact that can be fed into other operators.
@@ -236,8 +234,10 @@ Fetches a flow corresponding to the given flow id.
 def publish_flow(name: str,
                  description: str = "",
                  schedule: str = "",
-                 k_latest_runs: int = -1,
-                 artifacts: Optional[List[BaseArtifact]] = None,
+                 artifacts: Optional[Union[BaseArtifact,
+                                           List[BaseArtifact]]] = None,
+                 metrics: Optional[List[NumericArtifact]] = None,
+                 checks: Optional[List[BoolArtifact]] = None,
                  config: Optional[FlowConfig] = None) -> Flow
 ```
 
@@ -259,6 +259,16 @@ execution engine the flow will be running on, use "config" parameter. Eg:
 
   name:
   The name of the newly created flow.
+  artifacts:
+  All the artifacts that you care about computing. These artifacts are guaranteed
+  to be computed. Additional artifacts may also be computed if they are upstream
+  dependencies.
+  metrics:
+  All the metrics that you would like to compute. If not supplied, we will implicitly
+  include all metrics computed on artifacts in the flow.
+  checks:
+  All the checks that you would like to compute. If not supplied, we will implicitly
+  include all checks computed on artifacts in the flow.
   description:
   A description for the new flow.
 - `schedule` - A cron expression specifying the cadence that this flow
@@ -267,21 +277,18 @@ execution engine the flow will be running on, use "config" parameter. Eg:
   
   >> schedule = aqueduct.hourly(minute: 0)
   
-  k_latest_runs:
-  Number of most-recent runs of this flow that Aqueduct should store.
-  Runs outside of this bound are deleted. Defaults to persisting all runs.
-  artifacts:
-  All the artifacts that you care about computing. These artifacts are guaranteed
-  to be computed. Additional artifacts may also be included as intermediate
-  computation steps. All checks are on the resulting flow are also included.
   config:
   An optional set of config fields for this flow.
   - engine: Specify where this flow should run with one of your connected integrations.
+  - k_latest_runs: Number of most-recent runs of this flow that Aqueduct should store.
+  Runs outside of this bound are deleted. Defaults to persisting all runs.
   We currently support Airflow.
   
 
 **Raises**:
 
+  InvalidUserArgumentException:
+  An invalid combination of parameters was provided.
   InvalidCronStringException:
   An error occurred because the supplied schedule is invalid.
   IncompleteFlowException:

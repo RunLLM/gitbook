@@ -423,7 +423,6 @@ When a flow is published on a schedule, the recurring run will continously execu
 
 ```python
 flow = client.publish_flow("Parameter Example", artifacts=[filtered])
-print(flow.id())
 ```
 
 
