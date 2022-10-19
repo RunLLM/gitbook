@@ -84,4 +84,4 @@ Finally, you'll notice that we print `flow.id()` at the end of our workflow. Thi
 
 Once your workflow's been published, you can go to the Aqueduct UI to see a preview of the workflow. The workflow we've published here will look pretty simple -- a load operator from our demo database, the `wine_data` table, the `get_average_acidity` operator, the resulting `acidity_by_group` table, and the resulting write operator back to the demo database.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>

@@ -30,7 +30,7 @@ monthly_schedule = monthly(day=3, hour=11, minute=30)
 
 On the Aqueduct UI, navigate to the page for any given workflow and open the settings view by clicking the gear icon in the top right. Under the schedule section, you can select whether the workflow should update hourly, daily, weekly, or monthly. For each selection, you'll see the corresponding configuration -- for example, if you select weekly, you'll be asked to select the day of the week and the time on that day.&#x20;
 
-![](<../.gitbook/assets/image (1) (1) (1).png>)
+![](<../.gitbook/assets/image (1) (1) (1) (1).png>)
 
 Once you've made your selection, you can hit `Save` to finalize your changes.
 
@@ -53,4 +53,4 @@ The workflow's ID is printed out when the workflow is created and can also be fo
 
 On the Aqueduct UI, navigate to the page for your workflow. Under the title, you should see the a button titled `Run Workflow`, which will prompt you to confirm a new workflow run.
 
-![](<../.gitbook/assets/image (5) (1).png>)
+![](<../.gitbook/assets/image (6).png>)![](<../.gitbook/assets/image (5) (1).png>)
