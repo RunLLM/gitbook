@@ -9,6 +9,7 @@
   * [Running on AWS EC2](installation-and-deployment/running-on-aws-ec2.md)
   * [Running with Anaconda](installation-and-deployment/running-with-anaconda.md)
   * [Running with pyenv](installation-and-deployment/running-with-pyenv.md)
+  * [Deploying with Helm Chart](installation-and-deployment/deploying-with-helm.md)
   * [Configuring Integrations](installation-and-deployment/configuring-integrations.md)
 * [Example Workflows](example-workflows/README.md)
   * [Quickstart Tutorial](example-workflows/quickstart-tutorial.md)
