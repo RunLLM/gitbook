@@ -14,7 +14,7 @@ Half the battle is often knowing a workflow failed. Aqueduct sends notifications
 
 The workflow overview page shows a status for the current run. Additionally, the DAG visualization allows you to narrow down the errors to certain operators -- nodes that are green executed successfully, nodes that are yellow had warnings, nodes that are red failed or had errors, and nodes that are grey didn't execute (because an upstream operator failed or errored).&#x20;
 
-![Failed Workflow Overview](<../.gitbook/assets/workflow_overview.png>)
+![Failed Workflow Overview](<../.gitbook/assets/failed_workflow_overview.png>)
 
 In order to find out what went wrong, you can consult the workflow status bar, which shows a condensed overview of all the errors, warnings, logs, and successful operators associated with this workflow run.
 
