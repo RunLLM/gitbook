@@ -33,6 +33,8 @@
     * [Connecting to Google Cloud Storage](integrations/adding-an-integration/connecting-to-google-cloud-storage.md)
     * [Connecting to AWS S3](integrations/adding-an-integration/connecting-to-aws-s3.md)
     * [Connecting to Google BigQuery](integrations/adding-an-integration/connecting-to-google-bigquery.md)
+    * [Connecting to AWS Lambda](integrations/adding-an-integration/connecting-to-aws-lambda.md)
+    * [Connecting to Kubernetes](integrations/adding-an-integration/connecting-to-k8s-cluster.md)
   * [Using Integrations](integrations/using-integrations/README.md)
     * [Compute Integrations](integrations/using-integrations/compute-integrations.md)
     * [Relational Databases](integrations/using-integrations/relational-databases.md)
