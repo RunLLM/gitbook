@@ -33,7 +33,7 @@ In order to validate that your query works correctly, call `.get()` on the artif
 ### Reading Using a Chain of Queries
 Aqueduct supports extracting from a database using a chain of queries. This allows you to break down complex queries into smaller pieces for better readability.
 
-To do so, simply call `.sql()` with a list of strings. In the query chain, you can use the special placeholder `$` refering to the 'previous output' in the chain. The output of the last query will be returned as the output artifact of this execution.
+To do so, simply call `.sql()` with a list of strings. In the query chain, you can use the special placeholder `$` refering to the previous output in the chain. The output of the last query will be returned as the output artifact of this execution.
 
 Example:
 
@@ -45,7 +45,14 @@ customers = demo_db.sql([
 ])
 ```
 
-This example returns the `cust_id` and `n_data_eng` of all customers with `company_size < 50` and `n_workflows < 10`.
+This example returns the `cust_id` and `n_data_eng` of all customers with `company_size < 50` and `n_workflows < 10`. Underhood, we compile this chain using `WITH` clause, and the following single query is executed:
+
+```sql
+WITH
+  tmp_0 AS (SELECT * FROM customers WHERE company_size < 50),
+  tmp_1 AS (SELECT * FROM tmp_0 WHERE n_workflows < 10)
+SELECT cust_id AS id, n_data_eng FROM tmp_1;
+```
 
 ### Writing to an RDBMS
 
