@@ -39,13 +39,13 @@ Example:
 
 ```python
 customers = demo_db.sql([
-  'SELECT * FROM customers WHERE company_size < 20;',
+  'SELECT * FROM customers WHERE company_size < 50;',
   'SELECT * FROM $ WHERE n_workflows < 10;', # `$` represents the output of the above query.
   'SELECT cust_id AS id, n_data_eng FROM $;', # The output of this query will be returned.
 ])
 ```
 
-This example returns the `cust_id` and `n_data_eng` of all customers with `company_size < 20` and `n_workflows < 10`.
+This example returns the `cust_id` and `n_data_eng` of all customers with `company_size < 50` and `n_workflows < 10`.
 
 ### Writing to an RDBMS
 
