@@ -45,7 +45,7 @@ customers = demo_db.sql([
 ])
 ```
 
-This example returns the `cust_id` and `n_data_eng` of all customers with `company_size < 50` and `n_workflows < 10`. Underhood, we compile this chain to a single query using a `WITH` clause, and the compiled query is executed:
+This example returns the `cust_id` and `n_data_eng` of all customers with `company_size < 50` and `n_workflows < 10`. Under the hood, we compile this chain to a single query using a `WITH` clause, and the compiled query is executed:
 
 ```sql
 WITH
