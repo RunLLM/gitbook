@@ -73,6 +73,8 @@ Aqueducts supports all `args` and `kwargs` for the MongoDB's `.find()` [method](
 * `name`: `str`, give this operator and the generated artifact a name.
 * `lazy`: `bool`, specify if Aqueduct should run this operator lazily (see [lazy vs. eager execution](../../operators/lazy-vs.-eager-execution.md "mention"))
 
+Please note you **MUST** pass them as **keyword arguments**.
+
 Example:
 ```python
 reviews = mongo_db.collection("hotel_reviews").find(
