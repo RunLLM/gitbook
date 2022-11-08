@@ -1,6 +1,7 @@
 # Table of Contents
 
 * [aqueduct.integrations.sql\_integration](#aqueduct.integrations.sql_integration)
+  * [find\_parameter\_artifacts](#aqueduct.integrations.sql_integration.find_parameter_artifacts)
   * [RelationalDBIntegration](#aqueduct.integrations.sql_integration.RelationalDBIntegration)
     * [list\_tables](#aqueduct.integrations.sql_integration.RelationalDBIntegration.list_tables)
     * [table](#aqueduct.integrations.sql_integration.RelationalDBIntegration.table)
@@ -11,6 +12,23 @@
 <a id="aqueduct.integrations.sql_integration"></a>
 
 # aqueduct.integrations.sql\_integration
+
+<a id="aqueduct.integrations.sql_integration.find_parameter_artifacts"></a>
+
+#### find\_parameter\_artifacts
+
+```python
+def find_parameter_artifacts(dag: DAG,
+                             names: List[str]) -> List[ArtifactMetadata]
+```
+
+`find_parameter_artifacts` finds all parameter artifacts corresponding to given `names`.
+parameters:
+    names: the list of names, repeating names are allowed.
+returns:
+    a list of unique parameter artifacts for these names. Built-in names are omitted.
+
+raises: InvalidUserArgumentException if there's no parameter for the provided name.
 
 <a id="aqueduct.integrations.sql_integration.RelationalDBIntegration"></a>
 
@@ -78,6 +96,8 @@ Runs a SQL query against the RelationalDB integration.
   Name of the query.
   description:
   Description of the query.
+  lazy:
+  Whether to run this operator lazily. See https://docs.aqueducthq.com/operators/lazy-vs.-eager-execution .
   
 
 **Returns**:

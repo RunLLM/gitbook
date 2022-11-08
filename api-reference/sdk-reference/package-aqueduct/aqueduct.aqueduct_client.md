@@ -166,7 +166,7 @@ def integration(
     name: str
 ) -> Union[SalesforceIntegration, S3Integration, GoogleSheetsIntegration,
            RelationalDBIntegration, AirflowIntegration, K8sIntegration,
-           LambdaIntegration, ]
+           LambdaIntegration, MongoDBIntegration, ]
 ```
 
 Retrieves a connected integration object.
@@ -234,10 +234,12 @@ Fetches a flow corresponding to the given flow id.
 def publish_flow(name: str,
                  description: str = "",
                  schedule: str = "",
+                 engine: Optional[str] = None,
                  artifacts: Optional[Union[BaseArtifact,
                                            List[BaseArtifact]]] = None,
                  metrics: Optional[List[NumericArtifact]] = None,
                  checks: Optional[List[BoolArtifact]] = None,
+                 k_latest_runs: Optional[int] = None,
                  config: Optional[FlowConfig] = None) -> Flow
 ```
 
@@ -259,6 +261,17 @@ execution engine the flow will be running on, use "config" parameter. Eg:
 
   name:
   The name of the newly created flow.
+  description:
+  A description for the new flow.
+  schedule:
+  A cron expression specifying the cadence that this flow
+  will run on. If empty, the flow will only execute manually.
+  For example, to run at the top of every hour:
+  
+  >> schedule = aqueduct.hourly(minute: 0)
+  engine:
+  The name of the compute integration (eg. "my_lambda_integration") this the flow will
+  be computed on.
   artifacts:
   All the artifacts that you care about computing. These artifacts are guaranteed
   to be computed. Additional artifacts may also be computed if they are upstream
@@ -269,20 +282,16 @@ execution engine the flow will be running on, use "config" parameter. Eg:
   checks:
   All the checks that you would like to compute. If not supplied, we will implicitly
   include all checks computed on artifacts in the flow.
-  description:
-  A description for the new flow.
-- `schedule` - A cron expression specifying the cadence that this flow
-  will run on. If empty, the flow will only execute manually.
-  For example, to run at the top of every hour:
-  
-  >> schedule = aqueduct.hourly(minute: 0)
-  
+  k_latest_runs:
+  Number of most-recent runs of this flow that Aqueduct should keep. Runs outside of
+  this bound are garbage collected. Defaults to persisting all runs.
   config:
+  This field will be deprecated. Please use `engine` and `k_latest_runs` instead.
+  
   An optional set of config fields for this flow.
   - engine: Specify where this flow should run with one of your connected integrations.
   - k_latest_runs: Number of most-recent runs of this flow that Aqueduct should store.
   Runs outside of this bound are deleted. Defaults to persisting all runs.
-  We currently support Airflow.
   
 
 **Raises**:
