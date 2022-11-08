@@ -15,23 +15,13 @@ The S3 credentials file must already be on the Airflow cluster. _Aqueduct cannot
 
 ### Deploying a Workflow
 
-The Python SDK can be used as is for constructing workflows. The only difference comes when issuing an API call to publish the workflow.
-
-First, you need fetch the Airflow integration.
+The Python SDK can be used as is for constructing workflows. All you have to do is set the workflow engine to the appropriate Airflow integration when publishing:
 
 ```python
-airflow_integration = client.integration("<YOUR_INTEGRATION_NAME>")
-```
-
-Next, you will set the workflow engine to the above Airflow integration when publishing the workflow.
-
-```python
-from aqueduct import FlowConfig
-
 flow = client.publish_flow(
-    name = WORKFLOW_NAME,
-    artifacts = ARTIFACTS,
-    config = FlowConfig(engine=airflow_integration),
+    name="example_flow",
+    artifacts=output_artifact,
+    engine="<YOUR_AIRFLOW_INTEGRATION_NAME>",
 )
 ```
 
