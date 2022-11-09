@@ -235,14 +235,12 @@ def publish_flow(name: str,
                  description: str = "",
                  schedule: str = "",
                  engine: Optional[str] = None,
-                 artifacts: Optional[Union[BaseArtifact,
-                                           List[BaseArtifact]]] = None,
+                 artifacts: Optional[Union[BaseArtifact, List[BaseArtifact]]] = None,
                  metrics: Optional[List[NumericArtifact]] = None,
                  checks: Optional[List[BoolArtifact]] = None,
                  k_latest_runs: Optional[int] = None,
                  config: Optional[FlowConfig] = None) -> Flow
 ```
-
 Uploads and kicks off the given flow in the system.
 
 If a flow already exists with the same name, the existing flow will be updated
@@ -250,63 +248,71 @@ to this new state.
 
 The default execution engine of the flow is Aqueduct. In order to specify which
 execution engine the flow will be running on, use "config" parameter. Eg:
->>> k8s_integration = client.integration("k8s_integration")
->>> flow = client.publish_flow(
->>>     name = "k8s_example",
->>>     artifacts = [output],
->>>     config = FlowConfig(engine=k8s_integration),
->>> )
+
+```python
+flow = client.publish_flow(
+    name = "k8s_example",
+    artifacts = [output],
+    engine="k8s_integration",
+)
+```
 
 **Arguments**:
 
-  name:
+name:
   The name of the newly created flow.
-  description:
+
+description:
   A description for the new flow.
-  schedule:
+
+schedule:
   A cron expression specifying the cadence that this flow
   will run on. If empty, the flow will only execute manually.
   For example, to run at the top of every hour:
-  
-  >> schedule = aqueduct.hourly(minute: 0)
-  engine:
-  The name of the compute integration (eg. "my_lambda_integration") this the flow will
-  be computed on.
-  artifacts:
-  All the artifacts that you care about computing. These artifacts are guaranteed
-  to be computed. Additional artifacts may also be computed if they are upstream
-  dependencies.
-  metrics:
-  All the metrics that you would like to compute. If not supplied, we will implicitly
-  include all metrics computed on artifacts in the flow.
-  checks:
-  All the checks that you would like to compute. If not supplied, we will implicitly
-  include all checks computed on artifacts in the flow.
-  k_latest_runs:
-  Number of most-recent runs of this flow that Aqueduct should keep. Runs outside of
-  this bound are garbage collected. Defaults to persisting all runs.
-  config:
-  This field will be deprecated. Please use `engine` and `k_latest_runs` instead.
-  
-  An optional set of config fields for this flow.
-  - engine: Specify where this flow should run with one of your connected integrations.
-  - k_latest_runs: Number of most-recent runs of this flow that Aqueduct should store.
-  Runs outside of this bound are deleted. Defaults to persisting all runs.
-  
+
+  ```python
+    schedule = aqueduct.hourly(minute: 0)
+  ```
+engine:
+    The name of the compute integration (eg. "my_lambda_integration") this the flow will
+    be computed on.
+
+artifacts:
+    All the artifacts that you care about computing. These artifacts are guaranteed
+    to be computed. Additional artifacts may also be computed if they are upstream
+    dependencies.
+
+metrics:
+    All the metrics that you would like to compute. If not supplied, we will implicitly
+    include all metrics computed on artifacts in the flow.
+
+checks:
+    All the checks that you would like to compute. If not supplied, we will implicitly
+    include all checks computed on artifacts in the flow.
+
+k_latest_runs:
+    Number of most-recent runs of this flow that Aqueduct should keep. Runs outside of
+    this bound are garbage collected. Defaults to persisting all runs.
+
+config:
+    **This field will be deprecated. Please use `engine` and `k_latest_runs` instead**.
+The optional set of config fields for this flow are:
+- engine: Specify where this flow should run with one of your connected integrations.
+- k_latest_runs: Number of most-recent runs of this flow that Aqueduct should store.
+    Runs outside of this bound are deleted. Defaults to persisting all runs.
 
 **Raises**:
 
-  InvalidUserArgumentException:
-  An invalid combination of parameters was provided.
-  InvalidCronStringException:
-  An error occurred because the supplied schedule is invalid.
-  IncompleteFlowException:
-  An error occurred because you are missing some required fields or operators.
-  
+InvalidUserArgumentException:
+    An invalid combination of parameters was provided.
+InvalidCronStringException:
+    An error occurred because the supplied schedule is invalid.
+IncompleteFlowException:
+    An error occurred because you are missing some required fields or operators.
 
 **Returns**:
 
-  A flow object handle to be used to fetch information about this productionized flow.
+A flow object handle to be used to fetch information about this productionized flow.
 
 <a id="aqueduct.aqueduct_client.Client.trigger"></a>
 
@@ -314,7 +320,7 @@ execution engine the flow will be running on, use "config" parameter. Eg:
 
 ```python
 def trigger(flow_id: Union[str, uuid.UUID],
-            parameters: Optional[Dict[str, Any]] = None) -> None
+      parameters: Optional[Dict[str, Any]] = None) -> None
 ```
 
 Immediately triggers another run of the provided flow.
