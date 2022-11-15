@@ -37,7 +37,7 @@ client = aq.Client()
 ```python
 # First we'll load in our training data from a CSV file that's stored on
 # the Aqueduct GitHub repo.
-train_data = pd.read_csv("data/train.csv", index_col="Id")
+train_data = pd.read_csv("data/train.csv")
 train_data
 ```
 **Output**
