@@ -14,16 +14,19 @@ operator will fail immediately with a helpful error message.
 ### GPU Access
 ```python
 import pytorch
-@op(resources={"gpu_name": "nvidia.com/gpu"})
+@op(resources={"gpu_resource_name": "nvidia.com/gpu"})
 def has_gpu_access():
     return pytorch.cuda.is_available() # returns true
 ```
 
-TODO: @hari can you fill this in please? Some things that come to mind for me: 
-- limited to 1 GPU
-- how to obtain the gpu_name if you don't know it.
-- the requirement of having a nodegroup selector, and how that manifests itself when connecting to K8s
-- what happens when a GPU is improperly attached, or when there's a typo
+Allows the operator to access GPU resource in a Kubernetes cluster. Currently we limit an operator
+to access 1 GPU per invocation. If the Kubernetes cluster does not have an available GPU or if the
+`gpu_resource_name` is provided incorrectly, the operator will fail immediately with a 
+helpful error message.
+
+To find the gpu_resource_name, run `kubectl describe node <name of node with GPU>` and look under
+the `Allocatable` section.
+
 
 ### Number of CPUs
 
