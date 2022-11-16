@@ -19,13 +19,13 @@ def has_gpu_access():
     return pytorch.cuda.is_available() # returns true
 ```
 
-Allows the operator to access GPU resource in a Kubernetes cluster. Currently we limit an operator
+Allows the operator to access GPU resource in a Kubernetes cluster. Currently, we limit an operator
 to access 1 GPU per invocation. If the Kubernetes cluster does not have an available GPU or if the
 `gpu_resource_name` is provided incorrectly, the operator will fail immediately with a 
 helpful error message.
 
-To find the gpu_resource_name, run `kubectl describe node <name of node with GPU>` and look under
-the `Allocatable` section.
+To find the `gpu_resource_name` for Kubernetes, run `kubectl describe node <name of node with GPU>` 
+and look under the `Allocatable` section.
 
 
 ### Number of CPUs
