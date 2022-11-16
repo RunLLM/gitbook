@@ -41,3 +41,12 @@ Configures the number of CPUs available to the operator.
 
 Configures the amount of memory available to the operator. This value can be a string or an integer.
 Integers are in interpreted in units of MBs. Strings support both "MB" and "GB" suffixes, case-insensitive.
+
+{% hint style="warning" %}
+If you are having issues previewing such operators, make sure your execution engine is configured.
+
+```python
+import aqueduct as aq
+aq.global_config({"engine": "my_kubernetes_integration"})
+```
+{% endhint %
