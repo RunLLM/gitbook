@@ -45,6 +45,7 @@
   * [Specifying a requirements.txt](operators/specifying-a-requirements.txt.md)
   * [File Dependencies in Python](operators/file-dependencies-in-python.md)
   * [Lazy vs. Eager Execution](operators/lazy-vs.-eager-execution.md)
+  * [Configuring GPUs, CPUs, and Memory](operators/configuring-resource-constraints.md)
 * [Artifacts](artifacts.md)
   * [Saving an Artifact](artifacts/saving-an-artifact.md)
 * [Parameters](parameters.md)
