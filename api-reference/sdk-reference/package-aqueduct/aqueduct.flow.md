@@ -3,6 +3,7 @@
 * [aqueduct.flow](#aqueduct.flow)
   * [Flow](#aqueduct.flow.Flow)
     * [id](#aqueduct.flow.Flow.id)
+    * [name](#aqueduct.flow.Flow.name)
     * [list\_runs](#aqueduct.flow.Flow.list_runs)
     * [list\_saved\_objects](#aqueduct.flow.Flow.list_saved_objects)
     * [describe](#aqueduct.flow.Flow.describe)
@@ -32,6 +33,16 @@ def id() -> uuid.UUID
 ```
 
 Returns the id of the flow.
+
+<a id="aqueduct.flow.Flow.name"></a>
+
+#### name
+
+```python
+def name() -> str
+```
+
+Returns the latest name of the flow.
 
 <a id="aqueduct.flow.Flow.list_runs"></a>
 
