@@ -18,3 +18,8 @@ ImportError: cannot import name 'TypeGuard' from 'typing'
 ```
 
 **A**: Older versions of the `typing-extensions` library do not have support for typing features released in newer versions of Python3. Please upgrade to `typing-extensions>=4.3.0`.
+
+**Q: I'm using different Python versions for my SDK and my Aqueduct server enviroments:**&#x20;
+
+**A**: Aqueduct provides better dependencies and Python version management support through conda integration. You can refer to [this guide](./operators/using-conda.md) to learn about what we support and how to use the conda integration.
+
