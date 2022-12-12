@@ -101,7 +101,7 @@ Note that checks are denoted with the @check decorator. Checks can also computed
 
 ### Saving Data
 
-Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database.
+Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database. See [here](integrations/using-integrations/) for more details around using integrations.
 
 ```python
 demo_db.save(strlen_table, table_name="strlen_table", update_mode="replace")
