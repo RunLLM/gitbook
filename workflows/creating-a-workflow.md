@@ -36,8 +36,9 @@ acidity_by_group = get_average_acidity(wine_data)
 Let's say that `acidity_by_group` is a piece of data we care about and will reuse -- for that purpose, we want to save it back to our database. We can specify using the Aqueduct SDK where that data should be saved:
 
 ```python
-acidity_by_group.save(db.config(table="acidity_by_group", update_mode='replace'))This tells Aqueduct to save acidity_by_group to a table of the same name in the demo database (remember that db was a connection we loaded to the Aqueduct demo above) whenever the workflow is run.
+db.save(acidity_by_group, table_name="acidity_by_group", update_mode='replace')
 ```
+This tells Aqueduct to save `acidity_by_group` to a table of the same name in the demo database (remember that db was a connection we loaded to the Aqueduct demo above) whenever the workflow is run.
 
 For this example, we'll stop here -- we know your workflows are likely much more complex than this, but one operator will do for our purposes. To see real-world examples, check out [example-workflows](../example-workflows/ "mention").
 

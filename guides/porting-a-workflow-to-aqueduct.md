@@ -79,7 +79,7 @@ Now, Aqueduct knows where the input data comes from (the SQL query above) as wel
 
 ```python
 predictions = make_predictions()
-predictions.save(db.config(table='my_predictions', mode='replace))
+db.save(predictions, table_name="my_predictions", update_mode="replace")
 ```
 
 This tells Aqueduct to save `predictions` back to our database (the Aqueduct demo DB in this case) into a table called `my_predictions` and to replace the whole table every time the workflow executes. Once more, we can publish this workflow, and now we have an Aqueduct workflow will all our logic captured but clear visibility into our inputs and outputs:
@@ -128,7 +128,7 @@ predictions = predict(features)
 With these results, we can save and publish a workflow just like before:
 
 ```python
-predictions.save(db.config(table='my_predictions', mode='replace))
+db.save(predictions, table_name="my_predictions", update_mode="replace")
 client.publish_flow("prediction workflow", artifacts=[predictions])
 ```
 

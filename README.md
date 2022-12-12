@@ -47,7 +47,7 @@ strlen_table = transform_data(reviews_table)
 
 # Artifacts can be saved -- here, we save the table with the appended strlen
 # back to the Aqueduct demo DB with the table name `strlen_table`.
-strlen_table.save(demo_db.config(table="strlen_table", update_mode="replace")) 
+demo_db.save(strlen_table, table_name="strlen_table", update_mode="replace")
 
 # This publishes the logic needed to create the strlen_table
 # to Aqueduct. You will receive a URL below that will take you to the
