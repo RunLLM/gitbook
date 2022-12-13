@@ -13,7 +13,7 @@ def get_average_acidity(wine_data: pd.DataFrame) -> pd.DataFrame:
     return wine_data.groupby('color').mean('volatile_acidity')
     
 acidity_by_group = get_average_acidity(wine_data)
-acidity_by_group.save(db.config(table="acidity_by_group"))
+db.save(acidity_by_group, table_name="acidity_by_group", update_mode="replace")
 
 flow = client.publish_flow(name='average_acidity', 
                            artifacts=[acidity_by_group],

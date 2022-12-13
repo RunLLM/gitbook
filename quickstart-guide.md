@@ -101,10 +101,10 @@ Note that checks are denoted with the @check decorator. Checks can also computed
 
 ### Saving Data
 
-Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database by calling `.save()` and passing in a configuration for the demo database, indicating (1) the name of the table to write to and (2) how to update the table (see [here](integrations/using-integrations/) for more details)
+Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database. See [here](integrations/using-integrations/) for more details around using integrations.
 
 ```python
-strlen_table.save(demo_db.config(table="strlen_table", update_mode="replace")) 
+demo_db.save(strlen_table, table_name="strlen_table", update_mode="replace")
 ```
 
 Note that this save is not performed until the flow is actually published.
