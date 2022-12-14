@@ -50,7 +50,7 @@ Any SQL query will also return this class.
   
   >>> df = output_artifact.get()
   >>> print(df.head())
-  >>> output_artifact.save(warehouse.config(table_name="output_table"))
+  >>> warehouse.save(output_artifact, table_name="output_table", update_mode="replace")
 
 <a id="aqueduct.artifacts.table_artifact.TableArtifact.get"></a>
 

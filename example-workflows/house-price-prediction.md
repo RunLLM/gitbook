@@ -25,7 +25,15 @@ import aqueduct as aq
 import pandas as pd
 import numpy as np
 
-client = aq.Client()
+# If you're running your notebook on a separate machine from your
+# Aqueduct server, change this to the address of your Aqueduct server.
+address = "http://localhost:8080"
+
+# If you're running youre notebook on a separate machine from your
+# Aqueduct server, you will have to copy your API key here rather than
+# using `get_apikey()`.
+api_key = aq.get_apikey()
+client = aq.Client(api_key, address)
 ```
 
 
@@ -820,7 +828,7 @@ df[["PredictedSalePrice"]]
 # NOTE: At this point, no data is actually saved! This is just
 # part of a workflow spec that will be executed once the workflow
 # is published below.
-predictions.save(demo_db.config(table="predicted_house_prices", update_mode="replace"))
+demo_db.save(predictions, table_name="predicted_house_prices", update_mode="replace")
 ```
 
 

@@ -1382,7 +1382,7 @@ predicted_mpg = predict_mpg(normalized)
 # NOTE: At this point, no data is actually saved! This is just
 # part of a workflow spec that will be executed once the workflow
 # is published below.
-predicted_mpg.save(demodb.config(table="predicted_mpg", update_mode="replace"))
+demodb.save(predicted_mpg, table_name="predicted_mpg", update_mode="replace")
 ```
 
 

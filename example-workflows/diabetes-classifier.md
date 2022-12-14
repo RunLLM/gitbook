@@ -964,7 +964,7 @@ diabetes_preds = predict_diabetes(scaled)
 # NOTE: At this point, no data is actually saved! This is just
 # part of a workflow spec that will be executed once the workflow
 # is published below.
-diabetes_preds.save(demodb.config(table="predicted_diabetes", update_mode="replace"))
+demodb.save(diabetes_preds, table_name="predicted_diabetes", update_mode="replace")
 ```
 
 
