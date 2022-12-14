@@ -7,6 +7,7 @@
     * [table](#aqueduct.integrations.sql_integration.RelationalDBIntegration.table)
     * [sql](#aqueduct.integrations.sql_integration.RelationalDBIntegration.sql)
     * [config](#aqueduct.integrations.sql_integration.RelationalDBIntegration.config)
+    * [save](#aqueduct.integrations.sql_integration.RelationalDBIntegration.save)
     * [describe](#aqueduct.integrations.sql_integration.RelationalDBIntegration.describe)
 
 <a id="aqueduct.integrations.sql_integration"></a>
@@ -112,6 +113,7 @@ Runs a SQL query against the RelationalDB integration.
 def config(table: str, update_mode: LoadUpdateMode) -> SaveConfig
 ```
 
+TODO(ENG-2035): Deprecated and will be removed.
 Configuration for saving to RelationalDB Integration.
 
 **Arguments**:
@@ -125,6 +127,27 @@ Configuration for saving to RelationalDB Integration.
 **Returns**:
 
   SaveConfig object to use in TableArtifact.save()
+
+<a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.save"></a>
+
+#### save
+
+```python
+def save(artifact: BaseArtifact, table_name: str,
+         update_mode: LoadUpdateMode) -> None
+```
+
+Registers a save operator of the given artifact, to be executed when it's computed in a published flow.
+
+**Arguments**:
+
+  artifact:
+  The artifact to save into this sql integration.
+  table_name:
+  The table to save the artifact to.
+  update_mode:
+  Defines the semantics of the save if a table already exists.
+  Options are "replace", "append" (row-wise), or "fail" (if table already exists).
 
 <a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.describe"></a>
 

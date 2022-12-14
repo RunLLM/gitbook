@@ -4,6 +4,7 @@
   * [S3Integration](#aqueduct.integrations.s3_integration.S3Integration)
     * [file](#aqueduct.integrations.s3_integration.S3Integration.file)
     * [config](#aqueduct.integrations.s3_integration.S3Integration.config)
+    * [save](#aqueduct.integrations.s3_integration.S3Integration.save)
     * [describe](#aqueduct.integrations.s3_integration.S3Integration.describe)
 
 <a id="aqueduct.integrations.s3_integration"></a>
@@ -76,6 +77,7 @@ def config(filepath: str,
            format: Optional[S3TableFormat] = None) -> SaveConfig
 ```
 
+TODO(ENG-2035): Deprecated and will be removed.
 Configuration for saving to S3 Integration.
 
 **Arguments**:
@@ -88,6 +90,28 @@ Configuration for saving to S3 Integration.
 **Returns**:
 
   SaveConfig object to use in Artifact.save()
+
+<a id="aqueduct.integrations.s3_integration.S3Integration.save"></a>
+
+#### save
+
+```python
+def save(artifact: BaseArtifact,
+         filepath: str,
+         format: Optional[S3TableFormat] = None) -> None
+```
+
+Registers a save operator of the given artifact, to be executed when it's computed in a published flow.
+
+**Arguments**:
+
+  artifact:
+  The artifact to save into S3.
+  filepath:
+  The S3 path to save to. Will overwrite any existing object at that path.
+  format:
+  Defines the format that the artifact will be saved as.
+  Options are "CSV", "JSON", "Parquet".
 
 <a id="aqueduct.integrations.s3_integration.S3Integration.describe"></a>
 

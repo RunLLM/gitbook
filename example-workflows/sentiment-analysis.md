@@ -469,7 +469,7 @@ Now that we've defined our predictions, we can save them back to the data wareho
 # NOTE: At this point, no data is actually saved! This is just
 # part of a workflow spec that will be executed once the workflow
 # is published in the next cell.
-sentiment_table.save(warehouse.config(table="sentiment_pred", update_mode="replace"))
+warehouse.save(sentiment_table, table_name="sentiment_pred", update_mode="replace")
 ```
 
 

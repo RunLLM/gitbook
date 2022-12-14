@@ -1188,7 +1188,7 @@ First we save the table back to the data warehouse that contains the original cu
 # NOTE: At this point, no data is actually saved! This is just
 # part of a workflow spec that will be executed once the workflow
 # is published in the next cell.
-churn_table.save(warehouse.config(table="pred_churn", update_mode="replace"))
+warehouse.save(churn_table, table_name="pred_churn", update_mode="replace")
 ```
 
 

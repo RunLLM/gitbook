@@ -1,14 +1,14 @@
 # Table of Contents
 
-* [aqueduct.operators](#aqueduct.operators)
-  * [GithubMetadata](#aqueduct.operators.GithubMetadata)
-  * [RelationalDBExtractParams](#aqueduct.operators.RelationalDBExtractParams)
+* [aqueduct.models.operators](#aqueduct.models.operators)
+  * [GithubMetadata](#aqueduct.models.operators.GithubMetadata)
+  * [RelationalDBExtractParams](#aqueduct.models.operators.RelationalDBExtractParams)
 
-<a id="aqueduct.operators"></a>
+<a id="aqueduct.models.operators"></a>
 
-# aqueduct.operators
+# aqueduct.models.operators
 
-<a id="aqueduct.operators.GithubMetadata"></a>
+<a id="aqueduct.models.operators.GithubMetadata"></a>
 
 ## GithubMetadata Objects
 
@@ -24,7 +24,7 @@ There are two ways to specify the content:
 If using `repo_config` content, backend will ignore `path` and overwrite it with
 the `path` specified in `.aqconfig`.
 
-<a id="aqueduct.operators.RelationalDBExtractParams"></a>
+<a id="aqueduct.models.operators.RelationalDBExtractParams"></a>
 
 ## RelationalDBExtractParams Objects
 

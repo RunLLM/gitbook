@@ -915,7 +915,7 @@ rmse.bound(upper=3.0, severity="error")
 # NOTE: At this point, no data is actually saved! This is just
 # part of a workflow spec that will be executed once the workflow
 # is published in the next cell.
-predicted_quality.save(demodb.config("pred_wine_quality", update_mode="replace"))
+demodb.save(predicted_quality, table_name="pred_wine_quality", update_mode="replace")
 ```
 
 

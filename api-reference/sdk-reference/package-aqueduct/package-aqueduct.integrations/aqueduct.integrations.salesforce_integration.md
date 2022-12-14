@@ -5,6 +5,7 @@
     * [search](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.search)
     * [query](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.query)
     * [config](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.config)
+    * [save](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.save)
     * [describe](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.describe)
 
 <a id="aqueduct.integrations.salesforce_integration"></a>
@@ -81,6 +82,7 @@ Runs a query against the Salesforce integration.
 def config(object: str) -> SaveConfig
 ```
 
+TODO(ENG-2035): Deprecated and will be removed.
 Configuration for saving to Salesforce Integration.
 
 **Arguments**:
@@ -91,6 +93,23 @@ Configuration for saving to Salesforce Integration.
 **Returns**:
 
   SaveConfig object to use in TableArtifact.save()
+
+<a id="aqueduct.integrations.salesforce_integration.SalesforceIntegration.save"></a>
+
+#### save
+
+```python
+def save(artifact: BaseArtifact, object: str) -> None
+```
+
+Registers a save operator of the given artifact, to be executed when it's computed in a published flow.
+
+**Arguments**:
+
+  artifact:
+  The artifact to save into Salesforce.
+  object:
+  The name of the Salesforce object to save to.
 
 <a id="aqueduct.integrations.salesforce_integration.SalesforceIntegration.describe"></a>
 

@@ -1,26 +1,26 @@
 # Table of Contents
 
-* [aqueduct.aqueduct\_client](#aqueduct.aqueduct_client)
-  * [get\_apikey](#aqueduct.aqueduct_client.get_apikey)
-  * [infer\_requirements](#aqueduct.aqueduct_client.infer_requirements)
-  * [Client](#aqueduct.aqueduct_client.Client)
-    * [\_\_init\_\_](#aqueduct.aqueduct_client.Client.__init__)
-    * [github](#aqueduct.aqueduct_client.Client.github)
-    * [create\_param](#aqueduct.aqueduct_client.Client.create_param)
-    * [list\_integrations](#aqueduct.aqueduct_client.Client.list_integrations)
-    * [integration](#aqueduct.aqueduct_client.Client.integration)
-    * [list\_flows](#aqueduct.aqueduct_client.Client.list_flows)
-    * [flow](#aqueduct.aqueduct_client.Client.flow)
-    * [publish\_flow](#aqueduct.aqueduct_client.Client.publish_flow)
-    * [trigger](#aqueduct.aqueduct_client.Client.trigger)
-    * [delete\_flow](#aqueduct.aqueduct_client.Client.delete_flow)
-    * [describe](#aqueduct.aqueduct_client.Client.describe)
+* [aqueduct.client](#aqueduct.client)
+  * [get\_apikey](#aqueduct.client.get_apikey)
+  * [infer\_requirements](#aqueduct.client.infer_requirements)
+  * [Client](#aqueduct.client.Client)
+    * [\_\_init\_\_](#aqueduct.client.Client.__init__)
+    * [github](#aqueduct.client.Client.github)
+    * [create\_param](#aqueduct.client.Client.create_param)
+    * [list\_integrations](#aqueduct.client.Client.list_integrations)
+    * [integration](#aqueduct.client.Client.integration)
+    * [list\_flows](#aqueduct.client.Client.list_flows)
+    * [flow](#aqueduct.client.Client.flow)
+    * [publish\_flow](#aqueduct.client.Client.publish_flow)
+    * [trigger](#aqueduct.client.Client.trigger)
+    * [delete\_flow](#aqueduct.client.Client.delete_flow)
+    * [describe](#aqueduct.client.Client.describe)
 
-<a id="aqueduct.aqueduct_client"></a>
+<a id="aqueduct.client"></a>
 
-# aqueduct.aqueduct\_client
+# aqueduct.client
 
-<a id="aqueduct.aqueduct_client.get_apikey"></a>
+<a id="aqueduct.client.get_apikey"></a>
 
 #### get\_apikey
 
@@ -34,7 +34,7 @@ Get the API key if the server is running locally.
 
   The API key.
 
-<a id="aqueduct.aqueduct_client.infer_requirements"></a>
+<a id="aqueduct.client.infer_requirements"></a>
 
 #### infer\_requirements
 
@@ -48,7 +48,7 @@ Obtains the list of pip requirements specifiers from the current python environm
 
   A list, for example, ["transformers==4.21.0", "numpy==1.22.4"].
 
-<a id="aqueduct.aqueduct_client.Client"></a>
+<a id="aqueduct.client.Client"></a>
 
 ## Client Objects
 
@@ -58,7 +58,7 @@ class Client()
 
 This class allows users to interact with flows on their Aqueduct cluster.
 
-<a id="aqueduct.aqueduct_client.Client.__init__"></a>
+<a id="aqueduct.client.Client.__init__"></a>
 
 #### \_\_init\_\_
 
@@ -89,7 +89,7 @@ Creates an instance of Client.
 
   A Client instance.
 
-<a id="aqueduct.aqueduct_client.Client.github"></a>
+<a id="aqueduct.client.Client.github"></a>
 
 #### github
 
@@ -114,7 +114,7 @@ Github account to your Aqueduct account.
 
   A github integration object linked to the repo and branch.
 
-<a id="aqueduct.aqueduct_client.Client.create_param"></a>
+<a id="aqueduct.client.Client.create_param"></a>
 
 #### create\_param
 
@@ -143,7 +143,7 @@ Parameter values are configurable at runtime.
 
   A parameter artifact.
 
-<a id="aqueduct.aqueduct_client.Client.list_integrations"></a>
+<a id="aqueduct.client.Client.list_integrations"></a>
 
 #### list\_integrations
 
@@ -157,7 +157,7 @@ Retrieves a dictionary of integrations the client can use.
 
   A dictionary mapping from integration name to additional info.
 
-<a id="aqueduct.aqueduct_client.Client.integration"></a>
+<a id="aqueduct.client.Client.integration"></a>
 
 #### integration
 
@@ -189,7 +189,7 @@ Retrieves a connected integration object.
   provided integration or the provided integration is of an
   incompatible type.
 
-<a id="aqueduct.aqueduct_client.Client.list_flows"></a>
+<a id="aqueduct.client.Client.list_flows"></a>
 
 #### list\_flows
 
@@ -205,7 +205,7 @@ Lists the flows that are accessible by this client.
   information (eg. name, id, etc.), which the user can use to inspect
   the flow further in the UI or SDK.
 
-<a id="aqueduct.aqueduct_client.Client.flow"></a>
+<a id="aqueduct.client.Client.flow"></a>
 
 #### flow
 
@@ -226,7 +226,7 @@ Fetches a flow corresponding to the given flow id.
   InvalidUserArgumentException:
   If the provided flow id does not correspond to a flow the client knows about.
 
-<a id="aqueduct.aqueduct_client.Client.publish_flow"></a>
+<a id="aqueduct.client.Client.publish_flow"></a>
 
 #### publish\_flow
 
@@ -307,7 +307,7 @@ execution engine the flow will be running on, use "config" parameter. Eg:
 
   A flow object handle to be used to fetch information about this productionized flow.
 
-<a id="aqueduct.aqueduct_client.Client.trigger"></a>
+<a id="aqueduct.client.Client.trigger"></a>
 
 #### trigger
 
@@ -337,7 +337,7 @@ Immediately triggers another run of the provided flow.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
 
-<a id="aqueduct.aqueduct_client.Client.delete_flow"></a>
+<a id="aqueduct.client.Client.delete_flow"></a>
 
 #### delete\_flow
 
@@ -368,7 +368,7 @@ Deletes a flow object.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
 
-<a id="aqueduct.aqueduct_client.Client.describe"></a>
+<a id="aqueduct.client.Client.describe"></a>
 
 #### describe
 

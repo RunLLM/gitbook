@@ -1,15 +1,15 @@
 # Table of Contents
 
-* [aqueduct.enums](#aqueduct.enums)
-  * [MetaEnum](#aqueduct.enums.MetaEnum)
-  * [CheckSeverity](#aqueduct.enums.CheckSeverity)
-  * [GithubRepoConfigContentType](#aqueduct.enums.GithubRepoConfigContentType)
+* [aqueduct.constants.enums](#aqueduct.constants.enums)
+  * [MetaEnum](#aqueduct.constants.enums.MetaEnum)
+  * [CheckSeverity](#aqueduct.constants.enums.CheckSeverity)
+  * [GithubRepoConfigContentType](#aqueduct.constants.enums.GithubRepoConfigContentType)
 
-<a id="aqueduct.enums"></a>
+<a id="aqueduct.constants.enums"></a>
 
-# aqueduct.enums
+# aqueduct.constants.enums
 
-<a id="aqueduct.enums.MetaEnum"></a>
+<a id="aqueduct.constants.enums.MetaEnum"></a>
 
 ## MetaEnum Objects
 
@@ -23,7 +23,7 @@ Eg.
     if "Postgres" in ServiceType:
         ...
 
-<a id="aqueduct.enums.CheckSeverity"></a>
+<a id="aqueduct.constants.enums.CheckSeverity"></a>
 
 ## CheckSeverity Objects
 
@@ -33,7 +33,7 @@ class CheckSeverity(str, Enum, metaclass=MetaEnum)
 
 An ERROR severity will fail the flow.
 
-<a id="aqueduct.enums.GithubRepoConfigContentType"></a>
+<a id="aqueduct.constants.enums.GithubRepoConfigContentType"></a>
 
 ## GithubRepoConfigContentType Objects
 
