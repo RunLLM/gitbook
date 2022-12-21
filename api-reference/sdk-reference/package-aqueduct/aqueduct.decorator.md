@@ -62,6 +62,7 @@ in a file named "model.py":
 def op(
     name: Optional[Union[str, UserFunction]] = None,
     description: Optional[str] = None,
+    engine: Optional[str] = None,
     file_dependencies: Optional[List[str]] = None,
     requirements: Optional[Union[str, List[str]]] = None,
     num_outputs: int = 1,
@@ -83,6 +84,8 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   Operator name. Defaults to the function name if not provided (or is of a non-string type).
   description:
   A description for the operator.
+  engine:
+  The name of the compute integration this operator will run on. Defaults to the Aqueduct engine.
   file_dependencies:
   A list of relative paths to files that the function needs to access.
   Python classes/methods already imported within the function's file
