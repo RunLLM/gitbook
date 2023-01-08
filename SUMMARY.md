@@ -89,4 +89,5 @@
   * [Changing the Aqueduct Metadata Store](guides/changing-metadata-store.md)
   * [Debugging a Failed Workflow](guides/debugging-a-failed-workflow.md)
   * [Running a Workflow on Airflow](guides/running-airflow-workflow.md)
+* [Usage Stats Collection](usage.md)
 * [FAQs](faqs.md)
