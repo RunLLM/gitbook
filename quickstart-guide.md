@@ -18,7 +18,7 @@ Once your server is up and running, you can start building your first workflow. 
 First, we'll import everything we need and create the Aqueduct client:
 
 ```python
-from aqueduct import Client, op, metric
+from aqueduct import Client, op, metric, check
 import pandas as pd
 
 client = Client()
@@ -29,7 +29,7 @@ Note that the API key associated with the server can also be found in the output
 
 ### Accessing Data
 
-The base data for our workflow is the [hotel reviews dataset](integrations/aqueduct-demo-integration.md)) in the pre-built aqueduct_demo that comes with the Aqueduct server. This code does two things -- (1) it loads a connection to the demo database, and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
+The base data for our workflow is the [hotel reviews dataset](integrations/aqueduct-demo-integration.md)) in the pre-built aqueduct\_demo that comes with the Aqueduct server. This code does two things -- (1) it loads a connection to the demo database, and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
 
 ```python
 demo_db = client.integration("aqueduct_demo")
@@ -71,10 +71,9 @@ Now that we have our string length operator, we can get a preview of our data by
 strlen_table.get()
 ```
 
-
 ### Adding Metrics
 
-We're going to apply a [Metric](metrics-and-checks/metrics-measuring-your-predictions/) to our `strlen_table`, which will calculate a numerical summary of our predictions (in this case, just the mean string length).&#x20;
+We're going to apply a [Metric](metrics-and-checks/metrics-measuring-your-predictions/) to our `strlen_table`, which will calculate a numerical summary of our predictions (in this case, just the mean string length).
 
 ```python
 @metric
@@ -83,6 +82,7 @@ def average_strlen(strlen_table):
 
 avg_strlen = average_strlen(strlen_table)
 ```
+
 Note that metrics are denoted with the @metric decorator. Metrics can be computed over any operator, and even other metrics.
 
 ### Adding Checks
