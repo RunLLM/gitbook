@@ -3,6 +3,7 @@
 * [aqueduct.constants.enums](#aqueduct.constants.enums)
   * [MetaEnum](#aqueduct.constants.enums.MetaEnum)
   * [CheckSeverity](#aqueduct.constants.enums.CheckSeverity)
+  * [RelationalDBServices](#aqueduct.constants.enums.RelationalDBServices)
   * [GithubRepoConfigContentType](#aqueduct.constants.enums.GithubRepoConfigContentType)
 
 <a id="aqueduct.constants.enums"></a>
@@ -32,6 +33,16 @@ class CheckSeverity(str, Enum, metaclass=MetaEnum)
 ```
 
 An ERROR severity will fail the flow.
+
+<a id="aqueduct.constants.enums.RelationalDBServices"></a>
+
+## RelationalDBServices Objects
+
+```python
+class RelationalDBServices(str, Enum, metaclass=MetaEnum)
+```
+
+Must match the corresponding entries in `ServiceType` exactly.
 
 <a id="aqueduct.constants.enums.GithubRepoConfigContentType"></a>
 

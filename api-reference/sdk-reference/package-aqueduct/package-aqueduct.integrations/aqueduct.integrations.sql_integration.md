@@ -39,7 +39,7 @@ raises: InvalidUserArgumentException if there's no parameter for the provided na
 class RelationalDBIntegration(Integration)
 ```
 
-Class for RealtionalDB integrations.
+Class for Relational integrations.
 
 <a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.list_tables"></a>
 
@@ -49,7 +49,7 @@ Class for RealtionalDB integrations.
 def list_tables() -> pd.DataFrame
 ```
 
-Lists the tables available in the RealtionalDB integration.
+Lists the tables available in the RelationalDB integration.
 
 **Returns**:
 

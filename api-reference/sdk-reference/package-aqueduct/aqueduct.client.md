@@ -231,16 +231,17 @@ Fetches a flow corresponding to the given flow id.
 #### publish\_flow
 
 ```python
-def publish_flow(name: str,
-                 description: str = "",
-                 schedule: str = "",
-                 engine: Optional[str] = None,
-                 artifacts: Optional[Union[BaseArtifact,
-                                           List[BaseArtifact]]] = None,
-                 metrics: Optional[List[NumericArtifact]] = None,
-                 checks: Optional[List[BoolArtifact]] = None,
-                 k_latest_runs: Optional[int] = None,
-                 config: Optional[FlowConfig] = None) -> Flow
+def publish_flow(
+        name: str,
+        description: str = "",
+        schedule: str = "",
+        engine: Optional[str] = None,
+        artifacts: Optional[Union[BaseArtifact, List[BaseArtifact]]] = None,
+        metrics: Optional[List[NumericArtifact]] = None,
+        checks: Optional[List[BoolArtifact]] = None,
+        k_latest_runs: Optional[int] = None,
+        config: Optional[FlowConfig] = None,
+        source_flow: Optional[Union[Flow, str, uuid.UUID]] = None) -> Flow
 ```
 
 Uploads and kicks off the given flow in the system.
@@ -291,6 +292,9 @@ execution engine the flow will be running on, use "config" parameter. Eg:
   - engine: Specify where this flow should run with one of your connected integrations.
   - k_latest_runs: Number of most-recent runs of this flow that Aqueduct should store.
   Runs outside of this bound are deleted. Defaults to persisting all runs.
+  source_flow:
+  Used to identify the source flow for this flow. This can be identified
+  via an object (Flow), name (str), or id (str or uuid).
   
 
 **Raises**:
