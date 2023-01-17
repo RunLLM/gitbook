@@ -26,6 +26,7 @@
   * [Managing Workflow Schedules](workflows/managing-workflow-schedules.md)
   * [Editing a Workflow](workflows/editing-a-workflow.md)
   * [Deleting a Workflow](workflows/deleting-a-workflow.md)
+  * [Cascading Workflows](workflows/cascading-workflows.md)
 * [Integrations](integrations/README.md)
   * [Integration Management Guide](integrations/guide.md)
   * [Aqueduct Demo Database](integrations/aqueduct-demo-integration.md)
