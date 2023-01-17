@@ -7,6 +7,7 @@
     * [\_\_init\_\_](#aqueduct.client.Client.__init__)
     * [github](#aqueduct.client.Client.github)
     * [create\_param](#aqueduct.client.Client.create_param)
+    * [connect\_integration](#aqueduct.client.Client.connect_integration)
     * [list\_integrations](#aqueduct.client.Client.list_integrations)
     * [integration](#aqueduct.client.Client.integration)
     * [list\_flows](#aqueduct.client.Client.list_flows)
@@ -143,6 +144,29 @@ Parameter values are configurable at runtime.
 
   A parameter artifact.
 
+<a id="aqueduct.client.Client.connect_integration"></a>
+
+#### connect\_integration
+
+```python
+def connect_integration(
+        name: str, service: ServiceType,
+        config: Union[Dict[str, str], IntegrationConfig]) -> None
+```
+
+Connects the Aqueduct server to an integration.
+
+**Arguments**:
+
+  name:
+  The name to assign this integration. Will error if an integration with that name
+  already exists.
+  service:
+  The type of integration to connect to.
+  config:
+  Either a dictionary or an IntegrationConnectConfig object that contains the
+  configuration credentials needed to connect.
+
 <a id="aqueduct.client.Client.list_integrations"></a>
 
 #### list\_integrations
@@ -166,7 +190,7 @@ def integration(
     name: str
 ) -> Union[SalesforceIntegration, S3Integration, GoogleSheetsIntegration,
            RelationalDBIntegration, AirflowIntegration, K8sIntegration,
-           LambdaIntegration, MongoDBIntegration, ]
+           LambdaIntegration, MongoDBIntegration, DatabricksIntegration, ]
 ```
 
 Retrieves a connected integration object.
