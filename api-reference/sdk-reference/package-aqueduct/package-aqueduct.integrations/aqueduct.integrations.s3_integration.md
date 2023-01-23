@@ -42,22 +42,24 @@ Reads one or more files from the S3 integration.
   filepaths:
   Filepath to retrieve from. The filepaths can either be:
   1) a single string that represents a file name or a directory name. The directory
-  name must ends with a `/`. In case of a file name, we attempt to retrieve that file,
-  and in case of a directory name, we do a prefix search on the directory and retrieve
-  all matched files and concatenate them into a single file.
+  name must ends with a `/`. In case of a file name, we attempt to retrieve that file.
+  In case of a directory name, we do a prefix search on the directory and retrieve
+  all matched files in alphabetical order, returning them as a TUPLE artifact.
   2) a list of strings representing the file name. Note that in this case, we do not
-  accept directory names in the list.
+  accept directory names in the list. The fetched data in this case will always be of
+  ArtifactType.TUPLE.
   artifact_type:
   The expected type of the S3 files. The `ArtifactType` class in `enums.py` contains all
   supported types, except for ArtifactType.UNTYPED. Note that when multiple files are
   retrieved, they must have the same artifact type.
   format:
   If the artifact type is ArtifactType.TABLE, the user has to specify the table format.
-  We currently support JSON, CSV, and Parquet. Note that when multiple files are retrieved,
-  they must have the same format.
+  We currently support JSON, CSV, and Parquet. Note that when multiple table files are
+  retrieved, they must have the same format.
   merge:
   If the artifact type is ArtifactType.TABLE, we can optionally merge multiple tables
-  into a single DataFrame if this flag is set to True.
+  into a single DataFrame if this flag is set to True. This merge is done with
+  `pandas.concat(tables, ignore_index=True)`.
   name:
   Name of the query.
   description:
@@ -66,7 +68,8 @@ Reads one or more files from the S3 integration.
 
 **Returns**:
 
-  Artifact or a tuple of artifacts representing the S3 Files.
+  An artifact representing the S3 File(s). If multiple files are expected, the artifact
+  will represent a tuple.
 
 <a id="aqueduct.integrations.s3_integration.S3Integration.config"></a>
 
@@ -98,7 +101,7 @@ Configuration for saving to S3 Integration.
 ```python
 def save(artifact: BaseArtifact,
          filepath: str,
-         format: Optional[S3TableFormat] = None) -> None
+         format: Optional[str] = None) -> None
 ```
 
 Registers a save operator of the given artifact, to be executed when it's computed in a published flow.
@@ -110,8 +113,7 @@ Registers a save operator of the given artifact, to be executed when it's comput
   filepath:
   The S3 path to save to. Will overwrite any existing object at that path.
   format:
-  Defines the format that the artifact will be saved as.
-  Options are "CSV", "JSON", "Parquet".
+  Only required if saving a table artifact. Options are case-insensitive "json", "csv", "parquet".
 
 <a id="aqueduct.integrations.s3_integration.S3Integration.describe"></a>
 
