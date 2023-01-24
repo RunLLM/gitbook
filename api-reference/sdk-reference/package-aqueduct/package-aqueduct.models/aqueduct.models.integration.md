@@ -48,7 +48,7 @@ Returns whether the integration connects to a relational data store.
 class Integration(ABC)
 ```
 
-Abstract class for the various integrations Aqueduct interacts with.
+Base class for the various integrations Aqueduct interacts with.
 
 <a id="aqueduct.models.integration.Integration.__hash__"></a>
 
