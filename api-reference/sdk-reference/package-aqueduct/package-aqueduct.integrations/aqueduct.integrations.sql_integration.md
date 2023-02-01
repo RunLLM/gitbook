@@ -6,7 +6,6 @@
     * [list\_tables](#aqueduct.integrations.sql_integration.RelationalDBIntegration.list_tables)
     * [table](#aqueduct.integrations.sql_integration.RelationalDBIntegration.table)
     * [sql](#aqueduct.integrations.sql_integration.RelationalDBIntegration.sql)
-    * [config](#aqueduct.integrations.sql_integration.RelationalDBIntegration.config)
     * [save](#aqueduct.integrations.sql_integration.RelationalDBIntegration.save)
     * [describe](#aqueduct.integrations.sql_integration.RelationalDBIntegration.describe)
 
@@ -104,29 +103,6 @@ Runs a SQL query against the RelationalDB integration.
 **Returns**:
 
   TableArtifact representing result of the SQL query.
-
-<a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.config"></a>
-
-#### config
-
-```python
-def config(table: str, update_mode: LoadUpdateMode) -> SaveConfig
-```
-
-TODO(ENG-2035): Deprecated and will be removed.
-Configuration for saving to RelationalDB Integration.
-
-**Arguments**:
-
-  table:
-  Table to save to.
-  update_mode:
-  The update mode to use when saving the artifact as a relational table.
-  Possible values are: APPEND, REPLACE, or FAIL.
-
-**Returns**:
-
-  SaveConfig object to use in TableArtifact.save()
 
 <a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.save"></a>
 
