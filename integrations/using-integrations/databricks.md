@@ -1,12 +1,12 @@
 # Databricks
 
 {% hint style="info" %}
-Before starting, please make sure you've added a Databricks integration to Aqueduct (see [adding-an-integration](../adding-an-integration/connecting-to-databricks.md "mention")).&#x20;
+Before starting, please make sure you've added a Databricks integration to Aqueduct (see [connecting-to-databricks.md](../adding-an-integration/connecting-to-databricks.md "mention")).
 {% endhint %}
 
 ### Running a Workflow
 
-The recommended way to use the Databricks integration is to [set the global config](./compute-integrations.md "mention") to use the Databricks integration and lazy execution mode. 
+The recommended way to use the Databricks integration is to set the integration in the global [compute-integrations.md](compute-integrations.md "mention") and to use lazy execution mode.
 
 ```python
 aq.global_config({'engine': '<databricks_integration name>', 'lazy': True})
@@ -18,7 +18,7 @@ After setting this mode, we are ready to launch workflows on Databricks!
 
 ### Writing an Operator for Databricks
 
-For operators that run on Databricks, inputs that are Table types are expected to be [Spark DataFrames](https://api-docs.databricks.com/python/pyspark/latest/pyspark.sql/dataframe.html?_ga=2.9671094.26953074.1675193222-707915355.1675193222). In the example below, both the input `df` and the output are Spark DataFrames.
+For operators that run on Databricks, inputs that are Table types are expected to be [Spark DataFrames](https://api-docs.databricks.com/python/pyspark/latest/pyspark.sql/dataframe.html?\_ga=2.9671094.26953074.1675193222-707915355.1675193222). In the example below, both the input `df` and the output are Spark DataFrames.
 
 ```python
 @op
