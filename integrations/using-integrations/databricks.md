@@ -1,7 +1,7 @@
 # Databricks
 
 {% hint style="info" %}
-Before starting, please make sure you've added a Databricsk integration to Aqueduct (see [adding-an-integration](../adding-an-integration/connecting-to-databricks.md "mention")).&#x20;
+Before starting, please make sure you've added a Databricks integration to Aqueduct (see [adding-an-integration](../adding-an-integration/connecting-to-databricks.md "mention")).&#x20;
 {% endhint %}
 
 ### Running a Workflow
@@ -12,13 +12,13 @@ The recommended way to use the Databricks integration is to [set the global conf
 aq.global_config({'engine': '<databricks_integration name>', 'lazy': True})
 ```
 
-We spin up an on-demand cluster for each workflow; pre-setting lazy execution allows us to avoid unnecessary spin-up of clusters as we build our workflow. See [lazy-vs.-eager-execution.md](../../operators/lazy-vs.-eager-execution.md "mention") for more information about execution mode.
+We spin up an [on-demand cluster](https://docs.databricks.com/workflows/jobs/jobs.html#create-a-job) for each workflow; pre-setting lazy execution allows us to avoid unnecessary spin-up of clusters as we build our workflow. See [lazy-vs.-eager-execution.md](../../operators/lazy-vs.-eager-execution.md "mention") for more information about execution mode.
 
 After setting this mode, we are ready to launch workflows on Databricks!
 
 ### Writing an Operator for Databricks
 
-For operators that run on Databricks, inputs that are Table types are expected to be Spark DataFrames. In the example below, both the input `df` and the output are Spark DataFrames.
+For operators that run on Databricks, inputs that are Table types are expected to be [Spark DataFrames](https://api-docs.databricks.com/python/pyspark/latest/pyspark.sql/dataframe.html?_ga=2.9671094.26953074.1675193222-707915355.1675193222). In the example below, both the input `df` and the output are Spark DataFrames.
 
 ```python
 @op
@@ -52,3 +52,4 @@ def log_featurize(df):
     return features.drop("cust_id")
 ```
 
+When this is executed by either eagerly executing the operator or by publishing a workflow, Aqueduct will use the Databricks Jobs API to launch a Job Cluster and execute the operators of the specified workflow. After execution, the cluster will be torn down.
