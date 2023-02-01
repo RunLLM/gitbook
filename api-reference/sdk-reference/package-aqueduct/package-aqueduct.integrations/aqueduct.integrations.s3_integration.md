@@ -3,7 +3,6 @@
 * [aqueduct.integrations.s3\_integration](#aqueduct.integrations.s3_integration)
   * [S3Integration](#aqueduct.integrations.s3_integration.S3Integration)
     * [file](#aqueduct.integrations.s3_integration.S3Integration.file)
-    * [config](#aqueduct.integrations.s3_integration.S3Integration.config)
     * [save](#aqueduct.integrations.s3_integration.S3Integration.save)
     * [describe](#aqueduct.integrations.s3_integration.S3Integration.describe)
 
@@ -70,29 +69,6 @@ Reads one or more files from the S3 integration.
 
   An artifact representing the S3 File(s). If multiple files are expected, the artifact
   will represent a tuple.
-
-<a id="aqueduct.integrations.s3_integration.S3Integration.config"></a>
-
-#### config
-
-```python
-def config(filepath: str,
-           format: Optional[S3TableFormat] = None) -> SaveConfig
-```
-
-TODO(ENG-2035): Deprecated and will be removed.
-Configuration for saving to S3 Integration.
-
-**Arguments**:
-
-  filepath:
-  S3 Filepath to save to.
-  format:
-  S3 Fileformat to save as. Can be CSV, JSON, or Parquet.
-
-**Returns**:
-
-  SaveConfig object to use in Artifact.save()
 
 <a id="aqueduct.integrations.s3_integration.S3Integration.save"></a>
 

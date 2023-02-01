@@ -4,7 +4,6 @@
   * [SalesforceIntegration](#aqueduct.integrations.salesforce_integration.SalesforceIntegration)
     * [search](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.search)
     * [query](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.query)
-    * [config](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.config)
     * [save](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.save)
     * [describe](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.describe)
 
@@ -73,26 +72,6 @@ Runs a query against the Salesforce integration.
 **Returns**:
 
   TableArtifact representing result of the SQL query.
-
-<a id="aqueduct.integrations.salesforce_integration.SalesforceIntegration.config"></a>
-
-#### config
-
-```python
-def config(object: str) -> SaveConfig
-```
-
-TODO(ENG-2035): Deprecated and will be removed.
-Configuration for saving to Salesforce Integration.
-
-**Arguments**:
-
-  object:
-  Object to save to.
-
-**Returns**:
-
-  SaveConfig object to use in TableArtifact.save()
 
 <a id="aqueduct.integrations.salesforce_integration.SalesforceIntegration.save"></a>
 
