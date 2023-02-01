@@ -1,6 +1,6 @@
-# Connecting to Databricks
+# Connecting to Databricks on AWS
 
-Connecting Aqueduct to Databricks requires the following:
+Connecting Aqueduct to Databricks on AWS requires the following:
 * The machine running Aqueduct has `pyspark` installed.
 * [`AWS S3` as your metadata storage ](./connecting-to-aws-s3.md)
 * A Databricks Workspace/User that has permissionsn to exeucte Databricks Jobs

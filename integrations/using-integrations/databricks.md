@@ -1,4 +1,4 @@
-# Databricks
+# Databricks on AWS
 
 {% hint style="info" %}
 Before starting, please make sure you've added a Databricks integration to Aqueduct (see [connecting-to-databricks.md](../adding-an-integration/connecting-to-databricks.md "mention")).
