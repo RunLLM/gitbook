@@ -30,6 +30,7 @@ def file(filepaths: Union[List[str], str],
          format: Optional[str] = None,
          merge: Optional[bool] = None,
          name: Optional[str] = None,
+         output: Optional[str] = None,
          description: str = "",
          lazy: bool = False) -> BaseArtifact
 ```
@@ -61,8 +62,12 @@ Reads one or more files from the S3 integration.
   `pandas.concat(tables, ignore_index=True)`.
   name:
   Name of the query.
+  output:
+  Name to assign the output artifact. If not set, the default naming scheme will be used.
   description:
   Description of the query.
+  lazy:
+  Whether to run this operator lazily. See https://docs.aqueducthq.com/operators/lazy-vs.-eager-execution .
   
 
 **Returns**:
