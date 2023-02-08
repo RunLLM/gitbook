@@ -234,7 +234,8 @@ Lists the flows that are accessible by this client.
 #### flow
 
 ```python
-def flow(flow_id: Union[str, uuid.UUID]) -> Flow
+def flow(flow_id: Optional[Union[str, uuid.UUID]] = None,
+         flow_name: Optional[str] = None) -> Flow
 ```
 
 Fetches a flow corresponding to the given flow id.
@@ -243,12 +244,16 @@ Fetches a flow corresponding to the given flow id.
 
   flow_id:
   Used to identify the flow to fetch from the system.
+  Between `flow_id` and `flow_name`, at least one must be provided.
+  If both are specified, they must correspond to the same flow.
+  flow_name:
+  Used to identify the flow to fetch from the system.
   
 
 **Raises**:
 
   InvalidUserArgumentException:
-  If the provided flow id does not correspond to a flow the client knows about.
+  If the provided flow id or name does not correspond to a flow the client knows about.
 
 <a id="aqueduct.client.Client.publish_flow"></a>
 
@@ -340,7 +345,8 @@ execution engine the flow will be running on, use "config" parameter. Eg:
 #### trigger
 
 ```python
-def trigger(flow_id: Union[str, uuid.UUID],
+def trigger(flow_id: Optional[Union[str, uuid.UUID]] = None,
+            flow_name: Optional[str] = None,
             parameters: Optional[Dict[str, Any]] = None) -> None
 ```
 
@@ -349,7 +355,11 @@ Immediately triggers another run of the provided flow.
 **Arguments**:
 
   flow_id:
-  The id of the workflow to delete (not the name)
+  The id of the flow to delete.
+  Between `flow_id` and `flow_name`, at least one must be provided.
+  If both are specified, they must correspond to the same flow.
+  flow_name:
+  The name of the flow to delete.
   parameters:
   A map containing custom values to use for the designated parameters. The mapping
   is expected to be from parameter name to the custom value. These custom values
@@ -370,7 +380,8 @@ Immediately triggers another run of the provided flow.
 #### delete\_flow
 
 ```python
-def delete_flow(flow_id: Union[str, uuid.UUID],
+def delete_flow(flow_id: Optional[Union[str, uuid.UUID]] = None,
+                flow_name: Optional[str] = None,
                 saved_objects_to_delete: Optional[DefaultDict[Union[
                     str, Integration], List[SavedObjectUpdate]]] = None,
                 force: bool = False) -> None
@@ -381,7 +392,11 @@ Deletes a flow object.
 **Arguments**:
 
   flow_id:
-  The id of the workflow to delete (not the name)
+  The id of the flow to delete.
+  Between `flow_id` and `flow_name`, at least one must be provided.
+  If both are specified, they must correspond to the same flow.
+  flow_name:
+  The name of the flow to delete.
   saved_objects_to_delete:
   The tables or storage paths to delete grouped by integration name.
   force:

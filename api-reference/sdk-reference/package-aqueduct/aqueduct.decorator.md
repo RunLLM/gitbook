@@ -21,6 +21,7 @@ def wrap_spec(
     *input_artifacts: BaseArtifact,
     op_name: str,
     output_artifact_type_hints: List[ArtifactType],
+    output_artifact_names: Optional[List[str]] = None,
     description: str = "",
     execution_mode: ExecutionMode = ExecutionMode.EAGER
 ) -> Union[BaseArtifact, List[BaseArtifact]]
@@ -44,6 +45,8 @@ in a file named "model.py":
   artifacts.
   op_name:
   The name of the operator that generated this artifact.
+  output_artifact_names:
+  If set, provides the custom output artifact names.
   output_artifact_type_hints:
   The artifact types that the function is expected to output, in the correct order.
   description:
@@ -65,7 +68,8 @@ def op(
     engine: Optional[str] = None,
     file_dependencies: Optional[List[str]] = None,
     requirements: Optional[Union[str, List[str]]] = None,
-    num_outputs: int = 1,
+    num_outputs: Optional[int] = None,
+    outputs: Optional[List[str]] = None,
     resources: Optional[Dict[str, Any]] = None
 ) -> Union[DecoratedFunction, OutputArtifactsFunction]
 ```
@@ -100,6 +104,10 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   num_outputs:
   The number of outputs the decorated function is expected to return.
   Will fail at runtime if a different number of outputs is returned by the function.
+  outputs:
+  The name to assign the output artifacts of for this operator. The number of names provided
+  must match the number of return values of the decorated function. If not set, the artifact
+  names will default to "<op_name> artifact <optional counter>".
   resources:
   A dictionary containing the custom resource configurations that this operator will run with.
   These configurations are guaranteed to be followed, we will not silently ignore any of them.
@@ -147,7 +155,8 @@ def metric(
     name: Optional[Union[str, MetricFunction]] = None,
     description: Optional[str] = None,
     file_dependencies: Optional[List[str]] = None,
-    requirements: Optional[Union[str, List[str]]] = None
+    requirements: Optional[Union[str, List[str]]] = None,
+    output: Optional[str] = None
 ) -> Union[DecoratedMetricFunction, OutputArtifactFunction]
 ```
 
@@ -178,6 +187,9 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   look for a `requirements.txt` file in the same directory as the decorated function
   and install those. Otherwise, we'll attempt to infer the requirements with
   `pip freeze`.
+  output:
+  An optional custom name for the output metric artifact. Otherwise, the default naming scheme
+  will be used.
   
 
 **Examples**:
@@ -205,7 +217,8 @@ def check(
     description: Optional[str] = None,
     severity: CheckSeverity = CheckSeverity.WARNING,
     file_dependencies: Optional[List[str]] = None,
-    requirements: Optional[Union[str, List[str]]] = None
+    requirements: Optional[Union[str, List[str]]] = None,
+    output: Optional[str] = None
 ) -> Union[DecoratedCheckFunction, OutputArtifactFunction]
 ```
 
@@ -239,6 +252,9 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   look for a `requirements.txt` file in the same directory as the decorated function
   and install those. Otherwise, we'll attempt to infer the requirements with
   `pip freeze`.
+  output:
+  An optional custom name for the output metric artifact. Otherwise, the default naming scheme
+  will be used.
   
 
 **Examples**:
