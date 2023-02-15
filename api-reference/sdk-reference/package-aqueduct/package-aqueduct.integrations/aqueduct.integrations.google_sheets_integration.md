@@ -27,6 +27,7 @@ Class for Google Sheets integration.
 ```python
 def spreadsheet(spreadsheet_id: str,
                 name: Optional[str] = None,
+                output: Optional[str] = None,
                 description: str = "") -> TableArtifact
 ```
 
@@ -39,6 +40,8 @@ Retrieves a spreadsheet from the Google Sheets integration.
   https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/edit#gid=0
   name:
   Name of the query.
+  output:
+  Name to assign the output artifact. If not set, the default naming scheme will be used.
   description:
   Description of the query.
   
