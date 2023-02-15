@@ -1,12 +1,15 @@
 # Table of Contents
 
 * [aqueduct.client](#aqueduct.client)
+  * [global\_config](#aqueduct.client.global_config)
   * [get\_apikey](#aqueduct.client.get_apikey)
   * [infer\_requirements](#aqueduct.client.infer_requirements)
   * [Client](#aqueduct.client.Client)
     * [\_\_init\_\_](#aqueduct.client.Client.__init__)
     * [github](#aqueduct.client.Client.github)
     * [create\_param](#aqueduct.client.Client.create_param)
+    * [list\_params](#aqueduct.client.Client.list_params)
+    * [delete\_param](#aqueduct.client.Client.delete_param)
     * [connect\_integration](#aqueduct.client.Client.connect_integration)
     * [list\_integrations](#aqueduct.client.Client.list_integrations)
     * [integration](#aqueduct.client.Client.integration)
@@ -20,6 +23,29 @@
 <a id="aqueduct.client"></a>
 
 # aqueduct.client
+
+<a id="aqueduct.client.global_config"></a>
+
+#### global\_config
+
+```python
+def global_config(config_dict: Dict[str, Any]) -> None
+```
+
+Sets any global configuration variables in the current Aqueduct context.
+
+**Arguments**:
+
+  config_dict:
+  A dict from the configuration key to its new value.
+  
+  Available configuration keys:
+  "lazy":
+  A boolean indicating whether any new functions will be constructed lazily (True) or eagerly (False).
+  "engine":
+  The name of the default compute integration to run all functions against.
+  This can still be overriden by the `engine` argument in `client.publish_flow()` or
+  on the @op spec. To set this to run against the Aqueduct engine, use "aqueduct" (case-insensitive).
 
 <a id="aqueduct.client.get_apikey"></a>
 
@@ -143,6 +169,39 @@ Parameter values are configurable at runtime.
 **Returns**:
 
   A parameter artifact.
+
+<a id="aqueduct.client.Client.list_params"></a>
+
+#### list\_params
+
+```python
+def list_params() -> Dict[str, Any]
+```
+
+Lists all the currently tracked parameters.
+
+**Returns**:
+
+  A dict where the keys are the existing parameter names and the values
+  are the default values.
+
+<a id="aqueduct.client.Client.delete_param"></a>
+
+#### delete\_param
+
+```python
+def delete_param(name: str, force: bool = False) -> None
+```
+
+Deletes the given parameter from client's context.
+
+**Arguments**:
+
+  name:
+  The name of the parameter to delete.
+  force:
+  If set, we will delete the parameter and any operators that it is dependency of.
+  Otherwise, we will error if it is a dependency of any operator.
 
 <a id="aqueduct.client.Client.connect_integration"></a>
 

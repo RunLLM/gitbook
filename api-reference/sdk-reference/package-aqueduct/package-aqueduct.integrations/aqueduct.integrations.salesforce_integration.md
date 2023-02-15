@@ -28,6 +28,7 @@ Class for Salesforce integration.
 ```python
 def search(search_query: str,
            name: Optional[str] = None,
+           output: Optional[str] = None,
            description: str = "") -> TableArtifact
 ```
 
@@ -39,6 +40,8 @@ Runs a search against the Salesforce integration.
   The search query to run.
   name:
   Name of the query.
+  output:
+  Name to assign the output artifact. If not set, the default naming scheme will be used.
   description:
   Description of the query.
   
@@ -54,6 +57,7 @@ Runs a search against the Salesforce integration.
 ```python
 def query(query: str,
           name: Optional[str] = None,
+          output: Optional[str] = None,
           description: str = "") -> TableArtifact
 ```
 
@@ -65,6 +69,8 @@ Runs a query against the Salesforce integration.
   The query to run.
   name:
   Name of the query.
+  output:
+  Name to assign the output artifact. If not set, the default naming scheme will be used.
   description:
   Description of the query.
   
