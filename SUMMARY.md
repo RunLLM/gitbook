@@ -38,6 +38,8 @@
     * [Connecting to Kubernetes](integrations/adding-an-integration/connecting-to-k8s-cluster.md)
     * [Connecting to conda](integrations/adding-an-integration/connecting-to-conda.md)
     * [Connecting to Databricks on AWS](integrations/adding-an-integration/connecting-to-databricks.md)
+    * [Connecting to Email](integrations/adding-an-integration/connecting-to-email.md)
+    * [Connecting to Slack](integrations/adding-an-integration/connecting-to-slack.md)
   * [Using Integrations](integrations/using-integrations/README.md)
     * [Compute Integrations](integrations/using-integrations/compute-integrations.md)
     * [Relational Databases](integrations/using-integrations/relational-databases.md)

@@ -8,4 +8,6 @@ Every integration has a slightly different set of requirements. When you click o
 
 Several systems -- [AWS S3](connecting-to-aws-s3.md), [AWS Lambda](connecting-to-aws-lambda.md), [Google BigQuery](connecting-to-google-bigquery.md), [Kubernetes](connecting-to-k8s-cluster.md), [Databricks on AWS](connecting-to-databricks.md) and [conda](connecting-to-conda.md) -- require special configuration parameters, which we'll explain next.
 
+You can also connecting to [Slack](connecting-to-slack.md) and [Email](connecting-to-email.md) to receive notifications.
+
 Once an integration has been added to Aqueduct, you can access it from the Python SDK by calling `client.integration(integration_name)`.
