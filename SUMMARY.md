@@ -44,7 +44,7 @@
     * [AWS S3](integrations/using-integrations/aws-s3.md)
     * [Databricks](integrations/using-integrations/databricks.md)
   * [Viewing Data in Aqueduct](integrations/viewing-data-in-an-integration.md)
-* [Setting up Notifications](notifications/README.md)
+* [Notifications](notifications/README.md)
   * [Email](notifications/connecting-to-email.md)
   * [Slack](notifications/connecting-to-slack.md)
 * [Operators](operators.md)

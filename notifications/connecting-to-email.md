@@ -6,7 +6,7 @@ You can connect Aqueduct to your email account in order to receive automated not
 You need to provide an email account for Aqueduct to send notifications on your behalf. Please pick the appropriate section based on your email provider:
 * [Gmail](connecting-to-email.md#gmail)
 * [Microsoft Exchange](connecting-to-email.md#microsoft-exchange)
-If your email provider is not listed above, you can check with your email provider to provide the following information to Aqueduct. Aqueduct will use these information to send email on your behalf:
+If your email provider is not listed above, you can check with your email provider to provide the following information to Aqueduct. Aqueduct will use this information to send email on your behalf:
 * Host: The SMTP server address, excluding the port.
 * Port: The SMTP server port.
 * Sender Address: The account identifier to sign-in, typically the email address.
