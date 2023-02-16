@@ -15,20 +15,20 @@ To connect Aqueduct to slack to recieve slack notifications, you would first nee
     display_information:
         name: my-aqueduct-bot
     features:
-    bot_user:
-        display_name: my-aqueduct-bot
-        always_online: false
+        bot_user:
+            display_name: my-aqueduct-bot
+            always_online: false
     oauth_config:
-    scopes:
-        bot:
-        - channels:join
-        - chat:write
-        - chat:write.public
-        - channels:read
+        scopes:
+            bot:
+            - channels:join
+            - chat:write
+            - chat:write.public
+            - channels:read
     settings:
-    org_deploy_enabled: false
-    socket_mode_enabled: false
-    token_rotation_enabled: false
+        org_deploy_enabled: false
+        socket_mode_enabled: false
+        token_rotation_enabled: false
     ```
 * Once created, you will enter the app's management page. Click **Install to Workspace** and follow the instructions. This completes the Slack App setup.
 * You can also use an existing app. Our minimum permission requirements are: `channels:join`, `chat:write`, `chate:write.public`, and `channels:read`.
