@@ -11,6 +11,7 @@
     * [list\_params](#aqueduct.client.Client.list_params)
     * [delete\_param](#aqueduct.client.Client.delete_param)
     * [connect\_integration](#aqueduct.client.Client.connect_integration)
+    * [delete\_integration](#aqueduct.client.Client.delete_integration)
     * [list\_integrations](#aqueduct.client.Client.list_integrations)
     * [integration](#aqueduct.client.Client.integration)
     * [list\_flows](#aqueduct.client.Client.list_flows)
@@ -226,6 +227,21 @@ Connects the Aqueduct server to an integration.
   Either a dictionary or an IntegrationConnectConfig object that contains the
   configuration credentials needed to connect.
 
+<a id="aqueduct.client.Client.delete_integration"></a>
+
+#### delete\_integration
+
+```python
+def delete_integration(name: str) -> None
+```
+
+Deletes the integration from Aqueduct.
+
+**Arguments**:
+
+  name:
+  The name of the integration to delete.
+
 <a id="aqueduct.client.Client.list_integrations"></a>
 
 #### list\_integrations
@@ -249,7 +265,8 @@ def integration(
     name: str
 ) -> Union[SalesforceIntegration, S3Integration, GoogleSheetsIntegration,
            RelationalDBIntegration, AirflowIntegration, K8sIntegration,
-           LambdaIntegration, MongoDBIntegration, DatabricksIntegration, ]
+           LambdaIntegration, MongoDBIntegration, DatabricksIntegration,
+           SparkIntegration, ]
 ```
 
 Retrieves a connected integration object.
