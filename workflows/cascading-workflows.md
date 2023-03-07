@@ -8,7 +8,7 @@ If a source workflow is provided, the target workflow will be triggered at the e
 
 The source workflow can be set when publishing a workflow from the SDK. The complete documentation for publishing a workflow from the SDK can be found [here](./creating-a-workflow.md#publishing-a-workflow).
 
-The `source_workflow` argument in the following code snippet allows you to set the source workflow:
+The `source_flow` argument in the following code snippet allows you to set the source workflow:
 
 ```python
 workflow_a = client.flow('8fb25dc4-62ed-44a3-872d-c3ff988c8dd3')
@@ -16,7 +16,7 @@ workflow_a = client.flow('8fb25dc4-62ed-44a3-872d-c3ff988c8dd3')
 # source_flow can be a Flow object, workflow name, or workflow ID
 flow = client.publish_flow(name='workflow_b', 
                            artifacts=[data],
-                           source_workflow=source_flow)
+                           source_flow=source_flow)
 ```
 
 
