@@ -14,4 +14,4 @@ On the Aqueduct UI, click on the Spark logo and enter the following information:
 * The endpoint for the Livy URL.
 
 
-You should be good to go! Let us know if you run into any issues with your Databricks integrations on our community [Slack](https://slack.aqueducthq.com) or on [GitHub](https://github.com/aqueducthq/aqueduct/issues/new).
+You should be good to go! Let us know if you run into any issues with your Spark integrations on our community [Slack](https://slack.aqueducthq.com) or on [GitHub](https://github.com/aqueducthq/aqueduct/issues/new).
