@@ -156,7 +156,9 @@ def metric(
     description: Optional[str] = None,
     file_dependencies: Optional[List[str]] = None,
     requirements: Optional[Union[str, List[str]]] = None,
-    output: Optional[str] = None
+    output: Optional[str] = None,
+    engine: Optional[str] = None,
+    resources: Optional[Dict[str, Any]] = None
 ) -> Union[DecoratedMetricFunction, OutputArtifactFunction]
 ```
 
@@ -190,6 +192,28 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   output:
   An optional custom name for the output metric artifact. Otherwise, the default naming scheme
   will be used.
+  engine:
+  The name of the compute integration this operator will run on.
+  resources:
+  A dictionary containing the custom resource configurations that this operator will run with.
+  These configurations are guaranteed to be followed, we will not silently ignore any of them.
+  If a resource configuration is unsupported by a particular execution engine, we will fail at
+  execution time. The supported keys are:
+  
+  "num_cpus" (int):
+  The number of cpus that this operator will run with. This operator will execute with *exactly*
+  this number of cpus. If not enough cpus are available, operator execution will fail.
+  "memory" (int, str):
+  The amount of memory this operator will run with. This operator will execute with *exactly*
+  this amount of memory. If not enough memory is available, operator execution will fail.
+  
+  If an integer value is supplied, the memory unit is assumed to be MB. If a string is supplied,
+  a suffix indicating the memory unit must be supplied. Supported memory units are "MB" and "GB",
+  case-insensitive.
+  
+  For example, the following values are valid: 100, "100MB", "1GB", "100mb", "1gb".
+  "gpu_resource_name" (str):
+  Name of the gpu resource to use (only applicable for Kubernetes engine).
   
 
 **Examples**:
@@ -218,7 +242,9 @@ def check(
     severity: CheckSeverity = CheckSeverity.WARNING,
     file_dependencies: Optional[List[str]] = None,
     requirements: Optional[Union[str, List[str]]] = None,
-    output: Optional[str] = None
+    output: Optional[str] = None,
+    engine: Optional[str] = None,
+    resources: Optional[Dict[str, Any]] = None
 ) -> Union[DecoratedCheckFunction, OutputArtifactFunction]
 ```
 
@@ -255,6 +281,28 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   output:
   An optional custom name for the output metric artifact. Otherwise, the default naming scheme
   will be used.
+  engine:
+  The name of the compute integration this operator will run on.
+  resources:
+  A dictionary containing the custom resource configurations that this operator will run with.
+  These configurations are guaranteed to be followed, we will not silently ignore any of them.
+  If a resource configuration is unsupported by a particular execution engine, we will fail at
+  execution time. The supported keys are:
+  
+  "num_cpus" (int):
+  The number of cpus that this operator will run with. This operator will execute with *exactly*
+  this number of cpus. If not enough cpus are available, operator execution will fail.
+  "memory" (int, str):
+  The amount of memory this operator will run with. This operator will execute with *exactly*
+  this amount of memory. If not enough memory is available, operator execution will fail.
+  
+  If an integer value is supplied, the memory unit is assumed to be MB. If a string is supplied,
+  a suffix indicating the memory unit must be supplied. Supported memory units are "MB" and "GB",
+  case-insensitive.
+  
+  For example, the following values are valid: 100, "100MB", "1GB", "100mb", "1gb".
+  "gpu_resource_name" (str):
+  Name of the gpu resource to use (only applicable for Kubernetes engine).
   
 
 **Examples**:
