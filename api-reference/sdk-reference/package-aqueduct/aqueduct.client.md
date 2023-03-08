@@ -266,7 +266,7 @@ def integration(
 ) -> Union[SalesforceIntegration, S3Integration, GoogleSheetsIntegration,
            RelationalDBIntegration, AirflowIntegration, K8sIntegration,
            LambdaIntegration, MongoDBIntegration, DatabricksIntegration,
-           SparkIntegration, ]
+           SparkIntegration, AWSIntegration, ]
 ```
 
 Retrieves a connected integration object.
