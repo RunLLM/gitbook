@@ -1,7 +1,7 @@
 # Connecting to Spark EMR
 
 Connecting Aqueduct to Spark EMR requires the following:
-* A standing Spark EMR cluster configured with a [Livy](http://livy.incubator.apache.org/get-started/) endpoint. 
+* A standing Spark EMR cluster configured with a [Livy](http://livy.incubator.apache.org/get-started/) endpoint. We use Livy to submit applications to the Spark cluster.
 * [`AWS S3` as your metadata storage ](./connecting-to-aws-s3.md)
 *  The datasources that Aqueduct on Spark currently supports are the following (with more to come soon!):
     - `Snowflake`

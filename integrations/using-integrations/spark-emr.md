@@ -1,8 +1,7 @@
 # Spark EMR
 
-{% hint style="info" %}
+
 Before starting, please make sure you've added a Spark integration to Aqueduct (see [connecting-to-spark-emr.md](../adding-an-integration/connecting-to-spark-emr.md "mention")).
-{% endhint %}
 
 ### Running a Workflow
 
@@ -31,8 +30,7 @@ def log_featurize(df):
     these are not numerical columns that require regularization.
 
     log_featurize adds all the log-normalized values into new columns, and
-    maintains the original values as-is. In addition to the original company_size
-    column, log_featurize will add a log_company_size column.
+    maintains the original values as-is. In addition to the original company_size column, log_featurize will add a log_company_size column.
     """
     
 
