@@ -18,6 +18,25 @@ When a Python function is annotated with `@op`, two things happen:
 2. The annotated function will accept Aqueduct [Artifacts](../artifacts.md) as inputs and return Artifacts as outputs -- the return values can in turn by used by other operators.&#x20; 
    You can also pass raw python objects in, which we will implicitly convert into parameter artifacts for you.
 
+### Creating operators with multiple outputs
+
+In order to create an operator with mutlitple outputs, you can specify the `num_outputs` parameter in the `@op` decorator:
+
+```python
+import aqueduct as aq
+
+@aq.op(num_outputs=2)
+def train_test_split(df):
+    import pandas as pd
+    from sklearn.model_selection import train_test_split
+
+    train_data, test_data = train_test_split(df, test_size=0.2, random_state=42)
+    return train_data, test_data
+
+train, test = train_test_split(table)
+```
+In order to provide specific names for the artifacts, you can provide a list to the parameter `output_names`.
+
 ### Executing decorated functions locally
 
 When a function is decorated with `@op`, calling the function will, by default, execute it on the Aqueduct server. However, for testing or validation purposes, you might want to occasionally execute that function locally in your existing Python process.&#x20;
