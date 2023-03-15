@@ -129,6 +129,11 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   "gpu_resource_name" (str):
   Name of the gpu resource to use (only applicable for Kubernetes engine).
   
+  For example, the following value is valid: "nvidia.com/gpu".
+  "cuda_version" (str):
+  Version of CUDA to use with GPU (only applicable for Kubernetes engine). The currently supported
+  values are "11.4.1" and "11.8.0".
+  
 
 **Examples**:
 

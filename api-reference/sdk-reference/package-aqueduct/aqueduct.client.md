@@ -210,7 +210,7 @@ Deletes the given parameter from client's context.
 
 ```python
 def connect_integration(
-        name: str, service: ServiceType,
+        name: str, service: Union[str, ServiceType],
         config: Union[Dict[str, str], IntegrationConfig]) -> None
 ```
 
@@ -336,17 +336,18 @@ Fetches a flow corresponding to the given flow id.
 #### publish\_flow
 
 ```python
-def publish_flow(
-        name: str,
-        description: str = "",
-        schedule: str = "",
-        engine: Optional[str] = None,
-        artifacts: Optional[Union[BaseArtifact, List[BaseArtifact]]] = None,
-        metrics: Optional[List[NumericArtifact]] = None,
-        checks: Optional[List[BoolArtifact]] = None,
-        k_latest_runs: Optional[int] = None,
-        config: Optional[FlowConfig] = None,
-        source_flow: Optional[Union[Flow, str, uuid.UUID]] = None) -> Flow
+def publish_flow(name: str,
+                 description: str = "",
+                 schedule: str = "",
+                 engine: Optional[str] = None,
+                 artifacts: Optional[Union[BaseArtifact,
+                                           List[BaseArtifact]]] = None,
+                 metrics: Optional[List[NumericArtifact]] = None,
+                 checks: Optional[List[BoolArtifact]] = None,
+                 k_latest_runs: Optional[int] = None,
+                 config: Optional[FlowConfig] = None,
+                 source_flow: Optional[Union[Flow, str, uuid.UUID]] = None,
+                 run_now: Optional[bool] = None) -> Flow
 ```
 
 Uploads and kicks off the given flow in the system.
@@ -400,6 +401,9 @@ execution engine the flow will be running on, use "config" parameter. Eg:
   source_flow:
   Used to identify the source flow for this flow. This can be identified
   via an object (Flow), name (str), or id (str or uuid).
+  run_now:
+  Used to specify if the flow should run immediately at publish time. The default
+  behavior is 'True'.
   
 
 **Raises**:
