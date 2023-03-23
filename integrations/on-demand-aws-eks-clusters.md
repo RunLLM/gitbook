@@ -1,6 +1,6 @@
 # On-demand AWS EKS Clusters
 
-The on-demand Kubernetes compute engine allows you to run workflows on an autoscaling AWS EKS cluster. Aqueduct manages the entire lifecycle of the cluster, from creation to autoscaling to deletion.
+The on-demand Kubernetes compute engine allows you to run workflows on an autoscaling [AWS EKS](https://aws.amazon.com/eks/) cluster. Aqueduct manages the entire lifecycle of the cluster, from creation to autoscaling to deletion.
 
 ## When to use it
 
@@ -28,7 +28,7 @@ client.connect_integration(name="aws", service="AWS", config={
 })
 ```
 
-The AWS account must have the full set of permissions to create, manage, and delete an EKS cluster. See the FAQ below about how to ensure this.
+The AWS account must have the full set of permissions to create, manage, and delete an EKS cluster. See the [FAQ](#FAQs) below about how to ensure this.
 
 Upon successful registration, you will see the following integration entries on the UI’s Integrations page:
 
@@ -72,7 +72,7 @@ client.publish_flow(
 )
 ```
 
-### Under thehood
+### Under the hood
 
 When a workflow execution request comes in that uses the on-demand Kubernetes cluster, if the cluster is in the terminated status, Aqueduct uses Terraform to create the cluster before serving the request. This process can take 15-18 minutes, and the SDK will notify you that your request is waiting for the cluster to create before executing.
 
@@ -158,6 +158,10 @@ ondemand_k8s.update(config_delta={
 		"max_cpu_node": 10,
 })
 ```
+
+## Other APIs
+
+Please refer to our [SDK API documentation](https://docs.aqueducthq.com/api-reference/sdk-reference/package-aqueduct/package-aqueduct.integrations/aqueduct.integrations.dynamic_k8s_integration) for other APIs supported by `ondemand_k8s`.
 
 ## FAQs
 
