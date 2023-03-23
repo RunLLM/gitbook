@@ -84,6 +84,7 @@
         * [aqueduct.constants.exports](api-reference/sdk-reference/package-aqueduct/package-aqueduct.constants/aqueduct.constants.exports.md)
         * [aqueduct.constants.metrics](api-reference/sdk-reference/package-aqueduct/package-aqueduct.constants/aqueduct.constants.metrics.md)
       * [package aqueduct.integrations](api-reference/sdk-reference/package-aqueduct/package-aqueduct.integrations/README.md)
+        * [aqueduct.integrations.dynamic\_k8s\_integration](api-reference/sdk-reference/package-aqueduct/package-aqueduct.integrations/aqueduct.integrations.dynamic\_k8s\_integration.md)
         * [aqueduct.integrations.google\_sheets\_integration](api-reference/sdk-reference/package-aqueduct/package-aqueduct.integrations/aqueduct.integrations.google\_sheets\_integration.md)
         * [aqueduct.integrations.integration](api-reference/sdk-reference/package-aqueduct/package-aqueduct.integrations/aqueduct.integrations.integration.md)
         * [aqueduct.integrations.s3\_integration](api-reference/sdk-reference/package-aqueduct/package-aqueduct.integrations/aqueduct.integrations.s3\_integration.md)
