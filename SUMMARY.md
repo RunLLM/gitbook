@@ -28,6 +28,8 @@
   * [Deleting a Workflow](workflows/deleting-a-workflow.md)
   * [Cascading Workflows](workflows/cascading-workflows.md)
 * [Integrations](integrations/README.md)
+  * [On-demand resources](integrations/on-demand-resources.md)
+  * [On-demand AWS EKS Clusters](integrations/on-demand-aws-eks-clusters.md)
   * [Integration Management Guide](integrations/guide.md)
   * [Aqueduct Demo Database](integrations/aqueduct-demo-integration.md)
   * [Adding an Integration](integrations/adding-an-integration/README.md)
