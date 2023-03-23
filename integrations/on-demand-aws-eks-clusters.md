@@ -28,7 +28,7 @@ client.connect_integration(name="aws", service="AWS", config={
 })
 ```
 
-The AWS account must have the full set of permissions to create, manage, and delete an EKS cluster. See the [FAQ](#FAQs) below about how to ensure this.
+The AWS account must have the full set of permissions to create, manage, and delete an EKS cluster. See the [FAQ](#faqs) below about how to ensure this.
 
 Upon successful registration, you will see the following integration entries on the UI’s Integrations page:
 
