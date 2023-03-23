@@ -45,6 +45,7 @@
     * [Relational Databases](integrations/using-integrations/relational-databases.md)
     * [AWS S3](integrations/using-integrations/aws-s3.md)
     * [Databricks](integrations/using-integrations/databricks.md)
+    * [Spark on AWS EMR](integrations/using-integrations/spark-emr.md)
   * [Viewing Data in Aqueduct](integrations/viewing-data-in-an-integration.md)
 * [Notifications](notifications/README.md)
   * [Email](notifications/connecting-to-email.md)
