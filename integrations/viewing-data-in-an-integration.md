@@ -8,7 +8,7 @@ You can view the data in any integration in Aqueduct by navigating to the Integr
 2. Select the integration from the list of connected integrations.
 3. Click on the data you'd like to see a preview of, and Aqueduct will load the data from the underlying database.
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Data in Workflows
 

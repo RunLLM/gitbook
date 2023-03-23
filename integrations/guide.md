@@ -53,7 +53,7 @@ If you don't have any workflow using an integration, you can delete that integra
 
 For **relational databases**, in the `Preview` section, you can view tables stored in this integration. You can also get a preview of each table by typing the table name in the dropdown menu. You can find more details [here](viewing-data-in-an-integration.md) on viewing data in integration.&#x20;
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 ### Viewing Workflows Using an Integration
 
