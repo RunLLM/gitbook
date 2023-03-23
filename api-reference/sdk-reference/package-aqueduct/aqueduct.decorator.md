@@ -51,6 +51,10 @@ in a file named "model.py":
   The artifact types that the function is expected to output, in the correct order.
   description:
   The description for this operator.
+  execution_mode:
+  Whether the operator should be executed eagerly or lazily.
+  overwrite_op:
+  The operator to overwrite, if any. Should only be set for metrics and checks.
   
 
 **Returns**:

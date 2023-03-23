@@ -8,8 +8,6 @@
     * [\_\_init\_\_](#aqueduct.client.Client.__init__)
     * [github](#aqueduct.client.Client.github)
     * [create\_param](#aqueduct.client.Client.create_param)
-    * [list\_params](#aqueduct.client.Client.list_params)
-    * [delete\_param](#aqueduct.client.Client.delete_param)
     * [connect\_integration](#aqueduct.client.Client.connect_integration)
     * [delete\_integration](#aqueduct.client.Client.delete_integration)
     * [list\_integrations](#aqueduct.client.Client.list_integrations)
@@ -171,39 +169,6 @@ Parameter values are configurable at runtime.
 
   A parameter artifact.
 
-<a id="aqueduct.client.Client.list_params"></a>
-
-#### list\_params
-
-```python
-def list_params() -> Dict[str, Any]
-```
-
-Lists all the currently tracked parameters.
-
-**Returns**:
-
-  A dict where the keys are the existing parameter names and the values
-  are the default values.
-
-<a id="aqueduct.client.Client.delete_param"></a>
-
-#### delete\_param
-
-```python
-def delete_param(name: str, force: bool = False) -> None
-```
-
-Deletes the given parameter from client's context.
-
-**Arguments**:
-
-  name:
-  The name of the parameter to delete.
-  force:
-  If set, we will delete the parameter and any operators that it is dependency of.
-  Otherwise, we will error if it is a dependency of any operator.
-
 <a id="aqueduct.client.Client.connect_integration"></a>
 
 #### connect\_integration
@@ -345,7 +310,6 @@ def publish_flow(name: str,
                  metrics: Optional[List[NumericArtifact]] = None,
                  checks: Optional[List[BoolArtifact]] = None,
                  k_latest_runs: Optional[int] = None,
-                 config: Optional[FlowConfig] = None,
                  source_flow: Optional[Union[Flow, str, uuid.UUID]] = None,
                  run_now: Optional[bool] = None) -> Flow
 ```
@@ -383,21 +347,14 @@ execution engine the flow will be running on, use "config" parameter. Eg:
   to be computed. Additional artifacts may also be computed if they are upstream
   dependencies.
   metrics:
-  All the metrics that you would like to compute. If not supplied, we will implicitly
-  include all metrics computed on artifacts in the flow.
+  All the metrics that you would like to compute. If not supplied, we include by default
+  all metrics computed on artifacts in the flow.
   checks:
-  All the checks that you would like to compute. If not supplied, we will implicitly
-  include all checks computed on artifacts in the flow.
+  All the checks that you would like to compute. If not supplied, we will by default
+  all checks computed on artifacts in the flow.
   k_latest_runs:
   Number of most-recent runs of this flow that Aqueduct should keep. Runs outside of
   this bound are garbage collected. Defaults to persisting all runs.
-  config:
-  This field will be deprecated. Please use `engine` and `k_latest_runs` instead.
-  
-  An optional set of config fields for this flow.
-  - engine: Specify where this flow should run with one of your connected integrations.
-  - k_latest_runs: Number of most-recent runs of this flow that Aqueduct should store.
-  Runs outside of this bound are deleted. Defaults to persisting all runs.
   source_flow:
   Used to identify the source flow for this flow. This can be identified
   via an object (Flow), name (str), or id (str or uuid).
