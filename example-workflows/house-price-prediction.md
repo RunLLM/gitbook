@@ -847,8 +847,7 @@ And we're done! We can now call `publish_flow`, give our workflow a name, and te
 
 ```python
 # This publishes all of the logic needed to create predicted_mpg
-# and rmse to Aqueduct and schedules the workflow
-# to run on an hourly basis. The URL below will take you to the
+# and rmse to Aqueduct. The URL below will take you to the
 # Aqueduct UI, which will show you the status of your workflow
 # runs and allow you to inspect them.
 client.publish_flow(name="House Price Predictor", artifacts=[predictions])

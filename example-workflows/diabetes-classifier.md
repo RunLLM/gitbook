@@ -1041,8 +1041,7 @@ We're ready to publish our predictions! We can use the `publish_flow` API call t
 
 ```python
 # This publishes all of the logic needed to create diabetes_preds
-# and rmse to Aqueduct and schedules the workflow
-# to run on an hourly basis. The URL below will take you to the
+# and rmse to Aqueduct. The URL below will take you to the
 # Aqueduct UI, which will show you the status of your workflow
 # runs and allow you to inspect them.
 client.publish_flow(name="Diabetes Classifier", artifacts=[diabetes_preds])

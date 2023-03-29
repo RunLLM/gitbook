@@ -1197,7 +1197,7 @@ warehouse.save(churn_table, table_name="pred_churn", update_mode="replace")
 <!-- ------------- New Cell ------------ -->
 
 
-## Scheduling the Workflow to Run Repeatedly
+## Publishing the Workflow
 
 With all this hard work done, we're ready to deploy our workflow so that it runs repeatedly.  To do this, we define a workflow with a name and the artifacts that we want to compute and a cadence that we want to run the workflow.  The Aqueduct APIs will automatically capture and intermediate artifacts and code needed to produce the final artifacts.
 
@@ -1211,14 +1211,14 @@ When you call `publish_flow`, all of this will be shipped off to the cloud!
 
 ```python
 # This publishes all of the logic needed to create churn_table
-# and avg_pred_churn_metric to Aqueduct and schedules the workflow
-# to run on an hourly basis. The URL below will take you to the
-# Aqueduct UI, which will show you the status of your workflow
-# runs and allow you to inspect them.
+# and avg_pred_churn_metric to Aqueduct. The URL below will
+# take you to the Aqueduct UI, which will show you the status
+# of your workflow runs and allow you to inspect them.
 churn_flow = client.publish_flow(
     name="Demo Churn Ensemble",
     artifacts=[churn_table, avg_pred_churn_metric],
-    schedule=aq.hourly(),
+    # Uncomment the following line to schedule on a hourly basis.
+    # schedule=aq.hourly(),
 )
 print(churn_flow.id())
 ```

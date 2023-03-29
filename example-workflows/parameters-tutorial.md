@@ -450,11 +450,9 @@ client.trigger(flow.id(), parameters={"nationality": "Australia"})
 ---
 ### SQL Query Parameters
 
-SQL queries can also be parameterized. For queries, we'll use the double-bracket syntax to denote the presence of a parameter inline. As long as the name of the parameter matches a previously defined. 
+SQL queries can also be parameterized. For queries, we'll use the Postgres-inspired $1, $2 syntax to denote the presence of a parameter inline. The number after the dollar sign indicates which parameter in the supplied list to use.
 
 Here is the same flow as above, but as a parameterized SQL query instead.
-
-NOTE: unlike parameter names for other operators, multi-part SQL parameter names cannot be separated with spaces. For example, "review-date" is allowed but "review date" is not.
 
 
 
@@ -463,9 +461,9 @@ NOTE: unlike parameter names for other operators, multi-part SQL parameter names
 
 
 ```python
-_ = client.create_param("nationality", default="United Kingdom")
+nationality_param = client.create_param("nationality", default="United Kingdom")
 
-table = db.sql("select * from hotel_reviews where reviewer_nationality=' {{nationality}} '")
+table = db.sql("select * from hotel_reviews where reviewer_nationality=' $1 '", parameters=[nationality_param])
 table.get().head(10)
 ```
 **Output**
@@ -634,9 +632,9 @@ table.get(parameters={"nationality": "Australia"})
 ---
 ### Builtin SQL Parameters
 
-There are also a number of builtin parameter tags that we support for you! See [our documentation](https://docs.aqueducthq.com/workflows/parameterizing-a-workflow) for a list of all of built-in parameters.
+There are also a number of builtin parameter tags that we support for you! See [our documentation](https://docs.aqueducthq.com/parameters#parameters-in-sql-queries) for a list of all of built-in parameters.
 
-Below is an example of the fairly self-explanatory `today` parameter:
+Built-in parameters are described using the double-bracketed syntax `{{ <builtin name> }}`. Below is an example utilizing the builtin-parameter `today`.
 
 
 

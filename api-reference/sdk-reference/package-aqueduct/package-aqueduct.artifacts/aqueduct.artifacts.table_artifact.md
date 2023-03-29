@@ -5,7 +5,6 @@
     * [get](#aqueduct.artifacts.table_artifact.TableArtifact.get)
     * [head](#aqueduct.artifacts.table_artifact.TableArtifact.head)
     * [list\_preset\_metrics](#aqueduct.artifacts.table_artifact.TableArtifact.list_preset_metrics)
-    * [list\_system\_metrics](#aqueduct.artifacts.table_artifact.TableArtifact.list_system_metrics)
     * [validate\_with\_expectation](#aqueduct.artifacts.table_artifact.TableArtifact.validate_with_expectation)
     * [number\_of\_missing\_values](#aqueduct.artifacts.table_artifact.TableArtifact.number_of_missing_values)
     * [number\_of\_rows](#aqueduct.artifacts.table_artifact.TableArtifact.number_of_rows)
@@ -27,7 +26,7 @@
 ## TableArtifact Objects
 
 ```python
-class TableArtifact(BaseArtifact)
+class TableArtifact(BaseArtifact, system_metric.SystemMetricMixin)
 ```
 
 This class represents a computed table within the flow's DAG.
@@ -120,21 +119,6 @@ These preset metrics can be set via the invoking the preset method on a artifact
 **Returns**:
 
   A list of available preset metrics on a table
-
-<a id="aqueduct.artifacts.table_artifact.TableArtifact.list_system_metrics"></a>
-
-#### list\_system\_metrics
-
-```python
-def list_system_metrics() -> List[str]
-```
-
-Returns a list of all system metrics available on the table artifact.
-These system metrics can be set via the invoking the system_metric() method the table.
-
-**Returns**:
-
-  A list of available system metrics on a table
 
 <a id="aqueduct.artifacts.table_artifact.TableArtifact.validate_with_expectation"></a>
 
@@ -319,8 +303,8 @@ Creates a system metric that represents the given system information from the pr
 **Arguments**:
 
   metric_name:
-  name of system metric to retrieve for the table.
-  valid metrics are:
+  Name of system metric to retrieve for the table.
+  Valid metrics are:
 - `runtime` - runtime of previous @op func in seconds
 - `max_memory` - maximum memory usage of previous @op func in Mb
   
