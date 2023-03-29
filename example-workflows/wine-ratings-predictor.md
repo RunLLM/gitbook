@@ -924,7 +924,7 @@ demodb.save(predicted_quality, table_name="pred_wine_quality", update_mode="repl
 <!-- ------------- New Cell ------------ -->
 
 
-## Schedule Workflow to Run Daily
+## Publishing the Workflow
 
 
 
@@ -935,8 +935,7 @@ demodb.save(predicted_quality, table_name="pred_wine_quality", update_mode="repl
 
 ```python
 # This publishes all of the logic needed to create predicted_quality
-# rmse, and num_labeled to Aqueduct and schedules the workflow
-# to run on an hourly basis. The URL below will take you to the
+# rmse, and num_labeled to Aqueduct. The URL below will take you to the
 # Aqueduct UI, which will show you the status of your workflow
 # runs and allow you to inspect them.
 from textwrap import dedent
@@ -949,7 +948,8 @@ client.publish_flow(
         and then uses that model to fill in missing ratings.
         """
     ),
-    schedule=aqueduct.daily(),
+    # Uncomment the following line to schedule on a daily basis.
+    # schedule=aqueduct.daily(),
     artifacts=[predicted_quality, rmse, num_labeled],
 )
 ```

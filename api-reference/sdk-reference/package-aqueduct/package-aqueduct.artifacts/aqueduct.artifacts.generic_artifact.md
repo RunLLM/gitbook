@@ -4,6 +4,7 @@
   * [GenericArtifact](#aqueduct.artifacts.generic_artifact.GenericArtifact)
     * [get](#aqueduct.artifacts.generic_artifact.GenericArtifact.get)
     * [describe](#aqueduct.artifacts.generic_artifact.GenericArtifact.describe)
+    * [system\_metric](#aqueduct.artifacts.generic_artifact.GenericArtifact.system_metric)
 
 <a id="aqueduct.artifacts.generic_artifact"></a>
 
@@ -14,7 +15,7 @@
 ## GenericArtifact Objects
 
 ```python
-class GenericArtifact(BaseArtifact)
+class GenericArtifact(BaseArtifact, system_metric.SystemMetricMixin)
 ```
 
 This class represents a generic artifact within the flow's DAG.
@@ -53,4 +54,28 @@ def describe() -> None
 ```
 
 Prints out a human-readable description of the bool artifact.
+
+<a id="aqueduct.artifacts.generic_artifact.GenericArtifact.system_metric"></a>
+
+#### system\_metric
+
+```python
+def system_metric(metric_name: str,
+                  lazy: bool = False) -> numeric_artifact.NumericArtifact
+```
+
+Creates a system metric that represents the given system information from the previous @op that ran on the table.
+
+**Arguments**:
+
+  metric_name:
+  Name of system metric to retrieve for the table.
+  Valid metrics are:
+- `runtime` - runtime of previous @op func in seconds
+- `max_memory` - maximum memory usage of previous @op func in Mb
+  
+
+**Returns**:
+
+  A numeric artifact that represents the requested system metric
 

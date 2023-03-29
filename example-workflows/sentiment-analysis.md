@@ -478,7 +478,7 @@ warehouse.save(sentiment_table, table_name="sentiment_pred", update_mode="replac
 <!-- ------------- New Cell ------------ -->
 
 
-Finally, we'll publish our workflow to Aqueduct, giving it a name and telling it which artifacts to publish. We'll also give this workflow a schedule, telling it to run on an hourly basis:
+Finally, we'll publish our workflow to Aqueduct, giving it a name and telling it which artifacts to publish. Optionally, we can also give this workflow a schedule, telling it to run on an hourly basis:
 
 
 
@@ -488,11 +488,14 @@ Finally, we'll publish our workflow to Aqueduct, giving it a name and telling it
 
 ```python
 # This publishes all of the logic needed to create sentiment_table
-# to Aqueduct and schedules the workflow to run on an hourly basis.
-# The URL below will take you to the Aqueduct UI, which will show you the
-# status of your workflow runs and allow you to inspect them.
+# to Aqueduct. The URL below will take you to the Aqueduct UI, which
+# will show you the status of your workflow runs and allow you to
+# inspect them.
 sentiment_flow = client.publish_flow(
-    name="Demo Customer Sentiment", artifacts=[sentiment_table], schedule=aqueduct.hourly()
+    name="Demo Customer Sentiment",
+    artifacts=[sentiment_table],
+    # Uncomment the following line to schedule the workflow on a hourly basis.
+    # schedule=aqueduct.hourly(),
 )
 print(sentiment_flow.id())
 ```

@@ -1,7 +1,6 @@
 # Table of Contents
 
 * [aqueduct.integrations.sql\_integration](#aqueduct.integrations.sql_integration)
-  * [find\_parameter\_artifacts](#aqueduct.integrations.sql_integration.find_parameter_artifacts)
   * [RelationalDBIntegration](#aqueduct.integrations.sql_integration.RelationalDBIntegration)
     * [list\_tables](#aqueduct.integrations.sql_integration.RelationalDBIntegration.list_tables)
     * [table](#aqueduct.integrations.sql_integration.RelationalDBIntegration.table)
@@ -12,23 +11,6 @@
 <a id="aqueduct.integrations.sql_integration"></a>
 
 # aqueduct.integrations.sql\_integration
-
-<a id="aqueduct.integrations.sql_integration.find_parameter_artifacts"></a>
-
-#### find\_parameter\_artifacts
-
-```python
-def find_parameter_artifacts(dag: DAG,
-                             names: List[str]) -> List[ArtifactMetadata]
-```
-
-`find_parameter_artifacts` finds all parameter artifacts corresponding to given `names`.
-parameters:
-    names: the list of names, repeating names are allowed.
-returns:
-    a list of unique parameter artifacts for these names. Built-in names are omitted.
-
-raises: InvalidUserArgumentException if there's no parameter for the provided name.
 
 <a id="aqueduct.integrations.sql_integration.RelationalDBIntegration"></a>
 
@@ -83,6 +65,7 @@ def sql(query: Union[str, List[str], RelationalDBExtractParams],
         name: Optional[str] = None,
         output: Optional[str] = None,
         description: str = "",
+        parameters: Optional[List[BaseArtifact]] = None,
         lazy: bool = False) -> TableArtifact
 ```
 
@@ -99,6 +82,17 @@ Runs a SQL query against the RelationalDB integration.
   Name to assign the output artifact. If not set, the default naming scheme will be used.
   description:
   Description of the query.
+  parameters:
+  An optional list of string parameters to use in the query. We use the Postgres syntax of $1, $2 for placeholders.
+  The number denotes which parameter in the list to use (one-indexed). These parameters feed into the
+  sql query operator and will fill in the placeholders in the query with the actual values.
+  
+  For example, for the following query with parameters=[param1, param2]:
+  SELECT * FROM my_table where age = $1 and name = $2
+  Assuming default values of "18" and "John" respectively, the default query will expand into
+  SELECT * FROM my_table where age = 18 and name = "John".
+  
+  If multiple of the same placeholders are used in the same query, the same value will be supplied for each.
   lazy:
   Whether to run this operator lazily. See https://docs.aqueducthq.com/operators/lazy-vs.-eager-execution .
   

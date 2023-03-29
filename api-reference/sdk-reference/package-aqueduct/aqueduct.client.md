@@ -3,7 +3,6 @@
 * [aqueduct.client](#aqueduct.client)
   * [global\_config](#aqueduct.client.global_config)
   * [get\_apikey](#aqueduct.client.get_apikey)
-  * [infer\_requirements](#aqueduct.client.infer_requirements)
   * [Client](#aqueduct.client.Client)
     * [\_\_init\_\_](#aqueduct.client.Client.__init__)
     * [github](#aqueduct.client.Client.github)
@@ -59,20 +58,6 @@ Get the API key if the server is running locally.
 **Returns**:
 
   The API key.
-
-<a id="aqueduct.client.infer_requirements"></a>
-
-#### infer\_requirements
-
-```python
-def infer_requirements() -> List[str]
-```
-
-Obtains the list of pip requirements specifiers from the current python environment using `pip freeze`.
-
-**Returns**:
-
-  A list, for example, ["transformers==4.21.0", "numpy==1.22.4"].
 
 <a id="aqueduct.client.Client"></a>
 
