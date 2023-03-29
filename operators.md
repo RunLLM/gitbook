@@ -11,6 +11,6 @@ This guide will walk you through:
 * [Creating a Python Operator](operators/creating-a-python-operator.md)
 * [Specifying a `requirements.txt`](operators/specifying-a-requirements.txt.md)
 * [Adding File Dependencies in Python](operators/file-dependencies-in-python.md)
-* [Improve Dependencies and Python Version Management Using Conda](operators/using-conda.md)
+* [Improve Dependencies and Python Version Management Using Conda](broken-reference)
 * [Eager vs Lazy Execution](operators/lazy-vs-eager-execution.md)
 * [Configuring GPUs, CPUs, and Memory](operators/configuring-resource-constraints.md)

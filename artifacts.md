@@ -4,7 +4,7 @@ description: Encapsulating data in Aqueduct
 
 # Artifacts
 
-_Artifacts_ are thin wrappers around data objects in Aqueduct. Wrapping data in an Artifact allows Aqueduct to track that artifact across workflow runs help you understand how your data is changing over time.&#x20;
+_Artifacts_ are thin wrappers around data objects in Aqueduct. Wrapping data in an Artifact allows Aqueduct to track that artifact across workflow runs help you understand how your data is changing over time.
 
 We support the following data types:
 
@@ -18,15 +18,23 @@ We support the following data types:
 * `bytes`
 * `image`: Corresponds to PIL.Image type.
 * `picklable`: Any object that can be pickled. This is the catch-all type used for all types that are not included above.
-* `untyped`: A special placeholder Artifact used to type the [lazily-executed operators](../operators/lazy-vs-eager-execution.md))
+* `untyped`: A special placeholder Artifact used to type [lazily-executed operators](operators/lazy-vs-eager-execution.md) — **you should never use the type yourself**.&#x20;
 
 These types are inferred and tracked by the system, no user input is required! Aqueduct uses this type information to provide useful type enforcement like:
+
 * Enforcing artifact type consistency across workflow runs. An artifact with type `t` will continue to have type `t` in future runs.
 * Catching errors earlier on, such as writing non-relational data to a relational integration (eg. SQL).
 
+An Artifact can be saved to a storage system by calling `.save` on the integration object in the Aqueduct SDK:
 
-There are three operations that can be done on artifacts:
+```python
+import aqueduct as aq
+client = aq.Client()
 
-* [Saving an Artifact](artifacts/saving-an-artifact.md)
-* Transforming an Artifact -- this is done by passing an Artifact as an argument to an [Operator](operators.md)
-* Attaching a [Metric or a Check](metrics-and-checks.md) to an artifact -- again, this can be done by passing an Artifact as an argument to the relevant Metric or Check
+db = client.integration('aqueduct_demo')
+wines = db.sql('SELECT * FROM wines;')
+
+db.save(wines, 'wines_2', 'replace')
+```
+
+The specific requirements for each data system will vary based on what data types they accept and what metadata they need. To learn more, visit the documentation page for the data system you're using.

@@ -1,9 +1,9 @@
 ---
-description: Deep dives on how to Aqueduct
+description: Deep dives on how to use Aqueduct.
 ---
 
 # Guides
 
-* [Debugging a Failed Workflow](debugging-a-failed-workflow.md)
-* [Changing Aqueduct Metadata Store](changing-metadata-store.md)
-* [Running Aqueduct Workflows on Airflow](running-airflow-workflow.md)
+[porting-a-workflow-to-aqueduct.md](porting-a-workflow-to-aqueduct.md "mention")
+
+[debugging-a-failed-workflow.md](debugging-a-failed-workflow.md "mention")

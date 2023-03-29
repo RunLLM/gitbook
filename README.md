@@ -82,10 +82,10 @@ For more on this pipeline, check our [Quickstart Guide](quickstart-guide.md).
 
 ### Guides
 
-* [Updating Aqueduct](guides/updating-aqueduct.md)
+* [Updating Aqueduct](installation-and-configuration/updating-aqueduct.md)
 * [Debugging a Prediction Pipeline](guides/debugging-a-failed-workflow.md)
-* [Running on Airflow](guides/running-airflow-workflow.md)
-* [Changing the Aqueduct Metadata Store](guides/changing-metadata-store.md)
+* [Running on Airflow](broken-reference)
+* [Changing the Aqueduct Metadata Store](broken-reference)
 * [Porting a Workflow to Aqueduct](guides/porting-a-workflow-to-aqueduct.md)
 
 ### API Reference

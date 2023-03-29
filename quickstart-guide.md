@@ -1,8 +1,10 @@
 ---
-description: The quickest way to get your first workflow deployed on Aqueduct
+description: Get your first Aqueduct workflow running
 ---
 
 # Quickstart Guide
+
+If you get stuck anywhere here, please let us know on our [Slack community](https://slack.aqueducthq.com) or [via email](mailto:hello@aqueducthq.com).
 
 ### Installation and Setup
 
@@ -29,7 +31,7 @@ Note that the API key associated with the server can also be found in the output
 
 ### Accessing Data
 
-The base data for our workflow is the [hotel reviews dataset](integrations/aqueduct-demo-integration.md)) in the pre-built aqueduct\_demo that comes with the Aqueduct server. This code does two things -- (1) it loads a connection to the demo database, and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
+The base data for our workflow is the [hotel reviews dataset](integrations/data-systems/aqueduct-demo-integration.md)) in the pre-built aqueduct\_demo that comes with the Aqueduct server. This code does two things -- (1) it loads a connection to the demo database, and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
 
 ```python
 demo_db = client.integration("aqueduct_demo")
@@ -73,7 +75,7 @@ strlen_table.get()
 
 ### Adding Metrics
 
-We're going to apply a [Metric](metrics-and-checks/metrics-measuring-your-predictions/) to our `strlen_table`, which will calculate a numerical summary of our predictions (in this case, just the mean string length).
+We're going to apply a [Metric](metrics-and-checks/metrics-measuring-your-predictions.md) to our `strlen_table`, which will calculate a numerical summary of our predictions (in this case, just the mean string length).
 
 ```python
 @metric
@@ -101,7 +103,7 @@ Note that checks are denoted with the @check decorator. Checks can also computed
 
 ### Saving Data
 
-Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database. See [here](integrations/using-integrations/) for more details around using integrations.
+Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database. See [here](broken-reference) for more details around using integrations.
 
 ```python
 demo_db.save(strlen_table, table_name="strlen_table", update_mode="replace")
@@ -121,7 +123,7 @@ And we're done! 🎉
 
 We've created our first workflow together, and you're off to the races. Here are some next steps:
 
-* For more details on different ways to configure Aqueduct, check out our [Installation Guide](installation-and-deployment.md).
+* For more details on different ways to configure Aqueduct, check out our [Installation Guide](installation-and-configuration/).
 * Check out our [example workflows](example-workflows/) for some more Aqueduct workflows.
 * Check out our guide on [Workflows](workflows/) for a deep dive on how to define, preview, and create workflows.
 * Check out our documentation on [Operators](operators.md), [Artifacts](artifacts.md), and [Metrics & Checks](metrics-and-checks.md) for deep dives into creating and interacting with each.

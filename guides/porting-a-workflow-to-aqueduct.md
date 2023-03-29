@@ -4,7 +4,7 @@ description: Going from existing Python code to an Aqueduct workflow
 
 # Porting a workflow to Aqueduct
 
-This guide will walk you through the process of taking existing Python code and setting it up to run in Aqueduct. There's multiple ways in which we can do this, and the right one for you will depend on how complicated your workflow is and how much intermediary data you have.&#x20;
+This guide will walk you through the process of taking existing Python code and setting it up to run in Aqueduct. There's multiple ways in which we can do this, and the right one for you will depend on how complicated your workflow is and how much intermediary data you have.
 
 At the core of Aqueduct is the concept of [operators.md](../operators.md "mention") and [artifacts.md](../artifacts.md "mention"). An Operator is simply a Python function that (optionally) takes in and outputs some data. An Artifact is a wrapper around your data that allows Aqueduct to track, version, and validate your data. Operators generate Artifacts, which then serve as inputs to downstream Operators. This whole sequence constitutes the concept of [workflows](../workflows/ "mention").
 
@@ -31,7 +31,7 @@ def make_predictions():
     # And write those predictions to our database.
 ```
 
-Once we've done, that all we need to do is invoke this function and publish the results as an Aqueduct workflow:&#x20;
+Once we've done, that all we need to do is invoke this function and publish the results as an Aqueduct workflow:
 
 ```python
 none_artf = make_predictions()
@@ -44,11 +44,11 @@ And we're done! You can see the code that you ran and set it to run on a periodi
 
 #### Help me track my inputs and outputs
 
-Once you have your code running on Aqueduct, you probably are going to want to see what data is coming into and going out of your workflow. For the most part, this isn't going to require us to change much about our workflows.&#x20;
+Once you have your code running on Aqueduct, you probably are going to want to see what data is coming into and going out of your workflow. For the most part, this isn't going to require us to change much about our workflows.
 
-The first thing we'll need to do is figure out where our data inputs are coming from and where our predictions are going to. You'll need to connect those systems as Aqueduct [integrations](../integrations/ "mention").&#x20;
+The first thing we'll need to do is figure out where our data inputs are coming from and where our predictions are going to. You'll need to connect those systems as Aqueduct [integrations](../integrations/ "mention").
 
-Once we have our integrations connected, we can get a handle to that integration in our Python code. For our example here, we're going to use the [aqueduct-demo-integration.md](../integrations/aqueduct-demo-integration.md "mention"). Once we have a handle to the demo database, we can then run a SQL query on it (see [aws-s3.md](../integrations/using-integrations/aws-s3.md "mention") for details on using non-relational data systems) to get our input data. You can use any SQL query that works for your underlying database.
+Once we have our integrations connected, we can get a handle to that integration in our Python code. For our example here, we're going to use the [aqueduct-demo-integration.md](../integrations/data-systems/aqueduct-demo-integration.md "mention"). Once we have a handle to the demo database, we can then run a SQL query on it (see [Broken link](broken-reference "mention") for details on using non-relational data systems) to get our input data. You can use any SQL query that works for your underlying database.
 
 ```python
 from aqueduct import Client, op
@@ -58,7 +58,7 @@ db = client.integration('aqueduct_demo')
 input_data = db.sql('SELECT * FROM wine;')
 ```
 
-To see our input data, we can simply run:&#x20;
+To see our input data, we can simply run:
 
 ```python
 input_data.get()
@@ -90,7 +90,7 @@ client.publish_flow("prediction workflow", artifacts=[predictions])
 
 #### I want the full experience
 
-You can probably see where we're going with this. To harness the full power of Aqueduct, you can track not just your inputs and outputs but all your intermediary data as well. Aqueduct can help you see where exactly in your workflow an error occurred and give you access to that data to start debugging the issue.&#x20;
+You can probably see where we're going with this. To harness the full power of Aqueduct, you can track not just your inputs and outputs but all your intermediary data as well. Aqueduct can help you see where exactly in your workflow an error occurred and give you access to that data to start debugging the issue.
 
 To do this, we'll take our code above and split it into multiple stages. Using the steps defined above, we'll have three functions:
 
@@ -132,10 +132,10 @@ db.save(predictions, table_name="my_predictions", update_mode="replace")
 client.publish_flow("prediction workflow", artifacts=[predictions])
 ```
 
-Just like before, Aqueduct will capture `input_data` and `predictions` on every workflow run, but you will now also be able to see `cleaned_data` and `features` on the Aqueduct UI. This is critical for helping understand when things go wrong -- each function will be shown with its own stack trace and any associated logs.&#x20;
+Just like before, Aqueduct will capture `input_data` and `predictions` on every workflow run, but you will now also be able to see `cleaned_data` and `features` on the Aqueduct UI. This is critical for helping understand when things go wrong -- each function will be shown with its own stack trace and any associated logs.
 
-You can also attach [metrics-and-checks.md](../metrics-and-checks.md "mention")to any of the intermediary [artifacts.md](../artifacts.md "mention") to help measure and validate them over time.&#x20;
+You can also attach [metrics-and-checks.md](../metrics-and-checks.md "mention")to any of the intermediary [artifacts.md](../artifacts.md "mention") to help measure and validate them over time.
 
 ### Wrapping Up
 
-Okay, you're good to go! You have your full workflow running in Aqueduct. If you have any questions or feedback about this, let us know on [Slack](https://slack.aqueducthq.com) or [GitHub](https://github.com/aqueducthq/aqueduct/issues/new/choose).&#x20;
+Okay, you're good to go! You have your full workflow running in Aqueduct. If you have any questions or feedback about this, let us know on [Slack](https://slack.aqueducthq.com) or [GitHub](https://github.com/aqueducthq/aqueduct/issues/new/choose).

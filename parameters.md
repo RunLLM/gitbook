@@ -4,7 +4,7 @@
 
 See this [**Parameters Tutorial**](example-workflows/parameters-tutorial.md) notebook for a full walkthrough of the API with concrete examples.
 
-### Creating Parameters
+## Creating Parameters
 
 Parameters are identified by their name, and _must_ have default values. They are fed into operators just like any other artifact, and every artifact type is supported. Parameters can be created explicitly or implicitly.
 
@@ -37,7 +37,7 @@ churn = predict_churn(reviews, "Venezuela")
 We currently disallow implicit parameter creation if an explicit parameter with the same name already exists.
 {% endhint %}
 
-### Customizing Parameters
+## Customizing Parameters
 
 As shown in the examples above, you can immediately materialize artifacts locally with different parameters using `.get(parameters={...})`. This allows you to play around with and observe the effects of different parameters in your local environment.
 
@@ -61,7 +61,7 @@ Triggering a workflow with non-default parameters is a one-off operation. It doe
 Types are also enforced on parameters. You cannot set a new value that is of a different type as the default value.
 {% endhint %}
 
-#### Parameters in SQL Queries
+## Parameters in SQL Queries
 
 SQL queries are parameterized in a special way, using this double-bracket syntax:
 

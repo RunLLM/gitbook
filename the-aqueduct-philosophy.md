@@ -4,51 +4,45 @@ description: or, why MLOps set us down the wrong path
 
 # The Aqueduct Philosophy
 
-The last 10 years have seen an explosion in the tooling, interest, and applications of machine learning. One of the key driving forces behind the broad adoption of machine learning is access to a vibrant open-source ecosystem of software for preparing data and training models. From NumPy, Pandas, and Jupyter to SciKit-Learn, XGBoost, Pytorch, and Tensorflow, Python-based data science and machine learning software has made it easier than ever to build machine learning models.
+In recent years, MLOps has tied itself into knots — service ”architectures” that are more like a jumble of ad hoc connections between siloed, incomplete solutions to ML infrastructure. This leaves teams without a way to know what machine learning tasks are running, whether they’re working as expected, and how to triage and resolve issues. Ultimately, it means that less time is spent on delivering on the promise of machine learning — the bulk of time is spent wrangling and caring for a knot of intertwined infrastructure.
 
-Much of the innovation over the last 10 years has (rightly so) focused on processing and featurizing data, experimenting with different model architectures, and effectively training models. This is in line with our own experiences at UC Berkeley, where the data science curriculum we've developed ([Data 100](https://www.ds100.org)) teaches students the basics of SQL queries, exploratory data analysis, data preparation, modeling in SciKit-Learn and PyTorch, and model evaluation — all within the context of a Jupyter notebook.
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-Interestingly, while developing the Berkeley data science curriculum, we noticed that many of the students taking the data science courses were coming from disciplines outside of computer science and engineering. This new generation of highly data-literate students with backgrounds in humanities and physical sciences has the opportunity to drive the broad adoption of machine learning and transform the organizations they join. Yet, for them to succeed, they will need to overcome the significant engineering hurdles along the last mile of data science and machine learning: deploying, integrating, and supporting their models.
+Infrastructure complexity is not inevitable, but complexity does grow exponentially as tools are added. Systems like Apache Spark, Tensorflow, PyTorch, and Ray have enabled countless new machine learning use cases, and each one of these tools is quite powerful. Unfortunately, the proliferation of these exact tools incurs a significant maintenance overhead and learning curve that’s led to the MLOps knot. It’s effectively slowed progress in the value delivered by machine learning.
 
-### The Missing Link
+Over the last year, our team has met with 250+ enterprises to discuss the challenges around ML infrastructure. The typical enterprise I’ve interviewed might have a stack that looks something like this:
 
-The part of the lifecycle that's received comparatively little attention in recent years is what happens once a model is built. Given the focus on building model to date, the missing link in generating value from machine learning is _enabling the_ _widespread use of models._
+* Snowflake as a data & feature warehouse with Fivetran + dbt for ELT
+* Spark (or Databricks) for large scale analysis and lightweight feature computation
+* Ray for experimentation and hyperparameter tuning
+* Weights & Biases for experiment management
+* Airflow for orchestrating batch training & inference
 
-What we've observed by and large is that data teams rely on a medley of complicated, low-level cloud infrastructure tools — task orchestration systems like Airflow, low-level cloud infrastructure like Docker & Kubernetes, and hand-built connectors to data systems — to make predictions and share them with stakeholders. This set of tools is not only cumbersome and slow, it also provides very little visibility into errors and failures, which means that maintenance & debugging are painful.
+This is a long list of tools to maintain, and this list already has some painful (and often expensive) redundancy — e.g., compute on Snowflake vs. Databricks, metadata split across dbt and W\&B. But it rarely stops there since this just covers the basics — [things get much more complicated](https://www.mihaileric.com/posts/mlops-is-a-mess/) when you include distributed Python featurization (Dask, Modin), feature stores (Feast, Tecton), model performance monitoring (Truera, Arize), or real-time prediction serving. This has led to two key challenges that I’ve heard time and time again.
 
-The data scientists we've been working with have a combination of ML expertise and business knowledge that makes them uniquely poised to accelerate internal processes, inform business business decisions, and improve customer interactions at every company... if only the infrastructure could get out of their way.
+_**First**_**,** **infrastructure proliferation**. Maintaining existing systems and adopting new ones is extremely painful. Each of these systems presents a new API & interface for data science & ML engineers to learn. With 7-10 systems for managing production ML, no one person can possibly be fluent in all the relevant APIs, much less manage each one of these systems in production. The work required to run ML in production eats up a significant chunk of time, often requiring a new team to be formed. That can obviously be frustrating, but at least it’s a one time-learning curve.
 
-### What is Production Data Science?
+Worse yet, when a new ML task comes along that has new requirements — e.g., Ray or Dask for distributed Python feature computation — every workflow has to be rewritten from the existing API to support the new library. So much time and effort has been sunk into the existing infrastructure that learning about and evaluating a new system is a painful, weeks-long project (or a non-starter).
 
-The problems we've heard from data scientists consistently come from one source — trying to force machine learning and data science workflows into infrastructure built for different use cases.\
-We think this is an anti-pattern: Data scientists aren't software engineers, and making data scientists successful is going to require thinking tooling to meet them where they are. Rather than forcing data scientists to focus on complex cloud MLOps infrastructure, we need to build tools that allow data scientists to focus on solving business problems. Some of the companies we admire the most have done exactly this in other domains (e.g., Weights & Biases for ML experimentation, Vercel & Netlify for hosting web apps).
+And as always, switching between cloud providers is 100x harder still.
 
-**Production data science (PDS) infrastructure enables data scientists to repeatably deliver high-quality predictions to their business without having to manage low-level cloud infrastructure tools.** PDS covers 3 core tasks:
+_**Second**_**, metadata drift**. many teams have trouble knowing what code is running where, whether it’s succeeding or failing, and who’s responsible for it. The challenge comes from the lack of shared context and interoperability within these systems, many of which might have overlapping functionality.
 
-* _Running data science in production (or just repeatedly)_**:** Rather than forcing you to learn, manage, and fight low-level tools like Docker, Kubernetes, or even Airflow, production data science infrastructure should enable you to run your code repeatably, wherever you’d like and with minimal configuration overhead.
-* _Publishing predictions_: Once a data or ML pipeline is running, results can be shared with stakeholders & users; this generates business value and feedback, which can be turned into new, higher-quality data sets. Depending on the application of data science, predictions might need to be published as data, spreadsheets, visualizations, or endpoints — production data science infrastructure should support this diversity without added complexity.
-* _Ensuring prediction quality_: Predictions can only be published if you have confidence in the results of your work, but data science projects can fail in subtle and unpredictable ways. Data teams need a clean, targeted way to measure and validate predictions (and input data), so you can be sure you’re publishing high quality data.
-
-### Isn't this just MLOps?
-
-We’ve written previously about [why existing MLOps tools are the wrong solution](https://blog.aqueducthq.com/posts/mlops-right-problem-wrong-solution), but… how is PDS different? The fundamental problem with MLOps is that the tools are overly focused on the specific problems faced by a few large tech companies. The problems faced by the data teams we’ve interviewed are not addressed by MLOps.
-
-_First_, MLOps tools have primarily been built by and for engineers at the world’s biggest tech companies. As a consequence, they require armies of software engineers to configure, deploy, and manage. This is a highly ineffective use of time & resources, especially at smaller organizations. Production data science infrastructure is built to be lightweight and easy to manage, and critically, it abstracts away the underlying infrastructure rather than exposing it to data scientists.
-
-_Second_, many applications of production data science don’t require software operations. Many data teams we’ve spoken to simply want to run a nightly workflow that publishes a dataset or generates a graph and emails it to the appropriate stakeholders. This doesn’t require complex, bespoke Kubernetes deployments — in fact, you can do this from a laptop! Production data science doesn't have to mean running a cluster of thousands of servers to serve single-digit millisecond latency predictions. Any data science that's being used to generate business value should be supported by production data science.
-
-MLOps identified the right problem—providing data science-specific infrastructure—but it’s given us the wrong solutions. Data scientists need infrastructure built for their needs and skillsets; that’s what _production data science_ is all about.
+Ultimately, there’s no source of truth for the code, data, and metadata that’s moving across these systems. Code & data artifacts remain relatively constant across the ML lifecycle, but there is no shared context across systems. For example, the same code will be used for experimentation in Ray and eventually for production training in Kubeflow. The resulting model might then be run on Databricks for large-scale batch inference or deployed into a separate system for real-time inference — again. At each stage, the code, the model, and the resulting data are repackaged into different APIs and different formats, which is both time-consuming and — critically — loses context by moving across systems.
 
 ### Why Aqueduct?
 
-Aqueduct is the first production data science infrastructure.
+Aqueduct is focused on untangling the MLOps Knot by building a single interface to run machine learning on your existing cloud infrastructure.
 
-The existing tools for deploying models are not designed with data scientists in mind—- they assume the user will casually build Docker containers, deploy Kubernetes clusters, and writes thousands of lines of YAML to deploy a single model. Data scientists are by and large not interested in doing that and there are better uses for their skills.
+Aqueduct isn’t building a “better” component for any of the stages of the lifecycle. Instead, we’re building unifying, ML-centric APIs that integrate with and empower industry-standard components.
 
-Aqueduct is designed and built for data scientists and meets the three core needs of production data science infrastructure:
+Aqueduct [integrates natively with your existing tools](integrations/), allowing you to run ML seamlessly in your cloud — we have support for Kubernetes, Airflow, AWS Lambda, and Databricks, with Ray and others to follow. Once your code is running with Aqueduct, you automatically get visibility into whether things work and what’s happening (logs, stack traces, metrics). All of this metadata is organized in a single interface, regardless of whether you’re running on one piece of infrastructure or ten.
 
-* _Deploy_: Aqueduct has a simple Pythonic API that lets you define workflows in a few lines of code and run them anywhere from a laptop to a Kubernetes cluster.
-* _Publish_: Aqueduct comes with a suite of connectors to common data systems and endpoints that allow you to publish predictions wherever they’re needed.
-* _Monitor_: Aqueduct’s checks & metrics enable you — and your teammates — to ensure the correctness of predictions and measure them over time, enabling early detection of issues and quick bugfixes.
+Aqueduct has a simple, Python-native interface that allows you to define ML tasks, get them running quickly, and move across infrastructure as needed. Whether that’s going from your laptop to the cloud or from AWS to GCP, Aqueduct has single, Python-native API that gives you the flexibility to choose the best tools for the job.
 
-\
+### What's Next?
+
+* Check out our [open-source project](https://github.com/aqueducthq/aqueduct).
+* Join the [community conversation](https://slack.aqueducthq.com)!
+
+_This page has been adopted from our blog posts on_ [_the MLOps Knot_](https://aqueducthq.com/post/the-mlops-knot/) _and_ [_Untangling the MLOps Knot_](https://aqueducthq.com/post/untangling-the-mlops-knot/)_._
