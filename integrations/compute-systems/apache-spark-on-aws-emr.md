@@ -8,7 +8,7 @@ Before proceeding, please ensure the following:
 1. Aqueduct relies on [Apache Livy](https://livy.incubator.apache.org/get-started/) to submit workloads to your Spark cluster. Please ensure you have a Livy endpoint running.&#x20;
 2. Before you can connect Aqueduct to Spark, you must be using AWS S3 as your artifact store. See [configuring-aqueduct.md](../../installation-and-configuration/configuring-aqueduct.md "mention")
 3. Aqueduct's Spark integration currently supports data living in Snowflake and AWS S3. If you need access to other [data-systems](../data-systems/ "mention"), please [let us know](https://github.com/aqueducthq/aqueduct/issues/new?assignees=\&labels=enhancement\&template=feature\_request.md\&title=%5BFEATURE%5D)!&#x20;
-4. Docker is installed ([instructions](https://docs.docker.com/engine/install/)). Aqueduct uses Docker to package your python requirements to ship to Spark.
+4. Docker is installed ([instructions](https://docs.docker.com/engine/install/)). Aqueduct uses Docker to package your Python requirements to ship to Spark.
 {% endhint %}
 
 To connect Aqueduct to your Spark cluster, you will need the following information:&#x20;
