@@ -7,7 +7,8 @@ Before proceeding, please ensure the following:
 
 1. Aqueduct relies on [Apache Livy](https://livy.incubator.apache.org/get-started/) to submit workloads to your Spark cluster. Please ensure you have a Livy endpoint running.&#x20;
 2. Before you can connect Aqueduct to Spark, you must be using AWS S3 as your artifact store. See [configuring-aqueduct.md](../../installation-and-configuration/configuring-aqueduct.md "mention")
-3. Aqueduct's Spark integration currently works with data living in Snowflake and AWS S3. If you need access to other [data-systems](../data-systems/ "mention"), please [let us know](https://github.com/aqueducthq/aqueduct/issues/new?assignees=\&labels=enhancement\&template=feature\_request.md\&title=%5BFEATURE%5D)!&#x20;
+3. Aqueduct's Spark integration currently supports data living in Snowflake and AWS S3. If you need access to other [data-systems](../data-systems/ "mention"), please [let us know](https://github.com/aqueducthq/aqueduct/issues/new?assignees=\&labels=enhancement\&template=feature\_request.md\&title=%5BFEATURE%5D)!&#x20;
+4. Docker is installed ([instructions](https://docs.docker.com/engine/install/)). Aqueduct uses Docker to package your Python requirements to ship to Spark.
 {% endhint %}
 
 To connect Aqueduct to your Spark cluster, you will need the following information:&#x20;
@@ -72,5 +73,5 @@ def log_featurize(df):
 When this is executed by either eagerly executing the operator or by publishing a workflow, Aqueduct will use Livy endpoint to submit your function to be executed on your Spark cluster.&#x20;
 
 {% hint style="info" %}
-The nature of Aqueduct's Spark integration requires us to execute a full workflow on the Jobs Cluster once it's created. That means that Aqueduct currently only supports running a whole workflow — rather than a single operator — on Databricks. As such, you cannot publish a workflow that executes only a subset of its operators on Databricks. &#x20;
+The nature of Aqueduct's Spark integration requires us to execute a full workflow on the Jobs Cluster once it's created. That means that Aqueduct currently only supports running a whole workflow — rather than a single operator — on Spark. As such, you cannot publish a workflow that executes only a subset of its operators on Spark. &#x20;
 {% endhint %}
