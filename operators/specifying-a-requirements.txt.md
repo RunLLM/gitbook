@@ -1,8 +1,6 @@
 # Specifying a requirements.txt
 
-The simplest way to specify a `requirements.txt` is to create one in the directory where you're running the Aqueduct SDK. When Aqueduct detects that a `requirements.txt` is present, it will automatically use this file to determine the requirements.
-
-If neither `requirements.txt` file nor function specific requirements are specified, `MissingRequirementsError` exception would be raised.
+The simplest way to specify a `requirements.txt` is to create one in the directory where you're running the Aqueduct SDK. When Aqueduct detects that a `requirements.txt` is present, it will automatically use this file to determine the requirements. If neither `requirements.txt` file nor function specific requirements are specified, `MissingRequirementsError` will be raised.
 
 ## Using Function-Specific Requirements
 
