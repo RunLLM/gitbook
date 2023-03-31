@@ -8,7 +8,7 @@
 
 This is a short example of how to use Aqueduct to deploy a sentiment analysis model.
 
-**You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/sentiment_analysis/Sentiment%20Model.ipynb).**
+**You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/sentiment-analysis/Sentiment%20Model.ipynb).**
 
 Note: This example workflow uses HuggingFace's [Transformers](https://huggingface.co/docs/transformers/index) package, which uses large models. If you're running on a resource constrained machine, or if you're running on an M1 Mac using Rosetta, you will likely run out of memory for these models. We recommend using another example workflow if this is the case.
 
