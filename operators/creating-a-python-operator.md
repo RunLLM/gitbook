@@ -23,6 +23,12 @@ In order to create an operator with mutlitple outputs, you can specify the `num_
 
 ```python
 import aqueduct as aq
+from aqueduct import Client
+
+client = Client() 
+
+db = client.integration('aqueduct_demo')
+table = db.sql('SELECT * FROM customers;')
 
 @aq.op(num_outputs=2)
 def train_test_split(df):

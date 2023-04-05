@@ -43,7 +43,7 @@ To make it easy for you to get started and play around with Aqueduct, every Aque
     ```
 *   **customers**: Synthetic data capturing features about Aqueduct customers, including how many data scientists they have and whether or not they use dbt.
 
-    ```sql
+    ```python
     db = client.integration('aqueduct_demo')
     customers_data = db.sql(
         SELECT cust_id, n_workflows, n_rows, n_users, company_size, n_integrations, 

@@ -64,7 +64,7 @@ client = aqueduct.Client()
 
 The `aqueduct-ml` package includes the Python SDK. However, if you would like to install the SDK only on a client machine, the `aqueduct-sdk` package has a standalone installation of only the Python SDK:&#x20;
 
-```python
+```bash
 pip3 install aqueduct-sdk
 ```
 

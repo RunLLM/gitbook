@@ -5,14 +5,17 @@
 Here's how you can create a Metric:
 
 ```python
-from aqueduct import metric
+from aqueduct import Client, metric
+import pandas as pd
+
+client = Client() 
 
 db = client.integration('aqueduct_demo')
 customers = db.sql('SELECT * FROM customers;')
 
 @metric
 def avg_customer_workflows(customers: pd.DataFrame) -> float:
-    return customers['num_workflows'].mean() 
+    return customers['n_workflows'].mean() 
     
 avg_num_wflows = avg_customer_workflows(customers)
 avg_num_wflows.get()

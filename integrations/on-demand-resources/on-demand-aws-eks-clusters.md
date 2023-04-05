@@ -84,7 +84,7 @@ After the keepalive period is exceeded, Aqueduct uses Terraform to delete the cl
 
 The Aqueduct-managed EKS cluster has two node groups: a CPU node group which manages a pool of CPU instances, and a GPU node group which manages a pool of GPU instances. The cluster autoscaler adjusts the size of each node group based on the load. Note that as we move the feature out of beta, we will make the number of node groups configurable and support multiple node types within a node group. Currently, we allow customizing the following configuration parameters and provides sensible defaults:
 
-```python
+```
 variable "keepalive" {
   description = "How long (in seconds) does the cluster need to remain idle before it is deleted."
   default     = 1200 // 20 minutes
@@ -173,7 +173,7 @@ A: Unfortunately, AWS does not enable us to check if an AWS account has sufficie
 
 A: No. AWS doesn’t provide a managed policy that grants the permissions for creating EKS clusters, so you will need to create a policy yourself. To the best of our knowledge, the following actions need to be allowed against all resources:
 
-```python
+```
 ec2/AllocateAddress
 ec2/AssociateRouteTable
 ec2/AttachInternetGateway

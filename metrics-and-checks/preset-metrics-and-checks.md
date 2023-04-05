@@ -37,10 +37,18 @@ no results are published; if a check with `warning` severity fails, a warning
 will be raised, but the workflow will continue to execute. For example:
 
 ```python
+from aqueduct import Client
+import pandas as pd
+
+client = Client() 
+db = client.integration("aqueduct_demo")
+my_tbl = db.sql("Select * from customers")
+number_col = "n_workflows"
+
 mean_val = my_tbl.mean(number_col)
 
 # The workflow will fail if the mean of `number_col` is 0.
-mean_val.bound(not_equal=0, severity='error')
+mean_val.bound(notequal=0, severity='error')
 
 # The workflow will raise an error but finish executing if the mean of
 # `number_col` is > 100.

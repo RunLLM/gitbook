@@ -11,11 +11,17 @@ Parameters are identified by their name, and _must_ have default values. They ar
 Here's an example of how we can create an explicit parameter and feed it into a prediction function:
 
 ```python
+from aqueduct import op, Client
+import pandas as pd
+
+client = Client() 
+db = client.integration("aqueduct_demo")
+
 @op
-def predict_churn(reviews, pd.DataFrame, country: str):
+def predict_churn(reviews: pd.DataFrame, country: str):
     ...
 
-reviews = db.sql("Select * from customer_reviews")
+reviews = db.sql("Select * from customers")
 country_param = client.create_param("country", default="Venezuela") 
 churn = predict_churn(reviews, country_param)
 
@@ -46,7 +52,12 @@ However, you can also publish parameterized flows, and trigger new runs of that 
 ```python
 churn = predict_churn(reviews, country_param)
 flow = client.publish_flow("Churn Prediction", artifacts=[churn])
+
 ...
+
+import time
+# Sleep for 10 seconds to wait for flow to finish.
+time.sleep(10)
 
 # This will trigger a new run of the already published flow "Churn Prediction",
 # but with the country parameter value set to "China".

@@ -15,13 +15,13 @@ import aqueduct as aq
 import pandas as pd
 from aqueduct import Client, op
 
-client = Client("<API_KEY>", "<SERVER_ADDRESS>")
+client = Client()
 
 @op
 def predict_churn(df):
     ...
 
-input_df: pd.DataFrame = ...
+input_df: pd.DataFrame = predict_churn(pd.DataFrame([]))
 
 # In the default eager execution mode, we immediately compute the churn artifact.
 # If there was a bug in `predict_churn()`, we would find out here.

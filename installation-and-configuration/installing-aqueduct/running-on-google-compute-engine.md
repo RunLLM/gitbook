@@ -52,13 +52,13 @@ pip3 install aqueduct-ml
 
 Confirm that you have access to the Aqueduct CLI by running:
 
-```
+```bash
 which aqueduct
 ```
 
 If you don't have access to the Aqueduct CLI, you will need to check where the Aqueduct server is installed. By default, it is installed in `$HOME/.local/bin`, which will need to be added to your `PATH` variable. If necessary, add the following line to your `.bashrc` file:&#x20;
 
-```
+```bash
 export PATH=$PATH:$HOME/.local/bin
 ```
 

@@ -24,7 +24,7 @@ Once you've installed the requisite drivers, you can connect integrations from t
 
 By default, the Aqueduct server is only accessible from the machine it's running on. If you would like to access Aqueduct from outside that machine (e.g., if you're running on an EC2 server and want to access Aqueduct from your laptop), you must include the `--expose` flag when running your server:
 
-```
+```bash
 aqueduct start --expose
 ```
 
@@ -69,7 +69,7 @@ By default, Aqueduct collects **fully anonymized** usage statistics. We capture 
 
 If you would like to start Aqueduct with this collection disabled, you can run:
 
-```
+```bash
 aqueduct start --disable-usage-stats 
 ```
 

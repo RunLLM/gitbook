@@ -16,22 +16,22 @@ To deploy Aqueduct on a Kubernetes cluster, you can use the Helm chart we've cre
 
 1.  Add the repository to your local Helm manager.
 
-    ```
+    ```bash
     helm repo add aqueduct https://aqueducthq.github.io/aqueduct-helm/
     ```
 2.  Sync versions available in the repo to your local Helm cache.
 
-    ```
+    ```bash
     helm repo update
     ```
 3.  Search for the latest stable versions of the charts found.
 
-    ```
+    ```bash
     helm search repo aqueduct
     ```
 4.  Install the Helm chart.
 
-    ```
+    ```bash
     helm install aqueduct/aqueduct --generate-name
     ```
 
@@ -39,7 +39,7 @@ To deploy Aqueduct on a Kubernetes cluster, you can use the Helm chart we've cre
 
 The installation command above deploys the latest version of Aqueduct in the default namespace with a Helm-generated release name. **By default, the server runs with Python 3.8.** You can customize all of these by running the following:
 
-```
+```bash
 helm install \
     <RELEASE_NAME> aqueduct/aqueduct \
     --namespace <NAMESPACE> \ 
@@ -60,13 +60,13 @@ helm install \
 
 After the installation, you can get the server endpoint by running the following:
 
-```
+```bash
 export SERVICE_IP=$(kubectl get svc <RELEASE_NAME> --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}" -n <NAMESPACE>)
 echo http://$SERVICE_IP:8080
 ```
 
 To access your API key, you will need to first get the name of the pod running the Aqueduct server and inspect its logs. The API key is printed in the logs of the Aqueduct pod:
 
-```
+```bash
 kubectl logs <AQUEDUCT_POD_NAME> -n <NAMESPACE> | grep "API Key"
 ```
