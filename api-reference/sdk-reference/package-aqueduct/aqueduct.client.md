@@ -132,7 +132,10 @@ Github account to your Aqueduct account.
 ```python
 def create_param(name: str,
                  default: Any,
-                 description: str = "") -> BaseArtifact
+                 description: str = "",
+                 use_local: bool = False,
+                 as_type: Optional[ArtifactType] = None,
+                 format: Optional[str] = None) -> BaseArtifact
 ```
 
 Creates a parameter artifact that can be fed into other operators.
@@ -145,10 +148,17 @@ Parameter values are configurable at runtime.
   The name to assign this parameter.
   default:
   The default value to give this parameter, if no value is provided.
-  Every parameter must have a default.
+  Every parameter must have a default. If we decide to use local data,
+  a path to the local data file must be specified.
   description:
   A description of what this parameter represents.
-  
+  use_local:
+  Whether this parameter uses local data source or not.
+  as_type:
+  The expected type of the local data. Only supported types are ArtifactType.TABLE and ArtifactType.IMAGE.
+  format:
+  If local data type is ArtifactType.TABLE, the user has to specify the table format.
+  We currently support "json", "csv", and "parquet".
 
 **Returns**:
 
@@ -296,7 +306,8 @@ def publish_flow(name: str,
                  checks: Optional[List[BoolArtifact]] = None,
                  k_latest_runs: Optional[int] = None,
                  source_flow: Optional[Union[Flow, str, uuid.UUID]] = None,
-                 run_now: Optional[bool] = None) -> Flow
+                 run_now: Optional[bool] = None,
+                 use_local: Optional[bool] = False) -> Flow
 ```
 
 Uploads and kicks off the given flow in the system.
@@ -346,6 +357,8 @@ execution engine the flow will be running on, use "config" parameter. Eg:
   run_now:
   Used to specify if the flow should run immediately at publish time. The default
   behavior is 'True'.
+  use_local:
+  Must be set if any artifact in the flow is derived from local data.
   
 
 **Raises**:
