@@ -4,7 +4,7 @@ description: Run your ML pipelines on Kubernetes.
 
 # Kubernetes
 
-{% embed url="https://youtu.be/2jX4O5aiTjA" %}
+{% embed url="https://www.youtube.com/watch?v=2SUGEIfN-7w" %}
 
 If you don't already have a Kubernetes cluster running, please see:&#x20;
 
