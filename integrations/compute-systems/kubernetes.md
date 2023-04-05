@@ -4,6 +4,8 @@ description: Run your ML pipelines on Kubernetes.
 
 # Kubernetes
 
+{% embed url="https://youtu.be/2jX4O5aiTjA" %}
+
 If you don't already have a Kubernetes cluster running, please see:&#x20;
 
 * Aqueduct's support for [on-demand-aws-eks-clusters.md](on-demand-resources/on-demand-aws-eks-clusters.md "mention")

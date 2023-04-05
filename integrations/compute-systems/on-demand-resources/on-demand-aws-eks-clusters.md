@@ -14,7 +14,7 @@ The on-demand Kubernetes compute engine allows you to run workflows on an autosc
 
 On the UI’s “Integrations” page, under the “Cloud” section, click “AWS” and input your AWS credentials. This can be done via either entering the access keys or specifying the path to your AWS credentials file on your Aqueduct server.
 
-<figure><img src="../../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
 You can also complete the registration step via the SDK as follows:
 
