@@ -11,19 +11,19 @@ A workflow's schedule can either be set from the Python SDK when calling `publis
 The Aqueduct SDK exposes four helper functions `hourly`, `daily`, `weekly`, and `monthly`, which each allow you to create a schedule of the corresponding frequency. The resulting schedule can be passed into the `schedule` argument of the `publish_flow` call.
 
 ```python
-import hourly, daily, weekly, monthly, DayOfWeek from aqueduct
+from aqueduct import hourly, daily, weekly, monthly, Minute, Hour, DayOfWeek, DayOfMonth
 
 # Execute at the 10th minute of every hour
-hourly_schedule = hourly(minute=10) 
+hourly_schedule = hourly(minute=Minute(10)) 
 
 # Execute at 16:00 (or 4:00pm) every day.
-daily_schedule = daily(hour=16, minute=0)
+daily_schedule = daily(hour=Hour(16), minute=Minute(0))
 
 # Execute at 08:00 (or 8:00am) every Monday.
-weekly_schedule = weekly(day=DayOfWeek.Monday, hour=8, minute=0)
+weekly_schedule = weekly(day=DayOfWeek.MONDAY, hour=Hour(8), minute=Minute(0))
 
 # Execute at 11:30 (or 11:30am) on the 3rd day of every month.
-monthly_schedule = monthly(day=3, hour=11, minute=30)
+monthly_schedule = monthly(day=DayOfMonth(3), hour=Hour(11), minute=Minute(30))
 ```
 
 ### Aqueduct UI

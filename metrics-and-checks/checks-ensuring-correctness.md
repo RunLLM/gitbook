@@ -3,14 +3,17 @@
 **Checks** are correctness constraints on a workflow. A Check is a function that accepts a combination of TableArtifacts and Metrics and returns a boolean value indicating whether the workflow is correct or not.
 
 ```python
-from aqueduct import check, CheckSeverity
+from aqueduct import Client, check, CheckSeverity
+import pandas as pd
 
-db = client.integration('aqueduct_demo')
+client = Client() 
+
+db = client.integration("aqueduct_demo")
 customers = db.sql('SELECT * FROM customers;')
 
 @check(severity=CheckSeverity.ERROR)
 def non_negative_workflows(customers: pd.DataFrame) -> bool:
-    return (customers['num_workflows'] > 0).all()
+    return (customers['n_workflows'] > 0).all()
     
 check_non_neg_wflows = non_negative_workflows(customers)
 check_non_neg_wflows.get()

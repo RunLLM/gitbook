@@ -21,6 +21,8 @@ In the snippet above, we've done two things -- first, we've loaded a connection 
 Once we have some data, now we can start transforming it. Here, we're going to do something really simple -- we'll take the total acidity of each wine (`volatile_acidity` and `fixed_acidity`) and then we'll calculate the average acidity for each `color` of wine. (If this is a _faux pas_ for wine enthusiasts, forgive us -- we're just trying to make up fun examples with interesting data).
 
 ```python
+import pandas as pd
+
 @aq.op
 def get_average_acidity(wine_data: pd.DataFrame) -> pd.DataFrame:
     wine_data['acidity'] = wine_data['fixed_acidity'] + wine_data['volatile_acidity']
@@ -30,6 +32,13 @@ def get_average_acidity(wine_data: pd.DataFrame) -> pd.DataFrame:
 All of the code we've written here is simple Pandas code. The only change we've made is that we've added the `@op` decorator from the Aqueduct SDK. This tells Aqueduct that when we call the function, as below, to execute it as a part of the workflow that we're currently defining.
 
 ```python
+from aqueduct import Client
+
+client = Client() 
+
+db = client.integration('aqueduct_demo')
+wine_data = db.sql('SELECT * FROM wine;')
+
 acidity_by_group = get_average_acidity(wine_data)
 ```
 

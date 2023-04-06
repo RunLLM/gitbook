@@ -20,6 +20,7 @@ If you just want to get your code running in Aqueduct, things should be pretty s
 
 ```python
 from aqueduct import Client, op
+
 client = Client()
 
 @op
@@ -29,6 +30,7 @@ def make_predictions():
     # Next, we'll featurize it.
     # Finally, we'll load our model and make some predictions.
     # And write those predictions to our database.
+    ...
 ```
 
 Once we've done, that all we need to do is invoke this function and publish the results as an Aqueduct workflow:
@@ -52,6 +54,8 @@ Once we have our integrations connected, we can get a handle to that integration
 
 ```python
 from aqueduct import Client, op
+import pandas as pd
+
 client = Client()
 
 db = client.integration('aqueduct_demo') 
@@ -72,13 +76,14 @@ def make_predictions(input_data):
     # Clean my data up.
     # Next, we'll featurize it.
     # Finally, we'll load our model and make some predictions.
+    predictions = pd.DataFrame([])
     return predictions
 ```
 
 Now, Aqueduct knows where the input data comes from (the SQL query above) as well as what the output data looks like (the `predictions` data returned from `make_predictions`). To save that data to our database, we can call `.save`:
 
 ```python
-predictions = make_predictions()
+predictions = make_predictions(input_data)
 db.save(predictions, table_name="my_predictions", update_mode="replace")
 ```
 
@@ -103,17 +108,20 @@ input_data = db.sql('SELECT * FROM wine;')
 
 @op
 def clean_data(input_data):
-    # First, clean our data.
+    # First, clean our data.    
+    cleaned_data = pd.DataFrame([])
     return cleaned_data
     
 @op 
 def featurize_data(cleaned_data):
     # Next, featurize our data.
+    features = pd.DataFrame([])
     return features
     
 @op
 def predict(features):
     # Finally, load our model and make some predictions.
+    predictions = pd.DataFrame([])
     return predictions
 ```
 

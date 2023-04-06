@@ -5,10 +5,15 @@ Editing a workflow is very similar to [creating-a-workflow.md](creating-a-workfl
 Let's say for example that we wanted to update the workflow we created in the [creating-a-workflow.md](creating-a-workflow.md "mention") guide. We decided we didn't care about `fixed_acidity` anymore but only want to consider the `volatile_acidity`. We could run the following code snippet to define the updated workflow and publish it:
 
 ```python
+import aqueduct as aq
+import pandas as pd
+
+client = aq.Client()
+
 db = client.integration('aqueduct_demo')
 wine_data = db.sql('SELECT * FROM wine;')
 
-@op
+@aq.op
 def get_average_acidity(wine_data: pd.DataFrame) -> pd.DataFrame:
     return wine_data.groupby('color').mean('volatile_acidity')
     
@@ -17,7 +22,7 @@ db.save(acidity_by_group, table_name="acidity_by_group", update_mode="replace")
 
 flow = client.publish_flow(name='average_acidity', 
                            artifacts=[acidity_by_group],
-                           schedule=aqueduct.hourly())
+                           schedule=aq.hourly())
 print(flow.id())
 ```
 

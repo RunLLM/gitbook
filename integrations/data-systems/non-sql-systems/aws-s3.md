@@ -10,7 +10,7 @@ You will need the following information:
 
 * **Name**: A unique name for your connection. This is totally up to you!
 * **Bucket**: The name of the S3 Bucket you're connecting to.
-*
+
 * **AWS Credentials**: Aqueduct supports multiple forms of authentication for AWS services.
   * **Enter Access Keys**: You can enter your AWS Access Key ID, Secret Access Key, and AWS Region directly into the Aqueduct UI.
   * **Path to Credentials**: If your AWS credentials are on the same machine as the Aqueduct server, you can specify the path to a file with the AWS credentials. **This is the preferred connection method if you use AWS SSO.**

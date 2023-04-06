@@ -32,7 +32,7 @@ import aqueduct as aq
 client = aq.Client()
 
 db = client.integration('aqueduct_demo')
-wines = db.sql('SELECT * FROM wines;')
+wines = db.sql('SELECT * FROM wine;')
 
 db.save(wines, 'wines_2', 'replace')
 ```

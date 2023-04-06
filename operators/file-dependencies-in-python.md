@@ -5,7 +5,6 @@ Python functions are not often completely isolated, especially in data science. 
 Aqueduct allows you to specify this context as a part of your function by passing in a `file_dependencies` argument when annotating your Python function with `@op`:
 
 ```python
-import scikit
 import cloudpickle as cp
 import pandas as pd
 from aqueduct import op
