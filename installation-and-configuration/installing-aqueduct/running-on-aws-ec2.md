@@ -93,7 +93,7 @@ Once you've set up the Aqueduct server, we have to ensure that Aqueduct is exter
 2.  From the EC2 console, navigate to the list of instances you've created: \
     &#x20;
 
-    <figure><img src="../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (3) (3).png" alt=""><figcaption></figcaption></figure>
 3.  Select the instance that you're running Aqueduct on from your list of instances, and select the security tab on the bottom pane: \
 
 
