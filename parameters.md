@@ -37,6 +37,31 @@ churn = predict_churn(reviews, "Venezuela")
 We currently disallow implicit parameter creation if an explicit parameter with the same name already exists.
 {% endhint %}
 
+To create a parameter from local data, pass in the path to data as `default` and set `use_local` to `True`. You will also need to provide the expected Artifact type of the local data and optional format of the table if the local data is a table Artifact. We currently support "CSV", "JSON", and "Parquet" table format. 
+
+Here's an example of how we can create a local data parameter that has the content of a csv data from a local file:
+
+```python
+from aqueduct.constants.enums import ArtifactType
+local_data = client.create_param(
+                    name ="table_data", 
+                    default="path/to/data.csv",
+                    use_local=True,
+                    as_type=ArtifactType.TABLE,
+                    format="csv",
+                    ) 
+```
+
+To publish a workflow that depends on any local data parameter:
+
+```python
+client.publish_flow(
+                    name = "local_data_workflow",
+                    artifacts = [local_data, ...],
+                    use_local = True,
+                    ) 
+```
+
 ## Customizing Parameters
 
 As shown in the examples above, you can immediately materialize artifacts locally with different parameters using `.get(parameters={...})`. This allows you to play around with and observe the effects of different parameters in your local environment.
