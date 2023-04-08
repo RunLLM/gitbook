@@ -48,15 +48,17 @@ From talking to the sales team, we know that they expect that 20% of customers a
 from aqueduct import check, metric, CheckSeverity
 
 # Create your churn workflow here.
+churn_table = pd.read_csv(
+    "https://raw.githubusercontent.com/aqueducthq/aqueduct/main/examples/churn_prediction/data/churn_data.csv"
+)
 
 @metric
 def calc_churn_ratio(churn_table: pd.DataFrame) -> float:
-    # A customer is "at risk" if their churn likelihood is > 50%.
-    churn_table['pred_churn'] = churn_table['prob_churn'] > .5
-    return churn_table['pred_churn'].mean()
+    # Calculate the average churn.
+    return churn_table['churn'].mean()
     
 at_risk_ratio = calc_churn_ratio(churn_table)
-at_risk_ratio.bound(upper=.25, severity=CheckSeverity.ERROR)
+at_risk_ratio.bound(upper=.25, severity=CheckSeverity.WARNING)
 ```
 
-The `.bound()` call on the last line creates a Check for us that guarantees that if `at_risk_ratio` exceeds 25%, we will see an error.
+The `.bound()` call on the last line creates a Check for us that guarantees that if `at_risk_ratio` exceeds 25%, we will see a warning.

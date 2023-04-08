@@ -47,11 +47,28 @@ The source workflow can be set when publishing a workflow from the SDK. The comp
 The `source_flow` argument in the following code snippet allows you to set the source workflow:
 
 ```python
-workflow_a = client.flow('8fb25dc4-62ed-44a3-872d-c3ff988c8dd3')
+from aqueduct import Client
+
+client = Client()
+
+demo_db = client.integration("aqueduct_demo")
+reviews_table = demo_db.sql("select * from hotel_reviews;")
+
+demo_db.save(reviews_table, table_name="reviews_table_2", update_mode="replace")
+
+source_flow = client.publish_flow(name="hotel_reviews", artifacts=[reviews_table]).id()  # Or set your workflow ID here.
+
+# Wait for workflow to be created.
+import time
+time.sleep(10)
 
 # source_flow can be a Flow object, workflow name, or workflow ID
-flow = client.publish_flow(name='workflow_b', 
-                           artifacts=[data],
+
+letters = string.ascii_lowercase
+workflow_b = ''.join(random.choice(letters) for i in range(10))
+
+flow = client.publish_flow(name=workflow_b, 
+                           artifacts=[reviews_table],
                            source_flow=source_flow)
 ```
 
@@ -68,8 +85,8 @@ Workflows can always be manually triggered (both from the UI and SDK), whether o
 From the SDK, you can use the `trigger` method on the Aqueduct Client and pass in the workflow's UUID to trigger a workflow:
 
 ```python
-workflow_id = "0c007eff-6ae0-4a1a-a114-5f16164ffcdf" # Set your workflow ID here.
-client.trigger(id=workflow_id)
+workflow_id = source_flow # Set your workflow ID here.
+client.trigger(flow_id=workflow_id)
 ```
 
 The workflow's ID is printed out when the workflow is created and can also be found in the URL For the workflows page. **NOTE**: We will soon be adding the workflow ID to the settings tab of the UI.

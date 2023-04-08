@@ -5,6 +5,7 @@ Aqueduct works in any Python environment — Jupyter notebooks, Python scripts, 
 Within your Python environment, you can use Aqueduct's `global_config` to determine how Aqueduct executes the functions that you define. To set the global config, simply run:&#x20;
 
 ```python
+import aqueduct
 aqueduct.global_config({ "key": "value" })
 ```
 

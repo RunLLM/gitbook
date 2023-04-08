@@ -74,21 +74,24 @@ Types are also enforced on parameters. You cannot set a new value that is of a d
 
 ## Parameters in SQL Queries
 
-SQL queries are parameterized in a special way, using this double-bracket syntax:
+The SQL query parametrization scheme uses `$1`, `$2`, etc. as parameter placeholders. This allows a parameter to be reused multiple times within the same query and is similar to how traditional RDBMS interfaces work.
 
 ```python
 # A parameter used in a SQL query *must* be a string type.
-_ = client.create_param("country", default="Venezuela")
+table_name_param = client.create_param("table_name", default="hotel_reviews")
+
+# A parameter used in a SQL query *must* be a string type.
+country = client.create_param("country", default="Venezuela")
 
 # The value of `country_param` is interpolated into the double-bracketed placeholder.
 db = client.integration("aqueduct_demo")
-output_table = db.sql("select * from locations where country_name='{{country}}'")
+table_artifact = db.sql(query="select * from $1", parameters=[table_name_param])
 
-# This returns the result of `select * from locations where country_name='Venezuela';`
-output_table.get()
+# This returns the result of `select * from hotel_reviews;`
+table_artifact.get()
 
-# This returns the result of `select * from locations where country_name='Argentina';`
-output_table.get(parameters={"country": "Argentina"})
+# This returns the result of `select * from tips;`
+table_artifact.get(parameters={"table_name": "tips"})
 ```
 
 {% hint style="info" %}

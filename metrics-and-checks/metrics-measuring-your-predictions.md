@@ -37,9 +37,21 @@ Aqueduct currently supports two system metrics:
 Here's an example that creates a system metric:
 
 ```python
-artifact = my_fn(some_data)
+from aqueduct import op, Client
+import pandas as pd
 
-# This measures the amount of time `my_fn` took to compute `artifact`.
-runtime = artifact.system_metric('runtime')
+client = Client() 
+db = client.integration("aqueduct_demo")
+
+@op
+def predict_churn(reviews: pd.DataFrame, country: str):
+    ...
+
+reviews = db.sql("Select * from customers")
+country_param = client.create_param("country", default="Venezuela") 
+churn = predict_churn(reviews, country_param)
+
+# This measures the amount of time `predict_churn` took to compute `churn`.
+runtime = churn.system_metric('runtime')
 ```
 
