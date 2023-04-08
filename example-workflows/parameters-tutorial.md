@@ -9,7 +9,7 @@
 
 This is a quick tutorial that will demonstrate how workflows can be parameterized with Aqeuduct.
 
-**You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/parameterization/Using%20Parameters.ipynb).**
+**You can find and download this notebook on GitHub [here](https://github.com/aqueducthq/aqueduct/blob/main/examples/tutorials/Parameters%20Tutorial.ipynb).**
 
 **Throughout this notebook, you'll see a decorator (`@aq.op`) above functions. This decorator allows Aqueduct to run your functions as a part of a workflow automatically.**
 

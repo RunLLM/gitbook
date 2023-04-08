@@ -40,7 +40,7 @@ You can update the Aqueduct artifact store in two ways:&#x20;
 
 1. From the command line, you can set the server to use a particular cloud bucket as the artifact store:\
    `aqueduct storage --use s3 --path / --region us-east-2 —credentials $HOME/.aws/credentials`\
-   ``For more details see the [aqueduct-cli.md](../api-reference/aqueduct-cli.md "mention") reference.
+   For more details see the [aqueduct-cli.md](../api-reference/aqueduct-cli.md "mention") reference.
 2. From the UI, you can connect an AWS S3 or GCS integration. When creating the integration, you'll have the option to use this integration for artifact storage by checking this box:&#x20;
 
 <figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
