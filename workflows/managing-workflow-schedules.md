@@ -62,14 +62,8 @@ source_flow = client.publish_flow(name="hotel_reviews", artifacts=[reviews_table
 import time
 time.sleep(10)
 
-import string
-import random
-
-letters = string.ascii_lowercase
-workflow_b = ''.join(random.choice(letters) for i in range(10))
-
 # source_flow can be a Flow object, workflow name, or workflow ID
-flow = client.publish_flow(name=workflow_b, 
+flow = client.publish_flow(name="workflow_b", 
                            artifacts=[reviews_table],
                            source_flow=source_flow)
 ```
