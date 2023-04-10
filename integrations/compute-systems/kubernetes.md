@@ -85,10 +85,10 @@ Aqueduct currently will only trigger the execution of your function if the appro
 
 The `resources` map supports 4 keys:
 
-* `num_cpus`: specifies the number vCPUs that will be made available to your function.&#x20;
-* `memory`: specifies how much RAM will be made available to your function.
-* `gpu_resource_name`: specifies the name of the custom resource type that signifies that your Kubernetes cluster uses to signify GPU resources.&#x20;
-* `cuda_version`: the specific version of CUDA that should be installed in your container; this is only valid if you have specified `gpu_resource_name` — the default value is `11.4.1`.&#x20;
+* `num_cpus`: specifies the number vCPUs that will be made available to your function - the default value is 2.
+* `memory`: specifies how much RAM will be made available to your function - the default value is 4GB.
+* `gpu_resource_name`: specifies the name of the custom resource type that signifies that your Kubernetes cluster uses to signify GPU resources.
+* `cuda_version`: the specific version of CUDA that should be installed in your container; this is only valid if you have specified `gpu_resource_name` — the default value is `11.4.1`.
 
 {% hint style="info" %}
 Note that Aqueduct currently only supports Nvidia GPUs. Containers will automatically have CUDA 11.4.1 installed unless otherwise specified.

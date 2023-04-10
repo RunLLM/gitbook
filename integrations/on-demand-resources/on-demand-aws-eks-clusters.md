@@ -216,12 +216,17 @@ ec2/RevokeSecurityGroupEgress
 ec2/RevokeSecurityGroupIngress
 ec2/ModifySubnetAttribute
 ec2/ModifyVpcAttribute
+eks:CreateAddon
 eks/CreateCluster
 eks/CreateNodegroup
 eks/DescribeCluster
 eks/DescribeNodegroup
+eks:DescribeAddon
+eks:DescribeAddonVersions
 eks/DeleteCluster
 eks/DeleteNodegroup
+eks:DeleteAddon
+eks:ListAddons
 iam/AttachRolePolicy
 iam/CreateOpenIDConnectProvider
 iam/CreatePolicy
