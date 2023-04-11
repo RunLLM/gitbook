@@ -37,7 +37,7 @@ churn = predict_churn(reviews, "Venezuela")
 We currently disallow implicit parameter creation if an explicit parameter with the same name already exists.
 {% endhint %}
 
-To create a parameter from local data, pass in the path to data as `default` and set `use_local` to `True`. You will also need to provide the expected Artifact type of the local data and optional format of the table if the local data is a table Artifact. We currently support "CSV", "JSON", and "Parquet" table format. 
+To create a parameter from local data, pass in the path to data as `default` and set `use_local` to `True`. You will also need to provide the expected Artifact type of the local data.
 
 Here's an example of how we can create a local data parameter that has the content of a csv data from a local file:
 
@@ -51,6 +51,8 @@ local_data = client.create_param(
                     format="csv",
                     ) 
 ```
+
+Note that, we need to specify the `format` of the table if we want to create a Table Artifact Parameter.
 
 To publish a workflow that depends on any local data parameter:
 
