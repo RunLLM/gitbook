@@ -2,11 +2,11 @@
 
 This page provide a detailed walkthrough of the Aqueduct CLI.&#x20;
 
-* [`start`](aqueduct-cli.md#undefined)
+* [`start`](aqueduct-cli.md#start)
 * [`version`](aqueduct-cli.md#version)
 * [`install`](aqueduct-cli.md#install)
 * [`apikey`](aqueduct-cli.md#apikey)
-* [`clear`](aqueduct-cli.md#undefined)
+* [`clear`](aqueduct-cli.md#clear)
 
 #### start
 
