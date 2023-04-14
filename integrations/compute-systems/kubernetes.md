@@ -13,7 +13,7 @@ If you don't already have a Kubernetes cluster running, please see:&#x20;
 * Creating a cluster on [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-zonal-cluster)
 
 If your operator requires large Python packages such as `torch` and `transformers`, we recommend
-allocating at least 32 GB of disk space to your Kubernetes node.
+allocating at least 32 GB of disk space to the servers on your Kubernetes cluster.
 
 ## Connecting to Kubernetes
 
