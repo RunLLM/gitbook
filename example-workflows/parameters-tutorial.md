@@ -857,3 +857,154 @@ filtered.get().head(10)
 </table>
 </div>
 
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
+---
+### Local Data Parameters
+
+You can also create a parameter to seamlessly pass in local data to your flow. In the following example, we pass in a local CSV file that the flow can consume as a table artifact.
+
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
+```python
+from aqueduct.constants.enums import ArtifactType
+data_param = client.create_param(name="data_param",
+                                 default ="./data/hotel_review.csv",
+                                 use_local=True,
+                                 as_type=ArtifactType.TABLE,
+                                 format="csv")
+                          
+data_param.get()
+```
+**Output**
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hotel_name</th>
+      <th>review_date</th>
+      <th>reviewer_nationality</th>
+      <th>review</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>H10 Itaca</td>
+      <td>2017-08-03</td>
+      <td>Australia</td>
+      <td>Damaged bathroom shower screen sealant and ti...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>De Vere Devonport House</td>
+      <td>2016-03-28</td>
+      <td>United Kingdom</td>
+      <td>No Negative The location and the hotel was ver...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ramada Plaza Milano</td>
+      <td>2016-05-15</td>
+      <td>Kosovo</td>
+      <td>No Negative Im a frequent traveler i visited m...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Aloft London Excel</td>
+      <td>2016-11-05</td>
+      <td>Canada</td>
+      <td>Only tepid water for morning shower They said ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>The Student Hotel Amsterdam City</td>
+      <td>2016-07-31</td>
+      <td>Australia</td>
+      <td>No Negative The hotel had free gym table tenni...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>The Chesterfield Mayfair</td>
+      <td>2015-08-25</td>
+      <td>Denmark</td>
+      <td>Bad Reading light And light in bathNo Positive</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Hotel V Nesplein</td>
+      <td>2015-08-27</td>
+      <td>Turkey</td>
+      <td>Nothing except the construction going on the s...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>Le Parisis Paris Tour Eiffel</td>
+      <td>2015-10-20</td>
+      <td>Australia</td>
+      <td>When we arrived we had to bring our own baggag...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>NH Amsterdam Museum Quarter</td>
+      <td>2016-01-26</td>
+      <td>Belgium</td>
+      <td>No stairs even to go the first floor Restaura...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Barcel Raval</td>
+      <td>2017-07-07</td>
+      <td>United Kingdom</td>
+      <td>Air conditioning a little zealous Nice atmosp...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 4 columns</p>
+</div>
+
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
+```python
+local_data_output = strip_whitespace_from_nationality(data_param)
+```
+
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
+If you decide to publish a flow that refers to local data, you must set `use_local` to `True` in `publish_flow`.
+
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
+```python
+flow = client.publish_flow("Local Data Parameter Example", artifacts=[local_data_output], use_local=True)
+```
+
