@@ -26,6 +26,7 @@ Class for Salesforce integration.
 #### search
 
 ```python
+@validate_is_connected()
 def search(search_query: str,
            name: Optional[str] = None,
            output: Optional[str] = None,
@@ -55,6 +56,7 @@ Runs a search against the Salesforce integration.
 #### query
 
 ```python
+@validate_is_connected()
 def query(query: str,
           name: Optional[str] = None,
           output: Optional[str] = None,
@@ -84,6 +86,7 @@ Runs a query against the Salesforce integration.
 #### save
 
 ```python
+@validate_is_connected()
 def save(artifact: BaseArtifact, object: str) -> None
 ```
 

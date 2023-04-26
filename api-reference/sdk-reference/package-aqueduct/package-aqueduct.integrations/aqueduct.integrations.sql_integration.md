@@ -27,6 +27,7 @@ Class for Relational integrations.
 #### list\_tables
 
 ```python
+@validate_is_connected()
 def list_tables() -> pd.DataFrame
 ```
 
@@ -41,10 +42,11 @@ Lists the tables available in the RelationalDB integration.
 #### table
 
 ```python
+@validate_is_connected()
 def table(name: str) -> pd.DataFrame
 ```
 
-Retrieves a table from a RealtionalDB integration.
+Retrieves a table from a RelationalDB integration.
 
 **Arguments**:
 
@@ -61,6 +63,7 @@ Retrieves a table from a RealtionalDB integration.
 #### sql
 
 ```python
+@validate_is_connected()
 def sql(query: Union[str, List[str], RelationalDBExtractParams],
         name: Optional[str] = None,
         output: Optional[str] = None,
@@ -106,6 +109,7 @@ Runs a SQL query against the RelationalDB integration.
 #### save
 
 ```python
+@validate_is_connected()
 def save(artifact: BaseArtifact, table_name: str,
          update_mode: LoadUpdateMode) -> None
 ```

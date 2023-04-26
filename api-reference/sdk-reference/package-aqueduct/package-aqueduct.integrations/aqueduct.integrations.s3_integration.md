@@ -25,6 +25,7 @@ Class for S3 integration.
 #### file
 
 ```python
+@validate_is_connected()
 def file(filepaths: Union[List[str], str],
          artifact_type: ArtifactType,
          format: Optional[str] = None,
@@ -80,6 +81,7 @@ Reads one or more files from the S3 integration.
 #### save
 
 ```python
+@validate_is_connected()
 def save(artifact: BaseArtifact,
          filepath: str,
          format: Optional[str] = None) -> None
