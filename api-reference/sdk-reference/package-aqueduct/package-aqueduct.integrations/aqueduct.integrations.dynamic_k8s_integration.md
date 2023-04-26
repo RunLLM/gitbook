@@ -27,6 +27,7 @@ Class for Dynamic K8s integration.
 #### status
 
 ```python
+@validate_is_connected()
 def status() -> str
 ```
 
@@ -37,6 +38,7 @@ Get the current status of the dynamic Kubernetes cluster.
 #### create
 
 ```python
+@validate_is_connected()
 def create(
     config_delta: Union[Dict[str, Union[int, str]], DynamicK8sConfig] = {}
 ) -> None
@@ -64,6 +66,7 @@ Creates the dynamic Kubernetes cluster, if it is not currently running.
 #### update
 
 ```python
+@validate_is_connected()
 def update(
         config_delta: Union[Dict[str, Union[int, str]],
                             DynamicK8sConfig]) -> None
@@ -92,6 +95,7 @@ Active status.
 #### delete
 
 ```python
+@validate_is_connected()
 def delete(force: bool = False) -> None
 ```
 

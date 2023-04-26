@@ -25,6 +25,7 @@ Class for Google Sheets integration.
 #### spreadsheet
 
 ```python
+@validate_is_connected()
 def spreadsheet(spreadsheet_id: str,
                 name: Optional[str] = None,
                 output: Optional[str] = None,
@@ -55,6 +56,7 @@ Retrieves a spreadsheet from the Google Sheets integration.
 #### save
 
 ```python
+@validate_is_connected()
 def save(
         artifact: BaseArtifact,
         filepath: str,
