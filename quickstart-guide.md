@@ -4,7 +4,9 @@ description: Get your first Aqueduct workflow running
 
 # Quickstart Guide
 
-If you get stuck anywhere here, please let us know on our [Slack community](https://slack.aqueducthq.com) or [via email](mailto:hello@aqueducthq.com).
+If you get stuck anywhere here, please let us know on our [Slack community](https://slack.aqueducthq.com) or [via email](mailto:hello@aqueducthq.com).&#x20;
+
+{% embed url="https://www.youtube.com/watch?v=GIIgpv2C7yQ" %}
 
 ### Installation and Setup
 

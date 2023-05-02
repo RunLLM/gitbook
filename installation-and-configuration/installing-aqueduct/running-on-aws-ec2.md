@@ -22,8 +22,8 @@ Aqueduct doesn't currently run on Windows or Windows Server.
 
 To begin, you will need to create an AWS EC2 VM from the AWS Console. You can follow the steps specified by the launch wizard, and you can also find the full AWS documentation for creating an EC2 instance [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html).
 
-* **Operating system:** We recommend running Aqueduct on Ubuntu, but Aqueduct is configured to support all debian and CentOS-based installations, including Amazon Linux.&#x20;
-* **Resources**: We recommend running Aqeuduct on a server with at least 2 vCPUs and 4GB of RAM. If you plan to run workflows on Aqueduct without using an external compute system (e.g., Kubernetes, Databricks), you will need to allocate enough RAM to fit your datasets in memory.&#x20;
+* **Operating system:** We recommend running Aqueduct on Ubuntu, but Aqueduct is configured to support all debian and CentOS-based installations, including Amazon Linux.
+* **Resources**: We recommend running Aqeuduct on a server with at least 2 vCPUs and 4GB of RAM. If you plan to run workflows on Aqueduct without using an external compute system (e.g., Kubernetes, Databricks), you will need to allocate enough RAM to fit your datasets in memory.
 * **Python version:** Aqueduct supports Python 3.7-3.10. See below for more on ensuring that you have the right Python version installed. If you need to run Aqueduct with multiple Python versions see our guide on using Aqueduct with [Conda](../../integrations/compute-systems/conda.md).
 
 ### Verify your Python version
@@ -39,10 +39,10 @@ Here are some guides that provide instructions on updating Python installations 
 For other operating systems, you should be able to find a guide by searching for "install python 3.10 \<operating system>"
 
 {% hint style="info" %}
-&#x20;Please make sure that you install the corresponding version of `pip` when you install Python. You can verify what version of `pip` your running by checking the output of `pip --version` or `python3 -m pip --version`.
+Please make sure that you install the corresponding version of `pip` when you install Python. You can verify what version of `pip` your running by checking the output of `pip --version` or `python3 -m pip --version`.
 {% endhint %}
 
-## Installing Aqueduct&#x20;
+## Installing Aqueduct
 
 Once you have the correct version of Python installed, you can go ahead and install Aqueduct by running:
 
@@ -57,7 +57,7 @@ Confirm that you have access to the Aqueduct CLI by running:
 which aqueduct
 ```
 
-If you don't have access to the Aqueduct CLI, you will need to check where the Aqueduct server is installed. By default, it is installed in `$HOME/.local/bin`, which will need to be added to your `PATH` variable. If necessary, add the following line to your `.bashrc` file:&#x20;
+If you don't have access to the Aqueduct CLI, you will need to check where the Aqueduct server is installed. By default, it is installed in `$HOME/.local/bin`, which will need to be added to your `PATH` variable. If necessary, add the following line to your `.bashrc` file:
 
 ```bash
 export PATH=$PATH:$HOME/.local/bin
@@ -90,19 +90,17 @@ However, to access the server, you will need to configure your EC2 instance to e
 Once you've set up the Aqueduct server, we have to ensure that Aqueduct is externally accessible. We'll need access to port 8080, so you can access the Aqueduct server externally. This will require a few steps on the AWS console.
 
 1. Log into AWS. Access the EC2 console -- if you don't see an EC2 option readily available, you can type "EC2" into the search bar at the top.
-2.  From the EC2 console, navigate to the list of instances you've created: \
-    &#x20;
+2.  From the EC2 console, navigate to the list of instances you've created:\
 
-    <figure><img src="../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (3) (3).png" alt=""><figcaption></figcaption></figure>
-3.  Select the instance that you're running Aqueduct on from your list of instances, and select the security tab on the bottom pane: \
 
+    <figure><img src="../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (3) (2) (1).png" alt=""><figcaption></figcaption></figure>
+3.  Select the instance that you're running Aqueduct on from your list of instances, and select the security tab on the bottom pane: \\
 
     <figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
-4.  Click on the security group your instance is in. From the security group view, select "Edit Inbound Rules":\
-
+4.  Click on the security group your instance is in. From the security group view, select "Edit Inbound Rules":\\
 
     <figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
-5. Scroll to the bottom of the page, and click "Add Rule." Add a new "Custom TCP" rule that allows requests on port 8080 from anywhere: \
+5. Scroll to the bottom of the page, and click "Add Rule." Add a new "Custom TCP" rule that allows requests on port 8080 from anywhere:\
    ![](<../../.gitbook/assets/image (11).png>)
 6. Click "Save Rules" and you're go to go!
 
@@ -114,9 +112,9 @@ We're ready to go! The last thing you'll need is the public IP address of your E
 
 <figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
-In the screenshot above, our IP address is `3.18.104.60`. You can navigate to `3.18.104.60:8080` in your browser, and you will be prompted to enter the API key displayed above.&#x20;
+In the screenshot above, our IP address is `3.18.104.60`. You can navigate to `3.18.104.60:8080` in your browser, and you will be prompted to enter the API key displayed above.
 
-To create an SDK client to access this Aqueduct server, you can run the following code:&#x20;
+To create an SDK client to access this Aqueduct server, you can run the following code:
 
 ```python
 import aqueduct as aq
