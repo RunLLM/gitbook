@@ -27,7 +27,7 @@ from aqueduct import Client
 
 client = Client() 
 
-db = client.integration('aqueduct_demo')
+db = client.resource('aqueduct_demo')
 table = db.sql('SELECT * FROM customers;')
 
 @aq.op(num_outputs=2)

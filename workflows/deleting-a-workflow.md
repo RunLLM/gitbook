@@ -29,7 +29,7 @@ from aqueduct import Client
 
 client = Client()
 
-demo_db = client.integration("aqueduct_demo")
+demo_db = client.resource("aqueduct_demo")
 reviews_table = demo_db.sql("select * from hotel_reviews;")
 
 workflow_id = client.publish_flow(name="hotel_reviews", artifacts=[reviews_table]).id()  # Or set your workflow ID here.
@@ -43,7 +43,7 @@ from aqueduct import Client
 
 client = Client()
 
-demo_db = client.integration("aqueduct_demo")
+demo_db = client.resource("aqueduct_demo")
 reviews_table = demo_db.sql("select * from hotel_reviews;")
 
 demo_db.save(reviews_table, table_name="reviews_table_2", update_mode="replace")
@@ -52,7 +52,7 @@ flow = client.flow(workflow_id)
 flow.list_saved_objects()
 ```
 
-This returns a dictionary with the integration name as the key and the list of saved object names or paths as the values. For example, if the workflow wrote 3 tables, `table_1` and `table_2` in the `aqueduct_demo` integration and `table_1` in the `postgres` integration, `flow.list_saved_objects()` would return:
+This returns a dictionary with the resource name as the key and the list of saved object names or paths as the values. For example, if the workflow wrote 3 tables, `table_1` and `table_2` into `aqueduct_demo` and `table_1` into the `postgres` resource, `flow.list_saved_objects()` would return:
 
 ```
 {
@@ -61,7 +61,7 @@ This returns a dictionary with the integration name as the key and the list of s
 }
 ```
 
-You can pass this or any dictionary of the same format to the `delete_flow` method to delete the objects when deleting the flow. Tables can be published either in `append`, `replace`, or `fail` mode (see [Relational Databases](integrations/using-integrations/relational-databases.md) for details). When tables are saved in `append` mode, Aqueduct cannot guarantee that there was not data previously set by Aqueduct that's stored in the table. To prevent any unintentional deletion of data, please set `force=True` when deleting a data that was created in append mode.
+You can pass this or any dictionary of the same format to the `delete_flow` method to delete the objects when deleting the flow. Tables can be published either in `append`, `replace`, or `fail` mode (see [Relational Databases](resources/data-systems/sql-systems/README.md) for details). When tables are saved in `append` mode, Aqueduct cannot guarantee that there was not data previously set by Aqueduct that's stored in the table. To prevent any unintentional deletion of data, please set `force=True` when deleting a data that was created in append mode.
 
 The Aqueduct SDK will automatically prompt you to do this. It will not allow you to delete your workflow without the `force` flag.
 

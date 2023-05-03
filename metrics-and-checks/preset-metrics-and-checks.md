@@ -41,7 +41,7 @@ from aqueduct import Client
 import pandas as pd
 
 client = Client() 
-db = client.integration("aqueduct_demo")
+db = client.resource("aqueduct_demo")
 my_tbl = db.sql("Select * from customers")
 number_col = "n_workflows"
 

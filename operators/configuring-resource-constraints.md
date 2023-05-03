@@ -60,5 +60,5 @@ If you are having issues previewing such operators, make sure your execution eng
 
 ```python
 import aqueduct as aq
-aq.global_config({"engine": "my_kubernetes_integration"})
+aq.global_config({"engine": "my_kubernetes_resource"})
 ```

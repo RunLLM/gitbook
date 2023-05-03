@@ -10,7 +10,7 @@ import pandas as pd
 
 client = aq.Client()
 
-db = client.integration('aqueduct_demo')
+db = client.resource('aqueduct_demo')
 wine_data = db.sql('SELECT * FROM wine;')
 
 @aq.op

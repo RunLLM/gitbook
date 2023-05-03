@@ -22,7 +22,7 @@ To begin, you will need to create a GCE VM from the GCP console. You can follow 
 
 * **Operating system**: By default, GCE uses Debian GNU, which Aqueduct supports out of the box. You can also use a CentOS-based Linux distribution if you would prefer. **Aqueduct does not work on Windows or Windows Server.**
 * **Resources**: We recommend running Aqueduct on a server with at least 2 vCPUs and 4GB of RAM. If you plan to run workflows on Aqueduct without using an external compute system, you will need to allocate enough RAM to fit your datasets in memory.
-* **Python version**: Aqueduct supports Python3.7-3.10. See below for more on ensuring that you have the right Python version installed. If you need to run Aqueduct with multiple Python versions, see our guide on using Aqueduct with [Conda](../../integrations/compute-systems/conda.md).
+* **Python version**: Aqueduct supports Python3.7-3.10. See below for more on ensuring that you have the right Python version installed. If you need to run Aqueduct with multiple Python versions, see our guide on using Aqueduct with [Conda](../../resources/compute-systems/conda.md).
 * **HTTP + HTTPS Access:** Ensure that you allow HTTP and HTTPS access to this VM when you are creating it.
 
 ### Verify your Python version

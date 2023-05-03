@@ -6,13 +6,13 @@ This guide assumes you've already created an Aqueduct API client. If you haven't
 
 ### Defining a Workflow
 
-At the root of every workflow is some data. Aqueduct supports loading input data from a variety of sources, but we've found the most common use case is a workflow that starts from a SQL database. We'll use Aqueduct's [aqueduct-demo-integration.md](../integrations/data-systems/aqueduct-demo-integration.md "mention") in this example.
+At the root of every workflow is some data. Aqueduct supports loading input data from a variety of sources, but we've found the most common use case is a workflow that starts from a SQL database. We'll use Aqueduct's [aqueduct-demo-resource.md](../resources/data-systems/aqueduct-demo-resource.md "mention") in this example.
 
 ```python
 import aqueduct as aq
 client = aq.Client()
 
-db = client.integration('aqueduct_demo')
+db = client.resource('aqueduct_demo')
 wine_data = db.sql('SELECT * FROM wine;')
 ```
 
@@ -36,7 +36,7 @@ from aqueduct import Client
 
 client = Client() 
 
-db = client.integration('aqueduct_demo')
+db = client.resource('aqueduct_demo')
 wine_data = db.sql('SELECT * FROM wine;')
 
 acidity_by_group = get_average_acidity(wine_data)

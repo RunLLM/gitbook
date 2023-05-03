@@ -48,9 +48,9 @@ And we're done! You can see the code that you ran and set it to run on a periodi
 
 Once you have your code running on Aqueduct, you probably are going to want to see what data is coming into and going out of your workflow. For the most part, this isn't going to require us to change much about our workflows.
 
-The first thing we'll need to do is figure out where our data inputs are coming from and where our predictions are going to. You'll need to connect those systems as Aqueduct [integrations](../integrations/ "mention").
+The first thing we'll need to do is figure out where our data inputs are coming from and where our predictions are going to. You'll need to connect those systems as Aqueduct [resources](../resources/ "mention").
 
-Once we have our integrations connected, we can get a handle to that integration in our Python code. For our example here, we're going to use the [aqueduct-demo-integration.md](../integrations/data-systems/aqueduct-demo-integration.md "mention"). Once we have a handle to the demo database, we can then run a SQL query on it (see [Broken link](broken-reference "mention") for details on using non-relational data systems) to get our input data. You can use any SQL query that works for your underlying database.
+Once we have our resources connected, we can get a handle to that resource in our Python code. For our example here, we're going to use the [aqueduct-demo-resource.md](../resources/data-systems/aqueduct-demo-resource.md "mention"). Once we have a handle to the demo database, we can then run a SQL query on it (see [Broken link](broken-reference "mention") for details on using non-relational data systems) to get our input data. You can use any SQL query that works for your underlying database.
 
 ```python
 from aqueduct import Client, op
@@ -58,7 +58,7 @@ import pandas as pd
 
 client = Client()
 
-db = client.integration('aqueduct_demo') 
+db = client.resource('aqueduct_demo') 
 input_data = db.sql('SELECT * FROM wine;')
 ```
 
@@ -103,7 +103,7 @@ To do this, we'll take our code above and split it into multiple stages. Using t
 from aqueduct import Client, op
 client = Client()
 
-db = client.integration('aqueduct_demo')
+db = client.resource('aqueduct_demo')
 input_data = db.sql('SELECT * FROM wine;')
 
 @op

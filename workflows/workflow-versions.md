@@ -16,7 +16,7 @@ To configure how many versions of a workflow are retained, you can specify the `
 import aqueduct as aq
 client = aq.Client()
 
-db = client.integration('aqueduct_demo')
+db = client.resource('aqueduct_demo')
 table = db.sql('SELECT * FROM wine;')
 
 client.publish_flow(

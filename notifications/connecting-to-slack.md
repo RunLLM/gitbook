@@ -1,6 +1,6 @@
 # Slack
 
-You can connect Aqueduct to your Slack workspace in order to receive automated notifications on your workflow execution status. You can simply click the Slack icon on your [integrations page](broken-reference). Aqueduct will ask for [#the bot token](connecting-to-slack/#setting-up-slack), [#channels](connecting-to-slack/#configuring-channels), and [#the severity level](connecting-to-slack/#configuring-default-notification-settings) at which to send slack alerts.
+You can connect Aqueduct to your Slack workspace in order to receive automated notifications on your workflow execution status. You can simply click the Slack icon the resources/ page on the UI. Aqueduct will ask for [#the bot token](connecting-to-slack/#setting-up-slack), [#channels](connecting-to-slack/#configuring-channels), and [#the severity level](connecting-to-slack/#configuring-default-notification-settings) at which to send slack alerts.
 
 ## Setting up Slack
 
@@ -35,7 +35,7 @@ To connect Aqueduct to Slack to recieve notifications, you would first need to s
         token_rotation_enabled: false
     ```
 * Once created, you will enter the app's management page. Click **Install to Workspace** and follow the instructions. This completes the Slack App setup.
-*   Once the setup is done, you can provide the bot token to Aqueduct when adding the integration. To access the bot token:
+*   Once the setup is done, you can provide the bot token to Aqueduct when adding the resource. To access the bot token:
 
     * Select your app in [Slack Apps management page](https://api.slack.com/apps).
     * From the left menu bar, select **OAuth & Permissions**.

@@ -15,7 +15,7 @@ from aqueduct import op, Client
 import pandas as pd
 
 client = Client() 
-db = client.integration("aqueduct_demo")
+db = client.resource("aqueduct_demo")
 
 @op
 def predict_churn(reviews: pd.DataFrame, country: str):
@@ -108,7 +108,7 @@ SQL queries are parameterized using the Postgres-inspired $1, $2, etc. placehold
 table_name_param = client.create_param("table_name", default="hotel_reviews")
 
 # TThe value of `table_name_param` is substituted into $1.
-db = client.integration("aqueduct_demo")
+db = client.resource("aqueduct_demo")
 table_artifact = db.sql(query="select * from $1", parameters=[table_name_param])
 
 # This returns the result of `select * from hotel_reviews;`

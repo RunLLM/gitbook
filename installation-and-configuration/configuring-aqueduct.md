@@ -6,7 +6,7 @@ description: Aqueduct comes with simple defaults but is highly customizable.
 
 The Aqueduct server is designed to run seamlessly out of the box without any configuration necessary. However, depending on your environment, you may want to configure one of many options that Aqueduct provides.&#x20;
 
-## Configuring Integrations
+## Configuring Resources 
 
 Every data system Aqueduct connects to has different required drivers. To ensure that Aqueduct can connect correctly, please run the following command for any data system you intend to use:
 
@@ -18,7 +18,7 @@ aqueduct install [system]
 # ...
 ```
 
-Once you've installed the requisite drivers, you can connect integrations from the Aqueduct UI or SDK. See [integrations](../integrations/ "mention") for more details on how to configure each system.
+Once you've installed the requisite drivers, you can connect resources from the Aqueduct UI or SDK. See [resources](../resources/ "mention") for more details on how to configure each system.
 
 ## External Access to Aqueduct
 
@@ -41,7 +41,7 @@ You can update the Aqueduct artifact store in two ways:&#x20;
 1. From the command line, you can set the server to use a particular cloud bucket as the artifact store:\
    `aqueduct storage --use s3 --path / --region us-east-2 —credentials $HOME/.aws/credentials`\
    For more details see the [aqueduct-cli.md](../api-reference/aqueduct-cli.md "mention") reference.
-2. From the UI, you can connect an AWS S3 or GCS integration. When creating the integration, you'll have the option to use this integration for artifact storage by checking this box:&#x20;
+2. From the UI, you can connect an AWS S3 or GCS resource. When creating the resource, you'll have the option to use this resource for artifact storage by checking this box:&#x20;
 
 <figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
@@ -53,7 +53,7 @@ Of course, storing all your intermediary data for every workflow can become expe
 import aqueduct as aq
 client = aq.Client()
 
-db = client.integration('aqueduct_demo')
+db = client.resource('aqueduct_demo')
 table = db.sql('SELECT * FROM wine;')
 
 client.publish_flow(
