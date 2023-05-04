@@ -1,5 +1,5 @@
 ---
-description: Run ML on resources
+description: Run ML on on-demand resources
 ---
 
 # On-Demand Resources

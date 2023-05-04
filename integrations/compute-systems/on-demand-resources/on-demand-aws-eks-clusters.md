@@ -23,7 +23,7 @@ from aqueduct import Client
 
 client = Client()
 client.connect_integration(name="aws", service="AWS", config={
-		"config_file_path": "~/.aws/credentials",
+    "config_file_path": "~/.aws/credentials",
     "config_file_profile": "default",
 })
 ```
