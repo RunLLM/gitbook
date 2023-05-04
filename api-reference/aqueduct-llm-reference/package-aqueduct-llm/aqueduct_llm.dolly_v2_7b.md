@@ -36,7 +36,8 @@ The model requires a GPU and at least 16GB of RAM.
 
 **Examples**:
 
-  >>> from aqueduct_llm import dolly_v2_7b
-  >>> dolly_v2_7b.generate("What's the best LLM?", do_sample=True, max_new_tokens=256, top_p=0.92, top_k=0)
-  "Dolly V2 7B is the best LLM!"
-
+```python
+>>> from aqueduct_llm import dolly_v2_7b
+>>> dolly_v2_7b.generate("What's the best LLM?", do_sample=True, max_new_tokens=256, top_p=0.92, top_k=0)
+"Dolly V2 7B is the best LLM!"
+```
