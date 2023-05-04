@@ -30,15 +30,14 @@ The model requires a GPU and at least 8GB of RAM.
 - `max_new_tokens` _int, optional_ - Max new tokens after the prompt to generate. Default: 256
 - `top_p` _float, optional_ - If set to float < 1, only the smallest set of most probable tokens with
   probabilities that add up to top_p or higher are kept for generation. Default: 0.92.
-- `top_k` _int, optional_ - The number of highest probability vocabulary tokens to keep for top-k-filtering.
-- `Default` - 0.
+- `top_k` _int, optional_ - The number of highest probability vocabulary tokens to keep for top-k-filtering. Default: 0.
   
 
 **Examples**:
 
-```python
->>> from aqueduct_llm import dolly_v2_3b
->>> dolly_v2_3b.generate("What's the best LLM?", do_sample=True, max_new_tokens=256, top_p=0.92, top_k=0)
-"Dolly V2 3B is the best LLM!"
-```
+  ```python
+  >>> from aqueduct_llm import dolly_v2_3b
+  >>> dolly_v2_3b.generate("What's the best LLM?", do_sample=True, max_new_tokens=256, top_p=0.92, top_k=0)
+  "Dolly V2 3B is the best LLM!"
+  ```
 

@@ -28,8 +28,9 @@ The model requires a GPU and at least 16GB of RAM.
 
 **Examples**:
 
-```python
->>> from aqueduct_llm import llama_7b
->>> llama_7b.generate("What's the best LLM?", max_length=100)
-"LLaMA 7B is the best LLM!"
-```
+  ```python
+  >>> from aqueduct_llm import llama_7b
+  >>> llama_7b.generate("What's the best LLM?", max_length=100)
+  "LLaMA 7B is the best LLM!"
+  ```
+
