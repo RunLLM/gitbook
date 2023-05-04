@@ -19,7 +19,7 @@
   * [Train and Inference](example-workflows/wine-ratings-predictor.md)
   * [Diabetes Classifier](example-workflows/diabetes-classifier.md)
   * [Sentiment Analysis](example-workflows/sentiment-analysis.md)
-  * [House Price Prediction](example-workflows/house-price-prediction.md)
+  * [House Price Prediction](example-workflows/house-price-predictions.md)
 * [Workflows](workflows/README.md)
   * [Creating a Workflow](workflows/creating-a-workflow.md)
   * [Workflow Versions](workflows/workflow-versions.md)
