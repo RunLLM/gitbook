@@ -9,7 +9,7 @@ Aqueduct operators. Currently, custom images are only supported for Kubernetes e
 
 ## When to use it
 
-If your operator has complex requirements involving both Python and non-Python dependencies, you
+If your operator has complex requirements, such as involving both Python and non-Python dependencies, you
 may want to package all of your dependencies into a custom Docker image. You can then use the ECR
 resource to pull your custom image and use it to run your operator.
 
