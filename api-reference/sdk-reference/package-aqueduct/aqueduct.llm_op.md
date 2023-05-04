@@ -53,7 +53,7 @@ or neither must be provided. Please refer to the `Returns` section below for the
   DataFrame and returns a DataFrame with the output of the LLM appended as a new column:
   
   ```python
-  def llm_for_table(df: pd.DataFrame, parameters: Dict[str, Any] = {}) -> pd.DataFrame:
+  def use_llm_for_table(df: pd.DataFrame, parameters: Dict[str, Any] = {}) -> pd.DataFrame:
   ```
   
   Otherwise, returns a function that takes in a string or list of strings, applies LLM, and
