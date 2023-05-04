@@ -69,12 +69,13 @@ in a file named "model.py":
 def op(
     name: Optional[Union[str, UserFunction]] = None,
     description: Optional[str] = None,
-    engine: Optional[str] = None,
+    engine: Optional[Union[str, DynamicK8sResource]] = None,
     file_dependencies: Optional[List[str]] = None,
     requirements: Optional[Union[str, List[str]]] = None,
     num_outputs: Optional[int] = None,
     outputs: Optional[List[str]] = None,
-    resources: Optional[Dict[str, Any]] = None
+    resources: Optional[Dict[str, Any]] = None,
+    image: Optional[Dict[str, str]] = None
 ) -> Union[DecoratedFunction, OutputArtifactsFunction]
 ```
 
@@ -136,6 +137,12 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   "cuda_version" (str):
   Version of CUDA to use with GPU (only applicable for Kubernetes engine). The currently supported
   values are "11.4.1" and "11.8.0".
+  image:
+  A dictionary containing the custom image configurations that this operator will run with.
+  The dictionary needs to contain the following keys:
+- `"registry_name"` _str_ - The name of the registry integration to use.
+- `"url"` _str_ - The full URL of the image to use. Example: "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-image:latest"
+  It is recommended to get the dictionary via `client.resource("my_registry_name").image("my-image:latest")`
   
 
 **Examples**:
@@ -165,8 +172,9 @@ def metric(
     file_dependencies: Optional[List[str]] = None,
     requirements: Optional[Union[str, List[str]]] = None,
     output: Optional[str] = None,
-    engine: Optional[str] = None,
-    resources: Optional[Dict[str, Any]] = None
+    engine: Optional[Union[str, DynamicK8sResource]] = None,
+    resources: Optional[Dict[str, Any]] = None,
+    image: Optional[Dict[str, str]] = None
 ) -> Union[DecoratedMetricFunction, OutputArtifactFunction]
 ```
 
@@ -222,6 +230,17 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   "gpu_resource_name" (str):
   Name of the gpu resource to use (only applicable for Kubernetes engine).
   
+  For example, the following value is valid: "nvidia.com/gpu".
+  "cuda_version" (str):
+  Version of CUDA to use with GPU (only applicable for Kubernetes engine). The currently supported
+  values are "11.4.1" and "11.8.0".
+  image:
+  A dictionary containing the custom image configurations that this operator will run with.
+  The dictionary needs to contain the following keys:
+- `"registry_name"` _str_ - The name of the registry integration to use.
+- `"url"` _str_ - The full URL of the image to use. Example: "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-image:latest"
+  It is recommended to get the dictionary via `client.resource("my_registry_name").image("my-image:latest")`
+  
 
 **Examples**:
 
@@ -250,8 +269,9 @@ def check(
     file_dependencies: Optional[List[str]] = None,
     requirements: Optional[Union[str, List[str]]] = None,
     output: Optional[str] = None,
-    engine: Optional[str] = None,
-    resources: Optional[Dict[str, Any]] = None
+    engine: Optional[Union[str, DynamicK8sResource]] = None,
+    resources: Optional[Dict[str, Any]] = None,
+    image: Optional[Dict[str, str]] = None
 ) -> Union[DecoratedCheckFunction, OutputArtifactFunction]
 ```
 
@@ -309,6 +329,17 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   For example, the following values are valid: 100, "100MB", "1GB", "100mb", "1gb".
   "gpu_resource_name" (str):
   Name of the gpu resource to use (only applicable for Kubernetes engine).
+  
+  For example, the following value is valid: "nvidia.com/gpu".
+  "cuda_version" (str):
+  Version of CUDA to use with GPU (only applicable for Kubernetes engine). The currently supported
+  values are "11.4.1" and "11.8.0".
+  image:
+  A dictionary containing the custom image configurations that this operator will run with.
+  The dictionary needs to contain the following keys:
+- `"registry_name"` _str_ - The name of the registry integration to use.
+- `"url"` _str_ - The full URL of the image to use. Example: "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-image:latest"
+  It is recommended to get the dictionary via `client.resource("my_registry_name").image("my-image:latest")`
   
 
 **Examples**:

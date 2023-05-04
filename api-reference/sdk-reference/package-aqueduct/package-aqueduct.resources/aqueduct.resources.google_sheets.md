@@ -1,26 +1,26 @@
 # Table of Contents
 
-* [aqueduct.integrations.google\_sheets\_integration](#aqueduct.integrations.google_sheets_integration)
-  * [GoogleSheetsIntegration](#aqueduct.integrations.google_sheets_integration.GoogleSheetsIntegration)
-    * [spreadsheet](#aqueduct.integrations.google_sheets_integration.GoogleSheetsIntegration.spreadsheet)
-    * [save](#aqueduct.integrations.google_sheets_integration.GoogleSheetsIntegration.save)
-    * [describe](#aqueduct.integrations.google_sheets_integration.GoogleSheetsIntegration.describe)
+* [aqueduct.resources.google\_sheets](#aqueduct.resources.google_sheets)
+  * [GoogleSheetsResource](#aqueduct.resources.google_sheets.GoogleSheetsResource)
+    * [spreadsheet](#aqueduct.resources.google_sheets.GoogleSheetsResource.spreadsheet)
+    * [save](#aqueduct.resources.google_sheets.GoogleSheetsResource.save)
+    * [describe](#aqueduct.resources.google_sheets.GoogleSheetsResource.describe)
 
-<a id="aqueduct.integrations.google_sheets_integration"></a>
+<a id="aqueduct.resources.google_sheets"></a>
 
-# aqueduct.integrations.google\_sheets\_integration
+# aqueduct.resources.google\_sheets
 
-<a id="aqueduct.integrations.google_sheets_integration.GoogleSheetsIntegration"></a>
+<a id="aqueduct.resources.google_sheets.GoogleSheetsResource"></a>
 
-## GoogleSheetsIntegration Objects
+## GoogleSheetsResource Objects
 
 ```python
-class GoogleSheetsIntegration(Integration)
+class GoogleSheetsResource(BaseResource)
 ```
 
 Class for Google Sheets integration.
 
-<a id="aqueduct.integrations.google_sheets_integration.GoogleSheetsIntegration.spreadsheet"></a>
+<a id="aqueduct.resources.google_sheets.GoogleSheetsResource.spreadsheet"></a>
 
 #### spreadsheet
 
@@ -51,7 +51,7 @@ Retrieves a spreadsheet from the Google Sheets integration.
 
   TableArtifact representing the Google Sheet.
 
-<a id="aqueduct.integrations.google_sheets_integration.GoogleSheetsIntegration.save"></a>
+<a id="aqueduct.resources.google_sheets.GoogleSheetsResource.save"></a>
 
 #### save
 
@@ -80,7 +80,7 @@ Registers a save operator of the given artifact, to be executed when it's comput
   - "newsheet": Creates a new sheet in an existing spreadsheet.
   If the spreadsheet doesn't exist, has `create` behavior.
 
-<a id="aqueduct.integrations.google_sheets_integration.GoogleSheetsIntegration.describe"></a>
+<a id="aqueduct.resources.google_sheets.GoogleSheetsResource.describe"></a>
 
 #### describe
 

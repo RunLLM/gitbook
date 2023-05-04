@@ -8,9 +8,13 @@
     * [github](#aqueduct.client.Client.github)
     * [create\_param](#aqueduct.client.Client.create_param)
     * [connect\_integration](#aqueduct.client.Client.connect_integration)
+    * [connect\_resource](#aqueduct.client.Client.connect_resource)
     * [delete\_integration](#aqueduct.client.Client.delete_integration)
+    * [delete\_resource](#aqueduct.client.Client.delete_resource)
     * [list\_integrations](#aqueduct.client.Client.list_integrations)
+    * [list\_resources](#aqueduct.client.Client.list_resources)
     * [integration](#aqueduct.client.Client.integration)
+    * [resource](#aqueduct.client.Client.resource)
     * [list\_flows](#aqueduct.client.Client.list_flows)
     * [flow](#aqueduct.client.Client.flow)
     * [publish\_flow](#aqueduct.client.Client.publish_flow)
@@ -169,9 +173,19 @@ Parameter values are configurable at runtime.
 #### connect\_integration
 
 ```python
-def connect_integration(
-        name: str, service: Union[str, ServiceType],
-        config: Union[Dict[str, str], IntegrationConfig]) -> None
+def connect_integration(name: str, service: Union[str, ServiceType],
+                        config: Union[Dict[str, str], ResourceConfig]) -> None
+```
+
+Deprecated. Use `client.connect_resource()` instead.
+
+<a id="aqueduct.client.Client.connect_resource"></a>
+
+#### connect\_resource
+
+```python
+def connect_resource(name: str, service: Union[str, ServiceType],
+                     config: Union[Dict[str, str], ResourceConfig]) -> None
 ```
 
 Connects the Aqueduct server to an integration.
@@ -195,6 +209,16 @@ Connects the Aqueduct server to an integration.
 def delete_integration(name: str) -> None
 ```
 
+Deprecated. Use `client.delete_resource()` instead.
+
+<a id="aqueduct.client.Client.delete_resource"></a>
+
+#### delete\_resource
+
+```python
+def delete_resource(name: str) -> None
+```
+
 Deletes the integration from Aqueduct.
 
 **Arguments**:
@@ -207,7 +231,17 @@ Deletes the integration from Aqueduct.
 #### list\_integrations
 
 ```python
-def list_integrations() -> Dict[str, IntegrationInfo]
+def list_integrations() -> Dict[str, ResourceInfo]
+```
+
+Deprecated. Use `client.list_resources()` instead.
+
+<a id="aqueduct.client.Client.list_resources"></a>
+
+#### list\_resources
+
+```python
+def list_resources() -> Dict[str, ResourceInfo]
 ```
 
 Retrieves a dictionary of integrations the client can use.
@@ -223,10 +257,45 @@ Retrieves a dictionary of integrations the client can use.
 ```python
 def integration(
     name: str
-) -> Union[SalesforceIntegration, S3Integration, GoogleSheetsIntegration,
-           RelationalDBIntegration, AirflowIntegration, K8sIntegration,
-           LambdaIntegration, MongoDBIntegration, DatabricksIntegration,
-           SparkIntegration, AWSIntegration, ]
+) -> Union[
+        SalesforceResource,
+        S3Resource,
+        GoogleSheetsResource,
+        RelationalDBResource,
+        AirflowResource,
+        K8sResource,
+        LambdaResource,
+        MongoDBResource,
+        DatabricksResource,
+        SparkResource,
+        AWSResource,
+        ECRResource,
+]
+```
+
+Deprecated. Use `client.resource()` instead.
+
+<a id="aqueduct.client.Client.resource"></a>
+
+#### resource
+
+```python
+def resource(
+    name: str
+) -> Union[
+        SalesforceResource,
+        S3Resource,
+        GoogleSheetsResource,
+        RelationalDBResource,
+        AirflowResource,
+        K8sResource,
+        LambdaResource,
+        MongoDBResource,
+        DatabricksResource,
+        SparkResource,
+        AWSResource,
+        ECRResource,
+]
 ```
 
 Retrieves a connected integration object.
@@ -299,7 +368,7 @@ Fetches a flow corresponding to the given flow id.
 def publish_flow(name: str,
                  description: str = "",
                  schedule: str = "",
-                 engine: Optional[str] = None,
+                 engine: Optional[Union[str, DynamicK8sResource]] = None,
                  artifacts: Optional[Union[BaseArtifact,
                                            List[BaseArtifact]]] = None,
                  metrics: Optional[List[NumericArtifact]] = None,
@@ -418,7 +487,7 @@ Immediately triggers another run of the provided flow.
 def delete_flow(flow_id: Optional[Union[str, uuid.UUID]] = None,
                 flow_name: Optional[str] = None,
                 saved_objects_to_delete: Optional[DefaultDict[Union[
-                    str, Integration], List[SavedObjectUpdate]]] = None,
+                    str, BaseResource], List[SavedObjectUpdate]]] = None,
                 force: bool = False) -> None
 ```
 

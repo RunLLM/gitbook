@@ -610,7 +610,7 @@ client = aq.Client(api_key, address)
 
 ### Connecting to Your Data
 
-Workflows access and publish to data integrations that are configured on the Integrations Page.  In this demo we will connect to the demo data integration which is a Postgres database containing several standard [sample datasets](https://docs.aqueducthq.com/example-workflows/demo-data-warehouse) including some synthetic customer churn data.  Each kind of data integration may offer different functionality.  Here we are using a relational integration which support general SQL expressions.
+Workflows access and publish to data resource that are configured on the Resources Page.  In this demo we will connect to the demo data resource which is a Postgres database containing several standard [sample datasets](https://docs.aqueducthq.com/example-workflows/demo-data-warehouse) including some synthetic customer churn data.  Each kind of data resource may offer different functionality.  Here we are using a relational resource which support general SQL expressions.
 
 
 
@@ -620,7 +620,7 @@ Workflows access and publish to data integrations that are configured on the Int
 
 
 ```python
-warehouse = client.integration(name="aqueduct_demo")
+warehouse = client.resource(name="aqueduct_demo")
 
 # customers_table is an Aqueduct TableArtifact, which is a wrapper around
 # a Pandas DataFrame. A TableArtifact can be used as argument to any operator
@@ -1170,9 +1170,9 @@ avg_pred_churn_metric.bound(upper=0.4, severity="error")
 <!-- ------------- New Cell ------------ -->
 
 
-### Saving Tables Artifacts to Integrations
+### Saving Tables Artifacts to Data Resources
 
-So far we have defined a workflow to build the `churn_table` containing our churn predictions.  We now want to publish this table where others can use it.  We do this by `saving` the table to various integrations.  
+So far we have defined a workflow to build the `churn_table` containing our churn predictions.  We now want to publish this table where others can use it.  We do this by `saving` the table to various resources.
 
 First we save the table back to the data warehouse that contains the original customer data. 
 

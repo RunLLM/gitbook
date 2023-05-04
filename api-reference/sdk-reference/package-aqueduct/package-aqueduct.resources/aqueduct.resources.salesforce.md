@@ -1,27 +1,27 @@
 # Table of Contents
 
-* [aqueduct.integrations.salesforce\_integration](#aqueduct.integrations.salesforce_integration)
-  * [SalesforceIntegration](#aqueduct.integrations.salesforce_integration.SalesforceIntegration)
-    * [search](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.search)
-    * [query](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.query)
-    * [save](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.save)
-    * [describe](#aqueduct.integrations.salesforce_integration.SalesforceIntegration.describe)
+* [aqueduct.resources.salesforce](#aqueduct.resources.salesforce)
+  * [SalesforceResource](#aqueduct.resources.salesforce.SalesforceResource)
+    * [search](#aqueduct.resources.salesforce.SalesforceResource.search)
+    * [query](#aqueduct.resources.salesforce.SalesforceResource.query)
+    * [save](#aqueduct.resources.salesforce.SalesforceResource.save)
+    * [describe](#aqueduct.resources.salesforce.SalesforceResource.describe)
 
-<a id="aqueduct.integrations.salesforce_integration"></a>
+<a id="aqueduct.resources.salesforce"></a>
 
-# aqueduct.integrations.salesforce\_integration
+# aqueduct.resources.salesforce
 
-<a id="aqueduct.integrations.salesforce_integration.SalesforceIntegration"></a>
+<a id="aqueduct.resources.salesforce.SalesforceResource"></a>
 
-## SalesforceIntegration Objects
+## SalesforceResource Objects
 
 ```python
-class SalesforceIntegration(Integration)
+class SalesforceResource(BaseResource)
 ```
 
 Class for Salesforce integration.
 
-<a id="aqueduct.integrations.salesforce_integration.SalesforceIntegration.search"></a>
+<a id="aqueduct.resources.salesforce.SalesforceResource.search"></a>
 
 #### search
 
@@ -51,7 +51,7 @@ Runs a search against the Salesforce integration.
 
   TableArtifact representing result of the SQL query.
 
-<a id="aqueduct.integrations.salesforce_integration.SalesforceIntegration.query"></a>
+<a id="aqueduct.resources.salesforce.SalesforceResource.query"></a>
 
 #### query
 
@@ -81,7 +81,7 @@ Runs a query against the Salesforce integration.
 
   TableArtifact representing result of the SQL query.
 
-<a id="aqueduct.integrations.salesforce_integration.SalesforceIntegration.save"></a>
+<a id="aqueduct.resources.salesforce.SalesforceResource.save"></a>
 
 #### save
 
@@ -99,7 +99,7 @@ Registers a save operator of the given artifact, to be executed when it's comput
   object:
   The name of the Salesforce object to save to.
 
-<a id="aqueduct.integrations.salesforce_integration.SalesforceIntegration.describe"></a>
+<a id="aqueduct.resources.salesforce.SalesforceResource.describe"></a>
 
 #### describe
 

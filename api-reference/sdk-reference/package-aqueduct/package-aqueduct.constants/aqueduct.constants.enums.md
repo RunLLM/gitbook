@@ -5,6 +5,8 @@
   * [CheckSeverity](#aqueduct.constants.enums.CheckSeverity)
   * [RelationalDBServices](#aqueduct.constants.enums.RelationalDBServices)
   * [GithubRepoConfigContentType](#aqueduct.constants.enums.GithubRepoConfigContentType)
+  * [ArtifactType](#aqueduct.constants.enums.ArtifactType)
+    * [IMAGE](#aqueduct.constants.enums.ArtifactType.IMAGE)
 
 <a id="aqueduct.constants.enums"></a>
 
@@ -53,4 +55,18 @@ class GithubRepoConfigContentType(str, Enum, metaclass=MetaEnum)
 ```
 
 Github repo config (.aqconfig) content type.
+
+<a id="aqueduct.constants.enums.ArtifactType"></a>
+
+## ArtifactType Objects
+
+```python
+class ArtifactType(str, Enum, metaclass=MetaEnum)
+```
+
+<a id="aqueduct.constants.enums.ArtifactType.IMAGE"></a>
+
+#### IMAGE
+
+corresponds to PIL.Image.Image type
 

@@ -1,28 +1,28 @@
 # Table of Contents
 
-* [aqueduct.integrations.sql\_integration](#aqueduct.integrations.sql_integration)
-  * [RelationalDBIntegration](#aqueduct.integrations.sql_integration.RelationalDBIntegration)
-    * [list\_tables](#aqueduct.integrations.sql_integration.RelationalDBIntegration.list_tables)
-    * [table](#aqueduct.integrations.sql_integration.RelationalDBIntegration.table)
-    * [sql](#aqueduct.integrations.sql_integration.RelationalDBIntegration.sql)
-    * [save](#aqueduct.integrations.sql_integration.RelationalDBIntegration.save)
-    * [describe](#aqueduct.integrations.sql_integration.RelationalDBIntegration.describe)
+* [aqueduct.resources.sql](#aqueduct.resources.sql)
+  * [RelationalDBResource](#aqueduct.resources.sql.RelationalDBResource)
+    * [list\_tables](#aqueduct.resources.sql.RelationalDBResource.list_tables)
+    * [table](#aqueduct.resources.sql.RelationalDBResource.table)
+    * [sql](#aqueduct.resources.sql.RelationalDBResource.sql)
+    * [save](#aqueduct.resources.sql.RelationalDBResource.save)
+    * [describe](#aqueduct.resources.sql.RelationalDBResource.describe)
 
-<a id="aqueduct.integrations.sql_integration"></a>
+<a id="aqueduct.resources.sql"></a>
 
-# aqueduct.integrations.sql\_integration
+# aqueduct.resources.sql
 
-<a id="aqueduct.integrations.sql_integration.RelationalDBIntegration"></a>
+<a id="aqueduct.resources.sql.RelationalDBResource"></a>
 
-## RelationalDBIntegration Objects
+## RelationalDBResource Objects
 
 ```python
-class RelationalDBIntegration(Integration)
+class RelationalDBResource(BaseResource)
 ```
 
 Class for Relational integrations.
 
-<a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.list_tables"></a>
+<a id="aqueduct.resources.sql.RelationalDBResource.list_tables"></a>
 
 #### list\_tables
 
@@ -37,7 +37,7 @@ Lists the tables available in the RelationalDB integration.
 
   pd.DataFrame of available tables.
 
-<a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.table"></a>
+<a id="aqueduct.resources.sql.RelationalDBResource.table"></a>
 
 #### table
 
@@ -58,7 +58,7 @@ Retrieves a table from a RelationalDB integration.
 
   pd.DataFrame of the table to retrieve.
 
-<a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.sql"></a>
+<a id="aqueduct.resources.sql.RelationalDBResource.sql"></a>
 
 #### sql
 
@@ -104,7 +104,7 @@ Runs a SQL query against the RelationalDB integration.
 
   TableArtifact representing result of the SQL query.
 
-<a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.save"></a>
+<a id="aqueduct.resources.sql.RelationalDBResource.save"></a>
 
 #### save
 
@@ -126,7 +126,7 @@ Registers a save operator of the given artifact, to be executed when it's comput
   Defines the semantics of the save if a table already exists.
   Options are "replace", "append" (row-wise), or "fail" (if table already exists).
 
-<a id="aqueduct.integrations.sql_integration.RelationalDBIntegration.describe"></a>
+<a id="aqueduct.resources.sql.RelationalDBResource.describe"></a>
 
 #### describe
 

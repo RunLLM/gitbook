@@ -1,13 +1,13 @@
 # Table of Contents
 
-* [aqueduct.llm\_op](#aqueduct.llm_op)
-  * [llm\_op](#aqueduct.llm_op.llm_op)
+* [aqueduct.llm\_wrapper](#aqueduct.llm_wrapper)
+  * [llm\_op](#aqueduct.llm_wrapper.llm_op)
 
-<a id="aqueduct.llm_op"></a>
+<a id="aqueduct.llm_wrapper"></a>
 
-# aqueduct.llm\_op
+# aqueduct.llm\_wrapper
 
-<a id="aqueduct.llm_op.llm_op"></a>
+<a id="aqueduct.llm_wrapper.llm_op"></a>
 
 #### llm\_op
 
@@ -74,6 +74,8 @@ or neither must be provided. Please refer to the `Returns` section below for the
 **Examples**:
 
   ```python
+  >>> from aqueduct import Client
+  >>> client = Client()
   >>> snowflake = client.resource("snowflake")
   >>> reviews_table = snowflake.sql("select * from hotel_reviews;")
   

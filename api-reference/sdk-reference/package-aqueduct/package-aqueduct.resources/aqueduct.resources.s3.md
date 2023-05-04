@@ -1,26 +1,26 @@
 # Table of Contents
 
-* [aqueduct.integrations.s3\_integration](#aqueduct.integrations.s3_integration)
-  * [S3Integration](#aqueduct.integrations.s3_integration.S3Integration)
-    * [file](#aqueduct.integrations.s3_integration.S3Integration.file)
-    * [save](#aqueduct.integrations.s3_integration.S3Integration.save)
-    * [describe](#aqueduct.integrations.s3_integration.S3Integration.describe)
+* [aqueduct.resources.s3](#aqueduct.resources.s3)
+  * [S3Resource](#aqueduct.resources.s3.S3Resource)
+    * [file](#aqueduct.resources.s3.S3Resource.file)
+    * [save](#aqueduct.resources.s3.S3Resource.save)
+    * [describe](#aqueduct.resources.s3.S3Resource.describe)
 
-<a id="aqueduct.integrations.s3_integration"></a>
+<a id="aqueduct.resources.s3"></a>
 
-# aqueduct.integrations.s3\_integration
+# aqueduct.resources.s3
 
-<a id="aqueduct.integrations.s3_integration.S3Integration"></a>
+<a id="aqueduct.resources.s3.S3Resource"></a>
 
-## S3Integration Objects
+## S3Resource Objects
 
 ```python
-class S3Integration(Integration)
+class S3Resource(BaseResource)
 ```
 
 Class for S3 integration.
 
-<a id="aqueduct.integrations.s3_integration.S3Integration.file"></a>
+<a id="aqueduct.resources.s3.S3Resource.file"></a>
 
 #### file
 
@@ -76,7 +76,7 @@ Reads one or more files from the S3 integration.
   An artifact representing the S3 File(s). If multiple files are expected, the artifact
   will represent a tuple.
 
-<a id="aqueduct.integrations.s3_integration.S3Integration.save"></a>
+<a id="aqueduct.resources.s3.S3Resource.save"></a>
 
 #### save
 
@@ -98,7 +98,7 @@ Registers a save operator of the given artifact, to be executed when it's comput
   format:
   Only required if saving a table artifact. Options are case-insensitive "json", "csv", "parquet".
 
-<a id="aqueduct.integrations.s3_integration.S3Integration.describe"></a>
+<a id="aqueduct.resources.s3.S3Resource.describe"></a>
 
 #### describe
 

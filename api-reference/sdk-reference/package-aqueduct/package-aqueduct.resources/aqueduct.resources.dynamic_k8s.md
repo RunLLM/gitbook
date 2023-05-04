@@ -1,28 +1,28 @@
 # Table of Contents
 
-* [aqueduct.integrations.dynamic\_k8s\_integration](#aqueduct.integrations.dynamic_k8s_integration)
-  * [DynamicK8sIntegration](#aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration)
-    * [status](#aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.status)
-    * [create](#aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.create)
-    * [update](#aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.update)
-    * [delete](#aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.delete)
-    * [describe](#aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.describe)
+* [aqueduct.resources.dynamic\_k8s](#aqueduct.resources.dynamic_k8s)
+  * [DynamicK8sResource](#aqueduct.resources.dynamic_k8s.DynamicK8sResource)
+    * [status](#aqueduct.resources.dynamic_k8s.DynamicK8sResource.status)
+    * [create](#aqueduct.resources.dynamic_k8s.DynamicK8sResource.create)
+    * [update](#aqueduct.resources.dynamic_k8s.DynamicK8sResource.update)
+    * [delete](#aqueduct.resources.dynamic_k8s.DynamicK8sResource.delete)
+    * [describe](#aqueduct.resources.dynamic_k8s.DynamicK8sResource.describe)
 
-<a id="aqueduct.integrations.dynamic_k8s_integration"></a>
+<a id="aqueduct.resources.dynamic_k8s"></a>
 
-# aqueduct.integrations.dynamic\_k8s\_integration
+# aqueduct.resources.dynamic\_k8s
 
-<a id="aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration"></a>
+<a id="aqueduct.resources.dynamic_k8s.DynamicK8sResource"></a>
 
-## DynamicK8sIntegration Objects
+## DynamicK8sResource Objects
 
 ```python
-class DynamicK8sIntegration(Integration)
+class DynamicK8sResource(BaseResource)
 ```
 
 Class for Dynamic K8s integration.
 
-<a id="aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.status"></a>
+<a id="aqueduct.resources.dynamic_k8s.DynamicK8sResource.status"></a>
 
 #### status
 
@@ -33,7 +33,7 @@ def status() -> str
 
 Get the current status of the dynamic Kubernetes cluster.
 
-<a id="aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.create"></a>
+<a id="aqueduct.resources.dynamic_k8s.DynamicK8sResource.create"></a>
 
 #### create
 
@@ -61,7 +61,7 @@ Creates the dynamic Kubernetes cluster, if it is not currently running.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
 
-<a id="aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.update"></a>
+<a id="aqueduct.resources.dynamic_k8s.DynamicK8sResource.update"></a>
 
 #### update
 
@@ -90,7 +90,7 @@ Active status.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
 
-<a id="aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.delete"></a>
+<a id="aqueduct.resources.dynamic_k8s.DynamicK8sResource.delete"></a>
 
 #### delete
 
@@ -116,7 +116,7 @@ Deletes the dynamic Kubernetes cluster if it is running, ignoring the keepalive 
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
 
-<a id="aqueduct.integrations.dynamic_k8s_integration.DynamicK8sIntegration.describe"></a>
+<a id="aqueduct.resources.dynamic_k8s.DynamicK8sResource.describe"></a>
 
 #### describe
 
