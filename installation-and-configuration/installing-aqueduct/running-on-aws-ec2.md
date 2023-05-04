@@ -24,7 +24,7 @@ To begin, you will need to create an AWS EC2 VM from the AWS Console. You can fo
 
 * **Operating system:** We recommend running Aqueduct on Ubuntu, but Aqueduct is configured to support all debian and CentOS-based installations, including Amazon Linux.
 * **Resources**: We recommend running Aqeuduct on a server with at least 2 vCPUs and 4GB of RAM. If you plan to run workflows on Aqueduct without using an external compute system (e.g., Kubernetes, Databricks), you will need to allocate enough RAM to fit your datasets in memory.
-* **Python version:** Aqueduct supports Python 3.7-3.10. See below for more on ensuring that you have the right Python version installed. If you need to run Aqueduct with multiple Python versions see our guide on using Aqueduct with [Conda](../../integrations/compute-systems/conda.md).
+* **Python version:** Aqueduct supports Python 3.7-3.10. See below for more on ensuring that you have the right Python version installed. If you need to run Aqueduct with multiple Python versions see our guide on using Aqueduct with [Conda](../../resources/compute-systems/conda.md).
 
 ### Verify your Python version
 

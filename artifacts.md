@@ -23,15 +23,15 @@ We support the following data types:
 These types are inferred and tracked by the system, no user input is required! Aqueduct uses this type information to provide useful type enforcement like:
 
 * Enforcing artifact type consistency across workflow runs. An artifact with type `t` will continue to have type `t` in future runs.
-* Catching errors earlier on, such as writing non-relational data to a relational integration (eg. SQL).
+* Catching errors earlier on, such as writing non-relational data to a relational resource (eg. SQL).
 
-An Artifact can be saved to a storage system by calling `.save` on the integration object in the Aqueduct SDK:
+An Artifact can be saved to a storage system by calling `.save` on the resource object in the Aqueduct SDK:
 
 ```python
 import aqueduct as aq
 client = aq.Client()
 
-db = client.integration('aqueduct_demo')
+db = client.resource('aqueduct_demo')
 wines = db.sql('SELECT * FROM wine;')
 
 db.save(wines, 'wines_2', 'replace')

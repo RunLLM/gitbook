@@ -10,7 +10,7 @@ import pandas as pd
 
 client = Client() 
 
-db = client.integration('aqueduct_demo')
+db = client.resource('aqueduct_demo')
 customers = db.sql('SELECT * FROM customers;')
 
 @metric
@@ -41,7 +41,7 @@ from aqueduct import op, Client
 import pandas as pd
 
 client = Client() 
-db = client.integration("aqueduct_demo")
+db = client.resource("aqueduct_demo")
 
 @op
 def predict_churn(reviews: pd.DataFrame, country: str):

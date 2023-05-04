@@ -1,6 +1,6 @@
 # Email
 
-You can connect Aqueduct to your email account in order to receive automated notifications on your workflow execution status. You can simply click the email icon on your [integrations page](broken-reference). Aqueduct will ask for [#the sender address](connecting-to-email.md#configuring-the-sender-address), [#receivers](connecting-to-email.md#configuring-receivers), and [#the severity level](connecting-to-email/#configuring-default-notification-settings) at which to send email alerts.
+You can connect Aqueduct to your email account in order to receive automated notifications on your workflow execution status. You can simply click the email icon on the resources/ page on the UI. Aqueduct will ask for [#the sender address](connecting-to-email.md#configuring-the-sender-address), [#receivers](connecting-to-email.md#configuring-receivers), and [#the severity level](connecting-to-email/#configuring-default-notification-settings) at which to send email alerts.
 
 ## Configuring the Sender Address
 

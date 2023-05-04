@@ -36,7 +36,7 @@ Aqueduct is focused on untangling the MLOps Knot by building a single interface 
 
 Aqueduct isn’t building a “better” component for any of the stages of the lifecycle. Instead, we’re building unifying, ML-centric APIs that integrate with and empower industry-standard components.
 
-Aqueduct [integrates natively with your existing tools](integrations/), allowing you to run ML seamlessly in your cloud — we have support for Kubernetes, Airflow, AWS Lambda, and Databricks, with Ray and others to follow. Once your code is running with Aqueduct, you automatically get visibility into whether things work and what’s happening (logs, stack traces, metrics). All of this metadata is organized in a single interface, regardless of whether you’re running on one piece of infrastructure or ten.
+Aqueduct [integrates natively with your existing tools](resources/), allowing you to run ML seamlessly in your cloud — we have support for Kubernetes, Airflow, AWS Lambda, and Databricks, with Ray and others to follow. Once your code is running with Aqueduct, you automatically get visibility into whether things work and what’s happening (logs, stack traces, metrics). All of this metadata is organized in a single interface, regardless of whether you’re running on one piece of infrastructure or ten.
 
 Aqueduct has a simple, Python-native interface that allows you to define ML tasks, get them running quickly, and move across infrastructure as needed. Whether that’s going from your laptop to the cloud or from AWS to GCP, Aqueduct has single, Python-native API that gives you the flexibility to choose the best tools for the job.
 

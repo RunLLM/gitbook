@@ -20,5 +20,5 @@ You may mix lazily and eagerly defined operators in the same flow. However, if a
 {% endhint %}
 
 * `engine`: This determines where Aqueduct will execute your code. By default, the engine is set to `None`, meaning the default Aqueduct execution engine will be used. When you set a particular system here, all code execution — both for _ad hoc_ execution and for workflows published from this environment — will use this system. &#x20;
-  * Options: any of the [compute-systems](../integrations/compute-systems/ "mention") you've connected Aqueduct to
+  * Options: any of the [compute-systems](../resources/compute-systems/ "mention") you've connected Aqueduct to
   * Default: `None`, indicating that code will be run using the default Aqueduct execution engine

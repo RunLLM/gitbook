@@ -51,7 +51,7 @@ from aqueduct import Client
 
 client = Client()
 
-demo_db = client.integration("aqueduct_demo")
+demo_db = client.resource("aqueduct_demo")
 reviews_table = demo_db.sql("select * from hotel_reviews;")
 
 demo_db.save(reviews_table, table_name="reviews_table_2", update_mode="replace")

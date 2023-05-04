@@ -19,6 +19,6 @@ ImportError: cannot import name 'TypeGuard' from 'typing'
 
 **A**: Older versions of the `typing-extensions` library do not have support for typing features released in newer versions of Python3. Please upgrade to `typing-extensions>=4.3.0`.
 
-**Q: When connecting an integration I get an error message about missing dependencies. How do I resolve this?**
+**Q: When connecting a resource I get an error message about missing dependencies. How do I resolve this?**
 
-**A:** Each integration requires specific drivers that you might not have installed. Before connecting an integration, please run `aqueduct install <integration-name>` from your command line. This ensures that the right depenendencies are installed and that can Aqueduct can connect to the relevant system. See [configuring-aqueduct.md](installation-and-configuration/configuring-aqueduct.md "mention") for more details.
+**A:** Each resource requires specific drivers that you might not have installed. Before connecting an resource, please run `aqueduct install <resource-name>` from your command line. This ensures that the right depenendencies are installed and that can Aqueduct can connect to the relevant system. See [configuring-aqueduct.md](installation-and-configuration/configuring-aqueduct.md "mention") for more details.

@@ -33,9 +33,9 @@ def transform_data(reviews):
     reviews['strlen'] = reviews['review'].str.len()
     return reviews
 
-# With client.integration, we can load a connection to a database.
+# With client.resource, we can load a connection to a database.
 # Here, we use the Aqueduct demo DB.
-demo_db = client.integration("aqueduct_demo")
+demo_db = client.resource("aqueduct_demo")
 reviews_table = demo_db.sql("select * from hotel_reviews;")
 
 # Calling .get() allows us to retrieve the underlying data from the TableArtifact and
@@ -61,7 +61,7 @@ For more on this pipeline, check our [Quickstart Guide](quickstart-guide.md).
 ### Core Concepts
 
 * [Workflows](workflows/)
-* [Integrations](integrations/)
+* [Resources](resources/)
 * [Operators](operators.md)
 * [Artifacts](artifacts.md)
 * [Metrics & Checks](metrics-and-checks.md)
