@@ -1,1 +1,1 @@
-This documentation has been moved to the "Resources" section.
+This documentation has been moved to the [Resources](../resources/ "mention") section.
