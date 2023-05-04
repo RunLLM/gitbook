@@ -55,7 +55,7 @@ In the example below, we will attempt to filter a table based on the value of a 
 
 
 ```python
-db = client.integration("aqueduct_demo")
+db = client.resource("aqueduct_demo")
 
 # reviews_table is an Aqueduct TableArtifact, which is a wrapper around
 # a Pandas DataFrame. A TableArtifact can be used as argument to any operator

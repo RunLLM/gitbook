@@ -59,7 +59,7 @@ The base data for our workflow is the [hotel reviews](https://docs.aqueducthq.co
 
 
 ```python
-demo_db = client.integration("aqueduct_demo")
+demo_db = client.resource("aqueduct_demo")
 reviews_table = demo_db.sql("select * from hotel_reviews;")
 
 # You will see the type of `reviews_table` is an Aqueduct TableArtifact.
@@ -406,7 +406,7 @@ Note that checks are denoted with the @check decorator. Checks can also computed
 
 ---
 ### Saving Data
-Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database. See [here](https://docs.aqueducthq.com/integrations/using-integrations) for more details around using integration objects.
+Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database. See [here](https://docs.aqueducthq.com/integrations/using-integrations) for more details around using resource objects.
 
 
 
@@ -466,5 +466,13 @@ And we're done! We've created our first workflow together, and you're off to the
 
 ---
 
-There is a lot more you can do with Aqueduct, including having flows run automatically on a cadence, parameterizing flows, and reading to and writing from many different integrations (S3, Postgres, etc.). Check out the other tutorials and examples [here](https://docs.aqueducthq.com/example-workflows) for a deeper dive!
+There is a lot more you can do with Aqueduct, including having flows run automatically on a cadence, parameterizing flows, and reading to and writing from many different data resources (S3, Postgres, etc.). Check out the other tutorials and examples [here](https://docs.aqueducthq.com/example-workflows) for a deeper dive!
+
+
+
+
+<!-- ------------- New Cell ------------ -->
+
+
+
 

@@ -742,7 +742,7 @@ We then invoke the Aqueduct operators that we defined above, and Aqueduct will a
 
 
 ```python
-demo_db = client.integration("aqueduct_demo")
+demo_db = client.resource("aqueduct_demo")
 raw_data = demo_db.sql("select * from house_prices;")
 
 filled_data = fill_missing_data(raw_data)

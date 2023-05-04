@@ -62,7 +62,7 @@ In this demo, we will use the wine table in the demo data warehouse.
 
 
 ```python
-demodb = client.integration("aqueduct_demo")
+demodb = client.resource("aqueduct_demo")
 
 # wines is an Aqueduct TableArtifact, which is a wrapper around
 # a Pandas DataFrame. A TableArtifact can be used as argument to any operator

@@ -91,7 +91,7 @@ def head(n: int = 5,
 
 Returns a preview of the table artifact.
 
->>> db = client.integration(name="demo/")
+>>> db = client.resource(name="demo/")
 >>> customer_data = db.sql("SELECT * from customers")
 >>> churn_predictions = predict_churn(customer_data)
 >>> churn_predictions.head()
