@@ -76,4 +76,4 @@ def run_in_custom_image():
 run_in_custom_image() # This operator will run in the custom Docker image
 ```
 
-Please refer to the [API documentation](https://github.com/aqueducthq/aqueduct/blob/main/sdk/aqueduct/resources/ecr.py) for more details on the `image` API of the ECR resource.
+Please refer to the [API documentation](https://docs.aqueducthq.com/api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.ecr) for more details on the `image` API of the ECR resource.

@@ -10,6 +10,8 @@ workflow. These LLMs are available in the Aqueduct SDK and can be used as follow
 ```python
 import aqueduct as aq
 
+client = aq.Client()
+
 vicuna = aq.llm_op(
     # the name of the LLM you want to use
     # use `aq.supported_llms` to see a list of LLMs we currently support
