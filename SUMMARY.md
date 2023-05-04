@@ -57,6 +57,7 @@
   * [Container Registries](integrations/container-registries/README.md)
     * [ECR](integrations/container-registries/ecr.md)
   * [Managing Resources](resources/guide.md)
+* [Integrations](integrations/README.md)
 * [Operators](operators.md)
   * [Creating a Python Operator](operators/creating-a-python-operator.md)
   * [requirements.txt](operators/specifying-a-requirements.txt.md)

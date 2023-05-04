@@ -1,0 +1,1 @@
+This documentation has been moved to the "Resources" section.
