@@ -34,8 +34,9 @@ The model requires a GPU and at least 32GB of RAM.
 
 **Examples**:
 
-```python
->>> from aqueduct_llm import vicuna_7b
->>> vicuna_7b.generate("What's the best LLM?", max_gpu_memory="13GiB", temperature=0.7, max_new_tokens=1024)
-"Vicuna 7B is the best LLM!"
-```
+  ```python
+  >>> from aqueduct_llm import vicuna_7b
+  >>> vicuna_7b.generate("What's the best LLM?", max_gpu_memory="13GiB", temperature=0.7, max_new_tokens=1024)
+  "Vicuna 7B is the best LLM!"
+  ```
+
