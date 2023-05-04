@@ -4,16 +4,18 @@ description: Empower your workflow with LLMs
 
 # Built-in LLM support
 
-Aqueduct supports a number of built-in LLMs (large language models) that you can use as part of your workflow. These LLMs are available in the Aqueduct SDK and can be used as follows:
+Aqueduct supports a number of built-in LLMs (large language models) that you can use as part of your 
+workflow. These LLMs are available in the Aqueduct SDK and can be used as follows:
 
 ```python
 import aqueduct as aq
 
 vicuna = aq.llm_op(
     # the name of the LLM you want to use
+    # use `aq.supported_llms` to see a list of LLMs we currently support
     name="vicuna_7b",
-    # specify which compute engine to run this LLM operator on
-    engine="k8s",
+    # specify the name of the compute engine to run this LLM operator on
+    engine="my_k8s_engine",
 )
 
 response = vicuna(
@@ -35,7 +37,7 @@ You can also feed a Pandas DataFrame to an LLM operator. In this case, we will s
 ```python
 vicuna = aq.llm_op(
     name="vicuna_7b",
-    engine="k8s",
+    engine="my_k8s_engine",
     column_name="review", # the column to send to the LLM
     output_column_name="response", # the column name for the response
 )
@@ -66,7 +68,7 @@ include `aqueduct-llm` as a `requirements` when decorating your function:
 from aqueduct import op
 
 @op(
-    engine="k8s",
+    engine="my_k8s_engine",
     requirements=["aqueduct-llm"],
     resources={
         'memory': '16GB',

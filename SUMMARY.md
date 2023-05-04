@@ -54,6 +54,8 @@
     * [Kubernetes](integrations/compute-systems/kubernetes.md)
     * [AWS Lambda](integrations/compute-systems/aws-lambda.md)
     * [Apache Spark on AWS EMR](integrations/compute-systems/apache-spark-on-aws-emr.md)
+  * [Container Registries](integrations/container-registries/README.md)
+    * [ECR](integrations/container-registries/ecr.md)
   * [Managing Integrations](integrations/guide.md)
 * [Operators](operators.md)
   * [Creating a Python Operator](operators/creating-a-python-operator.md)
