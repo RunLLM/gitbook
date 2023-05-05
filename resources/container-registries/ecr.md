@@ -47,7 +47,7 @@ should *not* have an entrypoint or a `CMD` specified.
 Here is an example `Dockerfile` that builds a custom image for an operator running on Python 3.10:
 
 ```dockerfile
-FROM aqueducthq/function310:0.3.0
+FROM aqueducthq/function310:0.3.1
 
 COPY my_custom_operator_dependencies /
 ```
