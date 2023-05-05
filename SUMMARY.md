@@ -27,8 +27,6 @@
   * [Editing a Workflow](workflows/editing-a-workflow.md)
   * [Deleting a Workflow](workflows/deleting-a-workflow.md)
 * [Resources](resources/README.md)
-  * [On-demand resources](resources/on-demand-resources/README.md)
-    * [On-demand AWS EKS Clusters](resources/on-demand-resources/on-demand-aws-eks-clusters.md)
   * [Data Systems](resources/data-systems/README.md)
     * [SQL Systems](resources/data-systems/sql-systems/README.md)
       * [Snowflake](resources/data-systems/sql-systems/snowflake.md)
