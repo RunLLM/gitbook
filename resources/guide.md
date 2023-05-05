@@ -32,7 +32,7 @@ The reason certain fields are protected is because Aqueduct cannot verify whethe
 
 If you don't have any workflows using a resource, you can delete that resource from the `Options` menu. Otherwise, you will need to [delete all workflows using this resource](../workflows/deleting-a-workflow.md) first. You can refer to the [workflows section](guide.md#viewing-workflows-using-a-resource) to see a list of all workflows using this resource.
 
-For **relational databases**, in the `Preview` section, you can view tables stored in this resource. You can also get a preview of each table by typing the table name in the dropdown menu. You can find more details [here](broken-reference) on viewing data in resource.&#x20;
+For **relational databases**, in the `Preview` section, you can view tables stored in this resource. You can also get a preview of each table by typing the table name in the dropdown menu.
 
 ### Viewing Workflows Using a Resource
 
