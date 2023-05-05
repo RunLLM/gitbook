@@ -164,7 +164,7 @@ ondemand_k8s.update(config_delta={
 
 ## Other APIs
 
-Please refer to our [SDK API documentation](https://docs.aqueducthq.com/api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.dynamic\_k8s\_resource) for other APIs supported by `ondemand_k8s`.
+Please refer to our [SDK API documentation](https://docs.aqueducthq.com/api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.dynamic\_k8s) for other APIs supported by `ondemand_k8s`.
 
 ## FAQs
 
