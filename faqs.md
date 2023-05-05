@@ -21,4 +21,4 @@ ImportError: cannot import name 'TypeGuard' from 'typing'
 
 **Q: When connecting a resource I get an error message about missing dependencies. How do I resolve this?**
 
-**A:** Each resource requires specific drivers that you might not have installed. Before connecting an resource, please run `aqueduct install <resource-name>` from your command line. This ensures that the right depenendencies are installed and that can Aqueduct can connect to the relevant system. See [configuring-aqueduct.md](installation-and-configuration/configuring-aqueduct.md "mention") for more details.
+**A:** Each resource requires specific drivers that you might not have installed. Before connecting a resource, please run `aqueduct install <resource-name>` from your command line. This ensures that the right depenendencies are installed and that can Aqueduct can connect to the relevant system. See [configuring-aqueduct.md](installation-and-configuration/configuring-aqueduct.md "mention") for more details.
