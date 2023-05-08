@@ -6,7 +6,7 @@ description: Run ML on any cloud infrastructure.
 
 Aqueduct allows you to run machine learning on any cloud infrastructure you'd like to use.&#x20;
 
-As of [v0.2.7](https://github.com/aqueducthq/aqueduct/releases/tag/v0.2.7), Aqueduct can create resources on-demand for your ML workflows. See more in [on-demand-resources](../on-demand-resources/ "mention").
+As of [v0.2.7](https://github.com/aqueducthq/aqueduct/releases/tag/v0.2.7), Aqueduct can create resources on-demand for your ML workflows. See more in [on-demand-resources](on-demand-resources/ "mention").
 
 Here are the compute engines Aqueduct supports:
 
