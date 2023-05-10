@@ -75,7 +75,7 @@ First, we'll load some test data. Here, we'll use a dataset that has reviews of 
 
 
 ```python
-warehouse = client.resource("aqueduct_demo")
+warehouse = client.resource("Demo")
 
 # reviews_table is an Aqueduct TableArtifact, which is a wrapper around
 # a Pandas DataFrame. A TableArtifact can be used as argument to any operator

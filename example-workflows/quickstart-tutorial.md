@@ -50,7 +50,7 @@ Note that the API key associated with the server can also be found in the output
 ---
 ### Accessing Data
 
-The base data for our workflow is the [hotel reviews](https://docs.aqueducthq.com/integrations/aqueduct-demo-integration) dataset in the pre-built aqueduct_demo that comes with the Aqueduct server. This code does two things -- (1) it loads a connection to the demo database, and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
+The base data for our workflow is the [hotel reviews](https://docs.aqueducthq.com/integrations/aqueduct-demo-integration) dataset in the pre-built Demo that comes with the Aqueduct server. This code does two things -- (1) it loads a connection to the demo database, and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
 
 
 
@@ -59,7 +59,7 @@ The base data for our workflow is the [hotel reviews](https://docs.aqueducthq.co
 
 
 ```python
-demo_db = client.resource("aqueduct_demo")
+demo_db = client.resource("Demo")
 reviews_table = demo_db.sql("select * from hotel_reviews;")
 
 # You will see the type of `reviews_table` is an Aqueduct TableArtifact.

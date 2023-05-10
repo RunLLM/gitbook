@@ -257,20 +257,10 @@ Retrieves a dictionary of integrations the client can use.
 ```python
 def integration(
     name: str
-) -> Union[
-        SalesforceResource,
-        S3Resource,
-        GoogleSheetsResource,
-        RelationalDBResource,
-        AirflowResource,
-        K8sResource,
-        LambdaResource,
-        MongoDBResource,
-        DatabricksResource,
-        SparkResource,
-        AWSResource,
-        ECRResource,
-]
+) -> Union[SalesforceResource, S3Resource, GoogleSheetsResource,
+           RelationalDBResource, AirflowResource, K8sResource, LambdaResource,
+           MongoDBResource, DatabricksResource, SparkResource, AWSResource,
+           ECRResource, ]
 ```
 
 Deprecated. Use `client.resource()` instead.
@@ -282,20 +272,10 @@ Deprecated. Use `client.resource()` instead.
 ```python
 def resource(
     name: str
-) -> Union[
-        SalesforceResource,
-        S3Resource,
-        GoogleSheetsResource,
-        RelationalDBResource,
-        AirflowResource,
-        K8sResource,
-        LambdaResource,
-        MongoDBResource,
-        DatabricksResource,
-        SparkResource,
-        AWSResource,
-        ECRResource,
-]
+) -> Union[SalesforceResource, S3Resource, GoogleSheetsResource,
+           RelationalDBResource, AirflowResource, K8sResource, LambdaResource,
+           MongoDBResource, DatabricksResource, SparkResource, AWSResource,
+           ECRResource, ]
 ```
 
 Retrieves a connected integration object.
