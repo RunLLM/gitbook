@@ -44,5 +44,5 @@ that the image exists in the ECR repository.
 **Arguments**:
 
 - `image_name` - The name of the image to retrieve. Should be in the form of `image:tag`.
-  No need to include the endpoint URL prefix such as 123456789012.dkr.ecr.us-east-1.amazonaws.com.
+  No need to include the endpoint URL prefix such as `123456789012.dkr.ecr.us-east-1.amazonaws.com`.
 
