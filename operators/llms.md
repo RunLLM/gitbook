@@ -1,5 +1,5 @@
 ---
-description: Empower your workflow with LLMs
+description: Native support for LLMs in your ML workflows
 ---
 
 # LLMs
