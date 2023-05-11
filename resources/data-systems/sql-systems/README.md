@@ -18,11 +18,11 @@ Aqueduct supports chaining SQL queries together, allowing you to break down comp
 To do so, simply call `.sql()` with a list of strings. In the query chain, you can use the special placeholder `$` to refer to the previous query in. The output of the last query will be returned as the output artifact of this execution.
 
 ```python
-import aqueduct aq aq 
+import aqueduct as aq 
 client = aq.Client()
 
 
-db = client.resource('aqueduct_demo')
+db = client.resource('Demo')
 customers = db.sql([
   'SELECT * FROM customers WHERE company_size < 50;',
   # `$` represents the output of the above query.
