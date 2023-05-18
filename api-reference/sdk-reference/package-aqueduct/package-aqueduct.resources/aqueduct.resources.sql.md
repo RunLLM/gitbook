@@ -110,7 +110,7 @@ Runs a SQL query against the RelationalDB integration.
 
 ```python
 @validate_is_connected()
-def save(artifact: BaseArtifact, table_name: str,
+def save(artifact: BaseArtifact, table_name: Union[str, BaseArtifact],
          update_mode: LoadUpdateMode) -> None
 ```
 
@@ -121,7 +121,9 @@ Registers a save operator of the given artifact, to be executed when it's comput
   artifact:
   The artifact to save into this sql integration.
   table_name:
-  The table to save the artifact to.
+  The table to save the artifact to. You can also parameterize this field by passing
+  a string parameter here. When this save is parameterized, the table name parameter
+  will always be ordered before the artifact in the save operator's input list.
   update_mode:
   Defines the semantics of the save if a table already exists.
   Options are "replace", "append" (row-wise), or "fail" (if table already exists).
