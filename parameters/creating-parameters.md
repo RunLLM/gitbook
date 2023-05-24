@@ -66,7 +66,9 @@ churn.get(parameters={"country": "United Kingdom"})
 
 ### Creating a Parameter Explicitly using Local Data
 
-The create a parameter from local data on your filesystem, pass in the path as `default` and set `use_local` to `True`. You will also need to provide the expected Artifact type of the local data.
+The create a parameter from local data on your filesystem, pass in the path as `default` and set `use_local` to `True`. 
+You will also need to provide the expected Artifact type of the local data. The provided path is relative to the current
+working directory.
 
 Here's an example of how we can create a local data parameter that has the content of a local csv file:
 
