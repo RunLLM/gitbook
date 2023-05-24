@@ -1,5 +1,4 @@
-# Parameterizing Extract Operators
-
+# Parameterizing Extracts 
 
 Only SQL queries to relational database resource can be parameterized. 
 
