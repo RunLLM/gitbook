@@ -1,9 +1,9 @@
 # Table of Contents
 
 * [aqueduct.resources.mongodb](#aqueduct.resources.mongodb)
-  * [MongoDBCollectionIntegration](#aqueduct.resources.mongodb.MongoDBCollectionIntegration)
-    * [find](#aqueduct.resources.mongodb.MongoDBCollectionIntegration.find)
-    * [save](#aqueduct.resources.mongodb.MongoDBCollectionIntegration.save)
+  * [MongoDBCollectionResource](#aqueduct.resources.mongodb.MongoDBCollectionResource)
+    * [find](#aqueduct.resources.mongodb.MongoDBCollectionResource.find)
+    * [save](#aqueduct.resources.mongodb.MongoDBCollectionResource.save)
   * [MongoDBResource](#aqueduct.resources.mongodb.MongoDBResource)
     * [collection](#aqueduct.resources.mongodb.MongoDBResource.collection)
     * [describe](#aqueduct.resources.mongodb.MongoDBResource.describe)
@@ -13,15 +13,15 @@
 
 # aqueduct.resources.mongodb
 
-<a id="aqueduct.resources.mongodb.MongoDBCollectionIntegration"></a>
+<a id="aqueduct.resources.mongodb.MongoDBCollectionResource"></a>
 
-## MongoDBCollectionIntegration Objects
+## MongoDBCollectionResource Objects
 
 ```python
-class MongoDBCollectionIntegration(BaseResource)
+class MongoDBCollectionResource(BaseResource)
 ```
 
-<a id="aqueduct.resources.mongodb.MongoDBCollectionIntegration.find"></a>
+<a id="aqueduct.resources.mongodb.MongoDBCollectionResource.find"></a>
 
 #### find
 
@@ -58,7 +58,7 @@ sql query operator and will fill in the placeholders in the query with the actua
 
   country1 = client.create_param("UK", default=" United Kingdom ")
   country2 = client.create_param("Thailand", default=" Thailand ")
-  mongo_db_integration.collection("hotel_reviews").find(
+  mongo_db_resource.collection("hotel_reviews").find(
   {
 - `"reviewer_nationality"` - {
 - `"$in"` - [$1, $2],
@@ -76,7 +76,7 @@ sql query operator and will fill in the placeholders in the query with the actua
   lazy:
   Whether to run this operator lazily. See https://docs.aqueducthq.com/operators/lazy-vs.-eager-execution .
 
-<a id="aqueduct.resources.mongodb.MongoDBCollectionIntegration.save"></a>
+<a id="aqueduct.resources.mongodb.MongoDBCollectionResource.save"></a>
 
 #### save
 
@@ -103,10 +103,10 @@ Registers a save operator of the given artifact, to be executed when it's comput
 class MongoDBResource(BaseResource)
 ```
 
-Class for MongoDB integration. This works similar to mongo's `Database` object:
+Class for MongoDB resource. This works similar to mongo's `Database` object:
 
-mongo_integration = client.resource("my_resource_name")
-my_table_artifact = mongo_integration.collection("my_collection").find({})
+mongo_resource = client.resource("my_resource_name")
+my_table_artifact = mongo_resource.collection("my_collection").find({})
 
 <a id="aqueduct.resources.mongodb.MongoDBResource.collection"></a>
 
@@ -114,7 +114,7 @@ my_table_artifact = mongo_integration.collection("my_collection").find({})
 
 ```python
 @validate_is_connected()
-def collection(name: str) -> MongoDBCollectionIntegration
+def collection(name: str) -> MongoDBCollectionResource
 ```
 
 Returns a specific collection object to call `.find()` method.
@@ -133,7 +133,7 @@ Returns a specific collection object to call `.find()` method.
 def describe() -> None
 ```
 
-Prints out a human-readable description of the MongoDB integration.
+Prints out a human-readable description of the MongoDB resource.
 
 <a id="aqueduct.resources.mongodb.MongoDBResource.save"></a>
 

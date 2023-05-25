@@ -16,7 +16,7 @@
 class GithubMetadata(BaseModel)
 ```
 
-Specifies a destination in github integration.
+Specifies a destination in github resource.
 There are two ways to specify the content:
 -   by `path`, which points to a file or dir in the github repo.
 -   from `repo_config_content_type` and `repo_config_content_name`, which points to

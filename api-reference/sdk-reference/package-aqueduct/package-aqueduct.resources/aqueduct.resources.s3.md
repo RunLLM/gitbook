@@ -18,7 +18,7 @@
 class S3Resource(BaseResource)
 ```
 
-Class for S3 integration.
+Class for S3 resource.
 
 <a id="aqueduct.resources.s3.S3Resource.file"></a>
 
@@ -36,7 +36,7 @@ def file(filepaths: Union[List[str], str],
          lazy: bool = False) -> BaseArtifact
 ```
 
-Reads one or more files from the S3 integration.
+Reads one or more files from the S3 resource.
 
 **Arguments**:
 
@@ -106,5 +106,5 @@ Registers a save operator of the given artifact, to be executed when it's comput
 def describe() -> None
 ```
 
-Prints out a human-readable description of the S3 integration.
+Prints out a human-readable description of the S3 resource.
 

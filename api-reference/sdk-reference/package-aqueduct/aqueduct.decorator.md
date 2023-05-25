@@ -94,7 +94,7 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   description:
   A description for the operator.
   engine:
-  The name of the compute integration this operator will run on. Defaults to the Aqueduct engine.
+  The name of the compute resource this operator will run on. Defaults to the Aqueduct engine.
   file_dependencies:
   A list of relative paths to files that the function needs to access.
   Python classes/methods already imported within the function's file
@@ -140,7 +140,7 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   image:
   A dictionary containing the custom image configurations that this operator will run with.
   The dictionary needs to contain the following keys:
-- `"registry_name"` _str_ - The name of the registry integration to use.
+- `"registry_name"` _str_ - The name of the registry resource to use.
 - `"url"` _str_ - The full URL of the image to use. Example: "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-image:latest"
   It is recommended to get the dictionary via `client.resource("my_registry_name").image("my-image:latest")`
   
@@ -208,7 +208,7 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   An optional custom name for the output metric artifact. Otherwise, the default naming scheme
   will be used.
   engine:
-  The name of the compute integration this operator will run on.
+  The name of the compute resource this operator will run on.
   resources:
   A dictionary containing the custom resource configurations that this operator will run with.
   These configurations are guaranteed to be followed, we will not silently ignore any of them.
@@ -237,7 +237,7 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   image:
   A dictionary containing the custom image configurations that this operator will run with.
   The dictionary needs to contain the following keys:
-- `"registry_name"` _str_ - The name of the registry integration to use.
+- `"registry_name"` _str_ - The name of the registry resource to use.
 - `"url"` _str_ - The full URL of the image to use. Example: "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-image:latest"
   It is recommended to get the dictionary via `client.resource("my_registry_name").image("my-image:latest")`
   
@@ -308,7 +308,7 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   An optional custom name for the output metric artifact. Otherwise, the default naming scheme
   will be used.
   engine:
-  The name of the compute integration this operator will run on.
+  The name of the compute resource this operator will run on.
   resources:
   A dictionary containing the custom resource configurations that this operator will run with.
   These configurations are guaranteed to be followed, we will not silently ignore any of them.
@@ -337,7 +337,7 @@ To run the wrapped code locally, without Aqueduct, use the `local` attribute. Eg
   image:
   A dictionary containing the custom image configurations that this operator will run with.
   The dictionary needs to contain the following keys:
-- `"registry_name"` _str_ - The name of the registry integration to use.
+- `"registry_name"` _str_ - The name of the registry resource to use.
 - `"url"` _str_ - The full URL of the image to use. Example: "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-image:latest"
   It is recommended to get the dictionary via `client.resource("my_registry_name").image("my-image:latest")`
   

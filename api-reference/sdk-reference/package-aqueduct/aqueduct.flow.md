@@ -77,7 +77,7 @@ Get everything saved by the flow.
 
 **Returns**:
 
-  A dictionary mapping the integration id to the list of table names/storage path.
+  A dictionary mapping the resource id to the list of table names/storage path.
 
 <a id="aqueduct.flow.Flow.describe"></a>
 

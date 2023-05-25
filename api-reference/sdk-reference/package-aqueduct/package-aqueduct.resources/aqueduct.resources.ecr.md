@@ -17,7 +17,7 @@
 class ECRResource(BaseResource)
 ```
 
-Class for ECR integration.
+Class for ECR resource.
 
 <a id="aqueduct.resources.ecr.ECRResource.describe"></a>
 
@@ -27,7 +27,7 @@ Class for ECR integration.
 def describe() -> None
 ```
 
-Prints out a human-readable description of the ECR integration.
+Prints out a human-readable description of the ECR resource.
 
 <a id="aqueduct.resources.ecr.ECRResource.image"></a>
 
