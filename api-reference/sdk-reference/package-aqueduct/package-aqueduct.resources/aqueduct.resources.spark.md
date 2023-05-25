@@ -16,7 +16,7 @@
 class SparkResource(BaseResource)
 ```
 
-Class for Spark integration.
+Class for Spark resource.
 
 <a id="aqueduct.resources.spark.SparkResource.describe"></a>
 
@@ -26,5 +26,5 @@ Class for Spark integration.
 def describe() -> None
 ```
 
-Prints out a human-readable description of the Spark integration.
+Prints out a human-readable description of the Spark resource.
 

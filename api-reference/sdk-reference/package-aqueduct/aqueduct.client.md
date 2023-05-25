@@ -45,7 +45,7 @@ Sets any global configuration variables in the current Aqueduct context.
   "lazy":
   A boolean indicating whether any new functions will be constructed lazily (True) or eagerly (False).
   "engine":
-  The name of the default compute integration to run all functions against.
+  The name of the default compute resource to run all functions against.
   This can still be overriden by the `engine` argument in `client.publish_flow()` or
   on the @op spec. To set this to run against the Aqueduct engine, use "aqueduct" (case-insensitive).
 
@@ -127,7 +127,7 @@ Github account to your Aqueduct account.
 
 **Returns**:
 
-  A github integration object linked to the repo and branch.
+  A github resource object linked to the repo and branch.
 
 <a id="aqueduct.client.Client.create_param"></a>
 
@@ -188,17 +188,17 @@ def connect_resource(name: str, service: Union[str, ServiceType],
                      config: Union[Dict[str, str], ResourceConfig]) -> None
 ```
 
-Connects the Aqueduct server to an integration.
+Connects the Aqueduct server to an resource.
 
 **Arguments**:
 
   name:
-  The name to assign this integration. Will error if an integration with that name
+  The name to assign this resource. Will error if an resource with that name
   already exists.
   service:
-  The type of integration to connect to.
+  The type of resource to connect to.
   config:
-  Either a dictionary or an IntegrationConnectConfig object that contains the
+  Either a dictionary or an ResourceConnectConfig object that contains the
   configuration credentials needed to connect.
 
 <a id="aqueduct.client.Client.delete_integration"></a>
@@ -219,12 +219,12 @@ Deprecated. Use `client.delete_resource()` instead.
 def delete_resource(name: str) -> None
 ```
 
-Deletes the integration from Aqueduct.
+Deletes the resource from Aqueduct.
 
 **Arguments**:
 
   name:
-  The name of the integration to delete.
+  The name of the resource to delete.
 
 <a id="aqueduct.client.Client.list_integrations"></a>
 
@@ -244,11 +244,11 @@ Deprecated. Use `client.list_resources()` instead.
 def list_resources() -> Dict[str, ResourceInfo]
 ```
 
-Retrieves a dictionary of integrations the client can use.
+Retrieves a dictionary of resources the client can use.
 
 **Returns**:
 
-  A dictionary mapping from integration name to additional info.
+  A dictionary mapping from resource name to additional info.
 
 <a id="aqueduct.client.Client.integration"></a>
 
@@ -278,24 +278,24 @@ def resource(
            ECRResource, ]
 ```
 
-Retrieves a connected integration object.
+Retrieves a connected resource object.
 
 **Arguments**:
 
   name:
-  The name of the integration
+  The name of the resource
   
 
 **Returns**:
 
-  The integration object with the given name.
+  The resource object with the given name.
   
 
 **Raises**:
 
-  InvalidIntegrationException:
+  InvalidResourceException:
   An error occurred because the cluster is not connected to the
-  provided integration or the provided integration is of an
+  provided resource or the provided resource is of an
   incompatible type.
 
 <a id="aqueduct.client.Client.list_flows"></a>
@@ -319,7 +319,8 @@ Lists the flows that are accessible by this client.
 #### flow
 
 ```python
-def flow(flow_id: Optional[Union[str, uuid.UUID]] = None,
+def flow(flow_identifier: Optional[Union[str, uuid.UUID]] = None,
+         flow_id: Optional[Union[str, uuid.UUID]] = None,
          flow_name: Optional[str] = None) -> Flow
 ```
 
@@ -327,12 +328,18 @@ Fetches a flow corresponding to the given flow id.
 
 **Arguments**:
 
+  flow_identifier:
+  Used to identify the flow to fetch from the system.
+  Use either the flow name or id as identifier to fetch
+  from the system.
   flow_id:
   Used to identify the flow to fetch from the system.
   Between `flow_id` and `flow_name`, at least one must be provided.
   If both are specified, they must correspond to the same flow.
   flow_name:
   Used to identify the flow to fetch from the system.
+  
+  flow_identifier takes precedence over flow_id or flow_name arguments
   
 
 **Raises**:
@@ -369,7 +376,7 @@ execution engine the flow will be running on, use "config" parameter. Eg:
 >>> flow = client.publish_flow(
 >>>     name="k8s_example",
 >>>     artifacts=[output],
->>>     engine="k8s_integration",
+>>>     engine="k8s_resource",
 >>> )
 
 **Arguments**:
@@ -385,7 +392,7 @@ execution engine the flow will be running on, use "config" parameter. Eg:
   
   >> schedule = aqueduct.hourly(minute: 0)
   engine:
-  The name of the compute integration (eg. "my_lambda_integration") this the flow will
+  The name of the compute resource (eg. "my_lambda_resource") this the flow will
   be computed on.
   artifacts:
   All the artifacts that you care about computing. These artifacts are guaranteed
@@ -429,27 +436,31 @@ execution engine the flow will be running on, use "config" parameter. Eg:
 #### trigger
 
 ```python
-def trigger(flow_id: Optional[Union[str, uuid.UUID]] = None,
-            flow_name: Optional[str] = None,
-            parameters: Optional[Dict[str, Any]] = None) -> None
+def trigger(flow_identifier: Optional[Union[str, uuid.UUID]] = None,
+            parameters: Optional[Dict[str, Any]] = None,
+            flow_id: Optional[Union[str, uuid.UUID]] = None,
+            flow_name: Optional[str] = None) -> None
 ```
 
 Immediately triggers another run of the provided flow.
 
 **Arguments**:
 
-  flow_id:
-  The id of the flow to delete.
-  Between `flow_id` and `flow_name`, at least one must be provided.
-  If both are specified, they must correspond to the same flow.
-  flow_name:
-  The name of the flow to delete.
+  flow_identifier:
+  The uuid or name of the flow to delete.
   parameters:
   A map containing custom values to use for the designated parameters. The mapping
   is expected to be from parameter name to the custom value. These custom values
   are not persisted to the workflow. To actually change the default parameter values
   edit the workflow itself through `client.publish_flow()`.
+  flow_id:
+  Used to identify the flow to fetch from the system.
+  Between `flow_id` and `flow_name`, at least one must be provided.
+  If both are specified, they must correspond to the same flow.
+  flow_name:
+  Used to identify the flow to fetch from the system.
   
+  flow_identifier takes precedence over flow_id or flow_name arguments
 
 **Raises**:
 
@@ -464,7 +475,8 @@ Immediately triggers another run of the provided flow.
 #### delete\_flow
 
 ```python
-def delete_flow(flow_id: Optional[Union[str, uuid.UUID]] = None,
+def delete_flow(flow_identifier: Optional[Union[str, uuid.UUID]] = None,
+                flow_id: Optional[Union[str, uuid.UUID]] = None,
                 flow_name: Optional[str] = None,
                 saved_objects_to_delete: Optional[DefaultDict[Union[
                     str, BaseResource], List[SavedObjectUpdate]]] = None,
@@ -475,14 +487,19 @@ Deletes a flow object.
 
 **Arguments**:
 
+  flow_identifier:
+  The id of the flow to delete. Must be name or uuid
   flow_id:
-  The id of the flow to delete.
+  Used to identify the flow to fetch from the system.
   Between `flow_id` and `flow_name`, at least one must be provided.
   If both are specified, they must correspond to the same flow.
   flow_name:
-  The name of the flow to delete.
+  Used to identify the flow to fetch from the system.
+  
+  flow_identifier takes precedence over flow_id or flow_name arguments
+  
   saved_objects_to_delete:
-  The tables or storage paths to delete grouped by integration name.
+  The tables or storage paths to delete grouped by resource name.
   force:
   Force the deletion even though some workflow-written objects in the writes_to_delete argument had UpdateMode=append
   

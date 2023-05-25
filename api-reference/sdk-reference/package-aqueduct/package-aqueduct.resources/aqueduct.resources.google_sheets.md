@@ -18,7 +18,7 @@
 class GoogleSheetsResource(BaseResource)
 ```
 
-Class for Google Sheets integration.
+Class for Google Sheets resource.
 
 <a id="aqueduct.resources.google_sheets.GoogleSheetsResource.spreadsheet"></a>
 
@@ -32,7 +32,7 @@ def spreadsheet(spreadsheet_id: str,
                 description: str = "") -> TableArtifact
 ```
 
-Retrieves a spreadsheet from the Google Sheets integration.
+Retrieves a spreadsheet from the Google Sheets resource.
 
 **Arguments**:
 
@@ -88,5 +88,5 @@ Registers a save operator of the given artifact, to be executed when it's comput
 def describe() -> None
 ```
 
-Prints out a human-readable description of the google sheets integration.
+Prints out a human-readable description of the google sheets resource.
 

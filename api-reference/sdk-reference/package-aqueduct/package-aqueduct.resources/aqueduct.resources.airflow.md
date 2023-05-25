@@ -16,7 +16,7 @@
 class AirflowResource(BaseResource)
 ```
 
-Class for Airflow integration.
+Class for Airflow resource.
 
 <a id="aqueduct.resources.airflow.AirflowResource.describe"></a>
 
@@ -26,5 +26,5 @@ Class for Airflow integration.
 def describe() -> None
 ```
 
-Prints out a human-readable description of the Airflow integration.
+Prints out a human-readable description of the Airflow resource.
 

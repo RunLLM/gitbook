@@ -16,7 +16,7 @@
 class DatabricksResource(BaseResource)
 ```
 
-Class for Databricks integration.
+Class for Databricks resource.
 
 <a id="aqueduct.resources.databricks.DatabricksResource.describe"></a>
 
@@ -26,5 +26,5 @@ Class for Databricks integration.
 def describe() -> None
 ```
 
-Prints out a human-readable description of the Databricks integration.
+Prints out a human-readable description of the Databricks resource.
 
