@@ -1,4 +1,4 @@
-# Parameterizing Extracts 
+# Parameterizing Loads
 
 Only SQL queries to relational database resource can be parameterized. 
 

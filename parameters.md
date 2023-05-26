@@ -13,5 +13,5 @@ Alternatively, this guide performs a thorough walkthrough:
 
 * [Creating Parameters](parameters/creating-parameters.md)
 * [Configuring Workflow Inputs](parameters/configuring-workflow-inputs.md)
-* [Parameterizing Extracts](parameters/parameterizing-extracts.md)
+* [Parameterizing Loads](parameters/parameterizing-loads.md)
 * [Parameterizing Saves](parameters/parameterizing-saves.md)
