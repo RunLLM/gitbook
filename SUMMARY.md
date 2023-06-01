@@ -104,6 +104,7 @@
         * [aqueduct.resources.databricks](api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.databricks.md)
         * [aqueduct.resources.dynamic\_k8s](api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.dynamic\_k8s.md)
         * [aqueduct.resources.ecr](api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.ecr.md)
+        * [aqueduct.resources.gar](api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.gar.md)
         * [aqueduct.resources.kubernetes](api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.k8s.md)
         * [aqueduct.resources.google\_sheets](api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.google\_sheets.md)
         * [aqueduct.resources.mongodb](api-reference/sdk-reference/package-aqueduct/package-aqueduct.resources/aqueduct.resources.mongodb.md)
