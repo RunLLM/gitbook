@@ -10,3 +10,4 @@ supported for Kubernetes engines.
 Here are the container registries Aqueduct supports that you can pull images from:
 
 * [ecr.md](ecr.md "mention")
+* [gar.md](gar.md "mention")
