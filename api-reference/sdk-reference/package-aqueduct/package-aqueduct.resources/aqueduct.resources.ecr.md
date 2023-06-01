@@ -17,7 +17,7 @@
 class ECRResource(BaseResource)
 ```
 
-Class for ECR integration.
+Class for ECR resource.
 
 <a id="aqueduct.resources.ecr.ECRResource.describe"></a>
 
@@ -27,7 +27,7 @@ Class for ECR integration.
 def describe() -> None
 ```
 
-Prints out a human-readable description of the ECR integration.
+Prints out a human-readable description of the ECR resource.
 
 <a id="aqueduct.resources.ecr.ECRResource.image"></a>
 
@@ -44,5 +44,5 @@ that the image exists in the ECR repository.
 **Arguments**:
 
 - `image_name` - The name of the image to retrieve. Should be in the form of `image:tag`.
-  No need to include the endpoint URL prefix such as 123456789012.dkr.ecr.us-east-1.amazonaws.com.
+  No need to include the endpoint URL prefix such as `123456789012.dkr.ecr.us-east-1.amazonaws.com`.
 

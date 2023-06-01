@@ -620,7 +620,7 @@ Workflows access and publish to data resource that are configured on the Resourc
 
 
 ```python
-warehouse = client.resource(name="aqueduct_demo")
+warehouse = client.resource(name="Demo")
 
 # customers_table is an Aqueduct TableArtifact, which is a wrapper around
 # a Pandas DataFrame. A TableArtifact can be used as argument to any operator

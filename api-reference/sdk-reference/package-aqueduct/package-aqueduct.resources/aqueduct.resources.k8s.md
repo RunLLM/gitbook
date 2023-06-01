@@ -16,7 +16,7 @@
 class K8sResource(BaseResource)
 ```
 
-Class for K8s integration.
+Class for K8s resource.
 
 <a id="aqueduct.resources.k8s.K8sResource.describe"></a>
 
@@ -26,5 +26,5 @@ Class for K8s integration.
 def describe() -> None
 ```
 
-Prints out a human-readable description of the K8s integration.
+Prints out a human-readable description of the K8s resource.
 

@@ -51,7 +51,7 @@ client = aq.Client(api_key, address)
 <!-- ------------- New Cell ------------ -->
 
 
-Once we have our client, the first thing we'll do is load our data. Aqueduct has the ability to most common databases and storage systems (check out the Resources page on the Aqueduct UI). Here, we'll load a connection to the default `aqueduct_demo` database, which comes preloaded with a number of [common datasets](https://docs.aqueducthq.com/example-workflows/demo-data-warehouse). 
+Once we have our client, the first thing we'll do is load our data. Aqueduct has the ability to most common databases and storage systems (check out the Resources page on the Aqueduct UI). Here, we'll load a connection to the default `Demo` database, which comes preloaded with a number of [common datasets](https://docs.aqueducthq.com/example-workflows/demo-data-warehouse). 
 
 Once we have a connection to the demo DB, we can run a SQL query to retrieve our base data.
 
@@ -62,7 +62,7 @@ Once we have a connection to the demo DB, we can run a SQL query to retrieve our
 
 
 ```python
-demodb = client.resource("aqueduct_demo")
+demodb = client.resource("Demo")
 
 # mpg_data is an Aqueduct TableArtifact, which is a wrapper around
 # a Pandas DataFrame. A TableArtifact can be used as argument to any operator
@@ -1391,7 +1391,7 @@ demodb.save(predicted_mpg, table_name="predicted_mpg", update_mode="replace")
 <!-- ------------- New Cell ------------ -->
 
 
-The last line above calls `.save()` on the `predicted_mpg` table. This tells Aqueduct that the results of `predicted_mpg` should be written to a database (in this case the `aqueduct_demo` DB we accessed earlier) into a table called `predicted_mpg`.
+The last line above calls `.save()` on the `predicted_mpg` table. This tells Aqueduct that the results of `predicted_mpg` should be written to a database (in this case the `Demo` DB we accessed earlier) into a table called `predicted_mpg`.
 
 Now that we've defined our pipeline, we can call `.get()` on `predicted_mpg` to ensure that the pipeline executed successfully. Here, we can verify that our `predicted_mpg` matches what we computed locally:
 

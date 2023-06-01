@@ -781,7 +781,7 @@ Now that we've defined all the operators in our workflow, we can go ahead and de
 
 
 ```python
-demodb = client.resource("aqueduct_demo")
+demodb = client.resource("Demo")
 
 # mpg_data is an Aqueduct TableArtifact, which is a wrapper around
 # a Pandas DataFrame. A TableArtifact can be used as argument to any operator

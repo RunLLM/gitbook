@@ -19,7 +19,7 @@
 class SalesforceResource(BaseResource)
 ```
 
-Class for Salesforce integration.
+Class for Salesforce resource.
 
 <a id="aqueduct.resources.salesforce.SalesforceResource.search"></a>
 
@@ -33,7 +33,7 @@ def search(search_query: str,
            description: str = "") -> TableArtifact
 ```
 
-Runs a search against the Salesforce integration.
+Runs a search against the Salesforce resource.
 
 **Arguments**:
 
@@ -63,7 +63,7 @@ def query(query: str,
           description: str = "") -> TableArtifact
 ```
 
-Runs a query against the Salesforce integration.
+Runs a query against the Salesforce resource.
 
 **Arguments**:
 
@@ -107,5 +107,5 @@ Registers a save operator of the given artifact, to be executed when it's comput
 def describe() -> None
 ```
 
-Prints out a human-readable description of the Salesforce integration.
+Prints out a human-readable description of the Salesforce resource.
 

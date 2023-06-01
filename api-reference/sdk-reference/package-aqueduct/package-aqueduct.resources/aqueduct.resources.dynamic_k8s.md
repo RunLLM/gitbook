@@ -20,7 +20,7 @@
 class DynamicK8sResource(BaseResource)
 ```
 
-Class for Dynamic K8s integration.
+Class for Dynamic K8s resource.
 
 <a id="aqueduct.resources.dynamic_k8s.DynamicK8sResource.status"></a>
 
@@ -56,7 +56,7 @@ Creates the dynamic Kubernetes cluster, if it is not currently running.
 
 **Raises**:
 
-  InvalidIntegrationException:
+  InvalidResourceException:
   An error occurred when the dynamic engine doesn't exist.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
@@ -85,7 +85,7 @@ Active status.
 
 **Raises**:
 
-  InvalidIntegrationException:
+  InvalidResourceException:
   An error occurred when the dynamic engine doesn't exist.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
@@ -111,7 +111,7 @@ Deletes the dynamic Kubernetes cluster if it is running, ignoring the keepalive 
 
 **Raises**:
 
-  InvalidIntegrationException:
+  InvalidResourceException:
   An error occurred when the dynamic engine doesn't exist.
   InternalServerError:
   An unexpected error occurred within the Aqueduct cluster.
@@ -124,5 +124,5 @@ Deletes the dynamic Kubernetes cluster if it is running, ignoring the keepalive 
 def describe() -> None
 ```
 
-Prints out a human-readable description of the K8s integration.
+Prints out a human-readable description of the K8s resource.
 

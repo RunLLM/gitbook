@@ -20,7 +20,7 @@
 class RelationalDBResource(BaseResource)
 ```
 
-Class for Relational integrations.
+Class for Relational resources.
 
 <a id="aqueduct.resources.sql.RelationalDBResource.list_tables"></a>
 
@@ -31,7 +31,7 @@ Class for Relational integrations.
 def list_tables() -> pd.DataFrame
 ```
 
-Lists the tables available in the RelationalDB integration.
+Lists the tables available in the RelationalDB resource.
 
 **Returns**:
 
@@ -46,7 +46,7 @@ Lists the tables available in the RelationalDB integration.
 def table(name: str) -> pd.DataFrame
 ```
 
-Retrieves a table from a RelationalDB integration.
+Retrieves a table from a RelationalDB resource.
 
 **Arguments**:
 
@@ -72,7 +72,7 @@ def sql(query: Union[str, List[str], RelationalDBExtractParams],
         lazy: bool = False) -> TableArtifact
 ```
 
-Runs a SQL query against the RelationalDB integration.
+Runs a SQL query against the RelationalDB resource.
 
 **Arguments**:
 
@@ -110,7 +110,7 @@ Runs a SQL query against the RelationalDB integration.
 
 ```python
 @validate_is_connected()
-def save(artifact: BaseArtifact, table_name: str,
+def save(artifact: BaseArtifact, table_name: Union[str, BaseArtifact],
          update_mode: LoadUpdateMode) -> None
 ```
 
@@ -119,9 +119,11 @@ Registers a save operator of the given artifact, to be executed when it's comput
 **Arguments**:
 
   artifact:
-  The artifact to save into this sql integration.
+  The artifact to save into this sql resource.
   table_name:
-  The table to save the artifact to.
+  The table to save the artifact to. You can also parameterize this field by passing
+  a string parameter here. When this save is parameterized, the table name parameter
+  will always be ordered before the artifact in the save operator's input list.
   update_mode:
   Defines the semantics of the save if a table already exists.
   Options are "replace", "append" (row-wise), or "fail" (if table already exists).
@@ -134,5 +136,5 @@ Registers a save operator of the given artifact, to be executed when it's comput
 def describe() -> None
 ```
 
-Prints out a human-readable description of the SQL integration.
+Prints out a human-readable description of the SQL resource.
 
