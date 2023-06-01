@@ -45,6 +45,7 @@
   * [Compute Systems](resources/compute-systems/README.md)
     * [On-Demand Resources](resources/compute-systems/on-demand-resources/README.md)
       * [On-Demand AWS EKS Clusters](resources/compute-systems/on-demand-resources/on-demand-aws-eks-clusters.md)
+      * [On-Demand GKE Clusters](resources/compute-systems/on-demand-resources/on-demand-gke-clusters.md)
     * [Aqueduct](resources/compute-systems/aqueduct.md)
     * [Airflow](resources/compute-systems/airflow.md)
     * [Conda](resources/compute-systems/conda.md)
