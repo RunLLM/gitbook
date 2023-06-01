@@ -54,6 +54,7 @@
     * [Apache Spark on AWS EMR](resources/compute-systems/apache-spark-on-aws-emr.md)
   * [Container Registries](resources/container-registries/README.md)
     * [ECR](/resources/container-registries/ecr.md)
+    * [GAR](/resources/container-registries/gar.md)
   * [Managing Resources](resources/guide.md)
 * [Integrations](integrations/README.md)
 * [Operators](operators.md)
