@@ -258,9 +258,9 @@ Retrieves a dictionary of resources the client can use.
 def integration(
     name: str
 ) -> Union[SalesforceResource, S3Resource, GoogleSheetsResource,
-           RelationalDBResource, AirflowResource, K8sResource, LambdaResource,
+           RelationalDBResource, AirflowResource, LambdaResource,
            MongoDBResource, DatabricksResource, SparkResource, AWSResource,
-           ECRResource, ]
+           ECRResource, DynamicK8sResource, GARResource, ]
 ```
 
 Deprecated. Use `client.resource()` instead.
@@ -273,9 +273,9 @@ Deprecated. Use `client.resource()` instead.
 def resource(
     name: str
 ) -> Union[SalesforceResource, S3Resource, GoogleSheetsResource,
-           RelationalDBResource, AirflowResource, K8sResource, LambdaResource,
+           RelationalDBResource, AirflowResource, LambdaResource,
            MongoDBResource, DatabricksResource, SparkResource, AWSResource,
-           ECRResource, ]
+           ECRResource, DynamicK8sResource, GARResource, ]
 ```
 
 Retrieves a connected resource object.
