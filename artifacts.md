@@ -53,4 +53,4 @@ wines.disable_snapshot() # This disables snapshots for wines
 
 db.save(wines, 'wines_2', 'replace')
 ```
-On an artifact that has had snapshotting disabled, you can call `enable_snapshot()` to reenable snapshots.
+On an artifact with snapshotting disabled, you can call `enable_snapshot()` to reenable snapshots.
