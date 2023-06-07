@@ -88,7 +88,7 @@ There are a few key arguments here, and we'll go through the one by one:
   * You're, of course, welcome to list out all of the data artifacts in your workflow, but we figured it would be easier to list the outputs you care about.
 * `schedule`: This tells us how often you'd like to run your workflow. If you leave this empty, no schedule will be set, and you can set a schedule that executes as quickly as every minute or as rarely as every month. (See [managing-workflow-schedules.md](managing-workflow-schedules.md "mention") for more details.)
 * `config`: This tells us which connected engine you'd like to run your workflow. If you leave this empty, the workflow will be executed by Aqueduct engine by default. We currently support Airflow, Kubernetes, and Lambda.
-* `disable_snapshots`: This tells us if we should store snapshots of intermediate results. This disables all snapshots NOT coming from parameters, metrics, or checks. Additionally, you can alternate this behavior on individual [artifacts](../artifacts.md) by calling `.disable_snapshot()` on the artifact.
+* `disable_snapshots`: This tells us if we should store snapshots of intermediate results. This disables all snapshots except for parameter, metrics, or checks. Additionally, you can toggle this behavior on individual [artifacts](../artifacts.md#disabling-snapshots-on-artifacts) by calling `.disable_snapshot()` on the artifact.
 
 Finally, you'll notice that we print `flow.id()` at the end of our workflow. This shows you the UUID assigned to your workflow, which you can use to access the workflow from the Python SDK In the future.
 

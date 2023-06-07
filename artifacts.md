@@ -41,7 +41,7 @@ The specific requirements for each data system will vary based on what data type
 
 
 ## Disabling Snapshots on Artifacts
-By default, Aqueduct snapshots all artifact results during workflow runs. You can change this setting when [publishing the workflow](./workflows/creating-a-workflow.md), or call `.disable_snapshot()` or `.enable_snapshot()` on individual artifacts. For example:
+By default, Aqueduct snapshots all artifact results during workflow runs. You can toggle this setting when [publishing the workflow](./workflows/creating-a-workflow.md#publishing-a-workflow) by setting the `disable_snapshots` flag to `True`. You can also call `.disable_snapshot()` on individual artifacts. For example:
 
 ```python
 import aqueduct as aq
@@ -53,3 +53,4 @@ wines.disable_snapshot() # This disables snapshots for wines
 
 db.save(wines, 'wines_2', 'replace')
 ```
+On an artifact that has had snapshotting disabled, you can call `enable_snapshot()` to reenable snapshots.
