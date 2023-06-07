@@ -38,3 +38,18 @@ db.save(wines, 'wines_2', 'replace')
 ```
 
 The specific requirements for each data system will vary based on what data types they accept and what metadata they need. To learn more, visit the documentation page for the data system you're using.
+
+
+## Disabling Snapshots on Artifacts
+By default, Aqueduct snapshots all artifact results during workflow runs. You can change this setting when [publishing the workflow](./workflows/creating-a-workflow.md), or call `.disable_snapshot()` or `.enable_snapshot()` on individual artifacts. For example:
+
+```python
+import aqueduct as aq
+client = aq.Client()
+
+db = client.resource('aqueduct_demo')
+wines = db.sql('SELECT * FROM wine;')
+wines.disable_snapshot() # This disables snapshots for wines
+
+db.save(wines, 'wines_2', 'replace')
+```
