@@ -23,7 +23,7 @@
 * [Workflows](workflows/README.md)
   * [Creating a Workflow](workflows/creating-a-workflow.md)
   * [Workflow Versions](workflows/workflow-versions.md)
-  * [Scheduling Workflwos](workflows/managing-workflow-schedules.md)
+  * [Scheduling Workflows](workflows/managing-workflow-schedules.md)
   * [Editing a Workflow](workflows/editing-a-workflow.md)
   * [Deleting a Workflow](workflows/deleting-a-workflow.md)
 * [Resources](resources/README.md)

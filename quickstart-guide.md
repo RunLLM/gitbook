@@ -33,7 +33,7 @@ Note that the API key associated with the server can also be found in the output
 
 ### Accessing Data
 
-The base data for our workflow is the [hotel reviews dataset](resources/data-systems/aqueduct-demo-resource.md)) in the pre-built aqueduct\_demo that comes with the Aqueduct server. This code does two things -- (1) it loads a connection to the demo database, and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
+The base data for our workflow is the [hotel reviews dataset](resources/data-systems/aqueduct-demo-resource.md) in the pre-built aqueduct\_demo that comes with the Aqueduct server. This code does two things -- (1) it loads a connection to the demo database, and (2) it runs a SQL query against that DB and returns a pointer to the resulting dataset.
 
 ```python
 demo_db = client.resource("aqueduct_demo")
@@ -59,7 +59,7 @@ def transform_data(reviews):
     '''
     This simple Python function takes in a DataFrame with hotel reviews
     and adds a column called strlen that has the string length of the
-    review.    
+    review.
     '''
     reviews['strlen'] = reviews['review'].str.len()
     return reviews
