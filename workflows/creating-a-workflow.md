@@ -34,7 +34,7 @@ All of the code we've written here is simple Pandas code. The only change we've 
 ```python
 from aqueduct import Client
 
-client = Client() 
+client = Client()
 
 db = client.resource('aqueduct_demo')
 wine_data = db.sql('SELECT * FROM wine;')
@@ -75,11 +75,11 @@ acidity_by_group.get() # Shows a preview of the results of `get_average_acidity`
 Once we've defined our whole workflow, the final step is to publish it to Aqueduct. Intuitively, the name of the method we'll use for this is `publish_flow`.
 
 ```python
-flow = client.publish_flow(name='average_acidity', 
+flow = client.publish_flow(name='average_acidity',
                            artifacts=[acidity_by_group])
 ```
 
-By default, the workflow is published using Aqueduct Python execution engine that runs on the same machine as the server, but if we want to customize the execution engine, check out [Broken link](broken-reference "mention").
+By default, the workflow is published using Aqueduct Python execution engine that runs on the same machine as the server, but if we want to customize the execution engine, check out [compute-systems](resources/compute-systems/ "mention").
 
 There are a few key arguments here, and we'll go through the one by one:
 

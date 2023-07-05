@@ -15,20 +15,20 @@ The 12-line code snippet below is all you need to create your first Aqueduct wor
 ```python
 from aqueduct import Client, op
 
-# Create an Aqueduct client. If we're running on the same machine as the 
+# Create an Aqueduct client. If we're running on the same machine as the
 # Aqueduct server, we can create a client without providing an API key or a
 # server address.
 client = Client()
 
-# The @op decorator here allows Aqueduct to run this function as 
-# a part of an Aqueduct workflow. It tells Aqueduct that when 
+# The @op decorator here allows Aqueduct to run this function as
+# a part of an Aqueduct workflow. It tells Aqueduct that when
 # we execute this function, we're defining a step in the workflow.
 @op
 def transform_data(reviews):
     '''
     This simple Python function takes in a DataFrame with hotel reviews
     and adds a column called strlen that has the string length of the
-    review.    
+    review.
     '''
     reviews['strlen'] = reviews['review'].str.len()
     return reviews
@@ -84,8 +84,7 @@ For more on this pipeline, check our [Quickstart Guide](quickstart-guide.md).
 
 * [Updating Aqueduct](installation-and-configuration/updating-aqueduct.md)
 * [Debugging a Prediction Pipeline](guides/debugging-a-failed-workflow.md)
-* [Running on Airflow](broken-reference)
-* [Changing the Aqueduct Metadata Store](broken-reference)
+* [Running on Airflow](resources/compute-systems/airflow.md)
 * [Porting a Workflow to Aqueduct](guides/porting-a-workflow-to-aqueduct.md)
 
 ### API Reference
