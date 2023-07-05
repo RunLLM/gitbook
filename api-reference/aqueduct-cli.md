@@ -26,7 +26,7 @@ This page provide a detailed walkthrough of the Aqueduct CLI.&#x20;
 
 #### install
 
-`aqueduct install <connector>` installs the dependencies required for `<connector>` on your machine. In most cases, these are `pip` packages on a system-by-system basis, but certain connectors (MySQL & Microsoft SQL Server) require special configuration -- see [Broken link](broken-reference "mention") for more details.
+`aqueduct install <connector>` installs the dependencies required for `<connector>` on your machine. In most cases, these are `pip` packages on a system-by-system basis, but certain connectors (MySQL & Microsoft SQL Server) require special installations.
 
 #### apikey
 

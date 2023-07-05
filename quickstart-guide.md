@@ -59,7 +59,7 @@ def transform_data(reviews):
     '''
     This simple Python function takes in a DataFrame with hotel reviews
     and adds a column called strlen that has the string length of the
-    review.    
+    review.
     '''
     reviews['strlen'] = reviews['review'].str.len()
     return reviews
@@ -105,7 +105,7 @@ Note that checks are denoted with the @check decorator. Checks can also computed
 
 ### Saving Data
 
-Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database. See [here](broken-reference) for more details around using resources.
+Finally, we can save the transformed table `strlen_table` back to the Aqueduct demo database. See [data-systems](resources/data-systems/ "mention") for more details.
 
 ```python
 demo_db.save(strlen_table, table_name="strlen_table", update_mode="replace")

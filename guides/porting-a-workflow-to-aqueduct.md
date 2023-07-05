@@ -50,7 +50,7 @@ Once you have your code running on Aqueduct, you probably are going to want to s
 
 The first thing we'll need to do is figure out where our data inputs are coming from and where our predictions are going to. You'll need to connect those systems as Aqueduct [resources](../resources/ "mention").
 
-Once we have our resources connected, we can get a handle to that resource in our Python code. For our example here, we're going to use the [aqueduct-demo-resource.md](../resources/data-systems/aqueduct-demo-resource.md "mention"). Once we have a handle to the demo database, we can then run a SQL query on it (see [Broken link](broken-reference "mention") for details on using non-relational data systems) to get our input data. You can use any SQL query that works for your underlying database.
+Once we have our resources connected, we can get a handle to that resource in our Python code. For our example here, we're going to use the [aqueduct-demo-resource.md](../resources/data-systems/aqueduct-demo-resource.md "mention"). Once we have a handle to the demo database, we can then run a SQL query on it (see [non-sql-systems](../resources/data-systems/non-sql-systems "mention") for details on using non-relational data systems) to get our input data. You can use any SQL query that works for your underlying database.
 
 ```python
 from aqueduct import Client, op
@@ -58,7 +58,7 @@ import pandas as pd
 
 client = Client()
 
-db = client.resource('aqueduct_demo') 
+db = client.resource('aqueduct_demo')
 input_data = db.sql('SELECT * FROM wine;')
 ```
 
@@ -108,16 +108,16 @@ input_data = db.sql('SELECT * FROM wine;')
 
 @op
 def clean_data(input_data):
-    # First, clean our data.    
+    # First, clean our data.
     cleaned_data = pd.DataFrame([])
     return cleaned_data
-    
-@op 
+
+@op
 def featurize_data(cleaned_data):
     # Next, featurize our data.
     features = pd.DataFrame([])
     return features
-    
+
 @op
 def predict(features):
     # Finally, load our model and make some predictions.
