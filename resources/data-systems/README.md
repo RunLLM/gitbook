@@ -18,6 +18,7 @@ Here are the systems Aqueduct supports:
   * [aws-redshift.md](sql-systems/aws-redshift.md "mention")
   * [google-bigquery.md](sql-systems/google-bigquery.md "mention")
 * [non-sql-systems](non-sql-systems/ "mention")&#x20;
+  * [aws-s3.md](non-sql-systems/aws-s3.md "mention")
   * [google-cloud-storage.md](non-sql-systems/google-cloud-storage.md "mention")
   * [mongodb.md](non-sql-systems/mongodb.md "mention")
   * DynamoDB _(coming soon!)_
