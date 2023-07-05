@@ -10,7 +10,7 @@ If you get stuck anywhere here, please let us know on our [Slack community](http
 
 ### Installation and Setup
 
-First things first, we'll install the Aqueduct pip package and start Aqueduct:
+First things first, we'll install the Aqueduct `pip` package and start Aqueduct:
 
 ```bash
 pip3 install aqueduct-ml
@@ -87,7 +87,7 @@ def average_strlen(strlen_table):
 avg_strlen = average_strlen(strlen_table)
 ```
 
-Note that metrics are denoted with the @metric decorator. Metrics can be computed over any operator, and even other metrics.
+Note that metrics are denoted with the `@metric` decorator. Metrics can be computed over any operator, and even other metrics.
 
 ### Adding Checks
 
@@ -125,7 +125,7 @@ And we're done! 🎉
 
 We've created our first workflow together, and you're off to the races. Here are some next steps:
 
-* For more details on different ways to configure Aqueduct, check out our [Installation Guide](installation-and-configuration/).
-* Check out our [example workflows](example-workflows/) for some more Aqueduct workflows.
-* Check out our guide on [Workflows](workflows/) for a deep dive on how to define, preview, and create workflows.
-* Check out our documentation on [Operators](operators.md), [Artifacts](artifacts.md), and [Metrics & Checks](metrics-and-checks.md) for deep dives into creating and interacting with each.
+* For more details on different ways to configure Aqueduct, check out [installation-and-configuration](installation-and-configuration/ "mention").
+* Check out our [example-workflows](example-workflows/ "mention") for some more Aqueduct workflows.
+* Check out our guide on [workflows](workflows/ "mention") for a deep dive on how to define, preview, and create workflows.
+* Check out our documentation on [operators.md](operators.md "mention"), [artifacts.md](artifacts.md "mention"), and [metrics-and-checks.md](metrics-and-checks.md "mention") for deep dives into creating and interacting with each.
