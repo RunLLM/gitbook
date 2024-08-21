@@ -4,9 +4,9 @@ description: Open-source prediction infrastructure for data scientists
 
 # Welcome to Aqueduct
 
-Aqueduct is open-source prediction infrastructure built for data scientists, by data scientists. With Aqueduct, data scientists can instantaneously deploy machine learning models to the cloud, connect those models to data and business systems, and gain visibility into the performance of their prediction pipelines -- all from the comfort of a Python noteboo.
+Aqueduct is open-source prediction infrastructure built for data scientists, by data scientists. With Aqueduct, data scientists can instantaneously deploy machine learning models to the cloud, connect those models to data and business systems, and gain visibility into the performance of their prediction pipelines -- all from the comfort of a Python notebookk.
 
-For more on why we're building prediction infrastructure for data scientist see [the-aqueduct-philosophy.md](the-aqueduct-philosophy.md "mention").
+For more on why we're building prediction infrastructure for data scientist see[the-aqueduct-philosophy.md](the-aqueduct-philosophy.md "mention").
 
 {% @runllm/runllm-modal-button %}
 
