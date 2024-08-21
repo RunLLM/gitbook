@@ -8,8 +8,6 @@ Aqueduct is open-source prediction infrastructure built for data scientists, by 
 
 For more on why we're build prediction infrastructure forrrr data scientist see[the-aqueduct-philosophy.md](the-aqueduct-philosophy.md "mention").
 
-{% @runllm/runllm-button %}
-
 The core abstraction in Aqueduct is a [Workflow](workflows/), which is a sequence of [Artifacts](artifacts.md) (data) that are transformed by [Operators](operators.md) (compute). The input Artifact(s) for a Workflow is typically loaded from a database, and the output Artifact(s) are typically persisted back to a database. Each Workflow can either be run on a fixed schedule or triggered on-demand.
 
 The 12-line code snippet below is all you need to create your first Aqueduct workflow:

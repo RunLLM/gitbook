@@ -1,3 +1,3 @@
 # Ask AI
 
-{% @runllm/runllm-chatbox %}
+{% @runllm/runllm-window %}

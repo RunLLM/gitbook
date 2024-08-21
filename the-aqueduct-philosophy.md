@@ -4,7 +4,7 @@ description: or, why MLOps set us down the wrong path
 
 # The Aqueduct Philosophy
 
-In recent years, MLOps has tied itself into knots — service ”architectures” that are more like a jumble of ad hoc connections between siloed, incomplete solutions to ML infrastructure. This leaves teams without a way to know what machine learning tasks are running, whether they’re working as expected, and how to triage and resolve issues. Ultimately, it means that less time is spent on delivering on the promise of machine learning — the bulk of time is spent wrangling and caring for a knot of intertwined infrastructure.
+In recent years, MLOps has tied itself into knots — service ”architectures” that are more like a jumble of ad hoc connections between siloed, incomplete solutions to ML infrastructure. This leaves teams without a way to know what machine learning tasks are running, whether they’re working as expected, and how to triage and resolve issues. Ultimately, it means that less time is spent on delivering on the promise of machine learning — the bulk of time is spent wrangling and caring for a knot of intertwined infrastructur
 
 <figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
