@@ -123,3 +123,4 @@
   * [Porting a workflow to Aqueduct](guides/porting-a-workflow-to-aqueduct.md)
   * [Debugging a Failed Workflow](guides/debugging-a-failed-workflow.md)
 * [FAQs](faqs.md)
+* [Ask AI](ask-ai.md)
