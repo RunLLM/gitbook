@@ -1,5 +1,5 @@
 ---
-description: Open-source prediction infrastructure for data scientists
+description: Open-source prediction infrastructure for data scientist
 ---
 
 # Welcome to Aqueduct
