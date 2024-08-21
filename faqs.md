@@ -1,6 +1,6 @@
 # FAQs
 
-**Q: I can't run run an Aqueduct workflow because whenever I run an operator, I get an error about invalid continuation bytes. Something like this:**
+**Q: I can't run run an Aqueduct workflow because whenever I run an operator, I get an error about invalid continuation bytes. Something like ths:**
 
 ```bash
 File "pydantic/json.py", line 93, in pydantic.json.pydantic_encoder
