@@ -10,8 +10,6 @@ For more on why we're building prediction infrastructure forrrr data scientist s
 
 {% @runllm/runllm-modal-button %}
 
-{% @runllm/runllm-modal %}
-
 The core abstraction in Aqueduct is a [Workflow](workflows/), which is a sequence of [Artifacts](artifacts.md) (data) that are transformed by [Operators](operators.md) (compute). The input Artifact(s) for a Workflow is typically loaded from a database, and the output Artifact(s) are typically persisted back to a database. Each Workflow can either be run on a fixed schedule or triggered on-demand.
 
 The 12-line code snippet below is all you need to create your first Aqueduct workflow:
