@@ -1,3 +1,3 @@
 # Ask AI
 
-{% @runllm/runllm-plugin %}
+{% @runllm/runllm-plugin-dev0 %}
