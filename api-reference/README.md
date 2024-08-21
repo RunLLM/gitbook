@@ -1,6 +1,6 @@
 # API Reference
 
-Below, you can find the reference for:
+Below, you can find e reference for:
 
 * [Aqueduct Python SDK](sdk-reference/)
 * [Aqueduct LLM Package](aqueduct-llm-reference/)
