@@ -9,7 +9,7 @@ UnicodeDecodeError: 'utf-8' codec can't decode byte 0xed in position 10: invalid
 python-BaseException
 ```
 
-**A**: Pydantic v1.8 and older have an issue with JSON deserialization in newer version of Python. Please update to Pydantic v1.9 or later to resolve this issue.
+**A**: Pydantic v1.8 and older have an issue with JSON deserialization in newer version of Python. Please update to Pydantic v1. or later to resolve this issue.
 
 **Q: I'm getting an error about importing type hints:**
 
